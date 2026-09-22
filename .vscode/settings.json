@@ -1,0 +1,37 @@
+{
+  "python.analysis.exclude": [
+    "**/build/**",
+    "**/.dart_tool/**",
+    "android/.gradle/**",
+    "android/app/build/**",
+    "ios/Pods/**",
+    "ios/.symlinks/**",
+    "ios/Flutter/ephemeral/**",
+    "macos/Pods/**",
+    "macos/Flutter/ephemeral/**",
+    "linux/flutter/ephemeral/**",
+    "windows/flutter/ephemeral/**"
+  ],
+  "files.watcherExclude": {
+    "**/build/**": true,
+    "**/.dart_tool/**": true,
+    "android/.gradle/**": true,
+    "android/app/build/**": true,
+    "ios/Pods/**": true,
+    "ios/.symlinks/**": true,
+    "ios/Flutter/ephemeral/**": true,
+    "macos/Pods/**": true,
+    "macos/Flutter/ephemeral/**": true
+  },
+  "search.exclude": {
+    "**/build": true,
+    "**/.dart_tool": true,
+    "android/.gradle": true,
+    "android/app/build": true,
+    "ios/Pods": true,
+    "ios/.symlinks": true,
+    "ios/Flutter/ephemeral": true,
+    "macos/Pods": true,
+    "macos/Flutter/ephemeral": true
+  }
+}

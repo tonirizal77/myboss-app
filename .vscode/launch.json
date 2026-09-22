@@ -1,0 +1,105 @@
+{
+  // Use IntelliSense to learn about possible attributes.
+  // Hover to view descriptions of existing attributes.
+  // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "android-tab",
+      "request": "launch",
+      "type": "dart",
+      "deviceId": "emulator-5554",
+      "flutterMode": "debug"
+    },
+    {
+      "name": "Chrome (web)",
+      "request": "launch",
+      "type": "dart",
+      "deviceId": "chrome",
+      "args": ["--web-browser-flag=--disable-web-security"],
+      "flutterMode": "profile"
+    },
+    {
+      "name": "macOs (desktop)",
+      "request": "launch",
+      "type": "dart",
+      "deviceId": "macos",
+      "flutterMode": "debug",
+      "runTestsOnDevice": true,
+      "args": ["--flavor", "staging"]
+      // "args": ["--flavor", "production"]
+    },
+    {
+      "name": "Iphone16e",
+      "request": "launch",
+      "type": "dart",
+      "deviceId": "BE8F845D-4BC7-41F9-B94E-D30BE23C194D",
+      "flutterMode": "debug",
+      "runTestsOnDevice": true,
+      "args": ["--flavor", "staging"]
+      // "args": ["--flavor", "prod"]
+    },
+
+    /// Real Device
+    /// -----------
+    /// 1. For Android
+    {
+      "name": "XPrime",
+      "request": "launch",
+      "type": "dart",
+      "deviceId": "0123456789ABCDEF", // usb
+      // "deviceId": "192.168.100.189:5555",
+      "flutterMode": "debug",
+      "runTestsOnDevice": true,
+      "args": ["--flavor", "staging"]
+      // "args": ["--flavor", "production"]
+    },
+    {
+      "name": "Vivo",
+      "request": "launch",
+      "type": "dart",
+      "deviceId": "10DD2D00PA001QH", // usb
+      // "deviceId": "192.168.100.191:5556", // wifi
+      // "deviceId": "10.0.0.65:5556", // office
+      "flutterMode": "debug",
+      "runTestsOnDevice": true,
+      "args": ["--flavor", "staging"]
+      // "args": ["--flavor", "prod"]
+    },
+    {
+      "name": "RealmeC85",
+      "request": "launch",
+      "type": "dart",
+      "deviceId": "40cb62ff", // usb
+      // "deviceId": "192.168.100.191:5556", // wifi
+      // "deviceId": "10.0.0.65:5556", // office
+      "flutterMode": "debug",
+      "runTestsOnDevice": true,
+      "args": ["--flavor", "staging"]
+      // "args": ["--flavor", "prod"]
+      // "args": ["--flavor", "live"]
+    },
+
+    /// 2. For iOS
+    {
+      "name": "MyIphone",
+      "request": "launch",
+      "type": "dart",
+      "deviceId": "00008020-000A718E36F9002E",
+      "flutterMode": "debug",
+      "runTestsOnDevice": true,
+      "args": ["--flavor", "staging"]
+      // "args": ["--flavor", "prod"]
+    },
+    {
+      "name": "MyIpad",
+      "request": "launch",
+      "type": "dart",
+      "deviceId": "00008030-000D05492653C02E",
+      "flutterMode": "debug",
+      "runTestsOnDevice": true,
+      "args": ["--flavor", "staging"]
+      // "args": ["--flavor", "prod"]
+    }
+  ]
+}

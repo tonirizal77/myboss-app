@@ -1,0 +1,346 @@
+{
+  "bottom_nav": {
+    "nav1": "Home",
+    "nav2": "Menu",
+    "nav3": "Stores",
+    "nav4": "Account"
+  },
+
+  "Senin": "Monday",
+  "Selasa": "Tuesday",
+  "Rabu": "Wednesday",
+  "Kamis": "Thursday",
+  "Jumat": "Friday",
+  "Sabtu": "Saturday",
+  "Minggu": "Sunday",
+
+  "label": {
+    "connected": "Internet Connected",
+    "no_connected": "Internet Not Connected",
+    "no_data": "Data not yet available",
+    "name": "Name",
+    "phone": "Phone number",
+    "barcode": "Show this barcode to cashier",
+    "invalid_phone": "Invalid phone number",
+    "refresh_in": "New code in {}"
+  },
+
+  "dialog": {
+    "title_logout": "Logout?",
+    "desc_logout": "Are you sure you want to logout from Ha-Yo account?",
+    "title_delete_account": "Delete Account?",
+    "desc_delete_account": "Are you sure you want to delete your Ha-Yo account? This action cannot be undone and all your data will be permanently deleted."
+  },
+
+  "button": {
+    "login": "Login",
+    "register": "Make a new account",
+    "batal": "Cancel",
+    "simpan": "Save",
+    "terapkan": "Terapkan",
+    "back": "Back",
+    "logout": "Yes, log out",
+    "delete_account": "Yes, Delete Account"
+  },
+
+  "dio_msg": {
+    "eem_03": "EEM-03 : Parsing error occurred. Please try again later.",
+    "eem_02": "EEM-02 : Unknown Error. Please try again later.",
+    "eem_01": "EEM-01 : Null Error. Please try again later.",
+    "eem_00": "EEM-00 : Unknown Error. Please try again later.",
+    "terjadi_gangguan": "There was a problem while connecting to our server, Please try again later.",
+    "gagal_memuat_data": "Failed to load the data, Please try again later.",
+    "periksa_koneksi_anda": "Failed to load the data, please check your internet connection",
+    "msg_gagal_data": "Failed to load data",
+    "mohon_hubungi_admin": "An unexpected error occurred, please try again or contact our admins if the error persists.",
+    "server": "Error Server",
+    "coba_lagi": "Try again!"
+  },
+
+  "home": {
+    "title": "Stamps",
+    "stamps_to_go1": "{} stamps to go",
+    "stamps_to_go2": "for a Free Cup",
+    "you_have": "You've",
+    "point_free": "{} Free",
+    "Start": "Start",
+    "free": "Free",
+    "tier_info_12": "Collect all stamps \nto become",
+    "tier_info_3": "You’re the \nCoolest!",
+    "message_1": "Collect stamps for a Free Cup!",
+    "message_2": "Earn 1 stamp for each small-medium cup and 2 stamps for every large cup you buy.",
+    "tier_label1": "Cool",
+    "tier_label2": "Cooler",
+    "tier_label3": "Coolest"
+  },
+
+  "menu": {
+    "title": "Mix & Match",
+    "sub_title": "Up to {} \ntoppings to \nchoose from",
+    "info": "Endless choices, never boring!",
+    "yogurt_title": "Yogurt",
+    "toppings_title": "Toppings"
+  },
+
+  "stores": {
+    "title": "We are nearby",
+    "direction": "Direction",
+    "phone": "Phone: {}"
+  },
+
+  "akun": {
+    "about_us": "About Us",
+    "faq": "FAQ",
+    "tnc": "Terms & Conditions",
+    "stamps": "stamps",
+    "contact_us": "Contact Us",
+    "logout": "Log Out",
+    "delete_account": "Delete Account",
+    "delete_account_success": "Account successfully deleted",
+    "login_required_title": "Sign in to see \nyour account",
+    "login_required_desc": "Login or register to see your profile, stamps, and vouchers.",
+    "lets_fun": "Let’s fun together!",
+    "folow_us": "Follow Us",
+    "voucher_title": "Vouchers",
+    "voucher_count": "{} vouchers",
+    "delete_confirm_title": "Delete Ha-Yo account?",
+    "delete_confirm_desc": "This can't be undone; all your data will be deleted permanently.",
+    "delete_confirm_info1": "To delete your Ha-Yo account, just send your request to {}.",
+    "delete_confirm_info2": "using the account owener's email address",
+    "delete_confirm_button": "Delete Account",
+    "delete_confirm_email_button": "Send request",
+    "delete_confirm_email_subject": "Delete Account Request - {}",
+    "delete_confirm_email_body": "I would like to request the deletion of my Ha-Yo account with the following details:\n• Name: {name}\n• Email: {email}\n• Phone: {phone}.\n\nPlease confirm the deletion process.\n\nI understand that this process cannot be undone and all my data will be permanently deleted."
+  },
+
+  "stamps": {
+    "title": "Stamps",
+    "sub_title": "stamps",
+    "earned": "Stamp Earned",
+    "bonus": "Stamp Bonus",
+    "sub_total": "Subtotal",
+    "disc": "Discount",
+    "point": "Points Redemption",
+    "service": "Service Fee",
+    "tax": "Tax",
+    "shipping": "Shipping Cost",
+    "total": "Total"
+  },
+
+  "voucher": {
+    "label_valid1": "Valid Unlimited",
+    "label_valid2": "Valid until {}",
+    "label_sheet": "Vouchers Details",
+    "label_disc": "{} Discount",
+    "label_desc": "Vouchers Terms & Conditions",
+    "label_max": "Maximum deduction of {}",
+    "label_min": "Minimum purchase of {}",
+    "label_copy": "The code has been copied...!"
+  },
+
+  "faq": {
+    "title": "Frequently Asked",
+    "1": {
+      "ask": "Where can I buy HaYo products?",
+      "quest": "Currently, HaYo products can only be purchased directly at official HaYo outlets."
+    },
+    "2": {
+      "ask": "Can I purchase HaYo products through the app?",
+      "quest": "Not yet. The HaYo app cannot currently be used to make purchases or pay for products."
+    },
+    "3": {
+      "ask": "Is HaYo available on GoFood, GrabFood, or ShopeeFood?",
+      "quest": "Currently, HaYo does not serve purchases through third-party platforms such as GoFood, GrabFood, ShopeeFood, or similar platforms."
+    },
+    "4": {
+      "ask": "What is the HaYo website and app used for?",
+      "quest": "The HaYo website provides brand information, product and topping catalogs, and outlet locations. The HaYo app provides access to HaYo memberships and provides information on brands, products, toppings, and outlet locations. The information displayed is for informational purposes only and is subject to change at any time, in accordance with HaYo's policies."
+    },
+    "5": {
+      "ask": "How to become a HaYo member?",
+      "quest": "Customers can become HaYo members through the HaYo application according to the applicable registration mechanism."
+    },
+    "6": {
+      "ask": "How does the HaYo e-stamp system work?",
+      "quest": "E-stamp is a digital stamp available in the HaYo application. \n• Every purchase of Small and Medium sizes will get 1 e-stamp. \n• Every purchase of Large size will get 2 e-stamps. \n• Collected e-stamps can be exchanged for free products according to the applicable conditions. \n• After collecting 50 e-stamps, users will level up and 2 e-stamps will be immediately unlocked according to the applicable mechanism. \n• E-stamp and membership conditions are subject to change at any time according to HaYo's policy."
+    },
+    "7": {
+      "ask": "Does HaYo have vouchers or gift cards?",
+      "quest": "HaYo can provide vouchers or gift cards according to applicable programs. Use of vouchers or gift cards is subject to the terms, conditions, validity period, and redemption mechanism listed on each voucher or gift card."
+    },
+    "8": {
+      "ask": "Are the products displayed on the website or app always the same as those available in stores?",
+      "quest": "Product selection, flavors, toppings, sizes, and availability may vary depending on the store and time of day. The product and topping information displayed on the website or app is for informational purposes only and is subject to change."
+    },
+    "9": {
+      "ask": "Can paid orders be cancelled, exchanged or returned?",
+      "quest": "Orders that have been processed and/or paid for cannot be cancelled, changed, exchanged or returned, unless there is an error in the order from HaYo or the product is received in a condition unfit for consumption."
+    },
+    "10": {
+      "ask": "What if I want to submit a complaint?",
+      "quest": "Complaints can be submitted on the same day, provided they show valid proof of purchase. HaYo reserves the right to verify the complaint before determining a resolution."
+    },
+    "11": {
+      "ask": "Are HaYo products safe for customers with certain allergies?",
+      "quest": "HaYo products may contain or come into contact with certain ingredients such as milk, nuts, gluten, or other allergens. If you have a history of allergies or dietary restrictions, we recommend that you consult with our staff before purchasing."
+    },
+    "12": {
+      "ask": "Are HaYo products halal?",
+      "quest": "PT Halal Artisan Yummies is committed to consistently using halal and high-quality ingredients in every production process and producing products with guaranteed halal certification. We are currently in the process of obtaining halal certification."
+    },
+    "title_bottom": "Still have unanswered questions? Don't hesitate to Contact Us."
+  },
+
+  "auth": {
+    "title": "Let's be a friend!",
+    "subtitle": "Login to your Ha-Yo profile first",
+    "register_title": "Make Ha-Yo Profile",
+    "btn_ready": "I'm so ready!",
+    "have_account": "Already have an account?",
+    "sign_in": "Sign In",
+    "error_name_required": "Name is required",
+    "error_name_length": "Minimum name 3 letters"
+  },
+
+  "global": {
+    "server_error": "Server Error!",
+    "ignore": "Ignore for now",
+    "welcome_btn": "Let's be a friends!"
+  },
+
+  "verify": {
+    "title": "Verification",
+    "send_otp": "Send OTP code",
+    "verify_phone": "Verify your phone number",
+    "otp_instruction": "Click to send the OTP code to your WhatsApp number. Enter the 4-digit code in the next step.",
+    "otp_instruction_with_phone": "Click to send the OTP code to your WhatsApp number: {}. Enter the 4-digit code in the next step.",
+    "confirm_title": "Verify WhatsApp",
+    "confirm_btn": "Verify",
+    "otp_sent": "Please enter the OTP code we sent to your WhatsApp number: ",
+    "resend_otp": "Resend the OTP code",
+    "change_title": "Change {}",
+    "change_instruction": "Verify first before changing the your {}"
+  },
+
+  "edit_profile": {
+    "title": "Edit Profile",
+    "success": "Profile successfully updated!",
+    "new_phone_title": "New Phone Number",
+    "new_email_title": "New Email",
+    "email_label": "Email",
+    "error_phone_same": "Numbers cannot be the same",
+    "error_email_required": "Email is required",
+    "error_email_same": "Email cannot be the same",
+    "error_email_invalid": "Email is not valid"
+  },
+
+  "tnc": {
+    "title": "Terms and Conditions",
+    "desc": "By accessing the HaYo website or application and/or purchasing HaYo products, customers are deemed to have read, understood, and agreed to the following terms and conditions.",
+    "1": {
+      "title": "1. General Requirements",
+      "desc": {
+        "1": "HaYo is a frozen yogurt brand with a self-service concept.",
+        "2": "All purchases of HaYo products are subject to the terms and conditions applicable at official HaYo outlets.",
+        "3": "HaYo may update or adjust these terms and conditions from time to time according to operational needs and company policies."
+      }
+    },
+    "2": {
+      "title": "2. Product and Price",
+      "desc": {
+        "1": "Products sold by HaYo include frozen yogurt and/or other products available at official HaYo outlets.",
+        "2": "Flavor choices, toppings, sizes, and product availability may vary by outlet and/or time.",
+        "3": "Product photos or promotional materials displayed are for illustrative purposes only. Actual product appearance may vary as long as it does not detract from the primary character of the product being sold.",
+        "4": "HaYo product prices vary based on the sizes available.",
+        "5": "The applicable prices follow the official information listed at the outlet, cashier, menu board, website, application, or other official HaYo media.",
+        "6": "HaYo has the right to change prices at any time in accordance with applicable policies."
+      }
+    },
+    "3": {
+      "title": "3. Purchase and Payment",
+      "desc": {
+        "1": "Currently, HaYo products can only be purchased at official HaYo outlets.",
+        "2": "HaYo does not yet accept purchases through the app or through third-party platforms such as GoFood, GrabFood, ShopeeFood, or similar platforms, unless officially notified otherwise by HaYo.",
+        "3": "Customers are responsible for ensuring that the order, size, flavor, toppings, and quantity of products are correct before making payment.",
+        "4": "Orders that have been processed and/or paid for cannot be canceled or changed, unless otherwise specified by HaYo.",
+        "5": "Payment must be made using the payment methods available at the outlet.",
+        "6": "Customers are required to make full payment for their orders and retain proof of payment as valid proof of the transaction."
+      }
+    },
+    "4": {
+      "title": "4. HaYo Website and Application",
+      "desc": {
+        "1": "The HaYo website and app are provided as a medium for brand information, product catalogs, outlet locations, and membership access.",
+        "2": "The HaYo app cannot be used to make purchases, orders, or payments for products.",
+        "3": "The information displayed on the website or app, including product photos, is for informational purposes only and may change at any time according to business needs.",
+        "4": "HaYo reserves the right to update the appearance, features, and content of the website and app at any time.",
+        "5": "By using the HaYo app and/or membership, customers consent to the use and storage of personal data in accordance with HaYo's Privacy Policy and applicable laws and regulations."
+      }
+    },
+    "5": {
+      "title": "5. Membership Program",
+      "desc": {
+        "1": "The HaYo membership program is available through the HaYo app and is subject to the terms and conditions of the HaYo system.",
+        "2": "Every purchase of a Small and Medium product will receive one stamp. Every purchase of a Large product will receive two stamps.",
+        "3": "Collected stamps can be exchanged for free products according to the terms and conditions and mechanisms listed on the applicable stamp e-card.",
+        "4": "Every user who successfully collects 50 stamps will advance to the next level, and two stamps will be immediately unlocked according to the mechanisms in the HaYo membership system.",
+        "5": "HaYo reserves the right to change the membership mechanism, number of stamps, benefits, prizes, levels, and redemption conditions at any time according to company policy."
+      }
+    },
+    "6": {
+      "title": "6. Promos and Special Offers",
+      "desc": {
+        "1": "Every promo, discount, bundling, voucher, giveaway or special offer held by HaYo will have its own mechanism, period and conditions.",
+        "2": "Promo cannot be combined with other promotions, unless specifically stated by HaYo.",
+        "3": "Promo is valid during the specified period and/or while supplies last."
+      }
+    },
+    "7": {
+      "title": "7. Product Availability",
+      "desc": {
+        "1": "All products are offered while stocks last.",
+        "2": "Under certain circumstances, some flavors, toppings, or sizes may be out of stock or temporarily unavailable.",
+        "3": "If the product chosen by the customer is not available, HaYo has the right to offer other available alternative products."
+      }
+    },
+    "8": {
+      "title": "8. Returns, Exchanges, and Complaints",
+      "desc": {
+        "1": "Products that have been purchased cannot be returned or exchanged, unless there is an error in the order from HaYo or the product is received in a condition unfit for consumption.",
+        "2": "Complaints must be submitted on the same day with valid proof of purchase.",
+        "3": "HaYo reserves the right to verify each complaint before determining the appropriate resolution."
+      }
+    },
+    "9": {
+      "title": "9. Allergies and Product Consumption",
+      "desc": {
+        "1": "HaYo products may contain or come into contact with certain ingredients such as milk, nuts, gluten, or other allergens.",
+        "2": "Customers with a history of allergies or specific dietary restrictions are advised to ask staff for product information before making a purchase.",
+        "3": "HaYo products are recommended to be consumed immediately after purchase to maintain quality.",
+        "4": "HaYo is not responsible for changes in product quality after the product is received by the customer due to improper storage or handling."
+      }
+    },
+    "10": {
+      "title": "10. Intellectual Property Rights",
+      "desc": {
+        "1": "All HaYo names, logos, designs, promotional materials, visual content, and branding elements are the property of HaYo or parties legally collaborating with HaYo.",
+        "2": "Use or reproduction of these elements without written permission from the authorized party is prohibited."
+      }
+    },
+    "11": {
+      "title": "11. Account Deletion",
+      "desc": {
+        "1": "Account Deletion Request. \nUsers can request to delete their HaYo account at any time after registering on the HaYo application. Account deletion requests can only be made by the registered account owner and submitted via the official HaYo email at [weare@hayo.co.id]",
+        "2": "Account Owner. \nAccount deletion requests can only be submitted by the registered account owner. HaYo reserves the right to verify identity, account access, and/or other necessary data before processing an account deletion request.",
+        "3": "Impact of Account Deletion. \nAccount deletion will terminate the user's access to the HaYo account and any features and benefits associated with the account, including but not limited to membership, e-stamps, rewards, benefits, account history, and/or other benefits associated with the account, to the extent applicable.",
+        "4": "Nature of Deletion. \nOnce the account deletion process is complete, the account cannot be recovered, and the deleted data cannot be restored, except for certain data that HaYo is required to retain based on applicable legal provisions, audit requirements, abuse prevention, dispute resolution, or internal company compliance.",
+        "5": "Active Benefits and Programs. \nIf at the time of account deletion request, e-stamps, rewards, vouchers, gift cards, membership benefits, or other promotional programs are still connected to the account, the use, termination, or deletion of these benefits will be subject to the terms and conditions of each applicable program.",
+        "6": "Restrictions or Delays. \nHaYo reserves the right to delay or reject account deletion requests if there are indications of abuse, violations of terms and conditions, outstanding obligations, or other reasons permitted by applicable laws and regulations."
+      }
+    },
+    "12": {
+      "title": "12. Official Contacts",
+      "desc": "For questions, feedback, or complaints, customers can contact HaYo through the official contacts listed on HaYo's official channels. According to its public website, HaYo lists the email address as weare@hayo.co.id."
+    }
+  }
+}
