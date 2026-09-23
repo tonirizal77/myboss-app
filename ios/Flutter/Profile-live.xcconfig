@@ -1,0 +1,4 @@
+#include "Release.xcconfig"
+
+FLAVOR_APP_NAME=MyBoss App
+PRODUCT_BUNDLE_IDENTIFIER=com.olsmobile.myboss_app

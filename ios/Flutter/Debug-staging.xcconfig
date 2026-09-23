@@ -1,0 +1,5 @@
+#include "Debug.xcconfig"
+
+FLAVOR_BUNDLE_ID_SUFFIX=.staging
+FLAVOR_APP_NAME=MyBoss App (Staging)
+PRODUCT_BUNDLE_IDENTIFIER=com.olsmobile.myboss_app$(FLAVOR_BUNDLE_ID_SUFFIX)
