@@ -33,5 +33,6 @@
     "ios/Flutter/ephemeral": true,
     "macos/Pods": true,
     "macos/Flutter/ephemeral": true
-  }
+  },
+  "cmake.sourceDirectory": "/Users/MobileHybrid/Flutter/myboss_app/windows"
 }
