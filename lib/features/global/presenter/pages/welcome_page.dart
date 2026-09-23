@@ -37,9 +37,9 @@ class WelcomePage extends StatelessWidget {
             child: Align(
               alignment: Alignment.bottomCenter,
               child: Container(
-                margin: EdgeInsets.only(top: 56),
+                margin: EdgeInsets.only(top: 56, bottom: 16),
                 child: Text(
-                  "Version ${getIt<PackageInfoHelper>().version}",
+                  "Myboss v.${getIt<PackageInfoHelper>().version}",
                   style: AppTextStyles.captionSmall.copyWith(
                     color: Colors.white,
                   ),

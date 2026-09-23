@@ -11,3 +11,4 @@ part 'rmd_main_header.dart';
 part 'rmd_right_side_type1.dart';
 part 'rmd_right_side_type2.dart';
 part 'rmd_right_side_type3.dart';
+part 'rmd_tablet_view.dart';

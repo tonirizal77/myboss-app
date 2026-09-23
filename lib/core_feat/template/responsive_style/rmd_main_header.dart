@@ -14,9 +14,8 @@ class RmdMainHeader extends StatelessWidget {
         return CardCustom(
           height: 80,
           padding: EdgeInsets.only(left: 16, right: 16),
-          color: AppTheme.surface(
-            context,
-          ), // state.bgColorHeader ?? AppTheme.surface(context),
+          color: AppTheme.surface(context),
+          // state.bgColorHeader ?? AppTheme.surface(context),
           isShadow: state.isShadowHeader,
           radius: state.radiusHeader,
           shadow: _shadowStyle,

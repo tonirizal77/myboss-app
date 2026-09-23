@@ -9,7 +9,7 @@ class StoreFlows {
     final _setting =
         getIt<StoreBloc>().state.store.mobileSetting ?? MobileSetting();
 
-    PrintHelper.inspectx(getIt<StoreBloc>().state.store);
+    // PrintHelper.inspectx(getIt<StoreBloc>().state.store);
 
     return _setting;
   }

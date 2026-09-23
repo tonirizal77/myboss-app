@@ -25,7 +25,7 @@ class ResponsiveRootPage extends StatelessWidget {
         tablet: ResponsiveSafeArea(
           top: true,
           bottom: false,
-          child: const SizedBox(),
+          child: RmdTabletView(child: child),
         ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
