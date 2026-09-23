@@ -25,9 +25,10 @@
       "type": "dart",
       "deviceId": "macos",
       "flutterMode": "debug",
-      "runTestsOnDevice": true,
-      "args": ["--flavor", "staging"]
-      // "args": ["--flavor", "production"]
+      "runTestsOnDevice": true
+      // Note: macOS Xcode project has no per-flavor schemes (only iOS does),
+      // so --flavor is not passed here. Env.flavor falls back based on the
+      // bundle id, defaulting to Flavor.live when it doesn't match .staging/.prod.
     },
     {
       "name": "Iphone16e",

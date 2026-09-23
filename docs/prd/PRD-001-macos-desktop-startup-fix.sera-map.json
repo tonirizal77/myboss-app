@@ -1,0 +1,29 @@
+{
+  "prd": "PRD-001-macos-desktop-startup-fix.md",
+  "project_gid": "bd50c25c-9e59-435b-873f-dc8464bbd7c8",
+  "epic": { "id": "afdddfe4-3626-4739-a65e-37462efdff48", "key": null },
+  "stories": [
+    {
+      "id": "a08dc33d-1200-4520-a660-0d5f92e927d9",
+      "key": "FD-387",
+      "name": "Mobile App - Create App for MyBoss Store - Draft",
+      "tasks": [
+        { "id": "e926e80a-3955-49b0-b280-ab250c729e78", "key": "FD-402", "title": "Analisa error Swift Package Manager saat run macOS (root cause: scheme flavor tidak ditemukan)" },
+        { "id": "c78834a1-f0a1-43ee-b1ae-676f4f42489f", "key": "FD-401", "title": "Update .vscode/launch.json - hapus --flavor staging dari config macOS desktop" },
+        { "id": "b21b9846-e48b-4753-b550-300593369d89", "key": "FD-400", "title": "Tambah entitlement network.client di DebugProfile.entitlements (macOS)" },
+        { "id": "a4d37f5a-f55f-4e9c-ab51-ef2d8403043a", "key": "FD-399", "title": "Tambah entitlement network.client di Release.entitlements (macOS)" },
+        { "id": "6f2e50e1-fc9a-48c7-9301-2e5e690106ba", "key": "FD-398", "title": "Reproduksi bug blank white screen di macOS via flutter run + screenshot" },
+        { "id": "e81bc04c-0795-47a5-9505-2d025c433797", "key": "FD-397", "title": "Investigasi Dart VM service (getVM/getIsolate/getStack) untuk cek status isolate main" },
+        { "id": "9de4caaf-8a76-419b-9534-0ccb6fc425d3", "key": "FD-396", "title": "Analisa log 'merged UI and platform thread' sebagai kandidat root cause" },
+        { "id": "9aad1bff-183c-49db-af1d-f812f37f926f", "key": "FD-395", "title": "Tambah FLTEnableMergedPlatformUIThread=false di macos/Runner/Info.plist" },
+        { "id": "55ca5c46-be5a-493b-8ca8-d4b77ac55061", "key": "FD-394", "title": "Instrumentasi debug print di lib/main.dart untuk trace tahapan startup" },
+        { "id": "a8d68ac8-5f5b-408c-9956-5e54d9290d77", "key": "FD-393", "title": "Verifikasi tahapan startup (Env.init, EasyLocalization, HydratedStorage, InjectionsCore, InjectionFeatures) berjalan normal" },
+        { "id": "74d5c236-cca3-4664-94a8-373fdd0871b8", "key": "FD-392", "title": "Analisa widget tree via Flutter Inspector protocol untuk temukan node yang render kosong" },
+        { "id": "d8f73789-e713-4408-bddb-9e74d6b704d1", "key": "FD-391", "title": "Root cause ditemukan: ResponsiveRootPage slot tablet hardcode SizedBox() kosong" },
+        { "id": "2aad1929-a89b-4a46-928b-4881060b4be4", "key": "FD-390", "title": "Fix responsive_root_page.dart - tablet render child asli, bukan SizedBox kosong" },
+        { "id": "84b11021-f9d9-44b6-ad2e-c6938e100d72", "key": "FD-389", "title": "Bersihkan instrumentasi debug print di lib/main.dart" },
+        { "id": "661feb9f-3ef0-47f8-a415-6b8728accb39", "key": "FD-388", "title": "Verifikasi akhir - build ulang & screenshot menunjukkan halaman guest home tampil normal" }
+      ]
+    }
+  ]
+}
