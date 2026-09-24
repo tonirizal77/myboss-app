@@ -124,7 +124,7 @@ class _HomePageState extends State<HomePage>
       children: [
         Container(
           color: AppTheme.surface(context),
-          padding: const EdgeInsets.fromLTRB(0, 24, 12, 24),
+          padding: const EdgeInsets.fromLTRB(0, 24, 0, 24),
           child: Flex(
             direction: Axis.horizontal,
             children: [
