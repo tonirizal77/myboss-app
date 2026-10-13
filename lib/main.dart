@@ -109,10 +109,10 @@ class MyApp extends StatelessWidget {
           return MediaQuery(
             data: MediaQuery.of(context).copyWith(textScaleFactor: 1),
             child: MaterialApp.router(
-              title: 'Flutter App Template',
+              title: 'MyBoss',
               debugShowCheckedModeBanner: false,
               showPerformanceOverlay: kProfileMode ? true : false,
-              theme: AppTheme.light,
+              theme: AppTheme.dark,
               darkTheme: AppTheme.dark,
               themeMode: state.themeMode,
               routerConfig: GoRouterSingleton.shared.routers,

@@ -1,0 +1,163 @@
+{
+  "prd": "PRD-002-myboss-initial-phase.md",
+  "project_gid": "65ea6511-c5e4-4397-adf0-64a03c9159c7",
+  "epic": {
+    "key": "MYB-1",
+    "id": "732c49ed-57ee-4368-b922-702cf65fd529"
+  },
+  "stories": [
+    {
+      "key": "MYB-20",
+      "name": "Stabilisasi Build Android",
+      "tasks": [
+        {
+          "key": "MYB-15"
+        },
+        {
+          "key": "MYB-14"
+        },
+        {
+          "key": "MYB-13"
+        },
+        {
+          "key": "MYB-12"
+        },
+        {
+          "key": "MYB-11"
+        },
+        {
+          "key": "MYB-10"
+        },
+        {
+          "key": "MYB-9"
+        },
+        {
+          "key": "MYB-8"
+        }
+      ]
+    },
+    {
+      "key": "MYB-19",
+      "name": "Splash Screen Android",
+      "tasks": [
+        {
+          "key": "MYB-7"
+        },
+        {
+          "key": "MYB-6"
+        },
+        {
+          "key": "MYB-47"
+        },
+        {
+          "key": "MYB-46"
+        },
+        {
+          "key": "MYB-5"
+        },
+        {
+          "key": "MYB-4"
+        },
+        {
+          "key": "MYB-3"
+        },
+        {
+          "key": "MYB-2"
+        }
+      ]
+    },
+    {
+      "key": "MYB-18",
+      "name": "Branding & Identitas Aplikasi",
+      "tasks": [
+        {
+          "key": "MYB-45"
+        },
+        {
+          "key": "MYB-44"
+        },
+        {
+          "key": "MYB-43"
+        },
+        {
+          "key": "MYB-42"
+        },
+        {
+          "key": "MYB-41"
+        },
+        {
+          "key": "MYB-40"
+        },
+        {
+          "key": "MYB-39"
+        },
+        {
+          "key": "MYB-38"
+        },
+        {
+          "key": "MYB-37"
+        },
+        {
+          "key": "MYB-21"
+        }
+      ]
+    },
+    {
+      "key": "MYB-17",
+      "name": "Penyesuaian UI & Navigasi",
+      "tasks": [
+        {
+          "key": "MYB-36"
+        },
+        {
+          "key": "MYB-35"
+        },
+        {
+          "key": "MYB-34"
+        },
+        {
+          "key": "MYB-33"
+        },
+        {
+          "key": "MYB-32"
+        }
+      ]
+    },
+    {
+      "key": "MYB-16",
+      "name": "Konfigurasi Platform & Dependency",
+      "tasks": [
+        {
+          "key": "MYB-31"
+        },
+        {
+          "key": "MYB-30"
+        },
+        {
+          "key": "MYB-29"
+        },
+        {
+          "key": "MYB-28"
+        },
+        {
+          "key": "MYB-27"
+        },
+        {
+          "key": "MYB-26"
+        },
+        {
+          "key": "MYB-25"
+        },
+        {
+          "key": "MYB-24"
+        },
+        {
+          "key": "MYB-23"
+        },
+        {
+          "key": "MYB-22"
+        }
+      ]
+    }
+  ]
+}

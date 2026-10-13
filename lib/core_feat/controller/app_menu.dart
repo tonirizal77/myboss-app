@@ -23,11 +23,11 @@ abstract class AppMenu {
       ),
     ),
 
-    /// Outlet
+    /// Promo
     ItemNavBar(
       item: Tuple4(
         LocaleKeys.bottom_nav_nav3,
-        Icons.storefront,
+        Icons.tag,
         Icons.storefront_rounded,
         const StoresPage(),
       ),

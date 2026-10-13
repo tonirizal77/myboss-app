@@ -16,6 +16,12 @@ analyzer:
     - "**.g.dart"
     - "**/generated_plugin_registrant.dart"
     - "build/*"
+    - build/**
+    - android/**
+    - ios/**
+    - web/**
+    - windows/**
+    - macos/**
   errors:
     avoid_print: ignore
     constant_identifier_names: ignore

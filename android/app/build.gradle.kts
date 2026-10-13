@@ -37,17 +37,17 @@ android {
             dimension = "flavor"
             applicationIdSuffix = ".staging"
             versionNameSuffix = "-staging"
-            resValue("string", "app_name", "MyBoss App (Staging)")
+            resValue("string", "app_name", "MyBoss (Staging)")
         }
         create("prod") {
             dimension = "flavor"
             applicationIdSuffix = ".prod"
             versionNameSuffix = "-prod"
-            resValue("string", "app_name", "MyBoss App (Prod)")
+            resValue("string", "app_name", "MyBoss (Prod)")
         }
         create("live") {
             dimension = "flavor"
-            resValue("string", "app_name", "MyBoss App")
+            resValue("string", "app_name", "MyBoss")
         }
     }
 
