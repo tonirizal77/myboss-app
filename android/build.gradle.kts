@@ -19,6 +19,15 @@ subprojects {
     project.evaluationDependsOn(":app")
 }
 
+// Align Kotlin JVM target with Java (17) for all plugins (e.g. screen_protector)
+subprojects {
+    tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().configureEach {
+        compilerOptions {
+            jvmTarget.set(org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_17)
+        }
+    }
+}
+
 tasks.register<Delete>("clean") {
     delete(rootProject.layout.buildDirectory)
 }

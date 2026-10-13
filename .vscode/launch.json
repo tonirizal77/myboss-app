@@ -9,7 +9,8 @@
       "request": "launch",
       "type": "dart",
       "deviceId": "emulator-5554",
-      "flutterMode": "debug"
+      "flutterMode": "debug",
+      "args": ["--android-skip-build-dependency-validation"]
     },
     {
       "name": "Chrome (web)",
@@ -52,7 +53,7 @@
       // "deviceId": "192.168.100.189:5555",
       "flutterMode": "debug",
       "runTestsOnDevice": true,
-      "args": ["--flavor", "staging"]
+      "args": ["--flavor", "staging", "--android-skip-build-dependency-validation"]
       // "args": ["--flavor", "production"]
     },
     {
@@ -64,7 +65,7 @@
       // "deviceId": "10.0.0.65:5556", // office
       "flutterMode": "debug",
       "runTestsOnDevice": true,
-      "args": ["--flavor", "staging"]
+      "args": ["--flavor", "staging", "--android-skip-build-dependency-validation"]
       // "args": ["--flavor", "prod"]
     },
     {
@@ -76,7 +77,7 @@
       // "deviceId": "10.0.0.65:5556", // office
       "flutterMode": "debug",
       "runTestsOnDevice": true,
-      "args": ["--flavor", "staging"]
+      "args": ["--flavor", "staging", "--android-skip-build-dependency-validation"]
       // "args": ["--flavor", "prod"]
       // "args": ["--flavor", "live"]
     },
