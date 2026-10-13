@@ -9,7 +9,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage>
     with WidgetsBindingObserver, AutomaticKeepAliveClientMixin {
-  List<int> _listData = List.generate(50, (int i) => i + 1);
+  final List<int> _listData = List.generate(50, (int i) => i + 1);
   List<int> _breakPoint = [4, 9, 21, 48];
   int _maxStamps = 50; // max_stamp
   int _level = 1;

@@ -15,7 +15,7 @@ dan dependency terbaru ikut tercatat di repository.
 
 ## Target Selesai
 
-2026-10-19 (retroaktif — seluruh pekerjaan di bawah sudah dikerjakan; due date
+2026-10-20 (retroaktif — seluruh pekerjaan di bawah sudah dikerjakan; due date
 task disebar mulai 2026-10-15, 15 task per hari kerja; 1 task = 1 SP = 20 menit).
 
 ## Out of Scope
@@ -103,3 +103,18 @@ tercatat dan konsisten.
 MYB-29 macOS deployment target; MYB-28 Package.resolved iOS; MYB-27
 Package.resolved macOS; MYB-26 pubspec.lock; MYB-25 regenerate env.g.dart; MYB-48 rapikan .env;
 MYB-24 .claude/settings.json; MYB-23 PRD-002 & mapping; MYB-22 commit & push.
+
+### Story: Static Analysis & Code Quality (MYB-52)
+
+Sebagai developer, saya ingin panel Problems bersih dari noise lint sehingga
+isu yang nyata mudah terlihat.
+
+**Acceptance Criteria:**
+- `flutter analyze` menghasilkan "No issues found".
+- Lint gaya penulisan diatur di `analysis_options.yaml`; isu nyata
+  (`prefer_final_fields`, `depend_on_referenced_packages`) diperbaiki di kode.
+
+**Task breakdown:** MYB-59 analisa & kelompokkan 95 isu; MYB-58 ignore lint
+string interpolation; MYB-57 ignore lint widget/constructor; MYB-56 ignore
+lint doc comment, initializing formals & todo; MYB-55 fix prefer_final_fields;
+MYB-54 tambah dependency equatable; MYB-53 verifikasi flutter analyze.

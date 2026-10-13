@@ -16,7 +16,7 @@ class _ChangeNewPhonePageState extends State<ChangeNewPhonePage> {
   final _phone = TextEditingController();
 
   // ignore: unused_field
-  bool _isValid = false;
+  final bool _isValid = false;
   bool isPhoneValid = false;
   bool isEmailValid = false;
   bool isSigningIn = false;
@@ -24,7 +24,7 @@ class _ChangeNewPhonePageState extends State<ChangeNewPhonePage> {
   // ignore: unused_field
   String _completePhone = "";
 
-  FocusNode _myFocusInput = FocusNode();
+  final FocusNode _myFocusInput = FocusNode();
 
   @override
   void initState() {

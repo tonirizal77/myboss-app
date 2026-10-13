@@ -33,7 +33,7 @@ class AccessServer {
   /// [AppSetting._listServer] - set
   /// [AppSetting.getAksesServer] - get
   /// ID Server
-  static int _theAccess = Env.flavor == Flavor.staging
+  static final int _theAccess = Env.flavor == Flavor.staging
       ? 1
       : Env.flavor == Flavor.prod
       ? 2 // !#- release ios live/prod (3), prod (2)

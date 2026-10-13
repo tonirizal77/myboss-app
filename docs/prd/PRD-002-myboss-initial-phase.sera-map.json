@@ -170,6 +170,33 @@
           "key": "MYB-22"
         }
       ]
+    },
+    {
+      "key": "MYB-52",
+      "name": "Static Analysis & Code Quality",
+      "tasks": [
+        {
+          "key": "MYB-59"
+        },
+        {
+          "key": "MYB-58"
+        },
+        {
+          "key": "MYB-57"
+        },
+        {
+          "key": "MYB-56"
+        },
+        {
+          "key": "MYB-55"
+        },
+        {
+          "key": "MYB-54"
+        },
+        {
+          "key": "MYB-53"
+        }
+      ]
     }
   ]
 }

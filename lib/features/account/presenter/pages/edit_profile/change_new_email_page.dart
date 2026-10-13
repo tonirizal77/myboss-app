@@ -16,7 +16,7 @@ class _ChangeNewEmailPageState extends State<ChangeNewEmailPage> {
   bool _isValid = false;
   bool isEmailValid = false;
 
-  FocusNode _myFocusInput = FocusNode();
+  final FocusNode _myFocusInput = FocusNode();
 
   @override
   void initState() {
