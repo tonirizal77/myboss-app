@@ -197,6 +197,27 @@
           "key": "MYB-53"
         }
       ]
+    },
+    {
+      "key": "MYB-60",
+      "name": "Dokumentasi Project (CLAUDE.md)",
+      "tasks": [
+        {
+          "key": "MYB-65"
+        },
+        {
+          "key": "MYB-64"
+        },
+        {
+          "key": "MYB-63"
+        },
+        {
+          "key": "MYB-62"
+        },
+        {
+          "key": "MYB-61"
+        }
+      ]
     }
   ]
 }

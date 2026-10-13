@@ -118,3 +118,16 @@ isu yang nyata mudah terlihat.
 string interpolation; MYB-57 ignore lint widget/constructor; MYB-56 ignore
 lint doc comment, initializing formals & todo; MYB-55 fix prefer_final_fields;
 MYB-54 tambah dependency equatable; MYB-53 verifikasi flutter analyze.
+
+### Story: Dokumentasi Project (CLAUDE.md) (MYB-60)
+
+Sebagai developer, saya ingin panduan project untuk Claude Code agar konteks
+arsitektur, konvensi, dan workflow konsisten di setiap sesi.
+
+**Acceptance Criteria:**
+- `CLAUDE.md` di root berisi ringkasan project, command, arsitektur,
+  konvensi, gotcha platform, dan workflow Sera-App.
+
+**Task breakdown:** MYB-65 analisa struktur; MYB-64 project/command/arsitektur;
+MYB-63 konvensi & gotcha platform; MYB-62 workflow Sera-App; MYB-61 update PRD
+& mapping.
