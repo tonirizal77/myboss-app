@@ -16,7 +16,7 @@ dan dependency terbaru ikut tercatat di repository.
 ## Target Selesai
 
 2026-10-19 (retroaktif — seluruh pekerjaan di bawah sudah dikerjakan; due date
-task disebar mulai 2026-10-15, 14/13/14 task per hari kerja).
+task disebar mulai 2026-10-15, 15 task per hari kerja; 1 task = 1 SP = 20 menit).
 
 ## Out of Scope
 
@@ -72,8 +72,8 @@ Sebagai pemilik produk, saya ingin nama dan ikon aplikasi sesuai brand MyBoss.
   merujuk nama file yang benar (huruf kecil).
 
 **Task breakdown:** MYB-45 app_name per flavor; MYB-44 label manifest;
-MYB-43 pindah MainActivity; MYB-42 title MaterialApp; MYB-41 ikon Android;
-MYB-40 ikon iOS; MYB-39 ikon macOS; MYB-38 favicon & ikon web; MYB-37
+MYB-43 pindah MainActivity; MYB-42 title MaterialApp; MYB-41 ikon Android (mipmap); MYB-51 adaptive icon & play store; MYB-40 ikon iOS (PNG);
+MYB-50 Contents.json iOS; MYB-39 ikon macOS (PNG/icns); MYB-49 Contents.json macOS; MYB-38 favicon & ikon web; MYB-37
 index.html & manifest.json; MYB-21 verifikasi konsistensi manifest/Contents.json.
 
 ### Story: Penyesuaian UI & Navigasi (MYB-17)
@@ -101,5 +101,5 @@ tercatat dan konsisten.
 
 **Task breakdown:** MYB-31 permission INTERNET; MYB-30 exclude analyzer;
 MYB-29 macOS deployment target; MYB-28 Package.resolved iOS; MYB-27
-Package.resolved macOS; MYB-26 pubspec.lock; MYB-25 env.g.dart & .env;
+Package.resolved macOS; MYB-26 pubspec.lock; MYB-25 regenerate env.g.dart; MYB-48 rapikan .env;
 MYB-24 .claude/settings.json; MYB-23 PRD-002 & mapping; MYB-22 commit & push.
