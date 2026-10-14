@@ -82,6 +82,19 @@
     "toppings_title": "Toppings"
   },
 
+  "guest_home": {
+      "subtitle": "Earn points with every purchase",
+      "sign_up": "Sign up",
+      "have_account": "I already have an account",
+      "brands_caption": "Products from trusted brands across more than {} categories",
+      "catalogs_title": "Our Product Catalogs",
+      "view_all": "View all {}+ products",
+      "explore": "Explore",
+      "earn_title": "Earn Points, Get Free Item!",
+      "points_value": "{} points",
+      "sign_up_for_points": "Sign up to get points"
+  },
+
   "branch": {
       "title": "Select our branch",
       "subtitle": "{} branches in Indonesia",

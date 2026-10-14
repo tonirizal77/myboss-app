@@ -4,3 +4,5 @@ import 'package:myboss_app/features/features.dart';
 
 part 'datasource/stamps_remote.dart';
 part 'repository/stamps_repo_impl.dart';
+part 'datasource/guest_home_local.dart';
+part 'repository/guest_home_repo_impl.dart';

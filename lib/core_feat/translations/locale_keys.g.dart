@@ -71,6 +71,17 @@ abstract class  LocaleKeys {
   static const menu_yogurt_title = 'menu.yogurt_title';
   static const menu_toppings_title = 'menu.toppings_title';
   static const menu = 'menu';
+  static const guest_home_subtitle = 'guest_home.subtitle';
+  static const guest_home_sign_up = 'guest_home.sign_up';
+  static const guest_home_have_account = 'guest_home.have_account';
+  static const guest_home_brands_caption = 'guest_home.brands_caption';
+  static const guest_home_catalogs_title = 'guest_home.catalogs_title';
+  static const guest_home_view_all = 'guest_home.view_all';
+  static const guest_home_explore = 'guest_home.explore';
+  static const guest_home_earn_title = 'guest_home.earn_title';
+  static const guest_home_points_value = 'guest_home.points_value';
+  static const guest_home_sign_up_for_points = 'guest_home.sign_up_for_points';
+  static const guest_home = 'guest_home';
   static const branch_title = 'branch.title';
   static const branch_subtitle = 'branch.subtitle';
   static const branch_selected = 'branch.selected';

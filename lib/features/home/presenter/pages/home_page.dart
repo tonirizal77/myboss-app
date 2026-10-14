@@ -179,7 +179,11 @@ class _HomePageState extends State<HomePage>
       slivers: [
         const SliverToBoxAdapter(child: BranchHeader()),
 
-        SliverToBoxAdapter(child: _memberCard(isLoggedIn)),
+        /// Guest: MyBoss landing content (Figma `Guest Home`).
+        if (!isLoggedIn)
+          const SliverToBoxAdapter(child: GuestHomeView())
+        else
+          SliverToBoxAdapter(child: _memberCard(isLoggedIn)),
 
         if (isLoggedIn) ...[
           PinnedHeaderSliver(child: const StampsFrame()),
@@ -187,7 +191,7 @@ class _HomePageState extends State<HomePage>
           SliverToBoxAdapter(child: CardMessage(tiers: _level)),
         ],
 
-        const SliverToBoxAdapter(child: CardMessageFree()),
+        if (isLoggedIn) const SliverToBoxAdapter(child: CardMessageFree()),
       ],
     );
   }

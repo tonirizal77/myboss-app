@@ -82,6 +82,19 @@
     "toppings_title": "Topping"
   },
 
+  "guest_home": {
+      "subtitle": "Kumpulkan poin di setiap pembelian",
+      "sign_up": "Daftar",
+      "have_account": "Saya sudah punya akun",
+      "brands_caption": "Produk dari brand terpercaya dalam lebih dari {} kategori",
+      "catalogs_title": "Katalog Produk Kami",
+      "view_all": "Lihat semua {}+ produk",
+      "explore": "Jelajahi",
+      "earn_title": "Kumpulkan Poin, Dapatkan Item Gratis!",
+      "points_value": "{} poin",
+      "sign_up_for_points": "Daftar untuk mendapatkan poin"
+  },
+
   "branch": {
       "title": "Pilih cabang kami",
       "subtitle": "{} cabang di Indonesia",

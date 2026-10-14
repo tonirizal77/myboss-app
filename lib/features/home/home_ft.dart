@@ -22,19 +22,25 @@ class HomeFt {
     getIt.registerLazySingleton(() => StampsCubit());
     getIt.registerLazySingleton(() => StampsDetailCubit());
     getIt.registerLazySingleton(() => StampsNotifCubit());
+    getIt.registerLazySingleton(() => GuestHomeCubit());
 
     /// 3. Setup Repository
     ///
+    getIt.registerLazySingleton<GuestHomeRepo>(
+      () => GuestHomeRepoImpl(source: getIt()),
+    );
     getIt.registerLazySingleton<StampsRepo>(
       () => StampsRepoImpl(remoteData: getIt()),
     );
 
     /// 4. Setup Datasource
     ///
+    getIt.registerLazySingleton<GuestHomeSource>(() => const GuestHomeStatic());
     getIt.registerLazySingleton<StampsRemote>(() => StampsRemoteImpl());
 
     /// 5. Setup Usecase
     ///
+    getIt.registerLazySingleton(() => GetGuestHomeUc(getIt()));
     getIt.registerLazySingleton(() => GetStampsUc(getIt()));
     getIt.registerLazySingleton(() => GetStampsOptionUc(getIt()));
     getIt.registerLazySingleton(() => HistoryStampsUc(getIt()));
@@ -46,6 +52,7 @@ class HomeFt {
     /// 7. Setup Provider
     ///
     BlocProviderInjectors.add([
+      BlocProvider<GuestHomeCubit>(create: (_) => getIt<GuestHomeCubit>()),
       BlocProvider<StampsCubit>(create: (_) => getIt<StampsCubit>()),
       BlocProvider<StampsNotifCubit>(create: (_) => getIt<StampsNotifCubit>()),
       BlocProvider<StampsDetailCubit>(

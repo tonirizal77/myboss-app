@@ -12,3 +12,10 @@ abstract class StampsRepo {
 
   ResultFuture<StampsDetailModel> getDetail(int id);
 }
+
+/// 1.b Repo [Interface] - guest Home content
+abstract class GuestHomeRepo {
+  const GuestHomeRepo();
+
+  ResultFuture<GuestHome> getGuestHome();
+}
