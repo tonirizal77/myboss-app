@@ -12,3 +12,6 @@ PRODUCT_BUNDLE_IDENTIFIER = com.example.mybossApp
 
 // The copyright displayed in application information
 PRODUCT_COPYRIGHT = Copyright © 2026 com.example. All rights reserved.
+
+// Display name; flavor build configurations override it (see Runner target).
+FLAVOR_APP_NAME = MyBoss

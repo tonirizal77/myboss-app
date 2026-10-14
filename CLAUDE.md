@@ -18,7 +18,7 @@ flutter test
 
 flutter run --flavor staging --android-skip-build-dependency-validation   # Android device
 flutter build apk --debug --flavor staging --android-skip-build-dependency-validation
-flutter run -d macos                                       # no --flavor on macOS (no per-flavor schemes)
+flutter run -d macos --flavor staging                       # macOS flavors: staging | prod | live (Xcode schemes Staging/Prod/Live)
 ```
 
 Flavors (Android `build.gradle.kts` + iOS schemes): `staging` (`.staging`), `prod` (`.prod`), `live` (no suffix). Application id / namespace: `com.olsmobile.myboss_app`. VS Code launch configs live in `.vscode/launch.json`.
@@ -56,7 +56,7 @@ lib/
 - **Android styles**: `res/values/styles.xml` and `res/values-night/styles.xml` define `LaunchTheme`/`NormalTheme` required by `AndroidManifest.xml`. Icon/asset generators have deleted them before — check `git status` after running any generator.
 - **Splash on Android 12+**: the system Splash Screen API ignores `windowBackground`. `res/values-v31/` and `res/values-night-v31/` set `windowSplashScreenBackground` + `windowSplashScreenAnimatedIcon` (`@drawable/launch_image`); `launch_background.xml` only serves Android < 12.
 - **Icons/names**: app name comes from per-flavor `resValue("string","app_name",…)`. Web icon files must be lowercase (`web/icons/icon-192.png`, …) and match `web/manifest.json`; macOS `AppIcon.appiconset` needs its `Contents.json`.
-- **macOS**: needs `com.apple.security.network.client` entitlement (Debug/Release) and `FLTEnableMergedPlatformUIThread=false` in `Info.plist`; deployment target 12.0.
+- **macOS**: needs `com.apple.security.network.client` entitlement (Debug/Release) and `FLTEnableMergedPlatformUIThread=false` in `Info.plist`; deployment target 12.0. Flavors mirror iOS: build configurations `Debug|Release|Profile-<flavor>` + schemes `Staging`/`Prod`/`Live`; the `Runner` target sets `PRODUCT_BUNDLE_IDENTIFIER` (`com.olsmobile.myboss_app[.staging|.prod]`) and `FLAVOR_APP_NAME` (→ `CFBundleDisplayName`) per configuration, so `Env.flavor` resolves from the bundle id. Adding a flavor means cloning the 3 configs in all 4 configuration lists of `macos/Runner.xcodeproj` plus a scheme.
 - Local test device used in this repo: Realme RMX5566 (adb id in `launch.json` → `RealmeC85`).
 
 ## Workflow (Sera-App)
