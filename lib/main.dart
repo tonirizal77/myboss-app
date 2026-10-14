@@ -100,45 +100,58 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: BlocProviderInjectors.all,
-      child: BlocBuilder<ThemeBloc, ThemeState>(
+      child: BlocConsumer<ThemeBloc, ThemeState>(
+        /// Switch the palette and mark the tree dirty in the same frame the
+        /// theme changes, so nothing is rendered with mixed colors.
+        listenWhen: (previous, current) =>
+            _brightness(previous.themeMode) != _brightness(current.themeMode),
+        listener: (context, state) {
+          if (MyBossColors.apply(_brightness(state.themeMode))) {
+            MyBossTheme.rebuildAll();
+          }
+        },
         builder: (context, state) {
           PrintHelper.printState(
             "__theme app: ${state.themeMode} - lang: ${context.locale} --> ${ConfigServer.locale}",
           );
 
-          /// Dark is the default; `system` follows the device.
-          final brightness = switch (state.themeMode) {
-            ThemeMode.light => Brightness.light,
-            ThemeMode.dark => Brightness.dark,
-            ThemeMode.system => MediaQuery.platformBrightnessOf(context),
-          };
+          /// Initial palette (e.g. a saved Light mode on app start).
+          if (MyBossColors.apply(_brightness(state.themeMode))) {
+            WidgetsBinding.instance.addPostFrameCallback(
+              (_) => MyBossTheme.rebuildAll(),
+            );
+          }
 
-          /// MyBoss colors are read from a static palette, so switch it and
-          /// rebuild the whole app (the key) when the mode changes.
-          MyBossColors.apply(brightness);
-
-          return KeyedSubtree(
-            key: ValueKey(brightness),
-            child: MediaQuery(
-              data: MediaQuery.of(context).copyWith(textScaleFactor: 1),
-              child: MaterialApp.router(
-                title: 'MyBoss',
-                debugShowCheckedModeBanner: false,
-                showPerformanceOverlay: kProfileMode ? true : false,
-                theme: MyBossTheme.light,
-                darkTheme: MyBossTheme.dark,
-                themeMode: state.themeMode,
-                routerConfig: GoRouterSingleton.shared.routers,
-                localizationsDelegates: context.localizationDelegates,
-                supportedLocales: context.supportedLocales,
-                locale: context.locale,
-              ),
+          return MediaQuery(
+            data: MediaQuery.of(context).copyWith(textScaleFactor: 1),
+            child: MaterialApp.router(
+              title: 'MyBoss',
+              debugShowCheckedModeBanner: false,
+              showPerformanceOverlay: kProfileMode ? true : false,
+              theme: MyBossTheme.light,
+              darkTheme: MyBossTheme.dark,
+              themeMode: state.themeMode,
+              // Static MyBoss colors switch at once - animating the Material
+              // theme would show a half-way mix.
+              themeAnimationDuration: Duration.zero,
+              routerConfig: GoRouterSingleton.shared.routers,
+              localizationsDelegates: context.localizationDelegates,
+              supportedLocales: context.supportedLocales,
+              locale: context.locale,
             ),
           );
         },
       ),
     );
   }
+
+  /// Dark is the default; `system` follows the device.
+  static Brightness _brightness(ThemeMode mode) => switch (mode) {
+    ThemeMode.light => Brightness.light,
+    ThemeMode.dark => Brightness.dark,
+    ThemeMode.system =>
+      WidgetsBinding.instance.platformDispatcher.platformBrightness,
+  };
 }
 
 /// Custom [BlocObserver] which observes all bloc and cubit instances.

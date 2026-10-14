@@ -96,8 +96,9 @@ class MyBossPalette {
 /// `static final` values that cannot be overridden, so MyBoss tokens live here.
 ///
 /// The getters follow the active theme mode: [apply] is called by `MyApp`
-/// whenever the mode changes and the widget tree is rebuilt. Because of that
-/// these are **not** compile-time constants - do not use them in `const`.
+/// whenever the mode changes, together with `MyBossTheme.rebuildAll`.
+/// Because of that these are **not** compile-time constants - do not use
+/// them in `const`.
 class MyBossColors {
   MyBossColors._();
 
@@ -105,20 +106,15 @@ class MyBossColors {
 
   static MyBossPalette get palette => _palette;
 
-  static int _epoch = 0;
-
-  /// Counts palette changes. Screens that reset themselves on creation (e.g.
-  /// the main tabs) compare it to know they were only rebuilt by a mode switch.
-  static int get themeEpoch => _epoch;
-
-  /// Switch the active palette (dark is the default).
-  static void apply(Brightness brightness) {
+  /// Switch the active palette (dark is the default). Returns whether it changed.
+  static bool apply(Brightness brightness) {
     final next = brightness == Brightness.light
         ? MyBossPalette.light
         : MyBossPalette.dark;
 
-    if (!identical(next, _palette)) _epoch++;
+    final changed = !identical(next, _palette);
     _palette = next;
+    return changed;
   }
 
   // Brand

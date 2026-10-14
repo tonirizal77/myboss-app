@@ -249,6 +249,6 @@ dengan tombol switch yang sudah ada.
 - Pilihan tersimpan (ThemeBloc hydrated).
 
 **Task breakdown:** MYB-174 palet dark & light; MYB-173 tema + themeMode (default Dark);
-MYB-172 perbaikan const warna dinamis; MYB-171 MyBossThemeSwitch; MYB-170 pertahankan tab
-aktif + tes. Posisi tombol untuk guest/menu akun diputuskan di story Account.
+MYB-172 perbaikan const warna dinamis; MYB-171 MyBossThemeSwitch; MYB-170 rebuild di tempat
+(tanpa membuat ulang app, State dan tab aktif tetap) + tes. Posisi tombol untuk guest/menu akun diputuskan di story Account.
 

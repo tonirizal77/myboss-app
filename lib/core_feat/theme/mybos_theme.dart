@@ -12,6 +12,18 @@ import 'mybos_text_styles.dart';
 class MyBossTheme {
   MyBossTheme._();
 
+  /// Marks every element dirty so widgets that read [MyBossColors] (including
+  /// `const` subtrees) are rebuilt with the new palette in the next frame,
+  /// keeping all State - Flutter's documented "rebuild everything" pattern.
+  static void rebuildAll() {
+    void visit(Element element) {
+      element.markNeedsBuild();
+      element.visitChildren(visit);
+    }
+
+    WidgetsBinding.instance.rootElement?.visitChildren(visit);
+  }
+
   static ThemeData get dark => _build(AppTheme.dark, MyBossPalette.dark);
 
   static ThemeData get light => _build(AppTheme.light, MyBossPalette.light);

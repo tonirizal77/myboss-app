@@ -31,16 +31,69 @@ void main() {
     expect(MyBossTheme.light.colorScheme.surface, MyBossPalette.light.surface);
   });
 
-  test('themeEpoch only changes when the palette really changes', () {
-    final start = MyBossColors.themeEpoch;
-
-    MyBossColors.apply(Brightness.dark); // already dark
-    expect(MyBossColors.themeEpoch, start);
-
-    MyBossColors.apply(Brightness.light);
-    expect(MyBossColors.themeEpoch, start + 1);
-
-    MyBossColors.apply(Brightness.light); // same again
-    expect(MyBossColors.themeEpoch, start + 1);
+  test('apply reports whether the palette really changed', () {
+    expect(MyBossColors.apply(Brightness.dark), isFalse); // already dark
+    expect(MyBossColors.apply(Brightness.light), isTrue);
+    expect(MyBossColors.apply(Brightness.light), isFalse); // same again
+    expect(MyBossColors.apply(Brightness.dark), isTrue);
   });
+
+  group('rebuildAll', () {
+    testWidgets('refreshes const subtrees and keeps State', (tester) async {
+      await tester.pumpWidget(const MaterialApp(home: _Probe()));
+
+      Color swatch() =>
+          tester.widget<ColoredBox>(find.byKey(const Key('swatch'))).color;
+
+      // Build some State first.
+      await tester.tap(find.byKey(const Key('count')));
+      await tester.pump();
+      expect(find.text('1'), findsOneWidget);
+      expect(swatch(), MyBossPalette.dark.primary);
+
+      // Switch the palette and rebuild the tree in place.
+      MyBossColors.apply(Brightness.light);
+      MyBossTheme.rebuildAll();
+      await tester.pump();
+
+      expect(swatch(), MyBossPalette.light.primary);
+      expect(find.text('1'), findsOneWidget); // State survived
+    });
+  });
+}
+
+/// `const` widget reading the static palette + a stateful counter.
+class _Probe extends StatefulWidget {
+  const _Probe();
+
+  @override
+  State<_Probe> createState() => _ProbeState();
+}
+
+class _ProbeState extends State<_Probe> {
+  int _count = 0;
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        GestureDetector(
+          key: const Key('count'),
+          onTap: () => setState(() => _count++),
+          child: Text('$_count', textDirection: TextDirection.ltr),
+        ),
+        const _Swatch(),
+      ],
+    );
+  }
+}
+
+class _Swatch extends StatelessWidget {
+  const _Swatch();
+
+  @override
+  Widget build(BuildContext context) => SizedBox(
+    height: 10,
+    child: ColoredBox(key: const Key('swatch'), color: MyBossColors.primary),
+  );
 }
