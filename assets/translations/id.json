@@ -82,6 +82,16 @@
     "toppings_title": "Topping"
   },
 
+  "branch": {
+      "title": "Pilih cabang kami",
+      "subtitle": "{} cabang di Indonesia",
+      "selected": "Terpilih",
+      "select": "Pilih",
+      "open": "Buka",
+      "closed": "Tutup",
+      "empty": "Belum ada cabang"
+  },
+
   "stores": {
     "title": "Kami berada di dekat sini",
     "direction": "Petunjuk",

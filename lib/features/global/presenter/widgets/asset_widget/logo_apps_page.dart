@@ -10,9 +10,9 @@ class LogoAppsPage extends StatelessWidget {
     return Container(
       padding: padding ?? const EdgeInsets.only(bottom: 24),
       child: Image.asset(
-        AppTheme.isDark(context) ? Assets.icLogoBlack : Assets.icLogoWhite,
-        height: 265,
-        width: 265,
+        Assets.logoMyBoss,
+        height: 264,
+        width: 264,
         fit: BoxFit.contain,
         // colorBlendMode: BlendMode.saturation,
       ),

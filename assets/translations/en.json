@@ -82,6 +82,16 @@
     "toppings_title": "Toppings"
   },
 
+  "branch": {
+      "title": "Select our branch",
+      "subtitle": "{} branches in Indonesia",
+      "selected": "Selected",
+      "select": "Select",
+      "open": "Open",
+      "closed": "Closed",
+      "empty": "No branches available"
+  },
+
   "stores": {
     "title": "We are nearby",
     "direction": "Direction",

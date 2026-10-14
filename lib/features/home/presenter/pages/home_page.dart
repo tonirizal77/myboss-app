@@ -177,6 +177,8 @@ class _HomePageState extends State<HomePage>
     return CustomScrollView(
       shrinkWrap: true,
       slivers: [
+        const SliverToBoxAdapter(child: BranchHeader()),
+
         SliverToBoxAdapter(child: _memberCard(isLoggedIn)),
 
         if (isLoggedIn) ...[

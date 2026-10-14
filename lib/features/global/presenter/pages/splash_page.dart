@@ -42,7 +42,7 @@ class _SplashPageState extends State<SplashPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppTheme.primary(context),
+      backgroundColor: MyBossColors.surfaceContainerLowest,
       body: Column(
         mainAxisAlignment: .center,
         children: [
@@ -59,7 +59,7 @@ class _SplashPageState extends State<SplashPage> {
                 child1: LoadingPage(
                   shape: BoxShape.rectangle,
                   tipe: 4,
-                  color: Colors.white,
+                  color: MyBossColors.primary,
                   absolute: false,
                 ),
                 child2:

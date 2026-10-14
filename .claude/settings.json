@@ -13,7 +13,15 @@
       "Bash(pkill -f \"adb -s 40cb62ff install\")",
       "Bash(timeout 90 adb -s 40cb62ff install -r build/app/outputs/flutter-apk/app-staging-debug.apk)",
       "Bash(adb -s 40cb62ff shell dumpsys window)",
-      "mcp__claude_ai_Figma__get_screenshot"
+      "mcp__claude_ai_Figma__get_screenshot",
+      "Bash(curl -sSL -o /private/tmp/claude-501/-Users-MobileHybrid-Flutter-olsera-myboss-app/f4136258-29e5-492b-be89-bb4614a56e43/scratchpad/splash.png https://www.figma.com/api/mcp/asset/ff5246f7-0213-4d9e-985e-303571aac748.png)",
+      "Bash(curl -sSL -o assets/images/branch_avatar.png \"https://www.figma.com/api/mcp/asset/f7671295-8bec-4462-a21d-0c3667e8ff48.png\")",
+      "Bash(pkill -f \"flutter_tester\")",
+      "Bash(grep -v \"^  dart:\\\\|^  package:flutter\\\\|^$\")",
+      "Bash(pkill -f flutter_tester)",
+      "Bash(pkill -f \"flutter test\")",
+      "Bash(grep -v \"^ dart:\\\\|^ package:flutter\\\\|^$\" /tmp/branch_test.log)",
+      "Bash(grep -v \"^  dart:\\\\|^  package:flutter\\\\|^$\" /tmp/branch_test.log)"
     ]
   }
 }

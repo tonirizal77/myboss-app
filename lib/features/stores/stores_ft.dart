@@ -21,7 +21,7 @@ class StoresFt {
     getIt.registerLazySingleton(() => StoreBloc());
 
     /// 2. Setup Cubit
-    // getIt.registerLazySingleton(() => ???Cubit());
+    getIt.registerLazySingleton(() => BranchCubit());
 
     /// 3. Setup Repository
     ///
@@ -46,6 +46,7 @@ class StoresFt {
     BlocProviderInjectors.add([
       BlocProvider<StoresListBloc>(create: (_) => getIt<StoresListBloc>()),
       BlocProvider<StoreBloc>(create: (_) => getIt<StoreBloc>()),
+      BlocProvider<BranchCubit>(create: (_) => getIt<BranchCubit>()),
       //
     ]);
   }

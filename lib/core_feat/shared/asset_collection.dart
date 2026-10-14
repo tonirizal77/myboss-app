@@ -18,6 +18,9 @@ class Assets {
       'assets/icons/mybos/ic_arrow_square_right.svg';
   static const String svgSeparator = 'assets/icons/mybos/separator.svg';
 
+  /// Branch avatar fallback (when a branch has no image)
+  static const String branchAvatar = 'assets/images/branch_avatar.png';
+
   /// Brand logos (Home guest)
   static const String brandOraimo = 'assets/images/brands/brand_oraimo.png';
   static const String brand02 = 'assets/images/brands/brand_02.png';

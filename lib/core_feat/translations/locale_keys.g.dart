@@ -71,6 +71,14 @@ abstract class  LocaleKeys {
   static const menu_yogurt_title = 'menu.yogurt_title';
   static const menu_toppings_title = 'menu.toppings_title';
   static const menu = 'menu';
+  static const branch_title = 'branch.title';
+  static const branch_subtitle = 'branch.subtitle';
+  static const branch_selected = 'branch.selected';
+  static const branch_select = 'branch.select';
+  static const branch_open = 'branch.open';
+  static const branch_closed = 'branch.closed';
+  static const branch_empty = 'branch.empty';
+  static const branch = 'branch';
   static const stores_title = 'stores.title';
   static const stores_direction = 'stores.direction';
   static const stores_phone = 'stores.phone';
