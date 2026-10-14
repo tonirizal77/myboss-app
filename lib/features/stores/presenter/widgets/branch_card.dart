@@ -164,6 +164,9 @@ class _BranchAvatar extends StatelessWidget {
             ? Image.network(
                 image!,
                 fit: BoxFit.cover,
+                // Show the logo until the photo is decoded (and on errors).
+                frameBuilder: (_, child, frame, _) =>
+                    frame == null ? fallback : child,
                 errorBuilder: (_, _, _) => fallback,
               )
             : fallback,
