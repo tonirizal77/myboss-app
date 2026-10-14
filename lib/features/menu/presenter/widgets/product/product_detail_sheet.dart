@@ -137,51 +137,55 @@ class _GalleryState extends State<_Gallery> {
   Widget build(BuildContext context) {
     final images = widget.product.images;
 
-    return SizedBox(
-      height: 320,
-      child: Stack(
-        children: [
-          PageView.builder(
-            itemCount: images.length,
-            onPageChanged: (i) => setState(() => _page = i),
-            itemBuilder: (_, i) => Padding(
-              padding: const EdgeInsets.all(16),
-              child: ProductImage(images[i]),
-            ),
-          ),
-          if (widget.product.isNew)
-            Positioned(
-              top: 12,
-              left: 12,
-              child: MyBossStatusChip(
-                label: LocaleKeys.product_new_badge.tr(),
-                kind: MyBossChipKind.success,
+    // Square gallery as wide as the sheet (product photos are ~square),
+    // capped so a wide dialog does not get a huge picture.
+    return LayoutBuilder(
+      builder: (context, constraints) => SizedBox(
+        height: constraints.maxWidth.clamp(0, 480).toDouble(),
+        child: Stack(
+          children: [
+            PageView.builder(
+              itemCount: images.length,
+              onPageChanged: (i) => setState(() => _page = i),
+              itemBuilder: (_, i) => ColoredBox(
+                color: MyBossColors.surface,
+                child: ProductImage(images[i], fit: BoxFit.cover),
               ),
             ),
-          if (images.length > 1)
-            Positioned(
-              // Dialogs put the close button in the top-right corner.
-              top: _inDialog(context) ? null : 12,
-              bottom: _inDialog(context) ? 12 : null,
-              right: 12,
-              child: Container(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 10,
-                  vertical: 4,
+            if (widget.product.isNew)
+              Positioned(
+                top: 12,
+                left: 12,
+                child: MyBossStatusChip(
+                  label: LocaleKeys.product_new_badge.tr(),
+                  kind: MyBossChipKind.success,
                 ),
-                decoration: BoxDecoration(
-                  color: MyBossColors.surfaceContainer.withValues(alpha: 0.8),
-                  borderRadius: BorderRadius.circular(16),
-                ),
-                child: Text(
-                  '${_page + 1}/${images.length}',
-                  style: MyBossTextStyles.body.copyWith(
-                    color: MyBossColors.onSurface,
+              ),
+            if (images.length > 1)
+              Positioned(
+                // Dialogs put the close button in the top-right corner.
+                top: _inDialog(context) ? null : 12,
+                bottom: _inDialog(context) ? 12 : null,
+                right: 12,
+                child: Container(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 10,
+                    vertical: 4,
+                  ),
+                  decoration: BoxDecoration(
+                    color: MyBossColors.surfaceContainer.withValues(alpha: 0.8),
+                    borderRadius: BorderRadius.circular(16),
+                  ),
+                  child: Text(
+                    '${_page + 1}/${images.length}',
+                    style: MyBossTextStyles.body.copyWith(
+                      color: MyBossColors.onSurface,
+                    ),
                   ),
                 ),
               ),
-            ),
-        ],
+          ],
+        ),
       ),
     );
   }
