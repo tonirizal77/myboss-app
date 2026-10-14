@@ -174,6 +174,10 @@ abstract class  LocaleKeys {
   static const auth_sign_in = 'auth.sign_in';
   static const auth_error_name_required = 'auth.error_name_required';
   static const auth_error_name_length = 'auth.error_name_length';
+  static const auth_tab_phone = 'auth.tab_phone';
+  static const auth_tab_email = 'auth.tab_email';
+  static const auth_label_email = 'auth.label_email';
+  static const auth_invalid_email = 'auth.invalid_email';
   static const auth = 'auth';
   static const global_server_error = 'global.server_error';
   static const global_ignore = 'global.ignore';

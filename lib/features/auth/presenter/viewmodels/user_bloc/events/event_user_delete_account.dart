@@ -5,9 +5,7 @@ extension _UserDeleteAccountHandler on UserBloc {
     UserDeleteAccount event,
     Emitter<UserState> emit,
   ) async {
-    emit(
-      state.copyWith(isLoading: true, event: event.runtimeType),
-    );
+    emit(state.copyWith(isLoading: true, event: event.runtimeType));
 
     final res = await getIt<UserDeleteAccountUc>().call();
 

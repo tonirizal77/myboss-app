@@ -202,14 +202,18 @@
   },
 
   "auth": {
-    "title": "Ayo jadi teman!",
-    "subtitle": "Login ke profil Ha-Yo kamu dulu",
-    "register_title": "Buat Profil Ha-Yo",
-    "btn_ready": "Aku siap banget!",
-    "have_account": "Sudah punya akun?",
-    "sign_in": "Masuk",
-    "error_name_required": "Nama wajib diisi",
-    "error_name_length": "Minimal Nama 3 huruf"
+      "title": "Kumpulkan poin,\nDapatkan gadget berkualitas gratis",
+      "subtitle": "Login ke profil Ha-Yo kamu dulu",
+      "register_title": "Buat Profil Ha-Yo",
+      "btn_ready": "Aku siap banget!",
+      "have_account": "Sudah punya akun?",
+      "sign_in": "Masuk",
+      "error_name_required": "Nama wajib diisi",
+      "error_name_length": "Minimal Nama 3 huruf",
+      "tab_phone": "Telepon",
+      "tab_email": "Email",
+      "label_email": "Email",
+      "invalid_email": "Alamat email tidak valid"
   },
 
   "global": {

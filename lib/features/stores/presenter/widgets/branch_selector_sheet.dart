@@ -41,7 +41,9 @@ class _BranchSelectorBody extends StatelessWidget {
                   ),
                   if (branches.isNotEmpty)
                     Text(
-                      LocaleKeys.branch_subtitle.tr(args: ['${branches.length}']),
+                      LocaleKeys.branch_subtitle.tr(
+                        args: ['${branches.length}'],
+                      ),
                       style: MyBossTextStyles.caption.copyWith(
                         color: MyBossColors.onSurfaceVariant,
                       ),
@@ -81,7 +83,7 @@ class _BranchSelectorBody extends StatelessWidget {
           shrinkWrap: true,
           padding: const EdgeInsets.fromLTRB(24, 0, 24, 24),
           itemCount: branches.length,
-          separatorBuilder: (_, _) => const SizedBox(height: 0),
+          separatorBuilder: (_, _) => const SizedBox(height: 16),
           itemBuilder: (context, i) {
             final branch = branches[i];
 

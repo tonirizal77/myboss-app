@@ -21,7 +21,9 @@
       "Bash(pkill -f flutter_tester)",
       "Bash(pkill -f \"flutter test\")",
       "Bash(grep -v \"^ dart:\\\\|^ package:flutter\\\\|^$\" /tmp/branch_test.log)",
-      "Bash(grep -v \"^  dart:\\\\|^  package:flutter\\\\|^$\" /tmp/branch_test.log)"
+      "Bash(grep -v \"^  dart:\\\\|^  package:flutter\\\\|^$\" /tmp/branch_test.log)",
+      "Bash(curl -sSL -o assets/icons/mybos/logo_myboss_text.svg \"https://www.figma.com/api/mcp/asset/b1d78149-956d-497d-8547-2a2f2c347a73.svg\")",
+      "Bash(grep -v \"^  dart:\\\\|^  package:flutter\\\\|^$\" /tmp/t.log)"
     ]
   }
 }

@@ -189,4 +189,25 @@ void main() {
       expect(find.text('Hi! Rangga'), findsNothing);
     });
   });
+
+  group('MyBossSegmented', () {
+    testWidgets('reports the tapped segment', (tester) async {
+      String? picked;
+      await tester.pumpWidget(
+        _host(
+          MyBossSegmented<String>(
+            selected: 'phone',
+            onChanged: (v) => picked = v,
+            segments: const [
+              MyBossSegment(value: 'phone', label: 'Phone'),
+              MyBossSegment(value: 'email', label: 'Email'),
+            ],
+          ),
+        ),
+      );
+
+      await tester.tap(find.text('Email'));
+      expect(picked, 'email');
+    });
+  });
 }

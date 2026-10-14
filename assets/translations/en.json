@@ -202,14 +202,18 @@
   },
 
   "auth": {
-    "title": "Let's be a friend!",
-    "subtitle": "Login to your Ha-Yo profile first",
-    "register_title": "Make Ha-Yo Profile",
-    "btn_ready": "I'm so ready!",
-    "have_account": "Already have an account?",
-    "sign_in": "Sign In",
-    "error_name_required": "Name is required",
-    "error_name_length": "Minimum name 3 letters"
+      "title": "Earn points,\nGet free quality gadgets",
+      "subtitle": "Login to your Ha-Yo profile first",
+      "register_title": "Make Ha-Yo Profile",
+      "btn_ready": "I'm so ready!",
+      "have_account": "Already have an account?",
+      "sign_in": "Sign In",
+      "error_name_required": "Name is required",
+      "error_name_length": "Minimum name 3 letters",
+      "tab_phone": "Phone",
+      "tab_email": "Email",
+      "label_email": "Email",
+      "invalid_email": "Invalid email address"
   },
 
   "global": {

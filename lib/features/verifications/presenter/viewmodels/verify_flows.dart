@@ -13,15 +13,20 @@ class VerifyFlows {
   /// === Verify ===
   ///
   /// 1. Verify Initial Login
+  ///
+  /// Sign in with either [phone] or [email] (exactly one is filled).
   static void verifyLogin(
     BuildContext context, {
-    required String phone,
+    String phone = '',
+    String email = '',
     required FromPage fromPage,
   }) {
     // - Verify Event Initial Data
     // - and then Goto Verifications Page with listener
     context.read<VerifyBloc>().add(
-      VerifyEvent.initial(VerifyModel(phone: phone, fromPage: fromPage)),
+      VerifyEvent.initial(
+        VerifyModel(phone: phone, email: email, fromPage: fromPage),
+      ),
     );
   }
 
@@ -100,8 +105,12 @@ class VerifyFlows {
     final _fromPage = verifyData.fromPage;
 
     if (_fromPage == FromPage.login) {
+      // TODO(backend): confirm that sign-in accepts `email` (hayo API only
+      // documents `phone`).
       _param = ParamOtp(
-        body: {'phone': verifyData.phone},
+        body: verifyData.email.isNotEmpty
+            ? {'email': verifyData.email}
+            : {'phone': verifyData.phone},
         url: Endpoints.signInSendCode,
       );
     } else if (_fromPage == FromPage.register) {
@@ -154,7 +163,13 @@ class VerifyFlows {
     if (_fromPage == FromPage.login) {
       _param = ParamOtp(
         url: Endpoints.signIn,
-        body: {'phone': verifyData.phone, 'otp_code': otpCode},
+        body: {
+          if (verifyData.email.isNotEmpty)
+            'email': verifyData.email
+          else
+            'phone': verifyData.phone,
+          'otp_code': otpCode,
+        },
       );
     } else if (_fromPage == FromPage.register) {
       _param = ParamOtp(

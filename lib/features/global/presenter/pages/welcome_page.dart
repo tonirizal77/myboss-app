@@ -6,7 +6,7 @@ class WelcomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppTheme.primary(context),
+      backgroundColor: MyBossColors.surfaceContainerLowest,
       body: Stack(
         children: [
           Column(
@@ -17,13 +17,13 @@ class WelcomePage extends StatelessWidget {
               Buttons(
                 rounded: 28,
                 isBorder: false,
-                bgColor: AppTheme.surface(context),
+                bgColor: MyBossColors.primary,
                 width: 191,
                 child: Text(
                   // Let's be a friends
                   LocaleKeys.global_welcome_btn.tr(),
                   style: MyBossTextStyles.buttonBig.copyWith(
-                    color: AppTheme.onSurface(context),
+                    color: MyBossColors.onPrimary,
                   ),
                 ),
                 onTap: () {
@@ -41,7 +41,7 @@ class WelcomePage extends StatelessWidget {
                 child: Text(
                   "Myboss v.${getIt<PackageInfoHelper>().version}",
                   style: MyBossTextStyles.captionSmall.copyWith(
-                    color: Colors.white,
+                    color: MyBossColors.onSurfaceVariant,
                   ),
                 ),
               ),

@@ -6,6 +6,8 @@ part of 'app_shareds.dart';
 class Assets {
   /// === MyBoss (Figma) === ///
   static const String logoMyBoss = 'assets/icons/mybos/logo_myboss.png';
+  static const String logoMyBossText =
+      'assets/icons/mybos/logo_myboss_text.svg';
 
   /// Nav & UI icons (SVG, tint with ColorFilter)
   static const String icNavHome = 'assets/icons/mybos/ic_nav_home.svg';
