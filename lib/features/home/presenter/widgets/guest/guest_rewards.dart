@@ -23,9 +23,13 @@ class GuestRewards extends StatelessWidget {
         decoration: BoxDecoration(border: Border.all(color: primary)),
         child: Stack(
           children: [
-            // Figma: soft brand glow along the top and bottom edges.
-            _EdgeGlow(color: primary, alignment: Alignment.topCenter),
-            _EdgeGlow(color: primary, alignment: Alignment.bottomCenter),
+            // Figma: inner brand glow along the edges, strongest in the
+            // corners.
+            Positioned.fill(
+              child: IgnorePointer(
+                child: CustomPaint(painter: _InnerGlowPainter(glow: primary)),
+              ),
+            ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 40),
               child: Column(
@@ -91,43 +95,100 @@ class GuestRewards extends StatelessWidget {
   }
 }
 
-/// Brand color fading into the panel over [height] logical pixels from one
-/// edge, eased so it reads as a glow rather than a band.
-class _EdgeGlow extends StatelessWidget {
-  const _EdgeGlow({required this.color, required this.alignment});
+/// Inner glow (Figma): a soft band along the top and bottom edges, a thin
+/// rim on the sides, and extra light in the corners so the glow reaches
+/// further in there than in the middle of an edge.
+class _InnerGlowPainter extends CustomPainter {
+  const _InnerGlowPainter({required this.glow});
 
-  static const double height = 28;
-  static const double alpha = 0.3;
+  final Color glow;
 
-  final Color color;
-  final Alignment alignment;
+  static const double _band = 52; // top / bottom depth
+  static const double _rim = 12; // side depth
+  static const double _corner = 130; // corner radius of extra light
+  static const double _alpha = 0.3;
 
-  @override
-  Widget build(BuildContext context) {
-    final top = alignment == Alignment.topCenter;
+  /// Eased fade: strong at the edge, long soft tail.
+  List<Color> _fade(double alpha) => [
+    for (final t in const [0.0, 0.2, 0.45, 0.7, 1.0])
+      glow.withValues(alpha: alpha * (1 - t) * (1 - t)),
+  ];
 
-    return Positioned(
-      left: 0,
-      right: 0,
-      top: top ? 0 : null,
-      bottom: top ? null : 0,
-      height: height,
-      child: IgnorePointer(
-        child: DecoratedBox(
-          decoration: BoxDecoration(
-            gradient: LinearGradient(
-              begin: top ? Alignment.topCenter : Alignment.bottomCenter,
-              end: top ? Alignment.bottomCenter : Alignment.topCenter,
-              colors: [
-                for (final t in const [0.0, 0.25, 0.5, 0.75, 1.0])
-                  color.withValues(alpha: alpha * (1 - t) * (1 - t)),
-              ],
-            ),
-          ),
-        ),
-      ),
+  void _drawBand(
+    Canvas canvas,
+    Rect rect,
+    Alignment from,
+    Alignment to,
+    double a,
+  ) {
+    canvas.drawRect(
+      rect,
+      Paint()
+        ..shader = LinearGradient(
+          begin: from,
+          end: to,
+          colors: _fade(a),
+        ).createShader(rect),
     );
   }
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    final w = size.width;
+    final h = size.height;
+
+    canvas.save();
+    canvas.clipRect(Offset.zero & size);
+
+    // Top and bottom bands.
+    _drawBand(
+      canvas,
+      Rect.fromLTWH(0, 0, w, _band),
+      Alignment.topCenter,
+      Alignment.bottomCenter,
+      _alpha,
+    );
+    _drawBand(
+      canvas,
+      Rect.fromLTWH(0, h - _band, w, _band),
+      Alignment.bottomCenter,
+      Alignment.topCenter,
+      _alpha,
+    );
+
+    // Thin side rims.
+    _drawBand(
+      canvas,
+      Rect.fromLTWH(0, 0, _rim, h),
+      Alignment.centerLeft,
+      Alignment.centerRight,
+      _alpha * 0.6,
+    );
+    _drawBand(
+      canvas,
+      Rect.fromLTWH(w - _rim, 0, _rim, h),
+      Alignment.centerRight,
+      Alignment.centerLeft,
+      _alpha * 0.6,
+    );
+
+    // Corners.
+    for (final c in [Offset.zero, Offset(w, 0), Offset(0, h), Offset(w, h)]) {
+      final rect = Rect.fromCircle(center: c, radius: _corner);
+      canvas.drawRect(
+        rect,
+        Paint()
+          ..shader = RadialGradient(
+            colors: _fade(_alpha * 0.8),
+          ).createShader(rect),
+      );
+    }
+
+    canvas.restore();
+  }
+
+  @override
+  bool shouldRepaint(_InnerGlowPainter old) => old.glow != glow;
 }
 
 class _RewardCard extends StatelessWidget {

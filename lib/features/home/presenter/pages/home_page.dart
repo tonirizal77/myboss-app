@@ -12,15 +12,6 @@ class _HomePageState extends State<HomePage>
   @override
   void initState() {
     super.initState();
-
-    /// Do Something after 3 seconds
-    WidgetsBinding.instance.addPostFrameCallback((timeStamp) async {
-      PrintHelper.printWarning("__initialize home page");
-
-      /// Call Socket
-      if (_isLoggedIn) context.read<StampsNotifCubit>().initializeSocket();
-    });
-
     WidgetsBinding.instance.addObserver(this);
   }
 
@@ -30,8 +21,7 @@ class _HomePageState extends State<HomePage>
     super.dispose();
   }
 
-  /// Guest (client token only, no real login yet) has no customer_id -
-  /// stamps socket only makes sense for a real logged-in user.
+  /// Guest (client token only, no real login yet) has no profile/points.
   bool get _isLoggedIn => UserFlows.isLoggedIn(context);
 
   FutureOr<void> _onReload(BuildContext context) async {
@@ -53,26 +43,17 @@ class _HomePageState extends State<HomePage>
       // Branch selector stays put while the content scrolls.
       appBar: BranchHeader.appBar(context),
       onRefresh: () async => await _onReload(context),
-      body: BlocListener<StampsNotifCubit, StampsNotifState>(
-        listener: (context, state) async {
-          await StampsFlows.listenSocketStampsNotif(
-            context,
-            state,
-            callback: () async => await _onReload(context),
+      body: BlocBuilder<UserBloc, UserState>(
+        buildWhen: (previous, current) =>
+            previous.statusLogin != current.statusLogin,
+        builder: (context, state) {
+          final _isLoggedIn = state.statusLogin == Status.success;
+
+          return Responsive(
+            mobile: _mobileView(context, _isLoggedIn),
+            tablet: _tabletView(context, _isLoggedIn),
           );
         },
-        child: BlocBuilder<UserBloc, UserState>(
-          buildWhen: (previous, current) =>
-              previous.statusLogin != current.statusLogin,
-          builder: (context, state) {
-            final _isLoggedIn = state.statusLogin == Status.success;
-
-            return Responsive(
-              mobile: _mobileView(context, _isLoggedIn),
-              tablet: _tabletView(context, _isLoggedIn),
-            );
-          },
-        ),
       ),
     );
   }
@@ -99,8 +80,6 @@ class _HomePageState extends State<HomePage>
     PrintHelper.printWarning("__AppLifecycleState HomePage: $state");
     switch (state) {
       case AppLifecycleState.resumed:
-        if (_isLoggedIn) getIt<StampsNotifCubit>().initializeSocket();
-
         _onReload(context);
 
         break;
