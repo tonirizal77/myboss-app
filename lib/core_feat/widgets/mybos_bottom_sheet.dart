@@ -51,7 +51,7 @@ class _SheetFrame extends StatelessWidget {
                   child: InkWell(
                     customBorder: const CircleBorder(),
                     onTap: () => Navigator.of(context).maybePop(),
-                    child: const SizedBox(
+                    child: SizedBox(
                       width: 40,
                       height: 40,
                       child: Icon(
@@ -68,7 +68,7 @@ class _SheetFrame extends StatelessWidget {
             child: Container(
               width: double.infinity,
               clipBehavior: Clip.antiAlias,
-              decoration: const BoxDecoration(
+              decoration: BoxDecoration(
                 color: MyBossColors.surface,
                 borderRadius: BorderRadius.vertical(top: Radius.circular(16)),
               ),

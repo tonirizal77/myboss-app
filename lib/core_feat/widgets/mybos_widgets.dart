@@ -5,4 +5,5 @@ export 'mybos_header.dart';
 export 'mybos_segmented.dart';
 export 'mybos_status_chip.dart';
 export 'mybos_text_field.dart';
+export 'mybos_theme_switch.dart';
 export 'mybos_toast.dart';

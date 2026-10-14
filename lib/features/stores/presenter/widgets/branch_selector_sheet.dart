@@ -67,7 +67,7 @@ class _BranchSelectorBody extends StatelessWidget {
       return Padding(
         padding: const EdgeInsets.all(48),
         child: listState.isLoading
-            ? const CircularProgressIndicator(color: MyBossColors.primary)
+            ? CircularProgressIndicator(color: MyBossColors.primary)
             : Text(
                 LocaleKeys.branch_empty.tr(),
                 style: MyBossTextStyles.body.copyWith(

@@ -123,7 +123,7 @@ class _FormRegisterState extends State<FormRegister> {
   }
 
   Widget _bodyForm(BuildContext context) {
-    final iconColor = const ColorFilter.mode(
+    final iconColor = ColorFilter.mode(
       MyBossColors.onSurface,
       BlendMode.srcIn,
     );
@@ -198,7 +198,7 @@ class _FormRegisterState extends State<FormRegister> {
               TextSpan(
                 text: LocaleKeys.auth_terms_link.tr(),
                 recognizer: _termsTap,
-                style: const TextStyle(
+                style: TextStyle(
                   color: MyBossColors.primary,
                   fontWeight: FontWeight.w500,
                   decoration: TextDecoration.underline,

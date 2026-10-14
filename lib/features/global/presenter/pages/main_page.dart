@@ -12,17 +12,28 @@ class MainPage extends StatefulWidget {
 }
 
 class _MainPageState extends State<MainPage> with WidgetsBindingObserver {
+  /// Theme epoch seen by the last created [MainPage] (see [MyBossColors.themeEpoch]).
+  static int _seenThemeEpoch = 0;
+
   late final PageController _pageController;
 
   @override
   void initState() {
     super.initState();
 
+    /// A Light/Dark switch rebuilds the whole app - keep the current tab then.
+    final rebuiltByThemeSwitch = MyBossColors.themeEpoch != _seenThemeEpoch;
+    _seenThemeEpoch = MyBossColors.themeEpoch;
+
     /// Initialize Page Controller
-    _pageController = PageController();
+    _pageController = PageController(
+      initialPage: rebuiltByThemeSwitch
+          ? context.read<BottomNavCubit>().state.currentIndex
+          : 0,
+    );
 
     /// Reset bottom nav index to Home
-    context.read<BottomNavCubit>().changeTab(0);
+    if (!rebuiltByThemeSwitch) context.read<BottomNavCubit>().changeTab(0);
 
     /// Get Data Store (Contact Us / Follow Us) - not gated behind login,
     /// this is public merchant contact info shown to guests too.

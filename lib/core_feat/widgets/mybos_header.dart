@@ -47,7 +47,7 @@ class MyBossHeader extends StatelessWidget implements PreferredSizeWidget {
                   Assets.icClose,
                   width: 24,
                   height: 24,
-                  colorFilter: const ColorFilter.mode(
+                  colorFilter: ColorFilter.mode(
                     MyBossColors.onSurface,
                     BlendMode.srcIn,
                   ),

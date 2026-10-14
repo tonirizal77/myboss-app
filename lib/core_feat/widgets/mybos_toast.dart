@@ -106,7 +106,7 @@ class _ToastViewState extends State<_ToastView>
                 ),
                 child: Row(
                   children: [
-                    const Icon(
+                    Icon(
                       Icons.check_circle,
                       size: 32,
                       color: MyBossColors.success,

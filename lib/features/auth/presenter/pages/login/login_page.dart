@@ -84,7 +84,7 @@ class _CloseButton extends StatelessWidget {
       child: InkWell(
         customBorder: const CircleBorder(),
         onTap: onTap,
-        child: const Padding(
+        child: Padding(
           padding: EdgeInsets.all(8),
           child: Icon(Icons.close, size: 24, color: MyBossColors.onSurface),
         ),

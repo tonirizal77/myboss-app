@@ -106,19 +106,33 @@ class MyApp extends StatelessWidget {
             "__theme app: ${state.themeMode} - lang: ${context.locale} --> ${ConfigServer.locale}",
           );
 
-          return MediaQuery(
-            data: MediaQuery.of(context).copyWith(textScaleFactor: 1),
-            child: MaterialApp.router(
-              title: 'MyBoss',
-              debugShowCheckedModeBanner: false,
-              showPerformanceOverlay: kProfileMode ? true : false,
-              theme: MyBossTheme.dark,
-              darkTheme: MyBossTheme.dark,
-              themeMode: state.themeMode,
-              routerConfig: GoRouterSingleton.shared.routers,
-              localizationsDelegates: context.localizationDelegates,
-              supportedLocales: context.supportedLocales,
-              locale: context.locale,
+          /// Dark is the default; `system` follows the device.
+          final brightness = switch (state.themeMode) {
+            ThemeMode.light => Brightness.light,
+            ThemeMode.dark => Brightness.dark,
+            ThemeMode.system => MediaQuery.platformBrightnessOf(context),
+          };
+
+          /// MyBoss colors are read from a static palette, so switch it and
+          /// rebuild the whole app (the key) when the mode changes.
+          MyBossColors.apply(brightness);
+
+          return KeyedSubtree(
+            key: ValueKey(brightness),
+            child: MediaQuery(
+              data: MediaQuery.of(context).copyWith(textScaleFactor: 1),
+              child: MaterialApp.router(
+                title: 'MyBoss',
+                debugShowCheckedModeBanner: false,
+                showPerformanceOverlay: kProfileMode ? true : false,
+                theme: MyBossTheme.light,
+                darkTheme: MyBossTheme.dark,
+                themeMode: state.themeMode,
+                routerConfig: GoRouterSingleton.shared.routers,
+                localizationsDelegates: context.localizationDelegates,
+                supportedLocales: context.supportedLocales,
+                locale: context.locale,
+              ),
             ),
           );
         },

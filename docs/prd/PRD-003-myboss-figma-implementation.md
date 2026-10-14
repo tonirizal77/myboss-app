@@ -237,3 +237,18 @@ Sebagai pengguna baru, saya ingin mendaftar dengan memilih avatar dan mengisi da
 1. Bandingkan hasil dengan screenshot Figma per halaman
 2. `flutter analyze` = No issues, `flutter test`
 3. Build & uji di perangkat (Android staging)
+
+### Story: Mode Terang/Gelap (default Dark) (MYB-169)
+
+Sebagai pengguna, saya ingin berpindah antara tampilan Gelap (default) dan Terang
+dengan tombol switch yang sudah ada.
+
+**Acceptance Criteria:**
+- Default Dark (kuning `#FAC038`); Light memakai palet biru `#173C82` dari variabel Figma.
+- Tombol switch (kartu akun / header tablet) mengganti seluruh tampilan, tab aktif tidak berubah.
+- Pilihan tersimpan (ThemeBloc hydrated).
+
+**Task breakdown:** MYB-174 palet dark & light; MYB-173 tema + themeMode (default Dark);
+MYB-172 perbaikan const warna dinamis; MYB-171 MyBossThemeSwitch; MYB-170 pertahankan tab
+aktif + tes. Posisi tombol untuk guest/menu akun diputuskan di story Account.
+

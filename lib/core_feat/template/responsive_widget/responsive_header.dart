@@ -55,7 +55,7 @@ class RmdMainHeaderChild extends StatelessWidget {
   }
 
   Widget _switchMode(bool _shadow) {
-    return ButtonMode(isShadow: _shadow, size: 44, isBorder: true);
+    return MyBossThemeSwitch(size: 44, bordered: true);
   }
 
   Buttons _settingStyleApp(BuildContext context, bool _shadow) {

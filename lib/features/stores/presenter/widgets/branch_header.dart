@@ -59,7 +59,7 @@ class _BranchHeaderState extends State<BranchHeader> {
                         Assets.icChevronDown,
                         width: 24,
                         height: 24,
-                        colorFilter: const ColorFilter.mode(
+                        colorFilter: ColorFilter.mode(
                           MyBossColors.primary,
                           BlendMode.srcIn,
                         ),

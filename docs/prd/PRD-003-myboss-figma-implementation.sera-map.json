@@ -533,6 +533,32 @@
           "deadline": "2026-10-28"
         }
       ]
+    },
+    {
+      "key": "MYB-169",
+      "name": "Mode Terang/Gelap (default Dark)",
+      "tasks": [
+        {
+          "key": "MYB-174",
+          "title": "Palet MyBoss dark & light"
+        },
+        {
+          "key": "MYB-173",
+          "title": "MyBossTheme + themeMode"
+        },
+        {
+          "key": "MYB-172",
+          "title": "Perbaiki const warna dinamis"
+        },
+        {
+          "key": "MYB-171",
+          "title": "MyBossThemeSwitch"
+        },
+        {
+          "key": "MYB-170",
+          "title": "Pertahankan tab aktif + tes tema"
+        }
+      ]
     }
   ]
 }

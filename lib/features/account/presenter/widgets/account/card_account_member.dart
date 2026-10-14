@@ -197,7 +197,7 @@ class CardAccountMember extends StatelessWidget {
 
         Visibility(
           visible: Responsive.isMobile(context),
-          child: const ButtonMode(),
+          child: const MyBossThemeSwitch(),
         ),
       ],
     );

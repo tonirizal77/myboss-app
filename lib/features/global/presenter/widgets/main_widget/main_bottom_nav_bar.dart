@@ -184,7 +184,7 @@ class _BottomNavItem extends StatelessWidget {
               height: 4,
               width: 24,
               clipBehavior: Clip.hardEdge,
-              decoration: const BoxDecoration(
+              decoration: BoxDecoration(
                 color: MyBossColors.primary,
                 borderRadius: BorderRadius.only(
                   topLeft: Radius.circular(8),

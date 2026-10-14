@@ -119,7 +119,7 @@ class BranchCard extends StatelessWidget {
             ),
           ),
           const SizedBox(width: 4),
-          const Icon(Icons.check, size: 22, color: MyBossColors.primary),
+          Icon(Icons.check, size: 22, color: MyBossColors.primary),
         ],
       );
     }
