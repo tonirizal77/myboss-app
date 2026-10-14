@@ -19,3 +19,9 @@ part 'card_product.dart';
 part 'card_topings_title.dart';
 part 'view_mobile_header.dart';
 part 'view_tablet_header.dart';
+
+part 'product/product_image.dart';
+part 'product/product_category_bar.dart';
+part 'product/product_filters.dart';
+part 'product/product_grid.dart';
+part 'product/product_detail_sheet.dart';

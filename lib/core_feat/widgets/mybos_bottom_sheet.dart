@@ -20,7 +20,72 @@ class MyBossBottomSheet {
       useSafeArea: true,
       backgroundColor: Colors.transparent,
       barrierColor: Colors.black54,
+      // Phone-width sheet on tablets / desktop.
+      constraints: const BoxConstraints(maxWidth: 640),
       builder: (context) => _SheetFrame(showClose: showClose, builder: builder),
+    );
+  }
+
+  /// Bottom sheet on phones, centered dialog on wider windows (tablet /
+  /// desktop), with the same round close button.
+  static Future<T?> adaptive<T>(
+    BuildContext context, {
+    required WidgetBuilder builder,
+    bool showClose = true,
+    double maxWidth = 560,
+  }) {
+    // Same breakpoint as Responsive.isMobile (< 600).
+    if (MediaQuery.sizeOf(context).width < 600) {
+      return show<T>(context, builder: builder, showClose: showClose);
+    }
+
+    return showDialog<T>(
+      context: context,
+      barrierColor: Colors.black54,
+      builder: (context) => Dialog(
+        backgroundColor: MyBossColors.surface,
+        clipBehavior: Clip.antiAlias,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+        child: ConstrainedBox(
+          constraints: BoxConstraints(maxWidth: maxWidth),
+          child: Stack(
+            children: [
+              builder(context),
+              if (showClose)
+                Positioned(
+                  top: 12,
+                  right: 12,
+                  child: _CloseButton(
+                    onTap: () => Navigator.of(context).maybePop(),
+                  ),
+                ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class _CloseButton extends StatelessWidget {
+  const _CloseButton({required this.onTap});
+
+  final VoidCallback onTap;
+
+  @override
+  Widget build(BuildContext context) {
+    return Material(
+      color: MyBossColors.surface,
+      shape: const CircleBorder(),
+      child: InkWell(
+        customBorder: const CircleBorder(),
+        onTap: onTap,
+        child: SizedBox(
+          width: 40,
+          height: 40,
+          child: Icon(Icons.close, size: 24, color: MyBossColors.onSurface),
+        ),
+      ),
     );
   }
 }

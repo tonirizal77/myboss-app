@@ -13,3 +13,10 @@ abstract class MenuTopingRepo {
 
   ResultFuture<MenuTopingModel> listMenuToping(DataMap param);
 }
+
+/// 3. MyBoss product catalog
+abstract class ProductRepo {
+  const ProductRepo();
+
+  ResultFuture<ProductCatalog> getCatalog();
+}

@@ -85,6 +85,15 @@ abstract class  LocaleKeys {
   static const home_member_popular_title = 'home_member.popular_title';
   static const home_member_redeem = 'home_member.redeem';
   static const home_member = 'home_member';
+  static const product_all = 'product.all';
+  static const product_search = 'product.search';
+  static const product_see_more = 'product.see_more';
+  static const product_not_found = 'product.not_found';
+  static const product_description = 'product.description';
+  static const product_specifications = 'product.specifications';
+  static const product_related = 'product.related';
+  static const product_new_badge = 'product.new_badge';
+  static const product = 'product';
   static const points_title = 'points.title';
   static const points_balance = 'points.balance';
   static const points_expires_in = 'points.expires_in';

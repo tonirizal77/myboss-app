@@ -100,6 +100,17 @@
     "redeem": "Tukar"
   },
 
+  "product": {
+    "all": "Semua",
+    "search": "Cari",
+    "see_more": "Lihat lagi",
+    "not_found": "Produk tidak ditemukan",
+    "description": "Deskripsi",
+    "specifications": "Spesifikasi",
+    "related": "Produk Terkait",
+    "new_badge": "Terbaru"
+  },
+
   "points": {
     "title": "Poin",
     "balance": "{} poin",

@@ -6,7 +6,7 @@ class BranchHeader extends StatefulWidget {
   const BranchHeader({super.key});
 
   /// Fixed height (without the status bar) so it can sit in a page header.
-  static const double height = 100;
+  static const double height = 86;
 
   /// Page header version: pinned above the scrolling body, below the status
   /// bar. Use as `ResponsivePage(appBar: BranchHeader.appBar(context))`.

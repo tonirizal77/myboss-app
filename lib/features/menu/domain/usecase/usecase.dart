@@ -21,3 +21,12 @@ class ListMenuTopingUc extends UsecaseParams<MenuTopingModel, DataMap> {
     return await _repository.listMenuToping(params);
   }
 }
+
+class GetProductCatalogUc extends Usecase<ProductCatalog> {
+  final ProductRepo _repository;
+
+  GetProductCatalogUc(this._repository);
+
+  @override
+  ResultFuture<ProductCatalog> call() => _repository.getCatalog();
+}

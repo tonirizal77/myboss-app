@@ -19,7 +19,7 @@ class MenuFt {
     getIt.registerLazySingleton(() => MenuBloc());
 
     /// 2. Setup Cubit
-    // getIt.registerLazySingleton(() => ???Cubit());
+    getIt.registerLazySingleton(() => ProductCubit());
 
     /// 3. Setup Repository
     ///
@@ -29,16 +29,21 @@ class MenuFt {
     getIt.registerLazySingleton<MenuTopingRepo>(
       () => MenuTopingRepoImpl(remoteData: getIt()),
     );
+    getIt.registerLazySingleton<ProductRepo>(
+      () => ProductRepoImpl(source: getIt()),
+    );
 
     /// 4. Setup Datasource
     ///
     getIt.registerLazySingleton<MenuYogurtRemote>(() => MenuYogurtRemoteImpl());
     getIt.registerLazySingleton<MenuTopingRemote>(() => MenuTopingRemoteImpl());
+    getIt.registerLazySingleton<ProductSource>(() => const ProductStatic());
 
     /// 5. Setup Usecase
     ///
     getIt.registerLazySingleton(() => ListMenuYogurtUc(getIt()));
     getIt.registerLazySingleton(() => ListMenuTopingUc(getIt()));
+    getIt.registerLazySingleton(() => GetProductCatalogUc(getIt()));
 
     /// 6. Setup Control / Flow
     ///  - 1. [xxx]Flow (mode static) -> UsecaseFunc
@@ -47,6 +52,7 @@ class MenuFt {
     ///
     BlocProviderInjectors.add([
       BlocProvider<MenuBloc>(create: (_) => getIt<MenuBloc>()),
+      BlocProvider<ProductCubit>(create: (_) => getIt<ProductCubit>()),
     ]);
   }
 }
