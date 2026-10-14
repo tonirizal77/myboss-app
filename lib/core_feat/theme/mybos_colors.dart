@@ -23,11 +23,18 @@ class MyBossColors {
   static const Color onSurfaceVariant = Color(0xFFB3B3B3);
   static const Color outline = Color(0xFF666666);
 
+  /// Dark `surface-container` (not exported by Figma variables; matches core).
+  static const Color surfaceContainer = Color(0xFF333333);
+
   // Status
   static const Color danger = Color(0xFFF48471);
   static const Color onDanger = Color(0xFF000000);
   static const Color success = Color(0xFF88DDA0);
   static const Color onSuccess = Color(0xFF000000);
+
+  /// Toast background in dark mode - read from the Figma render of
+  /// `notification animation` (variable only exposes the light value).
+  static const Color successContainer = Color(0xFF0B2813);
 
   // Shared
   static const Color white = Color(0xFFFFFFFF);
