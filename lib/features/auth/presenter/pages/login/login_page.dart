@@ -32,12 +32,12 @@ class _LoginPageState extends State<LoginPage> {
                     visible: Responsive.isMobile(context),
                     child: Text(
                       LocaleKeys.auth_title.tr(),
-                      style: AppTextStyles.titleBig1,
+                      style: MyBossTextStyles.titleBig1,
                     ),
                   ),
                   Text(
                     LocaleKeys.auth_subtitle.tr(),
-                    style: AppTextStyles.bodyBig2.copyWith(
+                    style: MyBossTextStyles.bodyBig2.copyWith(
                       color: AppColors.grey50,
                     ),
                   ),

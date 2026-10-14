@@ -47,7 +47,7 @@ class CardProduct extends StatelessWidget {
                 alignment: Alignment.center,
                 child: Text(
                   data.name.capitalize(),
-                  style: AppTextStyles.subtitleSmall.copyWith(
+                  style: MyBossTextStyles.subtitleSmall.copyWith(
                     color: AppTheme.onSurface(context),
                   ),
                   maxLines: 3,
@@ -73,7 +73,7 @@ class CardProduct extends StatelessWidget {
     return BoxDecoration(
       color: AppTheme.primaryContainer(context),
       borderRadius: BorderRadius.circular(20),
-      border: BoxBorder.all(color: AppColors.primary),
+      border: BoxBorder.all(color: MyBossColors.primary),
     );
   }
 }

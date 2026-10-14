@@ -70,7 +70,7 @@ class _CardListProductState extends State<CardListProduct> {
               alignment: .center,
               child: Text(
                 widget.data.name.capitalize(),
-                style: AppTextStyles.title,
+                style: MyBossTextStyles.title,
               ),
             ),
 

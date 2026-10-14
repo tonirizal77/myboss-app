@@ -85,12 +85,12 @@ class _SplashPageState extends State<SplashPage> {
         children: [
           Text(
             LocaleKeys.global_server_error.tr(),
-            style: AppTextStyles.title.copyWith(color: Colors.white),
+            style: MyBossTextStyles.title.copyWith(color: Colors.white),
           ),
 
           Text(
             state.errorMessage,
-            style: AppTextStyles.bodyMedium.copyWith(color: Colors.yellow),
+            style: MyBossTextStyles.bodyMedium.copyWith(color: Colors.yellow),
           ),
 
           ButtonsWidget(
@@ -103,7 +103,7 @@ class _SplashPageState extends State<SplashPage> {
             padding: EdgeInsets.symmetric(horizontal: 16),
             child: Text(
               LocaleKeys.global_ignore.tr(),
-              style: AppTextStyles.button.copyWith(
+              style: MyBossTextStyles.button.copyWith(
                 color: AppTheme.onSurface(context),
               ),
             ),

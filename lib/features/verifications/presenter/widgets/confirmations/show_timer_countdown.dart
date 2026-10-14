@@ -15,14 +15,14 @@ class ShowTimerCountdown extends StatelessWidget {
               Text(
                 LocaleKeys.verify_resend_otp.tr(),
                 textAlign: TextAlign.center,
-                style: AppTextStyles.subtitleBig2.copyWith(
+                style: MyBossTextStyles.subtitleBig2.copyWith(
                   color: AppColors.grey50,
                 ),
               ),
               const SizedBox(width: 4),
               Text(
                 state.durationString,
-                style: AppTextStyles.subtitleBig2.copyWith(
+                style: MyBossTextStyles.subtitleBig2.copyWith(
                   color: AppColors.grey50,
                 ),
                 textAlign: TextAlign.center,

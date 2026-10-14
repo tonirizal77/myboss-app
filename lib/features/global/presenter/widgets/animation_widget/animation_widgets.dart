@@ -6,9 +6,8 @@ import 'package:myboss_app/core_feat/core_feat.dart';
 part 'icon_animation.dart';
 part 'ripple_animation.dart';
 
-
 /// How to Used
-/// 
+///
 // RippleAnimation(
 //   repeat: true,
 //   minRadius: 10,
@@ -23,7 +22,6 @@ part 'ripple_animation.dart';
 //     ),
 //   ),
 // )
-
 
 /// Button Swith ModeView
 // AnimatedIconCustom(

@@ -94,7 +94,7 @@ class _AccountPageState extends State<AccountPage>
               arrowRight: true,
               title: Text(
                 LocaleKeys.akun_delete_account.tr(),
-                style: AppTextStyles.subtitle.copyWith(color: AppColors.error),
+                style: MyBossTextStyles.subtitle.copyWith(color: AppColors.error),
               ),
               onTap: () => AccountFlows.goToDeleteAccount(context),
             ),
@@ -166,7 +166,7 @@ class _AccountPageState extends State<AccountPage>
               arrowRight: true,
               title: Text(
                 LocaleKeys.akun_delete_account.tr(),
-                style: AppTextStyles.subtitle.copyWith(color: AppColors.error),
+                style: MyBossTextStyles.subtitle.copyWith(color: AppColors.error),
               ),
               borderRadius: Responsive.isMobile(context)
                   ? BorderRadius.vertical(bottom: Radius.circular(20))

@@ -22,7 +22,7 @@ class WelcomePage extends StatelessWidget {
                 child: Text(
                   // Let's be a friends
                   LocaleKeys.global_welcome_btn.tr(),
-                  style: AppTextStyles.buttonBig.copyWith(
+                  style: MyBossTextStyles.buttonBig.copyWith(
                     color: AppTheme.onSurface(context),
                   ),
                 ),
@@ -40,7 +40,7 @@ class WelcomePage extends StatelessWidget {
                 margin: EdgeInsets.only(top: 56, bottom: 16),
                 child: Text(
                   "Myboss v.${getIt<PackageInfoHelper>().version}",
-                  style: AppTextStyles.captionSmall.copyWith(
+                  style: MyBossTextStyles.captionSmall.copyWith(
                     color: Colors.white,
                   ),
                 ),

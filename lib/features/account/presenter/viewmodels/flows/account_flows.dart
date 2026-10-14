@@ -126,14 +126,14 @@ class AccountFlows {
       tipeDialog: TipeDialog.action,
       title: Text(
         LocaleKeys.dialog_title_logout.tr(),
-        style: AppTextStyles.title,
+        style: MyBossTextStyles.title,
       ),
       // showIcon: true,
       child: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Text(
           LocaleKeys.dialog_desc_logout.tr(),
-          style: AppTextStyles.title.copyWith(fontSize: 18),
+          style: MyBossTextStyles.title.copyWith(fontSize: 18),
           textAlign: TextAlign.center,
         ),
       ),
@@ -201,8 +201,8 @@ class AccountFlows {
     ResponsiveDialog.sheetOrDialog(
       context,
       colorFrame: AppTheme.surface(context),
-      title: Text("Contact Us", style: AppTextStyles.title),
-      // styleTitle: AppTextStyles.title,
+      title: Text("Contact Us", style: MyBossTextStyles.title),
+      // styleTitle: MyBossTextStyles.title,
       colorBody: AppTheme.surface(context),
       child: ListView.separated(
         shrinkWrap: true,
@@ -250,7 +250,7 @@ class AccountFlows {
         ),
         Text(
           _listContact[i]['name'].toString(),
-          style: AppTextStyles.subtitle,
+          style: MyBossTextStyles.subtitle,
         ), //
       ],
     );

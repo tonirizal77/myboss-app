@@ -63,7 +63,7 @@ abstract class AppManageFlow {
     //   context: context,
     //   message: state.message,
     //   isDismissible: false,
-    //   backgroundColor: state.isConnected ? AppColors.primary : Colors.red,
+    //   backgroundColor: state.isConnected ? MyBossColors.primary : Colors.red,
     //   duration: const Duration(seconds: 4),
     // );
 

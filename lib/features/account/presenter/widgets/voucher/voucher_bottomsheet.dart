@@ -38,22 +38,22 @@ class VoucherBottomsheet extends StatelessWidget {
             children: [
               Text(
                 LocaleKeys.voucher_label_desc.tr(),
-                style: AppTextStyles.subtitleBig2,
+                style: MyBossTextStyles.subtitleBig2,
               ),
               SizedBox(height: 4),
               Text(
                 "1. ${(data.discountRate * 100).floor()} % ${LocaleKeys.voucher_label_disc.tr()}",
-                style: AppTextStyles.body,
+                style: MyBossTextStyles.body,
               ),
               Text(
                 "2. ${LocaleKeys.voucher_label_max.tr(args: ['${SharedMethod.formatNumber(data.maxDiscountAmount, symbol: 'Rp ')}'])}",
-                style: AppTextStyles.body,
+                style: MyBossTextStyles.body,
               ),
               Text(
                 "3. ${LocaleKeys.voucher_label_min.tr(args: ['${SharedMethod.formatNumber(data.minOrderAmount, symbol: 'Rp ')}'])}",
-                style: AppTextStyles.body,
+                style: MyBossTextStyles.body,
               ),
-              Text("4. $_efectiveDateLabel", style: AppTextStyles.body),
+              Text("4. $_efectiveDateLabel", style: MyBossTextStyles.body),
             ],
           ),
         ),

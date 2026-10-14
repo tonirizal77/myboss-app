@@ -75,7 +75,7 @@ class _FormLoginState extends State<FormLogin> {
           //     Divider(height: 40),
           //     Container(
           //       color: AppTheme.surfaceContainerLow(context),
-          //       child: Text(" or ", style: AppTextStyles.bodyMedium),
+          //       child: Text(" or ", style: MyBossTextStyles.bodyMedium),
           //     ),
           //   ],
           // ),
@@ -95,7 +95,7 @@ class _FormLoginState extends State<FormLogin> {
           /// Button Login
           ButtonText(
             backgroundColor: _isValid == true
-                ? AppColors.primary
+                ? MyBossColors.primary
                 : AppColors.grey60,
             text: LocaleKeys.button_login.tr(),
             radius: 28,
@@ -134,7 +134,7 @@ class _FormLoginState extends State<FormLogin> {
               onTap: () => UserFlows.goToRegisterPage(context),
               child: Text(
                 LocaleKeys.button_register.tr(),
-                style: AppTextStyles.button.copyWith(color: AppColors.primary),
+                style: MyBossTextStyles.button.copyWith(color: MyBossColors.primary),
               ),
             ),
           ),

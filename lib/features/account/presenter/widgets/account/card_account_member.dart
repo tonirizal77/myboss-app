@@ -110,7 +110,7 @@ class CardAccountMember extends StatelessWidget {
               : LocaleKeys.home_tier_label1.tr()
         : state.profile.levelName;
 
-    final _tierLabelColor = AppTextStyles.titleBig2.copyWith(
+    final _tierLabelColor = MyBossTextStyles.titleBig2.copyWith(
       color: _level == 3
           ? AppColors.coolest
           : _level == 2
@@ -132,7 +132,7 @@ class CardAccountMember extends StatelessWidget {
       children: [
         Text(
           state.profile.name,
-          style: AppTextStyles.titleBig1,
+          style: MyBossTextStyles.titleBig1,
           overflow: TextOverflow.ellipsis,
           maxLines: 1,
         ),
@@ -143,11 +143,11 @@ class CardAccountMember extends StatelessWidget {
           children: [
             Text(
               getIt<GeneralHelper>().maskPhone(state.profile.phone, isMaskContact: AppSetting.isMaskContact.value),
-              style: AppTextStyles.caption,
+              style: MyBossTextStyles.caption,
             ),
             Text(
               getIt<GeneralHelper>().maskEmail(state.profile.email, isMaskContact: AppSetting.isMaskContact.value),
-              style: AppTextStyles.caption,
+              style: MyBossTextStyles.caption,
             ),
           ],
         ),
@@ -165,7 +165,7 @@ class CardAccountMember extends StatelessWidget {
 
   CircleImage _imageAvatar(BuildContext context, String _image) {
     return CircleImage(
-      color: AppColors.primary,
+      color: MyBossColors.primary,
       size: 120,
       border: Border.all(color: AppTheme.surface(context), width: 5),
       child: ImageNetwork(

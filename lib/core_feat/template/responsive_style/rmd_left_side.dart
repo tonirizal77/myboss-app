@@ -120,7 +120,7 @@ class RmdLeftSide extends StatelessWidget {
       padding: EdgeInsets.symmetric(vertical: 16),
       child: Text(
         "Start Your day \n& Be \nProductive ✌️",
-        style: AppTextStyles.caption,
+        style: MyBossTextStyles.caption,
       ),
     );
   }

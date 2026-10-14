@@ -43,7 +43,7 @@ class ListMenuAkun extends StatelessWidget {
                     ),
                     title: Text(
                       LocaleKeys.akun_about_us.tr(),
-                      style: AppTextStyles.subtitle,
+                      style: MyBossTextStyles.subtitle,
                     ),
                     borderRadius: Responsive.isMobile(context)
                         ? BorderRadius.vertical(top: Radius.circular(20))
@@ -61,7 +61,7 @@ class ListMenuAkun extends StatelessWidget {
                     // height: 80,
                     title: Text(
                       LocaleKeys.akun_faq.tr(),
-                      style: AppTextStyles.subtitle.copyWith(height: 1),
+                      style: MyBossTextStyles.subtitle.copyWith(height: 1),
                       textAlign: TextAlign.left,
                       maxLines: 2,
                       overflow: TextOverflow.ellipsis,
@@ -91,7 +91,7 @@ class ListMenuAkun extends StatelessWidget {
                     title: Text(
                       // "Syarat dan Ketentuan",
                       LocaleKeys.akun_tnc.tr(),
-                      style: AppTextStyles.subtitle,
+                      style: MyBossTextStyles.subtitle,
                     ),
                     borderRadius: Responsive.isMobile(context)
                         ? null
@@ -108,7 +108,7 @@ class ListMenuAkun extends StatelessWidget {
                     ),
                     title: Text(
                       LocaleKeys.akun_contact_us.tr(),
-                      style: AppTextStyles.subtitle,
+                      style: MyBossTextStyles.subtitle,
                     ),
                     borderRadius: isLoggedIn
                         ? null
@@ -134,7 +134,7 @@ class ListMenuAkun extends StatelessWidget {
           icon: Image.asset(Assets.menuLogout),
           title: Text(
             LocaleKeys.akun_logout.tr(),
-            style: AppTextStyles.subtitle,
+            style: MyBossTextStyles.subtitle,
           ),
           borderRadius: BorderRadius.vertical(bottom: Radius.circular(20)),
           onTap: () => AccountFlows.goToLogout(context),

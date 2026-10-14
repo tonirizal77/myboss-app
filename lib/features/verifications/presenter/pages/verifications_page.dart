@@ -69,7 +69,7 @@ class VerificationsPage extends StatelessWidget {
 
           Text(
             LocaleKeys.verify_send_otp.tr(),
-            style: AppTextStyles.button.copyWith(
+            style: MyBossTextStyles.button.copyWith(
               color: AppTheme.surface(context),
             ),
           ),
@@ -84,7 +84,7 @@ class VerificationsPage extends StatelessWidget {
       children: [
         Text(
           LocaleKeys.verify_verify_phone.tr(),
-          style: AppTextStyles.subtitleHuge2,
+          style: MyBossTextStyles.subtitleHuge2,
           textAlign: TextAlign.center,
         ),
 
@@ -93,13 +93,13 @@ class VerificationsPage extends StatelessWidget {
         CardCustom(
           isBorder: true,
           alignment: Alignment.center,
-          borderColor: AppColors.primary,
+          borderColor: MyBossColors.primary,
           borderWidth: 1,
           height: 60,
           color: AppTheme.surfaceContainer(context),
           child: Text(
             getIt<GeneralHelper>().maskPhone(state.verifyData.phone, isMaskContact: AppSetting.isMaskContact.value),
-            style: AppTextStyles.subtitleBig1,
+            style: MyBossTextStyles.subtitleBig1,
           ),
         ),
 
@@ -107,7 +107,7 @@ class VerificationsPage extends StatelessWidget {
 
         Text(
           LocaleKeys.verify_otp_instruction.tr(),
-          style: AppTextStyles.bodyBig2,
+          style: MyBossTextStyles.bodyBig2,
           textAlign: TextAlign.center,
         ),
       ],

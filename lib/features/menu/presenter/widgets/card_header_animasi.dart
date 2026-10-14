@@ -16,7 +16,7 @@ class CardHeaderAnimasi extends StatelessWidget {
         children: [
           Text(
             LocaleKeys.menu_title.tr(),
-            style: AppTextStyles.titleBig1.copyWith(
+            style: MyBossTextStyles.titleBig1.copyWith(
               color: AppTheme.onSurface(context),
               fontSize: 28,
             ),
@@ -32,7 +32,7 @@ class CardHeaderAnimasi extends StatelessWidget {
 
               return Text(
                 LocaleKeys.menu_sub_title.tr(args: ['${_total}']),
-                style: AppTextStyles.titleBig2.copyWith(
+                style: MyBossTextStyles.titleBig2.copyWith(
                   color: AppTheme.onSurface(context),
                 ),
               );

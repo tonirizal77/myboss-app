@@ -38,7 +38,7 @@ class StampsFlows {
         : _notifType;
 
     final _ketColor = _notifType == "sales"
-        ? AppColors.primary
+        ? MyBossColors.primary
         : _notifType == "sales_return"
         ? Colors.amberAccent
         : _notifType == "sales_void"
@@ -67,19 +67,19 @@ class StampsFlows {
             children: [
               TextSpan(
                 text: "Ada",
-                style: AppTextStyles.body.copyWith(color: _ketColor1),
+                style: MyBossTextStyles.body.copyWith(color: _ketColor1),
               ),
               TextSpan(
                 text: " $_ket ",
-                style: AppTextStyles.body.copyWith(color: _ketColor1),
+                style: MyBossTextStyles.body.copyWith(color: _ketColor1),
               ),
               TextSpan(
                 text: "stamps atas transaksi No: ",
-                style: AppTextStyles.body.copyWith(color: _ketColor1),
+                style: MyBossTextStyles.body.copyWith(color: _ketColor1),
               ),
               TextSpan(
                 text: "#$_noOrder",
-                style: AppTextStyles.body.copyWith(
+                style: MyBossTextStyles.body.copyWith(
                   fontWeight: FontWeight.bold,
                   color: _ketColor1,
                 ),

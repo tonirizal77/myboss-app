@@ -163,15 +163,15 @@ class _FormRegistertate extends State<FormRegister> {
             children: [
               Text(
                 LocaleKeys.auth_have_account.tr(),
-                style: AppTextStyles.bodyBig2,
+                style: MyBossTextStyles.bodyBig2,
               ),
 
               ButtonText(
                 text: LocaleKeys.auth_sign_in.tr(),
                 backgroundColor: Colors.transparent,
                 elevation: 0,
-                textStyle: AppTextStyles.button.copyWith(
-                  color: AppColors.primary,
+                textStyle: MyBossTextStyles.button.copyWith(
+                  color: MyBossColors.primary,
                 ),
                 onTap: () {
                   UserFlows.gotoBackLogin(context);

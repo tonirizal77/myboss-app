@@ -52,7 +52,7 @@ class ViewTabletHeader extends StatelessWidget {
                     padding: const EdgeInsets.only(right: 32.0),
                     child: Text(
                       LocaleKeys.menu_info.tr(),
-                      style: AppTextStyles.title.copyWith(),
+                      style: MyBossTextStyles.title.copyWith(),
                       textAlign: TextAlign.center,
                     ),
                   ),

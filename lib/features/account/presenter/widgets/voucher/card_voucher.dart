@@ -25,7 +25,7 @@ class CardVoucher extends StatelessWidget {
           context,
           title: Text(
             LocaleKeys.voucher_label_sheet.tr(),
-            style: AppTextStyles.title,
+            style: MyBossTextStyles.title,
           ),
           colorFrame: AppTheme.scaffold(context),
           colorBody: AppTheme.scaffold(context),
@@ -60,19 +60,19 @@ class CardVoucher extends StatelessWidget {
         children: [
           Text(
             "${data.title.capitalize()}",
-            style: AppTextStyles.subtitleSmall,
+            style: MyBossTextStyles.subtitleSmall,
             overflow: TextOverflow.ellipsis,
             maxLines: 1,
           ),
           Text(
             "${(data.discountRate * 100).floor()}% ${LocaleKeys.voucher_label_disc.tr()}",
-            style: AppTextStyles.title.copyWith(
+            style: MyBossTextStyles.title.copyWith(
               color: AppTheme.isDark(context)
                   ? AppColors.discountDark
                   : AppColors.warning,
             ),
           ),
-          Text("$_efectiveDateLabel", style: AppTextStyles.captionSmall),
+          Text("$_efectiveDateLabel", style: MyBossTextStyles.captionSmall),
 
           Buttons(
             height: 32,
@@ -85,11 +85,11 @@ class CardVoucher extends StatelessWidget {
               children: [
                 Text(
                   "${data.code}",
-                  style: AppTextStyles.buttonSmall,
+                  style: MyBossTextStyles.buttonSmall,
                   overflow: TextOverflow.ellipsis,
                   maxLines: 1,
                 ),
-                Icon(Icons.copy_rounded, color: AppColors.primary),
+                Icon(Icons.copy_rounded, color: MyBossColors.primary),
               ],
             ),
           ),

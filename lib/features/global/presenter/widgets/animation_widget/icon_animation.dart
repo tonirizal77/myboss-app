@@ -75,7 +75,7 @@ class _AnimatedIconCustomState extends State<AnimatedIconCustom>
       child: AnimatedIcon(
         icon: widget.icon,
         progress: _controller,
-        color: AppColors.primary,
+        color: MyBossColors.primary,
       ),
     );
   }

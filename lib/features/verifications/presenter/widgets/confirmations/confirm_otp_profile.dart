@@ -28,7 +28,7 @@ class _ConfirmOtpProfileState extends State<ConfirmOtpProfile> {
               onTap: () async => _onConfirmOtp(state.phone ?? ""),
               child: Text(
                 LocaleKeys.verify_confirm_btn.tr(),
-                style: AppTextStyles.button.copyWith(
+                style: MyBossTextStyles.button.copyWith(
                   color: AppTheme.surface(context),
                 ),
               ),
@@ -43,7 +43,7 @@ class _ConfirmOtpProfileState extends State<ConfirmOtpProfile> {
     return RichText(
       textAlign: TextAlign.center,
       text: TextSpan(
-        style: AppTextStyles.bodyBig1.copyWith(
+        style: MyBossTextStyles.bodyBig1.copyWith(
           color: AppTheme.onSurface(context),
         ),
         children: [
@@ -52,7 +52,7 @@ class _ConfirmOtpProfileState extends State<ConfirmOtpProfile> {
           ),
           TextSpan(
             text: phone,
-            style: AppTextStyles.bodyBig1.copyWith(
+            style: MyBossTextStyles.bodyBig1.copyWith(
               fontWeight: FontWeight.bold,
               color: AppTheme.onSurface(context),
             ),

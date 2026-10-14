@@ -106,11 +106,25 @@ flutter:
     - assets/fonts/Poppins/
     - assets/gif/
     - assets/icons/
+    - assets/icons/mybos/
     - assets/images/
+    - assets/images/brands/
     - assets/svg/
     - assets/translations/
 
   fonts:
+    - family: Poppins
+      fonts:
+        - asset: assets/fonts/Poppins/Poppins-Light.ttf
+          weight: 300
+        - asset: assets/fonts/Poppins/Poppins-Regular.ttf
+          weight: 400
+        - asset: assets/fonts/Poppins/Poppins-Medium.ttf
+          weight: 500
+        - asset: assets/fonts/Poppins/Poppins-SemiBold.ttf
+          weight: 600
+        - asset: assets/fonts/Poppins/Poppins-Bold.ttf
+          weight: 700
     - family: Onest
       fonts:
         - asset: assets/fonts/Onest/static/Onest-Black.ttf

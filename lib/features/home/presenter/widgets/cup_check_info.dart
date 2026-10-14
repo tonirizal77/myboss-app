@@ -42,7 +42,7 @@ class CupCheckInfo extends StatelessWidget {
             /// Anda punya
             Text(
               LocaleKeys.home_you_have.tr(),
-              style: AppTextStyles.caption.copyWith(fontSize: 12),
+              style: MyBossTextStyles.caption.copyWith(fontSize: 12),
             ),
 
             /// xx Gratis
@@ -51,7 +51,7 @@ class CupCheckInfo extends StatelessWidget {
                 width: _freePoint.length > 10 ? 64 : null,
                 child: Text(
                   _freePoint,
-                  style: AppTextStyles.caption.copyWith(
+                  style: MyBossTextStyles.caption.copyWith(
                     fontWeight: FontWeight.w700,
                     fontSize: 12,
                     overflow: TextOverflow.ellipsis,

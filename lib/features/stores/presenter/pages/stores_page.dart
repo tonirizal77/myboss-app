@@ -33,8 +33,8 @@ class _StoresPageState extends State<StoresPage>
               style:
                   context.locale.toString() == 'id' &&
                       Responsive.isMobile(context)
-                  ? AppTextStyles.title
-                  : AppTextStyles.titleBig1,
+                  ? MyBossTextStyles.title
+                  : MyBossTextStyles.titleBig1,
             ),
           ),
 

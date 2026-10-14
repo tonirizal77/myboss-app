@@ -69,7 +69,7 @@ class FaqPage extends StatelessWidget {
             body: "${LocaleKeys.faq_12_quest.tr()}",
           ),
 
-          Text(LocaleKeys.faq_title_bottom.tr(), style: AppTextStyles.body),
+          Text(LocaleKeys.faq_title_bottom.tr(), style: MyBossTextStyles.body),
         ],
       ),
     );
@@ -111,7 +111,7 @@ class _CardCollapsedState extends State<_CardCollapsed> {
                     Flexible(
                       child: Text(
                         widget.title,
-                        style: AppTextStyles.subtitle.copyWith(height: 1.1),
+                        style: MyBossTextStyles.subtitle.copyWith(height: 1.1),
                         overflow: TextOverflow.ellipsis,
                         maxLines: _show ? 4 : 2,
                       ),
@@ -132,7 +132,7 @@ class _CardCollapsedState extends State<_CardCollapsed> {
                       padding: const EdgeInsets.only(top: 8),
                       child: Text(
                         widget.body,
-                        style: AppTextStyles.body.copyWith(
+                        style: MyBossTextStyles.body.copyWith(
                           color: AppTheme.onSurface(context),
                         ),
                         textAlign: TextAlign.left,

@@ -4,6 +4,28 @@ part of 'app_shareds.dart';
 /// === File Assets === ///
 ///
 class Assets {
+  /// === MyBoss (Figma) === ///
+  static const String logoMyBoss = 'assets/icons/mybos/logo_myboss.png';
+
+  /// Nav & UI icons (SVG, tint with ColorFilter)
+  static const String icNavHome = 'assets/icons/mybos/ic_nav_home.svg';
+  static const String icNavProduct = 'assets/icons/mybos/ic_nav_product.svg';
+  static const String icNavPromo = 'assets/icons/mybos/ic_nav_promo.svg';
+  static const String icNavAccount = 'assets/icons/mybos/ic_nav_account.svg';
+  static const String icChevronDown = 'assets/icons/mybos/ic_chevron_down.svg';
+  static const String icUser = 'assets/icons/mybos/ic_user.svg';
+  static const String icArrowSquareRight =
+      'assets/icons/mybos/ic_arrow_square_right.svg';
+  static const String svgSeparator = 'assets/icons/mybos/separator.svg';
+
+  /// Brand logos (Home guest)
+  static const String brandOraimo = 'assets/images/brands/brand_oraimo.png';
+  static const String brand02 = 'assets/images/brands/brand_02.png';
+  static const String brandOppo = 'assets/images/brands/brand_oppo.png';
+  static const String brandUgreen = 'assets/images/brands/brand_ugreen.png';
+  static const String brandVivan = 'assets/images/brands/brand_vivan.png';
+  static const String brandRealme = 'assets/images/brands/brand_realme.png';
+
   /// Icons Logo
   static const String icLoadingBox = 'assets/gif/logo-spin.gif';
   static const String icLogoWhite = 'assets/icons/logo_hayo_white.png';

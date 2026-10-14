@@ -118,8 +118,16 @@ class _MainPageState extends State<MainPage> with WidgetsBindingObserver {
         bottomNavigationBar: Responsive.isMobile(context)
             ? const MainBottomNavigationBar()
             : null,
+        // FAB (member card) only for signed-in users; the bottom nav closes
+        // the gap in the middle when it is hidden.
         floatingActionButton: Responsive.isMobile(context)
-            ? const ButtonQrcode()
+            ? BlocBuilder<UserBloc, UserState>(
+                buildWhen: (previous, current) =>
+                    previous.statusLogin != current.statusLogin,
+                builder: (context, state) => state.statusLogin == Status.success
+                    ? const ButtonQrcode()
+                    : const SizedBox.shrink(),
+              )
             : null,
         floatingActionButtonLocation: .centerDocked,
       ),

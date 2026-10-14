@@ -22,12 +22,12 @@ class CardLoginRequired extends StatelessWidget {
                   height: 100,
                   width: 100,
                   decoration: BoxDecoration(
-                    // color: AppColors.primary,
+                    // color: MyBossColors.primary,
                     // borderRadius: BorderRadius.circular(16),
                     // border: Border.all(
                     //   width: 2,
                     //   strokeAlign: BorderSide.strokeAlignOutside,
-                    //   color: AppColors.primary,
+                    //   color: MyBossColors.primary,
                     // ),
                     image: DecorationImage(image: AssetImage(Assets.icMaskot1)),
                   ),
@@ -36,7 +36,7 @@ class CardLoginRequired extends StatelessWidget {
                 Flexible(
                   child: Text(
                     LocaleKeys.akun_login_required_title.tr(),
-                    style: AppTextStyles.titleBig2,
+                    style: MyBossTextStyles.titleBig2,
                     textAlign: TextAlign.center,
                   ),
                 ),
@@ -46,7 +46,7 @@ class CardLoginRequired extends StatelessWidget {
 
           Text(
             LocaleKeys.akun_login_required_desc.tr(),
-            style: AppTextStyles.subtitle.copyWith(
+            style: MyBossTextStyles.subtitle.copyWith(
               color: AppTheme.onSurfaceVariant(context),
             ),
             textAlign: TextAlign.center,
@@ -58,7 +58,7 @@ class CardLoginRequired extends StatelessWidget {
             width: 191,
             child: Text(
               LocaleKeys.button_login.tr(),
-              style: AppTextStyles.buttonBig.copyWith(color: Colors.white),
+              style: MyBossTextStyles.buttonBig.copyWith(color: Colors.white),
             ),
             onTap: () => AuthFlows.goToWelcomePage(context),
           ),

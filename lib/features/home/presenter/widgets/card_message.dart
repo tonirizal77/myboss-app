@@ -23,7 +23,7 @@ class CardMessage extends StatelessWidget {
     final _tierBgColor = tiers == 1 ? AppColors.coolerBg : AppColors.coolestBg;
 
     /// Text Color
-    final _tierColor = AppTextStyles.titleBig2.copyWith(
+    final _tierColor = MyBossTextStyles.titleBig2.copyWith(
       color: tiers == 1 ? AppColors.cooler : AppColors.coolest,
     );
 
@@ -41,7 +41,7 @@ class CardMessage extends StatelessWidget {
         children: [
           Text(
             _tierInfo,
-            style: AppTextStyles.titleBig1.copyWith(color: AppColors.black),
+            style: MyBossTextStyles.titleBig1.copyWith(color: AppColors.black),
             textAlign: TextAlign.center,
           ),
           Row(

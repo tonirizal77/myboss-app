@@ -23,14 +23,14 @@ class CardFollowUs extends StatelessWidget {
           children: [
             Text(
               LocaleKeys.akun_lets_fun.tr(),
-              style: AppTextStyles.titleBig1,
+              style: MyBossTextStyles.titleBig1,
               textAlign: TextAlign.center,
             ),
 
             //
             Text(
               LocaleKeys.akun_folow_us.tr(),
-              style: AppTextStyles.titleBig1.copyWith(
+              style: MyBossTextStyles.titleBig1.copyWith(
                 color: AppTheme.onSurfaceVariant(context),
               ),
               textAlign: TextAlign.center,

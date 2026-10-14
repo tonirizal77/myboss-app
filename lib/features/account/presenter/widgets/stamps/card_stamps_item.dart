@@ -28,12 +28,12 @@ class CardStampsItem extends StatelessWidget {
                 _isBonus
                     ? LocaleKeys.stamps_bonus.tr()
                     : LocaleKeys.stamps_earned.tr(),
-                style: AppTextStyles.subtitle,
+                style: MyBossTextStyles.subtitle,
               ),
               Text(
                 '+ ${LocaleKeys.stamps_sub_title.tr()}',
-                style: AppTextStyles.subtitle.copyWith(
-                  color: AppColors.primary,
+                style: MyBossTextStyles.subtitle.copyWith(
+                  color: MyBossColors.primary,
                 ),
               ),
             ],
@@ -41,8 +41,8 @@ class CardStampsItem extends StatelessWidget {
           Row(
             mainAxisAlignment: .spaceBetween,
             children: [
-              Text(_date, style: AppTextStyles.caption),
-              Text('${data.balancePoints}', style: AppTextStyles.caption),
+              Text(_date, style: MyBossTextStyles.caption),
+              Text('${data.balancePoints}', style: MyBossTextStyles.caption),
             ],
           ),
         ],

@@ -16,9 +16,9 @@ class DrawerVersionx extends StatelessWidget {
         children: [
           Text(
             'Powered By. Olsera',
-            style: AppTextStyles.subtitle.copyWith(
+            style: MyBossTextStyles.subtitle.copyWith(
               fontSize: 12,
-              color: AppColors.primary,
+              color: MyBossColors.primary,
             ),
             textAlign: TextAlign.center,
           ),
@@ -34,7 +34,7 @@ class DrawerVersionx extends StatelessWidget {
               return Text(
                 "Version : ${snapshot.data?.version}",
                 // "Version : ${snapshot.data?.version}+${snapshot.data?.buildNumber}",
-                style: AppTextStyles.captionSmall,
+                style: MyBossTextStyles.captionSmall,
                 textAlign: TextAlign.center,
               );
             },

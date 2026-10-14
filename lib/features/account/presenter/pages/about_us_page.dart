@@ -32,7 +32,7 @@ class _AboutUsPageState extends State<AboutUsPage> {
             return LoadingWidget(
               absolute: true,
               bgColor: Colors.red,
-              bgColorIcon: AppColors.primary,
+              bgColorIcon: MyBossColors.primary,
             );
           } else {
             final _photo = state.aboutUs.photos.toList().firstOrNull;
@@ -52,7 +52,7 @@ class _AboutUsPageState extends State<AboutUsPage> {
                 children: [
                   /// Header Image
                   CardCustom(
-                    color: AppColors.primary,
+                    color: MyBossColors.primary,
                     height: 200,
                     child: ImageNetwork(
                       width: Responsive.isMobile(context) ? null : 200,
@@ -66,8 +66,8 @@ class _AboutUsPageState extends State<AboutUsPage> {
                     child: Html(
                       data: _description,
                       style: {
-                        ...AppTextStyles.htmlBodyNoPadding,
-                        ...AppTextStyles.htmlParagraphNoPadding,
+                        ...MyBossTextStyles.htmlBodyNoPadding,
+                        ...MyBossTextStyles.htmlParagraphNoPadding,
 
                         /// Force every element to follow the app's dark/light
                         /// theme, overriding any inline color coming from the CMS.

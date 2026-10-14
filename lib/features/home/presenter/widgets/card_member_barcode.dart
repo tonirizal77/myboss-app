@@ -120,10 +120,10 @@ class _CardMemberBarcodeState extends State<CardMemberBarcode> {
           colorText = AppColors.white;
         }
 
-        final _nameStyle = AppTextStyles.titleBig1.copyWith(color: colorText);
-        final _tierColor = AppTextStyles.titleBig2.copyWith(color: colorText);
-        final _barcodeStyle = AppTextStyles.caption.copyWith(color: colorText);
-        final _showThis = AppTextStyles.bodyBig2.copyWith(color: colorText);
+        final _nameStyle = MyBossTextStyles.titleBig1.copyWith(color: colorText);
+        final _tierColor = MyBossTextStyles.titleBig2.copyWith(color: colorText);
+        final _barcodeStyle = MyBossTextStyles.caption.copyWith(color: colorText);
+        final _showThis = MyBossTextStyles.bodyBig2.copyWith(color: colorText);
         final _genCode = state.genCode.code;
         final _barcode = _genCode.isEmpty ? state.profile.code : _genCode;
         final _avatar = state.profile.favatar;
@@ -196,7 +196,7 @@ class _CardMemberBarcodeState extends State<CardMemberBarcode> {
                         errorBuilder: (context, error) => Center(
                           child: Text(
                             error,
-                            style: AppTextStyles.caption.copyWith(
+                            style: MyBossTextStyles.caption.copyWith(
                               color: AppColors.warning,
                             ),
                           ),

@@ -40,10 +40,10 @@ class CardStores extends StatelessWidget {
             child: Column(
               crossAxisAlignment: .start,
               children: [
-                Text(data.name ?? "", style: AppTextStyles.subtitle),
+                Text(data.name ?? "", style: MyBossTextStyles.subtitle),
                 Text(
                   data.address ?? "",
-                  style: AppTextStyles.caption.copyWith(
+                  style: MyBossTextStyles.caption.copyWith(
                     color: AppTheme.onSurface(context),
                   ),
                   maxLines: 3,
@@ -51,7 +51,7 @@ class CardStores extends StatelessWidget {
                 ),
                 Text(
                   LocaleKeys.stores_phone.tr(args: [data.phone ?? '-']),
-                  style: AppTextStyles.caption.copyWith(
+                  style: MyBossTextStyles.caption.copyWith(
                     color: AppTheme.onSurface(context),
                   ),
                 ),

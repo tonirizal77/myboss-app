@@ -54,7 +54,7 @@ class _StampsHistoryPageState extends State<StampsHistoryPage> {
                   _isBonus
                       ? LocaleKeys.stamps_bonus.tr()
                       : LocaleKeys.stamps_earned.tr(),
-                  style: AppTextStyles.title,
+                  style: MyBossTextStyles.title,
                 ),
                 colorFrame: AppTheme.surface(context),
                 colorBody: AppTheme.surface(context),
@@ -163,7 +163,7 @@ class _StampsHistoryPageState extends State<StampsHistoryPage> {
                 isSelected: _selected == i,
                 child: Text(
                   _label[i],
-                  style: AppTextStyles.subtitle.copyWith(
+                  style: MyBossTextStyles.subtitle.copyWith(
                     color: _selected == i
                         ? AppTheme.surface(context)
                         : AppTheme.onSurface(context),

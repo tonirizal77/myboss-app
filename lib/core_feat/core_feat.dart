@@ -13,3 +13,6 @@ export 'shared/app_shareds.dart';
 export 'support/supports.dart';
 export 'template/responsive_widget/responsive_widget_feat.dart';
 export 'template/responsive_style/responsive_style_feat.dart';
+export 'theme/mybos_colors.dart';
+export 'theme/mybos_text_styles.dart';
+export 'theme/mybos_theme.dart';

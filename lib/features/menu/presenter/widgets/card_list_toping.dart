@@ -60,7 +60,7 @@ class _CardListTopingState extends State<CardListToping> {
             margin: EdgeInsets.fromLTRB(0, 8, 0, 8),
             height: 28,
             alignment: .center,
-            child: Text(data.name.capitalize(), style: AppTextStyles.title),
+            child: Text(data.name.capitalize(), style: MyBossTextStyles.title),
           ),
 
           // Text("${_listProducts.length}"),

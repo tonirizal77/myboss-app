@@ -34,7 +34,7 @@ class _DirectDeleteAccount extends StatelessWidget {
 
         Text(
           LocaleKeys.akun_delete_confirm_title.tr(),
-          style: AppTextStyles.title.copyWith(
+          style: MyBossTextStyles.title.copyWith(
             color: AppTheme.onSurface(context),
           ),
           textAlign: TextAlign.center,
@@ -44,7 +44,7 @@ class _DirectDeleteAccount extends StatelessWidget {
 
         Text(
           LocaleKeys.akun_delete_confirm_desc.tr(),
-          style: AppTextStyles.subtitleSmall.copyWith(
+          style: MyBossTextStyles.subtitleSmall.copyWith(
             color: AppTheme.onSurfaceVariant(context),
           ),
           textAlign: TextAlign.center,
@@ -73,7 +73,7 @@ class _DirectDeleteAccount extends StatelessWidget {
               ),
               Text(
                 LocaleKeys.akun_delete_confirm_button.tr(),
-                style: AppTextStyles.buttonBig.copyWith(
+                style: MyBossTextStyles.buttonBig.copyWith(
                   color: getIt<ThemeBloc>().state.themeMode == ThemeMode.light
                       ? Colors.white
                       : Colors.black,
@@ -92,7 +92,7 @@ class _DirectDeleteAccount extends StatelessWidget {
           onTap: () => context.pop(),
           child: Text(
             LocaleKeys.button_back.tr(),
-            style: AppTextStyles.buttonBig.copyWith(
+            style: MyBossTextStyles.buttonBig.copyWith(
               color: AppTheme.onSurfaceVariant(context),
             ),
           ),
@@ -146,7 +146,7 @@ class _EmailConfirmationDeleteAccount extends StatelessWidget {
       },
     );
 
-    final _bodyStyle = AppTextStyles.subtitle.copyWith(
+    final _bodyStyle = MyBossTextStyles.subtitle.copyWith(
       color: AppTheme.onErrorContainer(context),
     );
 
@@ -164,7 +164,7 @@ class _EmailConfirmationDeleteAccount extends StatelessWidget {
 
         Text(
           LocaleKeys.akun_delete_confirm_title.tr(),
-          style: AppTextStyles.title.copyWith(
+          style: MyBossTextStyles.title.copyWith(
             color: AppTheme.onSurface(context),
           ),
           textAlign: TextAlign.center,
@@ -174,7 +174,7 @@ class _EmailConfirmationDeleteAccount extends StatelessWidget {
 
         Text(
           LocaleKeys.akun_delete_confirm_desc.tr(),
-          style: AppTextStyles.subtitleSmall.copyWith(
+          style: MyBossTextStyles.subtitleSmall.copyWith(
             color: AppTheme.onSurfaceVariant(context),
           ),
           textAlign: TextAlign.center,
@@ -242,7 +242,7 @@ class _EmailConfirmationDeleteAccount extends StatelessWidget {
                     ),
                     Text(
                       LocaleKeys.akun_delete_confirm_email_button.tr(),
-                      style: AppTextStyles.buttonBig.copyWith(
+                      style: MyBossTextStyles.buttonBig.copyWith(
                         color:
                             getIt<ThemeBloc>().state.themeMode ==
                                 ThemeMode.light

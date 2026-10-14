@@ -48,7 +48,7 @@ class OtpTextFields extends StatelessWidget {
             enableSuggestions: false,
             onChanged: (value) => _onChanged(context, index, value),
             maxLength: null,
-            style: AppTextStyles.subtitleBig2.copyWith(
+            style: MyBossTextStyles.subtitleBig2.copyWith(
               color: Theme.of(context).colorScheme.onSurface,
               fontWeight: FontWeight.bold,
             ),

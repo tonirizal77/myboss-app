@@ -122,7 +122,7 @@ class _VerificationProfilePageState extends State<VerificationProfilePage> {
         children: [
           Text(
             LocaleKeys.verify_change_instruction.tr(args: [_changeLabelFor[0] ?? '']),
-            style: AppTextStyles.subtitleHuge2,
+            style: MyBossTextStyles.subtitleHuge2,
             textAlign: TextAlign.center,
           ),
 
@@ -131,13 +131,13 @@ class _VerificationProfilePageState extends State<VerificationProfilePage> {
           CardCustom(
             isBorder: true,
             alignment: Alignment.center,
-            borderColor: AppColors.primary,
+            borderColor: MyBossColors.primary,
             borderWidth: 1,
             height: 60,
             color: AppTheme.surfaceContainer(context),
             child: Text(
               "${_changeLabelFor[1]}",
-              style: AppTextStyles.subtitleBig1,
+              style: MyBossTextStyles.subtitleBig1,
             ),
           ),
 
@@ -145,7 +145,7 @@ class _VerificationProfilePageState extends State<VerificationProfilePage> {
 
           Text(
             _info,
-            style: AppTextStyles.bodyBig2,
+            style: MyBossTextStyles.bodyBig2,
             textAlign: TextAlign.center,
           ),
         ],
@@ -185,7 +185,7 @@ class _VerificationProfilePageState extends State<VerificationProfilePage> {
 
           Text(
             LocaleKeys.verify_send_otp.tr(),
-            style: AppTextStyles.button.copyWith(
+            style: MyBossTextStyles.button.copyWith(
               color: AppTheme.surface(context),
             ),
           ),
@@ -201,7 +201,7 @@ class _VerificationProfilePageState extends State<VerificationProfilePage> {
       child: Column(
         spacing: 16,
         children: [
-          Text(LocaleKeys.verify_send_otp.tr(), style: AppTextStyles.bodyBig2),
+          Text(LocaleKeys.verify_send_otp.tr(), style: MyBossTextStyles.bodyBig2),
 
           /// Confirm by Phone Number
           _buttonPhoneNumber(context),
@@ -235,7 +235,7 @@ class _VerificationProfilePageState extends State<VerificationProfilePage> {
           Expanded(
             child: Text(
               LocaleKeys.edit_profile_email_label.tr(),
-              style: AppTextStyles.button.copyWith(
+              style: MyBossTextStyles.button.copyWith(
                 color: AppTheme.onSurface(context),
               ),
             ),
@@ -272,7 +272,7 @@ class _VerificationProfilePageState extends State<VerificationProfilePage> {
           Expanded(
             child: Text(
               LocaleKeys.label_phone.tr(),
-              style: AppTextStyles.button.copyWith(
+              style: MyBossTextStyles.button.copyWith(
                 color: AppTheme.onSurface(context),
               ),
             ),

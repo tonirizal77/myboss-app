@@ -15,13 +15,13 @@ class CardMessageFree extends StatelessWidget {
     final _bgColor = AppTheme.primaryContainer(context);
 
     /// Text Color
-    final _style1 = AppTextStyles.titleBig1.copyWith(
+    final _style1 = MyBossTextStyles.titleBig1.copyWith(
       color: AppTheme.isDark(context)
           ? AppColors.onBgMessageDark
           : AppColors.onBgMessage,
     );
 
-    final _style2 = AppTextStyles.bodyHuge2.copyWith(
+    final _style2 = MyBossTextStyles.bodyHuge2.copyWith(
       fontSize: Responsive.isMobile(context) ? 20 : 16,
       color: AppTheme.isDark(context)
           ? AppColors.onBgMessageDark

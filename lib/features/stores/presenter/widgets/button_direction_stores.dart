@@ -19,7 +19,7 @@ class ButtonDirectionStores extends StatelessWidget {
           children: [
             Text(
               LocaleKeys.stores_direction.tr(),
-              style: AppTextStyles.button.copyWith(
+              style: MyBossTextStyles.button.copyWith(
                 color: AppTheme.onSurface(context),
               ),
             ),

@@ -24,7 +24,7 @@ class ListMenuBonus extends StatelessWidget {
                     icon: Image.asset(Assets.menuStamps),
                     title: Text(
                       "${_totalStamp} ${LocaleKeys.akun_stamps.tr()}",
-                      style: AppTextStyles.title,
+                      style: MyBossTextStyles.title,
                     ),
                     arrowRight: true,
                     onTap: () {
@@ -38,7 +38,7 @@ class ListMenuBonus extends StatelessWidget {
                 icon: Image.asset(Assets.menuVoucher),
                 title: Text(
                   LocaleKeys.akun_voucher_count.tr(args: [_vouchers.length.toString()]),
-                  style: AppTextStyles.title,
+                  style: MyBossTextStyles.title,
                 ),
                 arrowRight: true,
                 onTap: () {

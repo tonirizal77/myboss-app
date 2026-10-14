@@ -35,7 +35,7 @@ class BodyFormToken extends StatelessWidget {
                       padding: EdgeInsets.fromLTRB(8, 4, 8, 4),
                       child: Text(
                         state.errorMessage,
-                        style: AppTextStyles.caption.copyWith(
+                        style: MyBossTextStyles.caption.copyWith(
                           color: AppColors.error,
                         ),
                         maxLines: 2,
@@ -79,7 +79,7 @@ class BodyFormToken extends StatelessWidget {
         isWide: true,
         child: Text(
           LocaleKeys.verify_resend_otp.tr(),
-          style: AppTextStyles.button.copyWith(color: AppColors.primary),
+          style: MyBossTextStyles.button.copyWith(color: MyBossColors.primary),
         ),
       ),
     );

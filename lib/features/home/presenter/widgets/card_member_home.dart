@@ -73,7 +73,7 @@ class CardMemberHome extends StatelessWidget {
         ? LocaleKeys.home_tier_label2.tr()
         : LocaleKeys.home_tier_label1.tr();
 
-    final _tierStyle = AppTextStyles.title.copyWith(
+    final _tierStyle = MyBossTextStyles.title.copyWith(
       color: _level == 1
           ? AppColors.cool
           : _level == 2
@@ -118,7 +118,7 @@ class CardMemberHome extends StatelessWidget {
               children: [
                 Text(
                   _customer.name,
-                  style: AppTextStyles.titleBig1,
+                  style: MyBossTextStyles.titleBig1,
                   overflow: TextOverflow.ellipsis,
                   maxLines: 1,
                 ),

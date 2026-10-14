@@ -22,14 +22,14 @@ class CardStampsWarning extends StatelessWidget {
           children: [
             Text(
               "1 stamp will expire soon",
-              style: AppTextStyles.body.copyWith(
+              style: MyBossTextStyles.body.copyWith(
                 color: AppTheme.error(context),
                 fontWeight: FontWeight.bold,
               ),
             ),
             Text(
               "5 days left on 1 March 2026",
-              style: AppTextStyles.body.copyWith(
+              style: MyBossTextStyles.body.copyWith(
                 color: AppTheme.error(context),
               ),
             ),

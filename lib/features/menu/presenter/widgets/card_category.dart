@@ -38,7 +38,7 @@ class CardCategory extends StatelessWidget {
                 child: Text(
                   data.name.capitalize(),
                   // "Berry Boba Pops Cream",
-                  style: AppTextStyles.subtitleSmall.copyWith(
+                  style: MyBossTextStyles.subtitleSmall.copyWith(
                     color: AppTheme.onSurface(context),
                   ),
                   textAlign: TextAlign.center,
@@ -61,9 +61,9 @@ class CardCategory extends StatelessWidget {
         topRight: Radius.circular(20),
       ),
       border: BoxBorder.fromLTRB(
-        top: BorderSide(color: AppColors.primary),
-        right: BorderSide(color: AppColors.primary),
-        left: BorderSide(color: AppColors.primary),
+        top: BorderSide(color: MyBossColors.primary),
+        right: BorderSide(color: MyBossColors.primary),
+        left: BorderSide(color: MyBossColors.primary),
       ),
     );
   }

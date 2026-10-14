@@ -44,7 +44,7 @@ class RmdMainHeaderChild extends StatelessWidget {
                 ),
                 child2: Text(
                   "Let’s be a friend!",
-                  style: AppTextStyles.titleBig1,
+                  style: MyBossTextStyles.titleBig1,
                 ),
               ),
             ),
@@ -64,11 +64,11 @@ class RmdMainHeaderChild extends StatelessWidget {
       height: 44,
       isShadow: _shadow,
       margin: EdgeInsets.symmetric(horizontal: 4),
-      child: Icon(Icons.settings_display, color: AppColors.primary),
+      child: Icon(Icons.settings_display, color: MyBossColors.primary),
       onTap: () {
         getIt<DialogHelper>().dialogCustom(
           context,
-          title: Text("Tampilan Aplikasi", style: AppTextStyles.title),
+          title: Text("Tampilan Aplikasi", style: MyBossTextStyles.title),
 
           /// Widget Child
           child: const SettingStyleApps(),
@@ -101,7 +101,7 @@ class RmdMainHeaderChild extends StatelessWidget {
           mainAxisSize: .min,
           children: [
             CircleImage(
-              // color: AppColors.primary,
+              // color: MyBossColors.primary,
               isShadow: true,
               boxShadow: boxShadow1,
               size: 44,
@@ -126,8 +126,8 @@ class RmdMainHeaderChild extends StatelessWidget {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text(state.profile.name, style: AppTextStyles.caption),
-                  Text(state.profile.levelName, style: AppTextStyles.caption),
+                  Text(state.profile.name, style: MyBossTextStyles.caption),
+                  Text(state.profile.levelName, style: MyBossTextStyles.caption),
                 ],
               ),
             ),

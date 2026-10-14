@@ -43,7 +43,7 @@ class DrawerItemWidget extends StatelessWidget {
                   width: _mini ? 56 : null,
                   onTap: onTap,
                   color: isSelected
-                      ? AppColors.primary
+                      ? MyBossColors.primary
                       : AppTheme.surface(context),
                   textColor: AppTheme.onSurface(context),
                   margin: margin,
@@ -101,7 +101,7 @@ class DrawerItemWidget extends StatelessWidget {
         Expanded(
           child: Text(
             text,
-            style: AppTextStyles.body.copyWith(
+            style: MyBossTextStyles.body.copyWith(
               fontSize: 16,
               fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
               color: isSelected ? AppColors.white : AppTheme.onSurface(context),
@@ -118,7 +118,7 @@ class DrawerItemWidget extends StatelessWidget {
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(8),
         color: isSelected
-            ? bgColorIcon ?? AppColors.primary
+            ? bgColorIcon ?? MyBossColors.primary
             : AppTheme.surface(context),
       ),
       child: Icon(
@@ -177,7 +177,7 @@ class DrawerNavItem extends StatelessWidget {
                 padding: EdgeInsets.only(left: 8),
                 child: Text(
                   label,
-                  style: AppTextStyles.bodyMedium.copyWith(color: _colorText),
+                  style: MyBossTextStyles.bodyMedium.copyWith(color: _colorText),
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
                 ),

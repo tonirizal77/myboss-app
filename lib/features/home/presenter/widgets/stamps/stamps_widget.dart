@@ -57,7 +57,7 @@ class StampsWidget extends StatelessWidget {
 
     return BoxDecoration(
       color: current || inRange
-          ? AppColors.primary
+          ? MyBossColors.primary
           : Colors.transparent, // !Circle (last position)
       borderRadius: current && inRange
           ? BorderRadius.only(
@@ -130,13 +130,13 @@ class StampsWidget extends StatelessWidget {
         repeat: true,
         minRadius: 18,
         ripplesCount: 5,
-        color: AppColors.primary,
+        color: MyBossColors.primary,
         child: Container(
           height: 16,
           width: 16,
           alignment: Alignment.center,
           decoration: BoxDecoration(
-            color: AppColors.primary,
+            color: MyBossColors.primary,
             shape: BoxShape.circle,
           ),
         ),
@@ -163,7 +163,7 @@ class StampsWidget extends StatelessWidget {
         alignment: Alignment(0, 0.8),
         child: Text(
           "Start",
-          style: AppTextStyles.hint.copyWith(
+          style: MyBossTextStyles.hint.copyWith(
             fontWeight: FontWeight.bold,
             color: _labelColor,
             fontSize: 12,
@@ -190,7 +190,7 @@ class StampsWidget extends StatelessWidget {
         alignment: Alignment(0, 1),
         child: Text(
           LocaleKeys.home_free.tr(),
-          style: AppTextStyles.hint.copyWith(
+          style: MyBossTextStyles.hint.copyWith(
             fontWeight: FontWeight.bold,
             color: _labelColor,
             fontSize: 12,
@@ -207,7 +207,7 @@ class StampsWidget extends StatelessWidget {
         alignment: AlignmentGeometry.xy(0.5, -0.8),
         child: Container(
           decoration: BoxDecoration(
-            color: AppColors.primary,
+            color: MyBossColors.primary,
             shape: BoxShape.circle,
           ),
           child: Icon(Icons.check_circle, color: Colors.yellow, size: 24),

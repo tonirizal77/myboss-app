@@ -152,7 +152,7 @@ class TncPage extends StatelessWidget {
                     ///
                     Text(
                       "$_title",
-                      style: AppTextStyles.subtitleBig2.copyWith(
+                      style: MyBossTextStyles.subtitleBig2.copyWith(
                         fontWeight: FontWeight.w500,
                       ),
                     ),
@@ -163,7 +163,7 @@ class TncPage extends StatelessWidget {
                         ? _detailTnc(_body)
                         : Text(
                             "${_body}",
-                            style: AppTextStyles.body,
+                            style: MyBossTextStyles.body,
                             textAlign: TextAlign.start,
                           ),
                   ],
@@ -190,14 +190,14 @@ class TncPage extends StatelessWidget {
               alignment: Alignment.topRight,
               child: Text(
                 "${_body[i]['no'].toString()}.",
-                style: AppTextStyles.body,
+                style: MyBossTextStyles.body,
                 textAlign: TextAlign.end,
               ),
             ),
             Flexible(
               child: Text(
                 _body[i]['ket'].trim(),
-                style: AppTextStyles.body,
+                style: MyBossTextStyles.body,
                 textAlign: TextAlign.start,
               ),
             ),

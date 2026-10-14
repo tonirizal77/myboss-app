@@ -63,13 +63,13 @@ class StampsFrame extends StatelessWidget {
                         LocaleKeys.home_stamps_to_go1.tr(
                           args: ['${_stampNeeded}'],
                         ),
-                        style: AppTextStyles.title.copyWith(
-                          color: AppColors.primary,
+                        style: MyBossTextStyles.title.copyWith(
+                          color: MyBossColors.primary,
                         ),
                       ),
                       Text(
                         LocaleKeys.home_stamps_to_go2.tr(),
-                        style: AppTextStyles.bodyMedium,
+                        style: MyBossTextStyles.bodyMedium,
                       ),
                     ],
                   ),
@@ -95,7 +95,7 @@ class StampsFrame extends StatelessWidget {
           ImageAssets(width: 24, image: Assets.icSmallCupGreen),
           Text(
             "ha-yo ${LocaleKeys.home_title.tr()}",
-            style: AppTextStyles.title,
+            style: MyBossTextStyles.title,
           ),
         ],
       ),

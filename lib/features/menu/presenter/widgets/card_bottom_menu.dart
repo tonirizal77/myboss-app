@@ -11,7 +11,7 @@ class CardBottomMenu extends StatelessWidget {
       padding: EdgeInsets.fromLTRB(24, 16, 24, 64),
       child: Text(
         LocaleKeys.menu_info.tr(),
-        style: AppTextStyles.titleBig1.copyWith(),
+        style: MyBossTextStyles.titleBig1.copyWith(),
         textAlign: TextAlign.center,
       ),
     );

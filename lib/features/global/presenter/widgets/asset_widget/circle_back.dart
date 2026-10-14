@@ -33,7 +33,7 @@ class CircleBack extends StatelessWidget {
           // color: Colors.yellow,
           boxShadow: [
             BoxShadow(
-              color: AppColors.primary.withOpacity(0.72),
+              color: MyBossColors.primary.withOpacity(0.72),
               // blurRadius: 60,
             ),
           ],
@@ -71,7 +71,7 @@ class CircleBigBack extends StatelessWidget {
           shape: BoxShape.circle,
           boxShadow: [
             BoxShadow(
-              color: AppColors.primary.withOpacity(0.16),
+              color: MyBossColors.primary.withOpacity(0.16),
               blurRadius: 60,
             ),
           ],
@@ -109,7 +109,7 @@ class CircleMidleBack extends StatelessWidget {
           shape: BoxShape.circle,
           boxShadow: [
             BoxShadow(
-              color: AppColors.primary.withOpacity(0.16),
+              color: MyBossColors.primary.withOpacity(0.16),
               offset: const Offset(0, 0),
               blurRadius: 60,
             ),
@@ -152,7 +152,7 @@ class CircleSmallBack extends StatelessWidget {
           shape: BoxShape.circle,
           boxShadow: [
             BoxShadow(
-              color: AppColors.primary.withOpacity(0.16),
+              color: MyBossColors.primary.withOpacity(0.16),
               offset: const Offset(0, 0),
               blurRadius: 60,
             ),
@@ -195,7 +195,7 @@ class CircleBlur extends StatelessWidget {
           shape: BoxShape.circle,
           boxShadow: [
             BoxShadow(
-              color: AppColors.primary.withOpacity(0.16),
+              color: MyBossColors.primary.withOpacity(0.16),
               offset: const Offset(0, 0),
               blurRadius: 60,
             ),

@@ -42,11 +42,11 @@ class BottomsheetStamps extends StatelessWidget {
           children: [
             Text(
               _date,
-              style: AppTextStyles.body.copyWith(color: AppColors.grey50),
+              style: MyBossTextStyles.body.copyWith(color: AppColors.grey50),
             ),
             Text(
               '+${history.balancePoints} ${LocaleKeys.stamps_sub_title.tr()}',
-              style: AppTextStyles.body.copyWith(color: AppColors.primary),
+              style: MyBossTextStyles.body.copyWith(color: MyBossColors.primary),
             ),
           ],
         ),

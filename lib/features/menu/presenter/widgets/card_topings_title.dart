@@ -11,7 +11,7 @@ class CardTopingsTitle extends StatelessWidget {
       alignment: Alignment.topLeft,
       child: Text(
         LocaleKeys.menu_toppings_title.tr(),
-        style: AppTextStyles.subtitleBig1.copyWith(
+        style: MyBossTextStyles.subtitleBig1.copyWith(
           color: AppTheme.onPrimaryContainer(context),
         ),
       ),

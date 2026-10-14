@@ -23,7 +23,7 @@ class CardStampsTop extends StatelessWidget {
               ),
               Text(
                 "${_stamps} ${LocaleKeys.stamps_sub_title.tr()}",
-                style: AppTextStyles.titleBig1.copyWith(
+                style: MyBossTextStyles.titleBig1.copyWith(
                   color: AppTheme.surface(context),
                 ),
               ),
