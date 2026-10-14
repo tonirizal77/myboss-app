@@ -53,7 +53,7 @@ class DrawerHeaderx extends StatelessWidget {
 
   Image _bigLogo(BuildContext context) {
     return Image.asset(
-      Assets.icLogoGreen,
+      Assets.logoMyBoss,
       fit: BoxFit.contain,
       height: Responsive.isPhoneLandscape(context) ? 50 : 140,
       width: Responsive.isPhoneLandscape(context) ? 50 : 100,
@@ -62,7 +62,7 @@ class DrawerHeaderx extends StatelessWidget {
 
   Image _smallLogo(BuildContext context) {
     return Image.asset(
-      Assets.icLogoGreen,
+      Assets.logoMyBoss,
       fit: BoxFit.contain,
       height: 80,
       width: 50,

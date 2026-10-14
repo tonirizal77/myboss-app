@@ -29,7 +29,7 @@
     "title_logout": "Keluar?",
     "desc_logout": "Yakin ingin keluar dari akun MyBoss?",
     "title_delete_account": "Hapus Akun?",
-    "desc_delete_account": "Apakah Anda yakin ingin menghapus akun Ha-Yo? Tindakan ini tidak dapat dibatalkan dan semua data Anda akan dihapus secara permanen."
+    "desc_delete_account": "Apakah Anda yakin ingin menghapus akun MyBoss? Tindakan ini tidak dapat dibatalkan dan semua data Anda akan dihapus secara permanen."
   },
 
   "button": {
@@ -126,14 +126,14 @@
     "folow_us": "Ikuti Kami",
     "voucher_title": "Voucher",
     "voucher_count": "{} voucher",
-    "delete_confirm_title": "Hapus akun Ha-Yo?",
+    "delete_confirm_title": "Hapus akun MyBoss?",
     "delete_confirm_desc": "Tindakan ini tidak dapat dibatalkan; semua data Anda akan dihapus secara permanen.",
-    "delete_confirm_info1": "Untuk menghapus akun Ha-Yo Anda, silakan kirim permintaan ke {}.",
+    "delete_confirm_info1": "Untuk menghapus akun MyBoss Anda, silakan kirim permintaan ke {}.",
     "delete_confirm_info2": "menggunakan alamat email pemilik akun.",
     "delete_confirm_button": "Hapus Akun",
     "delete_confirm_email_button": "Kirim permintaan",
     "delete_confirm_email_subject": "Permintaan Hapus Akun - {}",
-    "delete_confirm_email_body": "Saya ingin mengajukan penghapusan akun Ha-Yo dengan detail sbb:\n• Nama: {name}\n• Email: {email}\n• No. HP: {phone}.\n\nMohon konfirmasi proses penghapusannya.\n\nSaya memahami bahwa proses ini tidak dapat dibatalkan dan semua data saya akan dihapus secara permanen.",
+    "delete_confirm_email_body": "Saya ingin mengajukan penghapusan akun MyBoss dengan detail sbb:\n• Nama: {name}\n• Email: {email}\n• No. HP: {phone}.\n\nMohon konfirmasi proses penghapusannya.\n\nSaya memahami bahwa proses ini tidak dapat dibatalkan dan semua data saya akan dihapus secara permanen.",
     "dark_mode": "Mode gelap"
   },
 
@@ -217,7 +217,7 @@
 
   "auth": {
     "title": "Kumpulkan poin,\nDapatkan gadget berkualitas gratis",
-    "subtitle": "Login ke profil Ha-Yo kamu dulu",
+    "subtitle": "Login ke profil MyBoss kamu dulu",
     "register_title": "Gabung & dapatkan keuntungan",
     "btn_ready": "Aku siap banget!",
     "have_account": "Sudah punya akun?",

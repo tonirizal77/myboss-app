@@ -94,7 +94,7 @@ class StampsFrame extends StatelessWidget {
         children: [
           ImageAssets(width: 24, image: Assets.icSmallCupGreen),
           Text(
-            "ha-yo ${LocaleKeys.home_title.tr()}",
+            "MyBoss ${LocaleKeys.home_title.tr()}",
             style: MyBossTextStyles.title,
           ),
         ],

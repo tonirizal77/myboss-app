@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:myboss_app/core_feat/core_feat.dart';
 
-/// Hayo's own desktop/tablet app shell (header + right-side layout
+/// MyBoss's own desktop/tablet app shell (header + right-side layout
 /// variants) - kept out of mobile_app_core's generic responsive template since
 /// it composes app-specific widgets (user session, profile, main flows).
 part 'rmd_left_side.dart';

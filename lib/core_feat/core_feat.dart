@@ -1,4 +1,4 @@
-/// Hayo-specific core - everything tied to this app's own business domain
+/// MyBoss-specific core - everything tied to this app's own business domain
 /// (API endpoints, concrete routes, brand assets, app-menu/settings
 /// controllers, the desktop/tablet page shell). Re-exports mobile_app_core so a
 /// single import gives access to both, matching how the old lib/core

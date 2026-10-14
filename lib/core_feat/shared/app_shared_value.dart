@@ -1,6 +1,6 @@
 part of 'app_shareds.dart';
 
-/// Domain-specific enums for Hayo's own business flows (PIN management,
+/// Domain-specific enums for MyBoss's own business flows (PIN management,
 /// loyalty stamps, phone/email verification, profile editing, app variant).
 /// Kept separate from [shared_value.dart] so this file alone (not the whole
 /// shared barrel) is what needs to move when this codebase splits into a

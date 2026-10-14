@@ -33,7 +33,7 @@ class ResponsiveRouters extends StatelessWidget {
                 isOverlay: true,
                 tipe: 1,
                 color: Colors.white,
-                logo: ImageAssets(image: Assets.icLogoWhite),
+                logo: ImageAssets(image: Assets.logoMyBoss),
               ),
             );
           },

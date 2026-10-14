@@ -150,7 +150,7 @@ class AccountFlows {
   static Future<void> showContactUs(BuildContext context) async {
     final _store = context.read<StoreBloc>().state.store;
 
-    final _messageWa = "Hallo Ha-Yo";
+    final _messageWa = "Halo MyBoss";
 
     final _linkIG = _store.linkInstagram ?? "";
     final _validLinkIG = _linkIG.contains('www.instagram.com') == true

@@ -99,7 +99,6 @@ flutter:
   # swap per project (brand images/icons/svg, translation copy) once this
   # becomes a real app. See README.md.
   assets:
-    - assets/flags/
     - assets/fonts/Lato/
     - assets/fonts/Onest/
     - assets/fonts/Onest/static/

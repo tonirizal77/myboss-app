@@ -29,7 +29,7 @@
     "title_logout": "Logout?",
     "desc_logout": "Are you sure you want to sign out from MyBoss account?",
     "title_delete_account": "Delete Account?",
-    "desc_delete_account": "Are you sure you want to delete your Ha-Yo account? This action cannot be undone and all your data will be permanently deleted."
+    "desc_delete_account": "Are you sure you want to delete your MyBoss account? This action cannot be undone and all your data will be permanently deleted."
   },
 
   "button": {
@@ -126,14 +126,14 @@
     "folow_us": "Follow Us",
     "voucher_title": "Vouchers",
     "voucher_count": "{} vouchers",
-    "delete_confirm_title": "Delete Ha-Yo account?",
+    "delete_confirm_title": "Delete MyBoss account?",
     "delete_confirm_desc": "This can't be undone; all your data will be deleted permanently.",
-    "delete_confirm_info1": "To delete your Ha-Yo account, just send your request to {}.",
+    "delete_confirm_info1": "To delete your MyBoss account, just send your request to {}.",
     "delete_confirm_info2": "using the account owener's email address",
     "delete_confirm_button": "Delete Account",
     "delete_confirm_email_button": "Send request",
     "delete_confirm_email_subject": "Delete Account Request - {}",
-    "delete_confirm_email_body": "I would like to request the deletion of my Ha-Yo account with the following details:\n• Name: {name}\n• Email: {email}\n• Phone: {phone}.\n\nPlease confirm the deletion process.\n\nI understand that this process cannot be undone and all my data will be permanently deleted.",
+    "delete_confirm_email_body": "I would like to request the deletion of my MyBoss account with the following details:\n• Name: {name}\n• Email: {email}\n• Phone: {phone}.\n\nPlease confirm the deletion process.\n\nI understand that this process cannot be undone and all my data will be permanently deleted.",
     "dark_mode": "Dark mode"
   },
 
@@ -217,7 +217,7 @@
 
   "auth": {
     "title": "Earn points,\nGet free quality gadgets",
-    "subtitle": "Login to your Ha-Yo profile first",
+    "subtitle": "Login to your MyBoss profile first",
     "register_title": "Join & get benefits",
     "btn_ready": "I'm so ready!",
     "have_account": "Already have an account?",

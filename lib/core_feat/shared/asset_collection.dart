@@ -18,7 +18,6 @@ class Assets {
   static const String icUser = 'assets/icons/mybos/ic_user.svg';
   static const String icArrowSquareRight =
       'assets/icons/mybos/ic_arrow_square_right.svg';
-  static const String svgSeparator = 'assets/icons/mybos/separator.svg';
 
   /// Branch avatar fallback (when a branch has no image)
   static const String branchAvatar = 'assets/images/branch_avatar.png';
@@ -53,10 +52,6 @@ class Assets {
   static const String brandRealme = 'assets/images/brands/brand_realme.png';
 
   /// Icons Logo
-  static const String icLoadingBox = 'assets/gif/logo-spin.gif';
-  static const String icLogoWhite = 'assets/icons/logo_hayo_white.png';
-  static const String icLogoGreen = 'assets/icons/logo_hayo_green.png';
-  static const String icLogoBlack = 'assets/icons/logo_hayo_black.png';
 
   /// Frame
   static const String icFrameStamp = 'assets/icons/frame_stamp.png';
@@ -78,19 +73,7 @@ class Assets {
 
   /// Maskot or Avatar
   static const String avatar1 = 'assets/icons/avatar_1.png';
-  static const String avatar2 = 'assets/icons/avatar_2.png';
-  static const String avatar3 = 'assets/icons/avatar_3.png';
-  static const String avatar4 = 'assets/icons/avatar_4.png';
-  static const String avatar5 = 'assets/icons/avatar_5.png';
-  static const String icMaskot0 = 'assets/icons/mascot_0.png';
   static const String icMaskot1 = 'assets/icons/mascot_1.png';
-  static const String icMaskot2 = 'assets/icons/mascot_2.png';
-  static const String icMaskot3 = 'assets/icons/mascot_3.png';
-  static const String icMaskot4 = 'assets/icons/mascot_4.png';
-  static const String icMaskot5 = 'assets/icons/mascot_5.png';
-  static const String icMaskot6 = 'assets/icons/mascot_6.png';
-  static const String icMaskot7 = 'assets/icons/mascot_7.png';
-  static const String icMaskot8 = 'assets/icons/mascot_8.png';
   static const String icMaskot9 = 'assets/icons/mascot_9.png';
 
   /// Tier Member
@@ -99,12 +82,6 @@ class Assets {
   static const String icTierCoolest = 'assets/icons/tier_coolest.png';
 
   /// Toping
-  static const String icToping1 = 'assets/icons/toping_1.png';
-  static const String icToping2 = 'assets/icons/toping_2.png';
-  static const String icToping3 = 'assets/icons/toping_3.png';
-  static const String icToping4 = 'assets/icons/toping_4.png';
-  static const String icToping5 = 'assets/icons/toping_5.png';
-  static const String icToping6 = 'assets/icons/toping_6.png';
 
   /// Produk
   static const String icProduk1 = 'assets/icons/produk_1.png';
@@ -115,8 +92,6 @@ class Assets {
   static const String icProduk6 = 'assets/icons/produk_6.png';
 
   // icon flag
-  static const String icFlagUS = 'assets/flags/us.png';
-  static const String icFlagID = 'assets/flags/id.png';
 
   /// Svg Nav
   static const String svgHome = "assets/svg/svg_home.svg";
