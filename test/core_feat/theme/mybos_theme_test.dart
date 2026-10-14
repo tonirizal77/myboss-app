@@ -1,5 +1,10 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:hydrated_bloc/hydrated_bloc.dart';
+import 'package:myboss_app/core_feat/core_feat.dart'
+    show ThemeBloc, ThemeEvent, getIt;
 import 'package:myboss_app/core_feat/theme/mybos_colors.dart';
 import 'package:myboss_app/core_feat/theme/mybos_theme.dart';
 
@@ -58,6 +63,54 @@ void main() {
 
       expect(swatch(), MyBossPalette.light.primary);
       expect(find.text('1'), findsOneWidget); // State survived
+    });
+  });
+
+  group('ensureDefaultDark', () {
+    setUpAll(() async {
+      HydratedBloc.storage = await HydratedStorage.build(
+        storageDirectory: HydratedStorageDirectory(
+          Directory.systemTemp.createTempSync('default_dark').path,
+        ),
+      );
+    });
+    setUp(() async => HydratedBloc.storage.clear());
+
+    test('fresh install starts in Dark', () async {
+      await MyBossTheme.ensureDefaultDark();
+
+      final bloc = ThemeBloc();
+      addTearDown(bloc.close);
+      expect(bloc.state.themeMode, ThemeMode.dark);
+    });
+
+    test('keeps a mode the user already chose', () async {
+      await HydratedBloc.storage.write('ThemeBloc', {'themeMode': 'light'});
+
+      await MyBossTheme.ensureDefaultDark();
+
+      final bloc = ThemeBloc();
+      addTearDown(bloc.close);
+      expect(bloc.state.themeMode, ThemeMode.light);
+    });
+
+    test('persistChanges stores the choice so it survives a restart', () async {
+      await MyBossTheme.ensureDefaultDark();
+      final bloc = ThemeBloc();
+      getIt.registerSingleton<ThemeBloc>(bloc);
+      addTearDown(() async {
+        await bloc.close();
+        await getIt.reset();
+      });
+      final sub = MyBossTheme.persistChanges();
+      addTearDown(sub.cancel);
+
+      bloc.add(const ThemeEvent.changeTheme(ThemeMode.light));
+      await Future<void>.delayed(const Duration(milliseconds: 50));
+
+      final restarted = ThemeBloc();
+      addTearDown(restarted.close);
+      expect(restarted.state.themeMode, ThemeMode.light);
     });
   });
 }

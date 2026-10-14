@@ -69,6 +69,9 @@ Future<void> main() async {
           ),
   );
 
+  /// Dark is the default mode on a fresh install
+  await MyBossTheme.ensureDefaultDark();
+
   /// Register Font
   FontHelper.registerLicense();
 
@@ -77,6 +80,9 @@ Future<void> main() async {
 
   /// Setup Injections Features-2
   await InjectionFeatures.setupAll();
+
+  /// Keep the Light/Dark choice across restarts
+  MyBossTheme.persistChanges();
 
   // Set the global observer before running the app
   // if (AppSetting.isWatchBloc) Bloc.observer = SimpleBlocObserver();

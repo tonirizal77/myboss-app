@@ -24,108 +24,110 @@ class ListMenuAkun extends StatelessWidget {
 
   List<Widget> _listMenuAkun(BuildContext context, bool isLoggedIn) {
     return [
-      Visibility(
-        visible: false,
-        child: Flex(
-          direction: Responsive.isMobile(context)
-              ? Axis.vertical
-              : Axis.horizontal,
-          mainAxisSize: .min,
-          children: [
-            Flexible(
-              child: Column(
-                mainAxisSize: .min,
-                children: [
-                  ButtonMenuAkun(
-                    icon: Image.asset(
-                      Assets.menuAboutUs,
-                      color: AppTheme.onSurface(context),
-                    ),
-                    title: Text(
-                      LocaleKeys.akun_about_us.tr(),
-                      style: MyBossTextStyles.subtitle,
-                    ),
-                    borderRadius: Responsive.isMobile(context)
-                        ? BorderRadius.vertical(top: Radius.circular(20))
-                        : BorderRadius.only(topLeft: Radius.circular(20)),
-                    onTap: () {
-                      AccountFlows.goToAboutUsPage(context);
-                    },
-                  ),
+      /// Appearance (Light/Dark) - for everyone, guests included
+      MenuThemeSwitch(
+        borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+      ),
 
-                  ButtonMenuAkun(
-                    icon: Image.asset(
-                      Assets.menufaq,
-                      color: AppTheme.onSurface(context),
-                    ),
-                    // height: 80,
-                    title: Text(
-                      LocaleKeys.akun_faq.tr(),
-                      style: MyBossTextStyles.subtitle.copyWith(height: 1),
-                      textAlign: TextAlign.left,
-                      maxLines: 2,
-                      overflow: TextOverflow.ellipsis,
-                    ),
-                    borderRadius: isLoggedIn
-                        ? null
-                        : Responsive.isMobile(context)
-                        ? null
-                        : BorderRadius.only(bottomLeft: Radius.circular(20)),
-                    onTap: () {
-                      AccountFlows.goToFaqPage(context);
-                    },
+      Flex(
+        direction: Responsive.isMobile(context)
+            ? Axis.vertical
+            : Axis.horizontal,
+        mainAxisSize: .min,
+        children: [
+          Flexible(
+            child: Column(
+              mainAxisSize: .min,
+              children: [
+                ButtonMenuAkun(
+                  icon: Image.asset(
+                    Assets.menuAboutUs,
+                    color: AppTheme.onSurface(context),
                   ),
-                ],
-              ),
+                  title: Text(
+                    LocaleKeys.akun_about_us.tr(),
+                    style: MyBossTextStyles.subtitle,
+                  ),
+                  borderRadius: Responsive.isMobile(context)
+                      ? BorderRadius.vertical(top: Radius.circular(20))
+                      : BorderRadius.only(topLeft: Radius.circular(20)),
+                  onTap: () {
+                    AccountFlows.goToAboutUsPage(context);
+                  },
+                ),
+
+                ButtonMenuAkun(
+                  icon: Image.asset(
+                    Assets.menufaq,
+                    color: AppTheme.onSurface(context),
+                  ),
+                  // height: 80,
+                  title: Text(
+                    LocaleKeys.akun_faq.tr(),
+                    style: MyBossTextStyles.subtitle.copyWith(height: 1),
+                    textAlign: TextAlign.left,
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                  borderRadius: isLoggedIn
+                      ? null
+                      : Responsive.isMobile(context)
+                      ? null
+                      : BorderRadius.only(bottomLeft: Radius.circular(20)),
+                  onTap: () {
+                    AccountFlows.goToFaqPage(context);
+                  },
+                ),
+              ],
             ),
+          ),
 
-            Flexible(
-              child: Column(
-                mainAxisSize: .min,
-                children: [
-                  ButtonMenuAkun(
-                    icon: Image.asset(
-                      Assets.menuTerms,
-                      color: AppTheme.onSurface(context),
-                    ),
-                    title: Text(
-                      // "Syarat dan Ketentuan",
-                      LocaleKeys.akun_tnc.tr(),
-                      style: MyBossTextStyles.subtitle,
-                    ),
-                    borderRadius: Responsive.isMobile(context)
-                        ? null
-                        : BorderRadius.only(topRight: Radius.circular(20)),
-                    onTap: () {
-                      AccountFlows.goToTncPage(context);
-                    },
+          Flexible(
+            child: Column(
+              mainAxisSize: .min,
+              children: [
+                ButtonMenuAkun(
+                  icon: Image.asset(
+                    Assets.menuTerms,
+                    color: AppTheme.onSurface(context),
                   ),
+                  title: Text(
+                    // "Syarat dan Ketentuan",
+                    LocaleKeys.akun_tnc.tr(),
+                    style: MyBossTextStyles.subtitle,
+                  ),
+                  borderRadius: Responsive.isMobile(context)
+                      ? null
+                      : BorderRadius.only(topRight: Radius.circular(20)),
+                  onTap: () {
+                    AccountFlows.goToTncPage(context);
+                  },
+                ),
 
-                  ButtonMenuAkun(
-                    icon: Image.asset(
-                      Assets.menuContactUs,
-                      color: AppTheme.onSurface(context),
-                    ),
-                    title: Text(
-                      LocaleKeys.akun_contact_us.tr(),
-                      style: MyBossTextStyles.subtitle,
-                    ),
-                    borderRadius: isLoggedIn
-                        ? null
-                        : Responsive.isMobile(context)
-                        ? BorderRadius.vertical(bottom: Radius.circular(20))
-                        : BorderRadius.only(bottomRight: Radius.circular(20)),
-                    onTap: () {
-                      AccountFlows.showContactUs(context);
-                    },
+                ButtonMenuAkun(
+                  icon: Image.asset(
+                    Assets.menuContactUs,
+                    color: AppTheme.onSurface(context),
                   ),
-                ],
-              ),
+                  title: Text(
+                    LocaleKeys.akun_contact_us.tr(),
+                    style: MyBossTextStyles.subtitle,
+                  ),
+                  borderRadius: isLoggedIn
+                      ? null
+                      : Responsive.isMobile(context)
+                      ? BorderRadius.vertical(bottom: Radius.circular(20))
+                      : BorderRadius.only(bottomRight: Radius.circular(20)),
+                  onTap: () {
+                    AccountFlows.showContactUs(context);
+                  },
+                ),
+              ],
             ),
+          ),
 
-            Divider(indent: 8, endIndent: 8),
-          ],
-        ),
+          Divider(indent: 8, endIndent: 8),
+        ],
       ),
 
       if (isLoggedIn) ...[

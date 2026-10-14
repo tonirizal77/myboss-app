@@ -8,6 +8,9 @@ class ButtonMenuAkun extends StatelessWidget {
   final BorderRadiusGeometry? borderRadius;
   final double? height;
 
+  /// Replaces the arrow (e.g. a switch).
+  final Widget? trailing;
+
   const ButtonMenuAkun({
     super.key,
     required this.icon,
@@ -17,6 +20,7 @@ class ButtonMenuAkun extends StatelessWidget {
     this.padding,
     this.borderRadius,
     this.height,
+    this.trailing,
   });
 
   @override
@@ -36,18 +40,21 @@ class ButtonMenuAkun extends StatelessWidget {
         children: [
           SizedBox(width: 32, height: 32, child: icon),
           Expanded(child: title),
-          Visibility(
-            visible: arrowRight,
-            child: SizedBox(
-              width: 32,
-              height: 32,
-              child: Icon(
-                Icons.arrow_forward_ios_rounded,
-                color: AppTheme.outline(context),
-                size: 18,
+          if (trailing != null)
+            trailing!
+          else
+            Visibility(
+              visible: arrowRight,
+              child: SizedBox(
+                width: 32,
+                height: 32,
+                child: Icon(
+                  Icons.arrow_forward_ios_rounded,
+                  color: AppTheme.outline(context),
+                  size: 18,
+                ),
               ),
             ),
-          ),
         ],
       ),
     );

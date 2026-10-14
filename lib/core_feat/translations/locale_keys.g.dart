@@ -116,6 +116,7 @@ abstract class  LocaleKeys {
   static const akun_delete_confirm_email_button = 'akun.delete_confirm_email_button';
   static const akun_delete_confirm_email_subject = 'akun.delete_confirm_email_subject';
   static const akun_delete_confirm_email_body = 'akun.delete_confirm_email_body';
+  static const akun_dark_mode = 'akun.dark_mode';
   static const akun = 'akun';
   static const stamps_title = 'stamps.title';
   static const stamps_sub_title = 'stamps.sub_title';

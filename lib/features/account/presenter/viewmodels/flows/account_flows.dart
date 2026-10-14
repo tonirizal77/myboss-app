@@ -118,39 +118,19 @@ class AccountFlows {
     context.pushNamed(RouteNames.newEmailPage);
   }
 
-  /// 5. Goto Page Verify Change Phone Number
-  static void goToLogout(BuildContext context) {
-    ResponsiveDialog.sheetOrDialog(
+  /// 5. Sign out confirmation (Figma `Sign Out Confirmation`)
+  static Future<void> goToLogout(BuildContext context) async {
+    final confirmed = await MyBossDialog.confirm(
       context,
-      tipe: TipeResponsive.dialog,
-      tipeDialog: TipeDialog.action,
-      title: Text(
-        LocaleKeys.dialog_title_logout.tr(),
-        style: MyBossTextStyles.title,
-      ),
-      // showIcon: true,
-      child: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Text(
-          LocaleKeys.dialog_desc_logout.tr(),
-          style: MyBossTextStyles.title.copyWith(fontSize: 18),
-          textAlign: TextAlign.center,
-        ),
-      ),
-      colorButton: Colors.red,
-      colorText: Colors.white,
-      label1: LocaleKeys.button_back.tr(),
-      label2: LocaleKeys.button_logout.tr(),
-      radius: 10,
-      onApply: () {
-        context.pop();
-
-        UserFlows.logoutUser(context);
-      },
-      onCancel: () {
-        Navigator.of(context).canPop() ? context.pop() : null;
-      },
+      title: LocaleKeys.dialog_desc_logout.tr(),
+      cancelLabel: LocaleKeys.button_back.tr(),
+      confirmLabel: LocaleKeys.button_logout.tr(),
+      destructive: true,
     );
+
+    if (confirmed == true && context.mounted) {
+      UserFlows.logoutUser(context);
+    }
   }
 
   /// - Delete Account

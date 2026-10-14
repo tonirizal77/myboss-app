@@ -142,11 +142,17 @@ class CardAccountMember extends StatelessWidget {
           crossAxisAlignment: .start,
           children: [
             Text(
-              getIt<GeneralHelper>().maskPhone(state.profile.phone, isMaskContact: AppSetting.isMaskContact.value),
+              getIt<GeneralHelper>().maskPhone(
+                state.profile.phone,
+                isMaskContact: AppSetting.isMaskContact.value,
+              ),
               style: MyBossTextStyles.caption,
             ),
             Text(
-              getIt<GeneralHelper>().maskEmail(state.profile.email, isMaskContact: AppSetting.isMaskContact.value),
+              getIt<GeneralHelper>().maskEmail(
+                state.profile.email,
+                isMaskContact: AppSetting.isMaskContact.value,
+              ),
               style: MyBossTextStyles.caption,
             ),
           ],
@@ -193,11 +199,6 @@ class CardAccountMember extends StatelessWidget {
           bgColor: AppTheme.surface(context),
           onTap: () => AccountFlows.goToEditProfile(context),
           child: Icon(Icons.edit_rounded),
-        ),
-
-        Visibility(
-          visible: Responsive.isMobile(context),
-          child: const MyBossThemeSwitch(),
         ),
       ],
     );

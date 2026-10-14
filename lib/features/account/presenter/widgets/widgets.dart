@@ -22,3 +22,4 @@ part 'stamps/card_stamps_top.dart';
 part 'stamps/bottomsheet_stamps.dart';
 part 'stamps/card_stamps_item.dart';
 part 'stamps/card_stamps_warning.dart';
+part 'account/menu_theme_switch.dart';

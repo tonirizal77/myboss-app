@@ -27,7 +27,7 @@
 
   "dialog": {
     "title_logout": "Keluar?",
-    "desc_logout": "Apakah Anda yakin ingin keluar dari akun Ha-Yo?",
+    "desc_logout": "Yakin ingin keluar dari akun MyBoss?",
     "title_delete_account": "Hapus Akun?",
     "desc_delete_account": "Apakah Anda yakin ingin menghapus akun Ha-Yo? Tindakan ini tidak dapat dibatalkan dan semua data Anda akan dihapus secara permanen."
   },
@@ -39,7 +39,7 @@
     "simpan": "Simpan",
     "terapkan": "Terapkan",
     "back": "Kembali",
-    "logout": "Ya, Keluar",
+    "logout": "Ya, keluar",
     "delete_account": "Ya, Hapus Akun"
   },
 
@@ -83,26 +83,26 @@
   },
 
   "guest_home": {
-      "subtitle": "Kumpulkan poin di setiap pembelian",
-      "sign_up": "Daftar",
-      "have_account": "Saya sudah punya akun",
-      "brands_caption": "Produk dari brand terpercaya dalam lebih dari {} kategori",
-      "catalogs_title": "Katalog Produk Kami",
-      "view_all": "Lihat semua {}+ produk",
-      "explore": "Jelajahi",
-      "earn_title": "Kumpulkan Poin, Dapatkan Item Gratis!",
-      "points_value": "{} poin",
-      "sign_up_for_points": "Daftar untuk mendapatkan poin"
+    "subtitle": "Kumpulkan poin di setiap pembelian",
+    "sign_up": "Daftar",
+    "have_account": "Saya sudah punya akun",
+    "brands_caption": "Produk dari brand terpercaya dalam lebih dari {} kategori",
+    "catalogs_title": "Katalog Produk Kami",
+    "view_all": "Lihat semua {}+ produk",
+    "explore": "Jelajahi",
+    "earn_title": "Kumpulkan Poin, Dapatkan Item Gratis!",
+    "points_value": "{} poin",
+    "sign_up_for_points": "Daftar untuk mendapatkan poin"
   },
 
   "branch": {
-      "title": "Pilih cabang kami",
-      "subtitle": "{} cabang di Indonesia",
-      "selected": "Terpilih",
-      "select": "Pilih",
-      "open": "Buka",
-      "closed": "Tutup",
-      "empty": "Belum ada cabang"
+    "title": "Pilih cabang kami",
+    "subtitle": "{} cabang di Indonesia",
+    "selected": "Terpilih",
+    "select": "Pilih",
+    "open": "Buka",
+    "closed": "Tutup",
+    "empty": "Belum ada cabang"
   },
 
   "stores": {
@@ -133,7 +133,8 @@
     "delete_confirm_button": "Hapus Akun",
     "delete_confirm_email_button": "Kirim permintaan",
     "delete_confirm_email_subject": "Permintaan Hapus Akun - {}",
-    "delete_confirm_email_body": "Saya ingin mengajukan penghapusan akun Ha-Yo dengan detail sbb:\n• Nama: {name}\n• Email: {email}\n• No. HP: {phone}.\n\nMohon konfirmasi proses penghapusannya.\n\nSaya memahami bahwa proses ini tidak dapat dibatalkan dan semua data saya akan dihapus secara permanen."
+    "delete_confirm_email_body": "Saya ingin mengajukan penghapusan akun Ha-Yo dengan detail sbb:\n• Nama: {name}\n• Email: {email}\n• No. HP: {phone}.\n\nMohon konfirmasi proses penghapusannya.\n\nSaya memahami bahwa proses ini tidak dapat dibatalkan dan semua data saya akan dihapus secara permanen.",
+    "dark_mode": "Mode gelap"
   },
 
   "stamps": {
@@ -215,21 +216,21 @@
   },
 
   "auth": {
-      "title": "Kumpulkan poin,\nDapatkan gadget berkualitas gratis",
-      "subtitle": "Login ke profil Ha-Yo kamu dulu",
-      "register_title": "Gabung & dapatkan keuntungan",
-      "btn_ready": "Aku siap banget!",
-      "have_account": "Sudah punya akun?",
-      "sign_in": "Masuk",
-      "error_name_required": "Nama wajib diisi",
-      "error_name_length": "Minimal Nama 3 huruf",
-      "tab_phone": "Telepon",
-      "tab_email": "Email",
-      "label_email": "Email",
-      "invalid_email": "Alamat email tidak valid",
-      "btn_register": "Daftarkan saya",
-      "terms_prefix": "Dengan mendaftar, kamu menyetujui ",
-      "terms_link": "Syarat & Ketentuan"
+    "title": "Kumpulkan poin,\nDapatkan gadget berkualitas gratis",
+    "subtitle": "Login ke profil Ha-Yo kamu dulu",
+    "register_title": "Gabung & dapatkan keuntungan",
+    "btn_ready": "Aku siap banget!",
+    "have_account": "Sudah punya akun?",
+    "sign_in": "Masuk",
+    "error_name_required": "Nama wajib diisi",
+    "error_name_length": "Minimal Nama 3 huruf",
+    "tab_phone": "Telepon",
+    "tab_email": "Email",
+    "label_email": "Email",
+    "invalid_email": "Alamat email tidak valid",
+    "btn_register": "Daftarkan saya",
+    "terms_prefix": "Dengan mendaftar, kamu menyetujui ",
+    "terms_link": "Syarat & Ketentuan"
   },
 
   "global": {

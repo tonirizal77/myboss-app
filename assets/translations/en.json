@@ -27,7 +27,7 @@
 
   "dialog": {
     "title_logout": "Logout?",
-    "desc_logout": "Are you sure you want to logout from Ha-Yo account?",
+    "desc_logout": "Are you sure you want to sign out from MyBoss account?",
     "title_delete_account": "Delete Account?",
     "desc_delete_account": "Are you sure you want to delete your Ha-Yo account? This action cannot be undone and all your data will be permanently deleted."
   },
@@ -39,7 +39,7 @@
     "simpan": "Save",
     "terapkan": "Terapkan",
     "back": "Back",
-    "logout": "Yes, log out",
+    "logout": "Yes, sign out",
     "delete_account": "Yes, Delete Account"
   },
 
@@ -83,26 +83,26 @@
   },
 
   "guest_home": {
-      "subtitle": "Earn points with every purchase",
-      "sign_up": "Sign up",
-      "have_account": "I already have an account",
-      "brands_caption": "Products from trusted brands across more than {} categories",
-      "catalogs_title": "Our Product Catalogs",
-      "view_all": "View all {}+ products",
-      "explore": "Explore",
-      "earn_title": "Earn Points, Get Free Item!",
-      "points_value": "{} points",
-      "sign_up_for_points": "Sign up to get points"
+    "subtitle": "Earn points with every purchase",
+    "sign_up": "Sign up",
+    "have_account": "I already have an account",
+    "brands_caption": "Products from trusted brands across more than {} categories",
+    "catalogs_title": "Our Product Catalogs",
+    "view_all": "View all {}+ products",
+    "explore": "Explore",
+    "earn_title": "Earn Points, Get Free Item!",
+    "points_value": "{} points",
+    "sign_up_for_points": "Sign up to get points"
   },
 
   "branch": {
-      "title": "Select our branch",
-      "subtitle": "{} branches in Indonesia",
-      "selected": "Selected",
-      "select": "Select",
-      "open": "Open",
-      "closed": "Closed",
-      "empty": "No branches available"
+    "title": "Select our branch",
+    "subtitle": "{} branches in Indonesia",
+    "selected": "Selected",
+    "select": "Select",
+    "open": "Open",
+    "closed": "Closed",
+    "empty": "No branches available"
   },
 
   "stores": {
@@ -117,7 +117,7 @@
     "tnc": "Terms & Conditions",
     "stamps": "stamps",
     "contact_us": "Contact Us",
-    "logout": "Log Out",
+    "logout": "Sign Out",
     "delete_account": "Delete Account",
     "delete_account_success": "Account successfully deleted",
     "login_required_title": "Sign in to see \nyour account",
@@ -133,7 +133,8 @@
     "delete_confirm_button": "Delete Account",
     "delete_confirm_email_button": "Send request",
     "delete_confirm_email_subject": "Delete Account Request - {}",
-    "delete_confirm_email_body": "I would like to request the deletion of my Ha-Yo account with the following details:\n• Name: {name}\n• Email: {email}\n• Phone: {phone}.\n\nPlease confirm the deletion process.\n\nI understand that this process cannot be undone and all my data will be permanently deleted."
+    "delete_confirm_email_body": "I would like to request the deletion of my Ha-Yo account with the following details:\n• Name: {name}\n• Email: {email}\n• Phone: {phone}.\n\nPlease confirm the deletion process.\n\nI understand that this process cannot be undone and all my data will be permanently deleted.",
+    "dark_mode": "Dark mode"
   },
 
   "stamps": {
@@ -215,21 +216,21 @@
   },
 
   "auth": {
-      "title": "Earn points,\nGet free quality gadgets",
-      "subtitle": "Login to your Ha-Yo profile first",
-      "register_title": "Join & get benefits",
-      "btn_ready": "I'm so ready!",
-      "have_account": "Already have an account?",
-      "sign_in": "Sign in",
-      "error_name_required": "Name is required",
-      "error_name_length": "Minimum name 3 letters",
-      "tab_phone": "Phone",
-      "tab_email": "Email",
-      "label_email": "Email",
-      "invalid_email": "Invalid email address",
-      "btn_register": "Sign me in",
-      "terms_prefix": "By signing up, you agree to our ",
-      "terms_link": "Terms & Conditions"
+    "title": "Earn points,\nGet free quality gadgets",
+    "subtitle": "Login to your Ha-Yo profile first",
+    "register_title": "Join & get benefits",
+    "btn_ready": "I'm so ready!",
+    "have_account": "Already have an account?",
+    "sign_in": "Sign in",
+    "error_name_required": "Name is required",
+    "error_name_length": "Minimum name 3 letters",
+    "tab_phone": "Phone",
+    "tab_email": "Email",
+    "label_email": "Email",
+    "invalid_email": "Invalid email address",
+    "btn_register": "Sign me in",
+    "terms_prefix": "By signing up, you agree to our ",
+    "terms_link": "Terms & Conditions"
   },
 
   "global": {
