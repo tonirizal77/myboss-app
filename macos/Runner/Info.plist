@@ -30,6 +30,10 @@
 	<string>MainMenu</string>
 	<key>NSPrincipalClass</key>
 	<string>NSApplication</string>
+	<key>NSLocationUsageDescription</key>
+	<string>MyBoss uses your location to show the distance to the nearest branch.</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>MyBoss uses your location to show the distance to the nearest branch.</string>
 	<key>FLTEnableMergedPlatformUIThread</key>
 	<false/>
 </dict>
