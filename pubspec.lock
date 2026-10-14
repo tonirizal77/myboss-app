@@ -978,7 +978,7 @@ packages:
     description:
       path: "."
       ref: mybos-core
-      resolved-ref: "620412c33367485de5b64d26584948629d004dd8"
+      resolved-ref: "7c790fa0d1d24065d54fdeb1b5756df88c7dd5a1"
       url: "https://github.com/Olsera/mobile_app_core.git"
     source: git
     version: "0.0.1"
