@@ -15,6 +15,7 @@ export 'tnc_model/tnc_model.dart';
 export 'voucher_list_model/voucher_list_model.dart';
 export 'gen_code_model/gen_code_model.dart';
 export 'points/points.dart';
+export 'reasons_model/reasons_model.dart';
 
 /// Helpers
 class EditProfile extends Equatable {

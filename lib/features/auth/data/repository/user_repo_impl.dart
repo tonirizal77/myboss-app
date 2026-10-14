@@ -34,4 +34,11 @@ class UserRepoImpl implements UserRepo {
 
     return _result.fold((_l) => Left(_l), (_r) => Right(_r));
   }
+
+  @override
+  ResultFuture<DataMap> cancelDeleteAccount() async {
+    final _result = await _remoteData.cancelDeleteAccount();
+
+    return _result.fold((_l) => Left(_l), (_r) => Right(_r));
+  }
 }

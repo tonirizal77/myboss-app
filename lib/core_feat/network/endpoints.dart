@@ -28,12 +28,34 @@ final class Endpoints {
   /// Authorization : {{user_bearer}}
   static const String signOut = "/account/do/sign-out";
 
-  /// 6. Delete Account
+  /// 6. Hapus Akun - eksekusi penghapusan yang sebenarnya, langsung (tanpa
+  /// grace period). Dipanggil tepat setelah verifikasi OTP + reason sukses
+  /// ([deleteAccountVerifyOtp]) - lihat [AccountFlows.submitDeleteAccountRequest].
   /// Authorization : {{user_bearer}}
-  /// TODO(backend): confirm real path/method with backend team - this
-  /// endpoint does not exist on the backend yet (needed for App Store
-  /// Guideline 5.1.1(v) account deletion requirement).
-  static const String deleteAccount = "/account/do/delete-account";
+  /// Method: DELETE (terkonfirmasi lewat Postman - kalau pakai POST malah
+  /// 406 "Page Not Found", route-nya tidak ada)
+  static const String deleteAccountReal = "/profile/hayo/delete-account";
+
+  /// 6.a Hapus Akun - Kirim OTP
+  /// Authorization : {{user_bearer}}
+  static const String deleteAccountSendOtp = "/customer/hayo/delete/send-otp";
+
+  /// 6.b Hapus Akun - Verifikasi OTP + reason
+  /// Authorization : {{user_bearer}}
+  /// Params : { "otp_code": "...", "reason_id": ..., "reason_description": "..." }
+  static const String deleteAccountVerifyOtp = "/customer/hayo/delete/request";
+
+  /// 6.c Hapus Akun - Membatalkan request penghapusan yang masih pending
+  /// Authorization : {{user_bearer}}
+  /// Dipanggil dari aksi "Cancel request" di halaman status delete-account,
+  /// selagi akun masih di dalam jendela retention/grace period-nya.
+  static const String deleteAccountCancel = "/customer/hayo/delete/cancel";
+
+  /// Ambil daftar reason untuk penghapusan akun
+  static const String deleteReason = "/customer/hayo/delete/reasons";
+
+  /// Ambil status penghapusan akun
+  static const String statusDeleteAccount = "/customer/hayo/delete/status";
 
   /// === STORE === ///
   ///

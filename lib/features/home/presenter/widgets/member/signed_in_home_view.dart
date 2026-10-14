@@ -27,6 +27,13 @@ class _SignedInHomeViewState extends State<SignedInHomeView> {
 
         return Column(
           children: [
+            // Deletion pending: tell the user and link to the status page.
+            ValueListenableBuilder<bool>(
+              valueListenable: DeleteAccountLocalState.isPendingNotifier,
+              builder: (context, isPending, _) => isPending
+                  ? const DeleteAccountPendingCard()
+                  : const SizedBox.shrink(),
+            ),
             MemberHero(rewards: data.rewards),
             const HomeSectionDivider(),
             if (data.brands.isNotEmpty)

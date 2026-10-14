@@ -50,6 +50,11 @@ extension _EventUserLogout on UserBloc {
         /// previous user's data once back in guest mode.
         getIt<AccountBloc>().add(const AccountEvent.reset());
 
+        // Intentionally NOT clearing DeleteAccountLocalState here - the
+        // deletion request (if any) is still active server-side for this
+        // account after signing out. It is reconciled against whichever
+        // account logs in next - see [DeleteAccountLocalState.syncForAccount].
+
         // 3. Emit Signed Out / Reset User State and then cek status auth
         //
         // Keep `event: UserLogout` - a bare `UserState(...)` resets it to

@@ -16,6 +16,9 @@ _VerifyModel _$VerifyModelFromJson(Map<String, dynamic> json) => _VerifyModel(
   newEmail: json['new_email'] as String? ?? "",
   otp: json['otp'] as String? ?? "",
   newOtp: json['new_otp'] as String? ?? "",
+  reason: json['reason'] == null
+      ? const ReasonModel()
+      : ReasonModel.fromJson(json['reason'] as Map<String, dynamic>),
   register: json['register'] == null
       ? const RegistrationModel()
       : RegistrationModel.fromJson(json['register'] as Map<String, dynamic>),
@@ -30,6 +33,7 @@ Map<String, dynamic> _$VerifyModelToJson(_VerifyModel instance) =>
       'new_email': instance.newEmail,
       'otp': instance.otp,
       'new_otp': instance.newOtp,
+      'reason': instance.reason,
       'register': instance.register,
     };
 
@@ -42,4 +46,5 @@ const _$FromPageEnumMap = {
   FromPage.changeEmail: 'changeEmail',
   FromPage.changeNewNumber: 'changeNewNumber',
   FromPage.changeNewEmail: 'changeNewEmail',
+  FromPage.deleteAccount: 'deleteAccount',
 };

@@ -31,6 +31,7 @@ enum FromPage {
   changeEmail,
   changeNewNumber,
   changeNewEmail,
+  deleteAccount,
 }
 
 enum EditProfileAction {
@@ -46,11 +47,24 @@ enum EditProfileAction {
 
 enum TypeApp { user, merchant }
 
-/// Controls how the "Delete Account" flow behaves.
-/// - [direct]: deletes the account immediately in-app via API. Required
-///   for App Store Guideline 5.1.1(v) compliance for most apps.
+/// Controls how the "Delete Account" flow behaves. [direct] and [pending]
+/// both go through the same in-app confirmation sheet + OTP/reason
+/// verification ([DeleteAccountSheetContent] -> [DeleteAccountVerifyPage])
+/// - they only differ in what happens once that verification succeeds
+/// (see [AccountFlows.submitDeleteAccountRequest]). [emailConfirmation] is
+/// a separate flow entirely, shown right from the confirmation sheet.
+///
+/// - [direct]: executes the real deletion immediately
+///   ([Endpoints.deleteAccountReal]) once OTP + reason verification
+///   succeeds. Required for App Store Guideline 5.1.1(v) compliance for
+///   most apps.
+/// - [pending]: once OTP + reason verification succeeds, the account is
+///   only marked pending locally ([DeleteAccountLocalState.markPending])
+///   and the grace-period status page is shown
+///   ([DeleteAccountStatusSheet]) - the real delete-account endpoint is
+///   never called, so the request can still be cancelled from that page.
 /// - [emailConfirmation]: shows instructions to email support instead of
 ///   deleting in-app. Apple will reject this for apps that aren't in a
 ///   highly-regulated industry - only switch to this mode if the app
 ///   qualifies for that exception.
-enum DeleteAccountMode { direct, emailConfirmation }
+enum DeleteAccountMode { direct, pending, emailConfirmation }

@@ -24,6 +24,9 @@ class _SplashPageState extends State<SplashPage> {
       /// Initialize Masking
       AppSetting.initMaskContact();
 
+      /// Reactive pending-delete-account flag from storage
+      DeleteAccountLocalState.init();
+
       await Future.delayed(const Duration(seconds: 3), () async {
         // await UserFlows.cekAutenticate(context);
 

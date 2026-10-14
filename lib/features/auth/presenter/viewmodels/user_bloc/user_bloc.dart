@@ -14,6 +14,7 @@ part 'user_bloc.freezed.dart';
 part 'events/event_user_check_auth.dart';
 part 'events/event_user_logout.dart';
 part 'events/event_user_delete_account.dart';
+part 'events/event_user_cancel_delete_account.dart';
 part 'events/event_user_reset.dart';
 part 'events/event_user_success_verify.dart';
 
@@ -22,6 +23,7 @@ class UserBloc extends Bloc<UserEvent, UserState> {
     on<UserCheckAuth>(_userCheckAuth);
     on<UserLogout>(_userLogout);
     on<UserDeleteAccount>(_userDeleteAccount);
+    on<UserCancelDeleteAccount>(_userCancelDeleteAccount);
     on<_UserReset>(_userReset);
     on<_UserSuccessVerify>(_userSuccessVerify);
   }

@@ -45,6 +45,9 @@ class RouteNames {
   static const String stampsHistoryPage = 'stamps-history';
   static const String pointsPage = 'points';
 
+  /// Delete Account (reason + OTP verification; status is a sheet)
+  static const String deleteAccountVerifyPage = 'delete-account-verify';
+
   /// Main Feature (Shell)
   ///
   static const String home = 'home';

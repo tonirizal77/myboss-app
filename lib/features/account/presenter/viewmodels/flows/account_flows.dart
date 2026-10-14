@@ -133,16 +133,240 @@ class AccountFlows {
     }
   }
 
-  /// - Delete Account
+  /// - Delete Account (Step 1: confirmation)
+  ///
+  /// The mode comes from [AppSetting.deleteAccountMode] (direct / pending /
+  /// emailConfirmation, ported from hayo-app). When a request is already
+  /// pending, go straight to its status page instead of letting the user
+  /// file a second one.
   static void goToDeleteAccount(BuildContext context) {
-    ResponsiveDialog.sheetOrDialog(
+    if (DeleteAccountLocalState.isPending) {
+      showDeleteAccountStatus(context);
+      return;
+    }
+
+    MyBossBottomSheet.adaptive<void>(
       context,
-      colorFrame: AppTheme.surface(context),
-      colorBody: AppTheme.surface(context),
-      paddingBody: SyncUI.isAndroid ? 16 : 32,
-      padding: EdgeInsets.all(SyncUI.isAndroid ? 16 : 32),
-      radius: 20,
-      child: const DeleteAccountSheetContent(),
+      builder: (_) => const DeleteAccountSheetContent(),
+    );
+  }
+
+  /// Confirm button of the in-app (direct / pending) confirmation sheet.
+  static Future<void> confirmDeleteAccount(BuildContext context) async {
+    /// [AppSetting.needConfirmOTP] `false`: skip reason + OTP - close the
+    /// sheet first, then delete right away.
+    if (!AppSetting.needConfirmOTP) {
+      context.pop();
+      await submitDeleteAccountRequest(context);
+      return;
+    }
+
+    await goToDeleteAccountVerifyPage(context);
+  }
+
+  /// - Delete Account Step 2 (reason + OTP page)
+  ///
+  /// Sends the OTP *while the confirmation sheet is still open* and only
+  /// moves on when that really worked. "Already pending" goes to the status
+  /// page; any other error stays on the sheet with a message.
+  static Future<void> goToDeleteAccountVerifyPage(BuildContext context) async {
+    getIt<LoadingHelper>().turnOnLoading();
+
+    await VerifyFlows.verifyDeleteAccount(context, phone: profile.phone);
+
+    if (!context.mounted) return;
+
+    final _bloc = getIt<VerifyBloc>();
+
+    await VerifyFlows.getOtpCode(context);
+
+    final _state = await _bloc.stream.firstWhere(
+      (s) =>
+          s.statusGetOtp == Status.success || s.statusGetOtp == Status.failed,
+    );
+
+    getIt<LoadingHelper>().turnOffLoading();
+
+    if (!context.mounted) return;
+
+    if (_state.statusGetOtp == Status.success) {
+      context.pop();
+      context.pushNamed(RouteNames.deleteAccountVerifyPage);
+      return;
+    }
+
+    if (_isDeleteRequestAlreadyPendingError(_state.errorMessage)) {
+      /// The server already has a pending request but this device never
+      /// stored the flag - set it (default estimate: now + 30 days) so the
+      /// redirect guard lets the status page open.
+      await DeleteAccountLocalState.markPending();
+
+      if (!context.mounted) return;
+
+      context.pop();
+      showDeleteAccountStatus(context);
+      return;
+    }
+
+    getIt<FlushbarHelper>().showErrorFlushbar(
+      context: context,
+      message: _state.errorMessage,
+    );
+  }
+
+  /// Best-effort match for the backend "deletion already pending" rejection
+  /// on send-otp - the API has no machine-readable code for it, only a
+  /// human-readable (locale dependent) message.
+  static bool _isDeleteRequestAlreadyPendingError(String errorMessage) =>
+      errorMessage.toLowerCase().contains('pending');
+
+  /// Keeps the loading spinner up for at least [_minLoadingDuration] so a
+  /// near-instant response does not just flash it.
+  static const _minLoadingDuration = Duration(milliseconds: 1500);
+
+  static Future<T> _withMinLoadingDuration<T>(Future<T> future) async {
+    final _start = DateTime.now();
+    final _result = await future;
+
+    final _remaining = _minLoadingDuration - DateTime.now().difference(_start);
+    if (_remaining > Duration.zero) await Future.delayed(_remaining);
+
+    return _result;
+  }
+
+  /// - Delete Account Step 3 - after OTP + reason succeeded (or right after
+  /// the sheet when [AppSetting.needConfirmOTP] is `false`):
+  /// - [DeleteAccountMode.direct]: really delete (DELETE
+  ///   [Endpoints.deleteAccountReal]); on success the session is cleared and
+  ///   the user lands in guest mode (or on the welcome page).
+  /// - [DeleteAccountMode.pending]: never calls the delete endpoint - marks
+  ///   the account pending locally and opens [DeleteAccountStatusSheet]
+  ///   (preview the grace-period UI without deleting a test account).
+  static Future<void> submitDeleteAccountRequest(BuildContext context) async {
+    if (AppSetting.deleteAccountMode == DeleteAccountMode.pending) {
+      getIt<LoadingHelper>().turnOnLoading();
+
+      await _withMinLoadingDuration(DeleteAccountLocalState.markPending());
+
+      getIt<LoadingHelper>().turnOffLoading();
+
+      if (!context.mounted) return;
+
+      MyBossToast.success(context, LocaleKeys.akun_delete_request_success.tr());
+
+      /// Back on the Account tab (close the OTP page, if any), then the
+      /// status sheet (Figma `Deletion Request Status`).
+      if (Navigator.of(context).canPop()) context.pop();
+      showDeleteAccountStatus(context);
+      return;
+    }
+
+    final _bloc = getIt<UserBloc>();
+
+    _bloc.add(const UserEvent.userDeleteAccount());
+
+    getIt<LoadingHelper>().turnOnLoading();
+
+    final _state = await _withMinLoadingDuration(
+      _bloc.stream.firstWhere(
+        (s) =>
+            s.statusDeleteAccount == Status.success ||
+            s.statusDeleteAccount == Status.failed,
+      ),
+    );
+
+    getIt<LoadingHelper>().turnOffLoading();
+
+    if (!context.mounted) return;
+
+    if (_state.statusDeleteAccount == Status.success) {
+      if (AppSetting.isGuestModeEnabled) {
+        /// Guest mode: stay browsable on the Main Page.
+        context.read<ResponsiveCubit>().swithMenuDrawer(true);
+        MainPageFlow.goToMainPage(context);
+      } else {
+        AuthFlows.goToWelcomePage(context);
+      }
+
+      MyBossToast.success(context, LocaleKeys.akun_delete_account_success.tr());
+      return;
+    }
+
+    /// OTP + reason already succeeded, which creates the pending row on
+    /// the server - only the immediate delete failed. Mark pending locally
+    /// so the account shows as pending right away.
+    if (AppSetting.needConfirmOTP) await DeleteAccountLocalState.markPending();
+
+    if (!context.mounted) return;
+
+    await getIt<FlushbarHelper>()
+        .showErrorFlushbar(context: context, message: _state.errorMessage)
+        .whenComplete(() {
+          if (context.mounted) MainPageFlow.goToMainPage(context, index: 3);
+        });
+  }
+
+  /// - Deletion request status (Figma `Deletion Request Status`): sheet on
+  /// phones, dialog on wider windows.
+  static Future<void> showDeleteAccountStatus(BuildContext context) {
+    return MyBossBottomSheet.adaptive<void>(
+      context,
+      builder: (_) => const DeleteAccountStatusSheet(),
+    );
+  }
+
+  /// - Cancel a pending deletion request (confirm first). Returns `true`
+  /// when it was cancelled.
+  static Future<bool> cancelDeleteAccount(BuildContext context) async {
+    final confirmed = await MyBossDialog.confirm(
+      context,
+      title: LocaleKeys.akun_delete_cancel_confirm_title.tr(),
+      cancelLabel: LocaleKeys.akun_delete_cancel_confirm_no.tr(),
+      confirmLabel: LocaleKeys.akun_delete_cancel_confirm_yes.tr(),
+    );
+
+    if (confirmed != true || !context.mounted) return false;
+
+    final _bloc = getIt<UserBloc>();
+    _bloc.add(const UserEvent.userCancelDeleteAccount());
+
+    getIt<LoadingHelper>().turnOnLoading();
+
+    final _state = await _withMinLoadingDuration(
+      _bloc.stream.firstWhere(
+        (s) =>
+            s.statusCancelDeleteAccount == Status.success ||
+            s.statusCancelDeleteAccount == Status.failed,
+      ),
+    );
+
+    getIt<LoadingHelper>().turnOffLoading();
+
+    if (!context.mounted) return false;
+
+    if (_state.statusCancelDeleteAccount == Status.failed) {
+      getIt<FlushbarHelper>().showErrorFlushbar(
+        context: context,
+        message: _state.errorMessage,
+      );
+      return false;
+    }
+
+    MyBossToast.success(context, LocaleKeys.akun_delete_cancel_success.tr());
+    return true;
+  }
+
+  /// - Delete-account reasons, loaded when the reason + OTP page opens.
+  static Future<void> getReasons(BuildContext context) async {
+    final bloc = context.read<AccountBloc>();
+    final event = AccountEvent.reasons();
+
+    bloc.add(event);
+
+    await bloc.stream.firstWhere(
+      (s) =>
+          s.event == event.runtimeType &&
+          (s.respon == Respons.success || s.respon == Respons.failure),
     );
   }
 

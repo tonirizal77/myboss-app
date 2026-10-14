@@ -3,7 +3,15 @@ part of '../widgets.dart';
 class BodyFormToken extends StatelessWidget {
   final void Function(String) callback;
 
-  const BodyFormToken({Key? key, required this.callback}) : super(key: key);
+  /// `false` hides the resend timer/button (delete-account OTP is sent once,
+  /// before the page opens).
+  final bool needResendOtp;
+
+  const BodyFormToken({
+    Key? key,
+    required this.callback,
+    this.needResendOtp = true,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -48,9 +56,10 @@ class BodyFormToken extends StatelessWidget {
             },
           ),
 
-          SizedBox(height: 32),
-
-          showTimeOrButtonResendOTP(context),
+          if (needResendOtp) ...[
+            SizedBox(height: 32),
+            showTimeOrButtonResendOTP(context),
+          ],
         ],
       ),
     );

@@ -12,8 +12,11 @@ abstract class UserRemote {
   /// Logout
   ResultFuture<DataMap> logout();
 
-  /// Delete Account
+  /// Hapus Akun
   ResultFuture<DataMap> deleteAccount();
+
+  /// Membatalkan request Hapus Akun yang masih pending
+  ResultFuture<DataMap> cancelDeleteAccount();
 }
 
 /// 2.b [Remote] Data Implementasi
@@ -55,7 +58,25 @@ class UserRemoteImpl implements UserRemote {
 
   @override
   ResultFuture<DataMap> deleteAccount() async {
-    final resp = await DioPost.call(url: Endpoints.deleteAccount, body: null);
+    final _mock = mockDeleteAccountResponse(Endpoints.deleteAccountReal);
+    if (_mock != null) return Right(_mock);
+
+    /// Confirmed in Postman (hayo): this route only exists for HTTP DELETE -
+    /// a POST gets 406 "Page Not Found".
+    final resp = await DioDelete.call(url: Endpoints.deleteAccountReal);
+
+    return resp.fold((_l) => Left(_l), (_r) => Right(_r));
+  }
+
+  @override
+  ResultFuture<DataMap> cancelDeleteAccount() async {
+    final _mock = mockDeleteAccountResponse(Endpoints.deleteAccountCancel);
+    if (_mock != null) return Right(_mock);
+
+    final resp = await DioPost.call(
+      url: Endpoints.deleteAccountCancel,
+      body: null,
+    );
 
     return resp.fold((_l) => Left(_l), (_r) => Right(_r));
   }

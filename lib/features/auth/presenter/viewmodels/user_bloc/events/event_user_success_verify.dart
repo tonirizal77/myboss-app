@@ -28,6 +28,10 @@ extension _EventUserSuccess on UserBloc {
     /// Reload
     await getIt<SharedPreferencesHelper>().prefInstance.reload();
 
+    /// Drop a pending-deletion flag left over from a previous account on
+    /// this device - see [DeleteAccountLocalState.syncForAccount].
+    await DeleteAccountLocalState.syncForAccount(event.phone);
+
     emit(
       state.copyWith(
         event: event.runtimeType,

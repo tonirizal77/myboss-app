@@ -46,6 +46,17 @@ class GetVouchersUc extends Usecase<VoucherListModel> {
   }
 }
 
+class GetReasonsUc extends Usecase<ReasonsModel> {
+  final AccountRepo _repository;
+
+  GetReasonsUc(this._repository);
+
+  @override
+  ResultFuture<ReasonsModel> call() async {
+    return await _repository.getReasons();
+  }
+}
+
 /// === Profile === ///
 
 class GetAvatarsUc extends Usecase<AvatarListModel> {

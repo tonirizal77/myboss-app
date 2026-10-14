@@ -15,5 +15,7 @@ abstract class AccountEvent with _$AccountEvent {
   const factory AccountEvent.vouchers({@Default({}) DataMap param}) =
       _EventVouchers;
 
+  const factory AccountEvent.reasons() = _EventReasons;
+
   const factory AccountEvent.reset() = _EventResetAccount;
 }

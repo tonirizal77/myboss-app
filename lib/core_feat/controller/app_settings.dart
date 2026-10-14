@@ -6,11 +6,30 @@ abstract class AppSetting {
 
   /// MARK: Control of Delete Account Flow (Change HERE)
   ///
-  /// Keep [DeleteAccountMode.direct] unless this app operates in a
-  /// highly-regulated industry - Apple rejects [DeleteAccountMode.emailConfirmation]
-  /// under App Store Guideline 5.1.1(v) for most apps (see
-  /// DeleteAccountSheetContent for where this is consumed).
+  /// See [DeleteAccountMode] for what each value does. Use [DeleteAccountMode.direct]
+  /// for real builds unless this app operates in a highly-regulated
+  /// industry (Apple rejects [DeleteAccountMode.emailConfirmation] under
+  /// App Store Guideline 5.1.1(v) for most apps). Switch to
+  /// [DeleteAccountMode.pending] to review the grace-period/pending-status
+  /// UI without actually deleting a test account - it goes through the
+  /// exact same confirmation sheet + OTP/reason flow as [DeleteAccountMode.direct],
+  /// it just never calls the real delete-account endpoint.
   static DeleteAccountMode get deleteAccountMode => DeleteAccountMode.direct;
+
+  /// MARK: Control of Delete Account Confirmation Flow (Change HERE)
+  ///
+  /// - `true`: perilaku default - [AccountFlows.goToDeleteAccount] tetap
+  ///   mewajibkan reason + OTP verification
+  ///   ([AccountFlows.goToDeleteAccountVerifyPage] -> [DeleteAccountVerifyPage])
+  ///   sebelum [AccountFlows.submitDeleteAccountRequest] terpanggil.
+  ///   `reason_id` juga baru tersimpan ke server lewat langkah OTP-verify
+  ///   itu ([Endpoints.deleteAccountVerifyOtp]).
+  /// - `false`: skip seluruh langkah reason + OTP - begitu user menekan
+  ///   tombol konfirmasi di sheet, [AccountFlows.goToDeleteAccount] langsung
+  ///   menutup sheet dan memanggil [AccountFlows.submitDeleteAccountRequest].
+  ///   `reason_id` TIDAK terkirim ke server karena endpoint delete real
+  ///   ([Endpoints.deleteAccountReal]) dipanggil tanpa body sama sekali.
+  static bool get needConfirmOTP => true;
 
   static bool get isDevelopment => devMode == DevMode.development;
   static bool get isRelease => devMode == DevMode.release;

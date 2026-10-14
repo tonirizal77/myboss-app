@@ -57,6 +57,19 @@ class MainPageFlow {
       return;
     }
 
+    /// Account is scheduled for deletion - a loyalty barcode serves no
+    /// purpose, show the pending-deletion card instead.
+    if (DeleteAccountLocalState.isPending) {
+      await MyBossBottomSheet.adaptive<void>(
+        context,
+        builder: (_) => const DeleteAccountPendingCard(
+          closeSheetBeforeNavigate: true,
+          margin: EdgeInsets.fromLTRB(16, 16, 16, 32),
+        ),
+      );
+      return;
+    }
+
     /// Only fetch a fresh code if the previous one has already expired -
     /// if the sheet was closed and reopened before its countdown
     /// finished, [CardMemberBarcode] resumes the existing code/timer

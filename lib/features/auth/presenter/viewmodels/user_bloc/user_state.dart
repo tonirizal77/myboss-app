@@ -25,6 +25,7 @@ abstract class UserState with _$UserState {
     @Default(Status.initial) Status statusLogin,
     @Default(Status.initial) Status statusLogout,
     @Default(Status.initial) Status statusDeleteAccount,
+    @Default(Status.initial) Status statusCancelDeleteAccount,
     @Default(Status.initial) Status statusRegister,
     @Default(Status.initial) Status statusSendOtp,
     @Default(Status.initial) Status statusGetOtp,

@@ -10,6 +10,8 @@ abstract class AccountRemote {
   ResultFuture<TncModel> getTnc();
 
   ResultFuture<VoucherListModel> getVouchers();
+
+  ResultFuture<ReasonsModel> getReasons();
 }
 
 /// 2.b [Remote] Data Implementasi
@@ -62,6 +64,19 @@ class AccountRemoteImpl implements AccountRemote {
     return resp.fold((_l) => Left(_l), (_r) {
       try {
         return Right(VoucherListModel.fromJson(_r));
+      } catch (e) {
+        return Left(Failures(error: Error(message: "Parse Error : $e")));
+      }
+    });
+  }
+
+  @override
+  ResultFuture<ReasonsModel> getReasons() async {
+    final resp = await DioGet.call(url: Endpoints.deleteReason);
+
+    return resp.fold((_l) => Left(_l), (_r) {
+      try {
+        return Right(ReasonsModel.fromJson(_r));
       } catch (e) {
         return Left(Failures(error: Error(message: "Parse Error : $e")));
       }

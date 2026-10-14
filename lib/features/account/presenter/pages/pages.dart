@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_html/flutter_html.dart';
@@ -17,3 +19,4 @@ part 'edit_profile/edit_profile_page.dart';
 part 'edit_profile/change_new_phone_page.dart';
 part 'edit_profile/change_new_email_page.dart';
 part 'points_page.dart';
+part 'delete_account_verify_page.dart';

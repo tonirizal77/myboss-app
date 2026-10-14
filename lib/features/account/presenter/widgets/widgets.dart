@@ -2,6 +2,7 @@ import 'package:another_flushbar/flushbar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 
 import 'package:myboss_app/core_feat/core_feat.dart';
@@ -10,6 +11,7 @@ import 'package:myboss_app/features/features.dart';
 part 'account/card_account_member.dart';
 part 'account/card_login_required.dart';
 part 'account/delete_account_sheet.dart';
+part 'account/delete_account_status.dart';
 part 'account/button_menu_akun.dart';
 part 'account/list_menu_akun.dart';
 part 'account/account_stats_card.dart';

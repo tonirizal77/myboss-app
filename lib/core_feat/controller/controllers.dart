@@ -9,3 +9,5 @@ import 'package:myboss_app/features/features.dart';
 part 'app_manage_flows.dart';
 part 'app_menu.dart';
 part 'app_settings.dart';
+part 'delete_account_local_state.dart';
+part 'email_delete_account_local_state.dart';

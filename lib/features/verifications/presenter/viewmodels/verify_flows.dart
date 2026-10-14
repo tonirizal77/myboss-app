@@ -95,6 +95,56 @@ class VerifyFlows {
     );
   }
 
+  /// 5. Verify Initial Delete Account
+  ///
+  /// Menunggu sampai bloc benar-benar menerapkan data yang di-seed sebelum
+  /// return - lihat race condition yang sama seperti dijelaskan di
+  /// [updateDeleteAccountReason]. Pemanggilnya (mis.
+  /// [AccountFlows.goToDeleteAccountVerifyPage]) langsung melanjutkan
+  /// dengan [getOtpCode] setelah ini, yang membaca `verifyData.phone`/
+  /// `.fromPage` dari state bloc saat itu.
+  static Future<void> verifyDeleteAccount(
+    BuildContext context, {
+    required String phone,
+  }) async {
+    final _bloc = context.read<VerifyBloc>();
+
+    _bloc.add(
+      VerifyEvent.initial(
+        VerifyModel(phone: phone, fromPage: FromPage.deleteAccount),
+      ),
+    );
+
+    await _bloc.stream.firstWhere(
+      (s) =>
+          s.verifyData.phone == phone &&
+          s.verifyData.fromPage == FromPage.deleteAccount,
+    );
+  }
+
+  /// Mengubah reason delete-account yang dipilih tanpa mereset sisa
+  /// [verifyData] lainnya (phone, status OTP, dll) - dipanggil setiap kali
+  /// user mengganti pilihan radio-nya di halaman reason+OTP.
+  ///
+  /// Menunggu sampai bloc benar-benar menerapkan perubahannya sebelum
+  /// return - [VerifyBloc.add] cuma memasukkan event ke antrian, tidak
+  /// meng-update [state] secara sinkron, jadi pemanggil yang langsung
+  /// membaca `verifyData.reason` setelahnya (mis. [sendOtpCode]) kalau
+  /// tidak begini masih akan melihat nilai lama dan mengirim `reason_id`
+  /// yang basi/kosong ke server.
+  static Future<void> updateDeleteAccountReason(
+    BuildContext context,
+    ReasonModel reason,
+  ) async {
+    final _bloc = context.read<VerifyBloc>();
+
+    _bloc.add(VerifyEvent.initial(verifyData.copyWith(reason: reason)));
+
+    await _bloc.stream.firstWhere(
+      (s) => s.verifyData.reason.reasonId == reason.reasonId,
+    );
+  }
+
   /// === OTP ===
   ///
   /// 1. Get Otp
@@ -141,6 +191,11 @@ class VerifyFlows {
       _param = ParamOtp(
         body: {'email': verifyData.newEmail, 'key': _key},
         url: Endpoints.verifyNewGetOtpEmail,
+      );
+    } else if (_fromPage == FromPage.deleteAccount) {
+      _param = ParamOtp(
+        body: {'phone': verifyData.phone},
+        url: Endpoints.deleteAccountSendOtp,
       );
     }
 
@@ -195,6 +250,15 @@ class VerifyFlows {
       _param = ParamOtp(
         url: Endpoints.verifyNewSendOtp,
         body: {'email': verifyData.newEmail, "otp_code": otpCode},
+      );
+    } else if (_fromPage == FromPage.deleteAccount) {
+      _param = ParamOtp(
+        url: Endpoints.deleteAccountVerifyOtp,
+        body: {
+          'otp_code': otpCode,
+          'reason_id': verifyData.reason.reasonId,
+          'reason_description': verifyData.reason.label,
+        },
       );
     }
 

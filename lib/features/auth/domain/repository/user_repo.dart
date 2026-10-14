@@ -12,4 +12,6 @@ abstract class UserRepo {
   ResultFuture<DataMap> logout();
 
   ResultFuture<DataMap> deleteAccount();
+
+  ResultFuture<DataMap> cancelDeleteAccount();
 }

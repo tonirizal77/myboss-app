@@ -27,6 +27,19 @@ extension _UserDeleteAccountHandler on UserBloc {
           withPhone: true,
         );
 
+        /// Fresh guest client token right away (same as logout), so guest
+        /// mode has a valid Authorization header after the account is gone.
+        final _clientToken = await getIt<GetClientTokenUc>().call();
+
+        await _clientToken.fold(
+          (_) async {},
+          (token) => getIt<SharedPreferencesHelper>().setAccessToken(
+            accessToken: token.accessToken,
+            refreshToken: token.refreshToken,
+            expiredAt: token.expiredAt,
+          ),
+        );
+
         /// Drop persisted profile - avoid showing the deleted account's
         /// name/avatar once back in guest mode.
         getIt<ProfileBloc>().add(const ProfileEvent.reset());
@@ -34,6 +47,7 @@ extension _UserDeleteAccountHandler on UserBloc {
         /// Drop persisted vouchers/stamps history - avoid showing the
         /// deleted account's data once back in guest mode.
         getIt<AccountBloc>().add(const AccountEvent.reset());
+        await DeleteAccountLocalState.clearPending();
 
         emit(
           state.copyWith(

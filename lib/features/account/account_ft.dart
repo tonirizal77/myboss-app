@@ -58,6 +58,7 @@ class AccountFt {
     getIt.registerLazySingleton(() => GetFaqUc(getIt()));
     getIt.registerLazySingleton(() => GetTncUc(getIt()));
     getIt.registerLazySingleton(() => GetVouchersUc(getIt()));
+    getIt.registerLazySingleton(() => GetReasonsUc(getIt()));
 
     /// 6. Setup Control / Flow
     ///  - 1. [xxx]Flow (mode static) -> UsecaseFunc

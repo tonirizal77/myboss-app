@@ -23,6 +23,8 @@ abstract class AccountRepo {
   ResultFuture<TncModel> getTnc();
 
   ResultFuture<VoucherListModel> getVouchers();
+
+  ResultFuture<ReasonsModel> getReasons();
 }
 
 /// Points (replaces the hayo stamps).

@@ -125,8 +125,6 @@ class ListMenuAkun extends StatelessWidget {
               ],
             ),
           ),
-
-          Divider(indent: 8, endIndent: 8),
         ],
       ),
     ];

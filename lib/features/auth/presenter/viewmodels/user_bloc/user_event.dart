@@ -16,5 +16,7 @@ abstract class UserEvent with _$UserEvent {
 
   const factory UserEvent.userDeleteAccount() = UserDeleteAccount;
 
+  const factory UserEvent.userCancelDeleteAccount() = UserCancelDeleteAccount;
+
   const factory UserEvent.userReset() = _UserReset;
 }

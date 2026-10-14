@@ -81,6 +81,13 @@ class _AccountPageState extends State<AccountPage>
           const AccountStatsCard(),
           _logoutRow(context),
           _deleteRow(context),
+          // Deletion pending (Figma `Account — Deletion Pending`).
+          ValueListenableBuilder<bool>(
+            valueListenable: DeleteAccountLocalState.isPendingNotifier,
+            builder: (context, isPending, _) => isPending
+                ? const DeleteAccountPendingPanel()
+                : const SizedBox.shrink(),
+          ),
         ] else
           const CardLoginRequired(),
 
@@ -88,8 +95,8 @@ class _AccountPageState extends State<AccountPage>
         const ListMenuAkun(),
 
         /// Follow Us
-        const CardFollowUs(),
-
+        /// MARK: Belum diperlukan
+        // const CardFollowUs(),
         Column(
           mainAxisSize: MainAxisSize.min,
           children: [
@@ -139,7 +146,17 @@ class _AccountPageState extends State<AccountPage>
           ],
         ),
 
-        if (_isLoggedIn) ...[_logoutRow(context), _deleteRow(context)],
+        if (_isLoggedIn) ...[
+          _logoutRow(context),
+          _deleteRow(context),
+          // Deletion pending (Figma `Account — Deletion Pending`).
+          ValueListenableBuilder<bool>(
+            valueListenable: DeleteAccountLocalState.isPendingNotifier,
+            builder: (context, isPending, _) => isPending
+                ? const DeleteAccountPendingPanel()
+                : const SizedBox.shrink(),
+          ),
+        ],
 
         Flexible(child: const ListMenuAkun()),
       ],

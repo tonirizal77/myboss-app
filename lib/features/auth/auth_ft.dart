@@ -48,6 +48,7 @@ class AuthFt {
     getIt.registerLazySingleton(() => GetRefreshTokenUc(getIt()));
     getIt.registerLazySingleton(() => UserLogoutUc(getIt()));
     getIt.registerLazySingleton(() => UserDeleteAccountUc(getIt()));
+    getIt.registerLazySingleton(() => UserCancelDeleteAccountUc(getIt()));
 
     /// 6. Setup Flow
     ///  - 1. [xxx]Flow (mode static) -> UsecaseFunc
@@ -94,12 +95,6 @@ class AuthFt {
       BlocListener<UserBloc, UserState>(
         listenWhen: (previous, current) => current.event == UserLogout,
         listener: UserFlowsListen.logoutListener,
-      ),
-
-      /// 3. User Delete Account
-      BlocListener<UserBloc, UserState>(
-        listenWhen: (previous, current) => current.event == UserDeleteAccount,
-        listener: UserFlowsListen.deleteAccountListener,
       ),
     ];
   }

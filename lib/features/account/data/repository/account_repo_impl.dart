@@ -34,4 +34,11 @@ class AccountRepoImpl implements AccountRepo {
 
     return _result.fold((_l) => Left(_l), (_r) => Right(_r));
   }
+
+  @override
+  ResultFuture<ReasonsModel> getReasons() async {
+    final _result = await _remoteData.getReasons();
+
+    return _result.fold((_l) => Left(_l), (_r) => Right(_r));
+  }
 }

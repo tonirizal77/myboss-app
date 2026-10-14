@@ -55,14 +55,15 @@ extension UserEventPatterns on UserEvent {
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( UserCheckAuth value)?  userCheckAuth,TResult Function( _UserSuccessVerify value)?  userSuccessVerify,TResult Function( UserLogout value)?  userLogout,TResult Function( UserDeleteAccount value)?  userDeleteAccount,TResult Function( _UserReset value)?  userReset,required TResult orElse(),}){
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( UserCheckAuth value)?  userCheckAuth,TResult Function( _UserSuccessVerify value)?  userSuccessVerify,TResult Function( UserLogout value)?  userLogout,TResult Function( UserDeleteAccount value)?  userDeleteAccount,TResult Function( UserCancelDeleteAccount value)?  userCancelDeleteAccount,TResult Function( _UserReset value)?  userReset,required TResult orElse(),}){
 final _that = this;
 switch (_that) {
 case UserCheckAuth() when userCheckAuth != null:
 return userCheckAuth(_that);case _UserSuccessVerify() when userSuccessVerify != null:
 return userSuccessVerify(_that);case UserLogout() when userLogout != null:
 return userLogout(_that);case UserDeleteAccount() when userDeleteAccount != null:
-return userDeleteAccount(_that);case _UserReset() when userReset != null:
+return userDeleteAccount(_that);case UserCancelDeleteAccount() when userCancelDeleteAccount != null:
+return userCancelDeleteAccount(_that);case _UserReset() when userReset != null:
 return userReset(_that);case _:
   return orElse();
 
@@ -81,14 +82,15 @@ return userReset(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( UserCheckAuth value)  userCheckAuth,required TResult Function( _UserSuccessVerify value)  userSuccessVerify,required TResult Function( UserLogout value)  userLogout,required TResult Function( UserDeleteAccount value)  userDeleteAccount,required TResult Function( _UserReset value)  userReset,}){
+@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( UserCheckAuth value)  userCheckAuth,required TResult Function( _UserSuccessVerify value)  userSuccessVerify,required TResult Function( UserLogout value)  userLogout,required TResult Function( UserDeleteAccount value)  userDeleteAccount,required TResult Function( UserCancelDeleteAccount value)  userCancelDeleteAccount,required TResult Function( _UserReset value)  userReset,}){
 final _that = this;
 switch (_that) {
 case UserCheckAuth():
 return userCheckAuth(_that);case _UserSuccessVerify():
 return userSuccessVerify(_that);case UserLogout():
 return userLogout(_that);case UserDeleteAccount():
-return userDeleteAccount(_that);case _UserReset():
+return userDeleteAccount(_that);case UserCancelDeleteAccount():
+return userCancelDeleteAccount(_that);case _UserReset():
 return userReset(_that);case _:
   throw StateError('Unexpected subclass');
 
@@ -106,14 +108,15 @@ return userReset(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( UserCheckAuth value)?  userCheckAuth,TResult? Function( _UserSuccessVerify value)?  userSuccessVerify,TResult? Function( UserLogout value)?  userLogout,TResult? Function( UserDeleteAccount value)?  userDeleteAccount,TResult? Function( _UserReset value)?  userReset,}){
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( UserCheckAuth value)?  userCheckAuth,TResult? Function( _UserSuccessVerify value)?  userSuccessVerify,TResult? Function( UserLogout value)?  userLogout,TResult? Function( UserDeleteAccount value)?  userDeleteAccount,TResult? Function( UserCancelDeleteAccount value)?  userCancelDeleteAccount,TResult? Function( _UserReset value)?  userReset,}){
 final _that = this;
 switch (_that) {
 case UserCheckAuth() when userCheckAuth != null:
 return userCheckAuth(_that);case _UserSuccessVerify() when userSuccessVerify != null:
 return userSuccessVerify(_that);case UserLogout() when userLogout != null:
 return userLogout(_that);case UserDeleteAccount() when userDeleteAccount != null:
-return userDeleteAccount(_that);case _UserReset() when userReset != null:
+return userDeleteAccount(_that);case UserCancelDeleteAccount() when userCancelDeleteAccount != null:
+return userCancelDeleteAccount(_that);case _UserReset() when userReset != null:
 return userReset(_that);case _:
   return null;
 
@@ -131,13 +134,14 @@ return userReset(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function( bool forceLogout,  String? errorMessage)?  userCheckAuth,TResult Function( String phone,  DataMap result)?  userSuccessVerify,TResult Function()?  userLogout,TResult Function()?  userDeleteAccount,TResult Function()?  userReset,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function( bool forceLogout,  String? errorMessage)?  userCheckAuth,TResult Function( String phone,  DataMap result)?  userSuccessVerify,TResult Function()?  userLogout,TResult Function()?  userDeleteAccount,TResult Function()?  userCancelDeleteAccount,TResult Function()?  userReset,required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case UserCheckAuth() when userCheckAuth != null:
 return userCheckAuth(_that.forceLogout,_that.errorMessage);case _UserSuccessVerify() when userSuccessVerify != null:
 return userSuccessVerify(_that.phone,_that.result);case UserLogout() when userLogout != null:
 return userLogout();case UserDeleteAccount() when userDeleteAccount != null:
-return userDeleteAccount();case _UserReset() when userReset != null:
+return userDeleteAccount();case UserCancelDeleteAccount() when userCancelDeleteAccount != null:
+return userCancelDeleteAccount();case _UserReset() when userReset != null:
 return userReset();case _:
   return orElse();
 
@@ -156,13 +160,14 @@ return userReset();case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function( bool forceLogout,  String? errorMessage)  userCheckAuth,required TResult Function( String phone,  DataMap result)  userSuccessVerify,required TResult Function()  userLogout,required TResult Function()  userDeleteAccount,required TResult Function()  userReset,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function( bool forceLogout,  String? errorMessage)  userCheckAuth,required TResult Function( String phone,  DataMap result)  userSuccessVerify,required TResult Function()  userLogout,required TResult Function()  userDeleteAccount,required TResult Function()  userCancelDeleteAccount,required TResult Function()  userReset,}) {final _that = this;
 switch (_that) {
 case UserCheckAuth():
 return userCheckAuth(_that.forceLogout,_that.errorMessage);case _UserSuccessVerify():
 return userSuccessVerify(_that.phone,_that.result);case UserLogout():
 return userLogout();case UserDeleteAccount():
-return userDeleteAccount();case _UserReset():
+return userDeleteAccount();case UserCancelDeleteAccount():
+return userCancelDeleteAccount();case _UserReset():
 return userReset();case _:
   throw StateError('Unexpected subclass');
 
@@ -180,13 +185,14 @@ return userReset();case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function( bool forceLogout,  String? errorMessage)?  userCheckAuth,TResult? Function( String phone,  DataMap result)?  userSuccessVerify,TResult? Function()?  userLogout,TResult? Function()?  userDeleteAccount,TResult? Function()?  userReset,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function( bool forceLogout,  String? errorMessage)?  userCheckAuth,TResult? Function( String phone,  DataMap result)?  userSuccessVerify,TResult? Function()?  userLogout,TResult? Function()?  userDeleteAccount,TResult? Function()?  userCancelDeleteAccount,TResult? Function()?  userReset,}) {final _that = this;
 switch (_that) {
 case UserCheckAuth() when userCheckAuth != null:
 return userCheckAuth(_that.forceLogout,_that.errorMessage);case _UserSuccessVerify() when userSuccessVerify != null:
 return userSuccessVerify(_that.phone,_that.result);case UserLogout() when userLogout != null:
 return userLogout();case UserDeleteAccount() when userDeleteAccount != null:
-return userDeleteAccount();case _UserReset() when userReset != null:
+return userDeleteAccount();case UserCancelDeleteAccount() when userCancelDeleteAccount != null:
+return userCancelDeleteAccount();case _UserReset() when userReset != null:
 return userReset();case _:
   return null;
 
@@ -404,6 +410,38 @@ String toString() {
 /// @nodoc
 
 
+class UserCancelDeleteAccount implements UserEvent {
+  const UserCancelDeleteAccount();
+  
+
+
+
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is UserCancelDeleteAccount);
+}
+
+
+@override
+int get hashCode => runtimeType.hashCode;
+
+@override
+String toString() {
+  return 'UserEvent.userCancelDeleteAccount()';
+}
+
+
+}
+
+
+
+
+/// @nodoc
+
+
 class _UserReset implements UserEvent {
   const _UserReset();
   
@@ -438,7 +476,7 @@ mixin _$UserState {
 
  bool get isLoading; Respons get respon; String get errorMessage; Failures get error; bool get isGuest; TokenModel get dataToken; Map<String, dynamic> get errorOtp; Map<String, dynamic> get successOtp; Type get event; String get phoneOtp; ActionConfirm get actionConfirmOtp; FromPage get fromPage; FromPage get verificationTo; LoginModel get dataLogin; RegistrationModel get register;/// Status
 ///
- Status get statusCheckAuth; Status get statusLogin; Status get statusLogout; Status get statusDeleteAccount; Status get statusRegister; Status get statusSendOtp; Status get statusGetOtp; Status get statusConfirmOtp; Status get statusRefreshToken;
+ Status get statusCheckAuth; Status get statusLogin; Status get statusLogout; Status get statusDeleteAccount; Status get statusCancelDeleteAccount; Status get statusRegister; Status get statusSendOtp; Status get statusGetOtp; Status get statusConfirmOtp; Status get statusRefreshToken;
 /// Create a copy of UserState
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -449,16 +487,16 @@ $UserStateCopyWith<UserState> get copyWith => _$UserStateCopyWithImpl<UserState>
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is UserState&&(identical(other.isLoading, isLoading) || other.isLoading == isLoading)&&(identical(other.respon, respon) || other.respon == respon)&&(identical(other.errorMessage, errorMessage) || other.errorMessage == errorMessage)&&(identical(other.error, error) || other.error == error)&&(identical(other.isGuest, isGuest) || other.isGuest == isGuest)&&(identical(other.dataToken, dataToken) || other.dataToken == dataToken)&&const DeepCollectionEquality().equals(other.errorOtp, errorOtp)&&const DeepCollectionEquality().equals(other.successOtp, successOtp)&&(identical(other.event, event) || other.event == event)&&(identical(other.phoneOtp, phoneOtp) || other.phoneOtp == phoneOtp)&&(identical(other.actionConfirmOtp, actionConfirmOtp) || other.actionConfirmOtp == actionConfirmOtp)&&(identical(other.fromPage, fromPage) || other.fromPage == fromPage)&&(identical(other.verificationTo, verificationTo) || other.verificationTo == verificationTo)&&(identical(other.dataLogin, dataLogin) || other.dataLogin == dataLogin)&&(identical(other.register, register) || other.register == register)&&(identical(other.statusCheckAuth, statusCheckAuth) || other.statusCheckAuth == statusCheckAuth)&&(identical(other.statusLogin, statusLogin) || other.statusLogin == statusLogin)&&(identical(other.statusLogout, statusLogout) || other.statusLogout == statusLogout)&&(identical(other.statusDeleteAccount, statusDeleteAccount) || other.statusDeleteAccount == statusDeleteAccount)&&(identical(other.statusRegister, statusRegister) || other.statusRegister == statusRegister)&&(identical(other.statusSendOtp, statusSendOtp) || other.statusSendOtp == statusSendOtp)&&(identical(other.statusGetOtp, statusGetOtp) || other.statusGetOtp == statusGetOtp)&&(identical(other.statusConfirmOtp, statusConfirmOtp) || other.statusConfirmOtp == statusConfirmOtp)&&(identical(other.statusRefreshToken, statusRefreshToken) || other.statusRefreshToken == statusRefreshToken));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is UserState&&(identical(other.isLoading, isLoading) || other.isLoading == isLoading)&&(identical(other.respon, respon) || other.respon == respon)&&(identical(other.errorMessage, errorMessage) || other.errorMessage == errorMessage)&&(identical(other.error, error) || other.error == error)&&(identical(other.isGuest, isGuest) || other.isGuest == isGuest)&&(identical(other.dataToken, dataToken) || other.dataToken == dataToken)&&const DeepCollectionEquality().equals(other.errorOtp, errorOtp)&&const DeepCollectionEquality().equals(other.successOtp, successOtp)&&(identical(other.event, event) || other.event == event)&&(identical(other.phoneOtp, phoneOtp) || other.phoneOtp == phoneOtp)&&(identical(other.actionConfirmOtp, actionConfirmOtp) || other.actionConfirmOtp == actionConfirmOtp)&&(identical(other.fromPage, fromPage) || other.fromPage == fromPage)&&(identical(other.verificationTo, verificationTo) || other.verificationTo == verificationTo)&&(identical(other.dataLogin, dataLogin) || other.dataLogin == dataLogin)&&(identical(other.register, register) || other.register == register)&&(identical(other.statusCheckAuth, statusCheckAuth) || other.statusCheckAuth == statusCheckAuth)&&(identical(other.statusLogin, statusLogin) || other.statusLogin == statusLogin)&&(identical(other.statusLogout, statusLogout) || other.statusLogout == statusLogout)&&(identical(other.statusDeleteAccount, statusDeleteAccount) || other.statusDeleteAccount == statusDeleteAccount)&&(identical(other.statusCancelDeleteAccount, statusCancelDeleteAccount) || other.statusCancelDeleteAccount == statusCancelDeleteAccount)&&(identical(other.statusRegister, statusRegister) || other.statusRegister == statusRegister)&&(identical(other.statusSendOtp, statusSendOtp) || other.statusSendOtp == statusSendOtp)&&(identical(other.statusGetOtp, statusGetOtp) || other.statusGetOtp == statusGetOtp)&&(identical(other.statusConfirmOtp, statusConfirmOtp) || other.statusConfirmOtp == statusConfirmOtp)&&(identical(other.statusRefreshToken, statusRefreshToken) || other.statusRefreshToken == statusRefreshToken));
 }
 
 
 @override
-int get hashCode => Object.hashAll([runtimeType,isLoading,respon,errorMessage,error,isGuest,dataToken,const DeepCollectionEquality().hash(errorOtp),const DeepCollectionEquality().hash(successOtp),event,phoneOtp,actionConfirmOtp,fromPage,verificationTo,dataLogin,register,statusCheckAuth,statusLogin,statusLogout,statusDeleteAccount,statusRegister,statusSendOtp,statusGetOtp,statusConfirmOtp,statusRefreshToken]);
+int get hashCode => Object.hashAll([runtimeType,isLoading,respon,errorMessage,error,isGuest,dataToken,const DeepCollectionEquality().hash(errorOtp),const DeepCollectionEquality().hash(successOtp),event,phoneOtp,actionConfirmOtp,fromPage,verificationTo,dataLogin,register,statusCheckAuth,statusLogin,statusLogout,statusDeleteAccount,statusCancelDeleteAccount,statusRegister,statusSendOtp,statusGetOtp,statusConfirmOtp,statusRefreshToken]);
 
 @override
 String toString() {
-  return 'UserState(isLoading: $isLoading, respon: $respon, errorMessage: $errorMessage, error: $error, isGuest: $isGuest, dataToken: $dataToken, errorOtp: $errorOtp, successOtp: $successOtp, event: $event, phoneOtp: $phoneOtp, actionConfirmOtp: $actionConfirmOtp, fromPage: $fromPage, verificationTo: $verificationTo, dataLogin: $dataLogin, register: $register, statusCheckAuth: $statusCheckAuth, statusLogin: $statusLogin, statusLogout: $statusLogout, statusDeleteAccount: $statusDeleteAccount, statusRegister: $statusRegister, statusSendOtp: $statusSendOtp, statusGetOtp: $statusGetOtp, statusConfirmOtp: $statusConfirmOtp, statusRefreshToken: $statusRefreshToken)';
+  return 'UserState(isLoading: $isLoading, respon: $respon, errorMessage: $errorMessage, error: $error, isGuest: $isGuest, dataToken: $dataToken, errorOtp: $errorOtp, successOtp: $successOtp, event: $event, phoneOtp: $phoneOtp, actionConfirmOtp: $actionConfirmOtp, fromPage: $fromPage, verificationTo: $verificationTo, dataLogin: $dataLogin, register: $register, statusCheckAuth: $statusCheckAuth, statusLogin: $statusLogin, statusLogout: $statusLogout, statusDeleteAccount: $statusDeleteAccount, statusCancelDeleteAccount: $statusCancelDeleteAccount, statusRegister: $statusRegister, statusSendOtp: $statusSendOtp, statusGetOtp: $statusGetOtp, statusConfirmOtp: $statusConfirmOtp, statusRefreshToken: $statusRefreshToken)';
 }
 
 
@@ -469,7 +507,7 @@ abstract mixin class $UserStateCopyWith<$Res>  {
   factory $UserStateCopyWith(UserState value, $Res Function(UserState) _then) = _$UserStateCopyWithImpl;
 @useResult
 $Res call({
- bool isLoading, Respons respon, String errorMessage, Failures error, bool isGuest, TokenModel dataToken, Map<String, dynamic> errorOtp, Map<String, dynamic> successOtp, Type event, String phoneOtp, ActionConfirm actionConfirmOtp, FromPage fromPage, FromPage verificationTo, LoginModel dataLogin, RegistrationModel register, Status statusCheckAuth, Status statusLogin, Status statusLogout, Status statusDeleteAccount, Status statusRegister, Status statusSendOtp, Status statusGetOtp, Status statusConfirmOtp, Status statusRefreshToken
+ bool isLoading, Respons respon, String errorMessage, Failures error, bool isGuest, TokenModel dataToken, Map<String, dynamic> errorOtp, Map<String, dynamic> successOtp, Type event, String phoneOtp, ActionConfirm actionConfirmOtp, FromPage fromPage, FromPage verificationTo, LoginModel dataLogin, RegistrationModel register, Status statusCheckAuth, Status statusLogin, Status statusLogout, Status statusDeleteAccount, Status statusCancelDeleteAccount, Status statusRegister, Status statusSendOtp, Status statusGetOtp, Status statusConfirmOtp, Status statusRefreshToken
 });
 
 
@@ -486,7 +524,7 @@ class _$UserStateCopyWithImpl<$Res>
 
 /// Create a copy of UserState
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? isLoading = null,Object? respon = null,Object? errorMessage = null,Object? error = null,Object? isGuest = null,Object? dataToken = null,Object? errorOtp = null,Object? successOtp = null,Object? event = null,Object? phoneOtp = null,Object? actionConfirmOtp = null,Object? fromPage = null,Object? verificationTo = null,Object? dataLogin = null,Object? register = null,Object? statusCheckAuth = null,Object? statusLogin = null,Object? statusLogout = null,Object? statusDeleteAccount = null,Object? statusRegister = null,Object? statusSendOtp = null,Object? statusGetOtp = null,Object? statusConfirmOtp = null,Object? statusRefreshToken = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? isLoading = null,Object? respon = null,Object? errorMessage = null,Object? error = null,Object? isGuest = null,Object? dataToken = null,Object? errorOtp = null,Object? successOtp = null,Object? event = null,Object? phoneOtp = null,Object? actionConfirmOtp = null,Object? fromPage = null,Object? verificationTo = null,Object? dataLogin = null,Object? register = null,Object? statusCheckAuth = null,Object? statusLogin = null,Object? statusLogout = null,Object? statusDeleteAccount = null,Object? statusCancelDeleteAccount = null,Object? statusRegister = null,Object? statusSendOtp = null,Object? statusGetOtp = null,Object? statusConfirmOtp = null,Object? statusRefreshToken = null,}) {
   return _then(_self.copyWith(
 isLoading: null == isLoading ? _self.isLoading : isLoading // ignore: cast_nullable_to_non_nullable
 as bool,respon: null == respon ? _self.respon : respon // ignore: cast_nullable_to_non_nullable
@@ -507,6 +545,7 @@ as RegistrationModel,statusCheckAuth: null == statusCheckAuth ? _self.statusChec
 as Status,statusLogin: null == statusLogin ? _self.statusLogin : statusLogin // ignore: cast_nullable_to_non_nullable
 as Status,statusLogout: null == statusLogout ? _self.statusLogout : statusLogout // ignore: cast_nullable_to_non_nullable
 as Status,statusDeleteAccount: null == statusDeleteAccount ? _self.statusDeleteAccount : statusDeleteAccount // ignore: cast_nullable_to_non_nullable
+as Status,statusCancelDeleteAccount: null == statusCancelDeleteAccount ? _self.statusCancelDeleteAccount : statusCancelDeleteAccount // ignore: cast_nullable_to_non_nullable
 as Status,statusRegister: null == statusRegister ? _self.statusRegister : statusRegister // ignore: cast_nullable_to_non_nullable
 as Status,statusSendOtp: null == statusSendOtp ? _self.statusSendOtp : statusSendOtp // ignore: cast_nullable_to_non_nullable
 as Status,statusGetOtp: null == statusGetOtp ? _self.statusGetOtp : statusGetOtp // ignore: cast_nullable_to_non_nullable
@@ -633,10 +672,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( bool isLoading,  Respons respon,  String errorMessage,  Failures error,  bool isGuest,  TokenModel dataToken,  Map<String, dynamic> errorOtp,  Map<String, dynamic> successOtp,  Type event,  String phoneOtp,  ActionConfirm actionConfirmOtp,  FromPage fromPage,  FromPage verificationTo,  LoginModel dataLogin,  RegistrationModel register,  Status statusCheckAuth,  Status statusLogin,  Status statusLogout,  Status statusDeleteAccount,  Status statusRegister,  Status statusSendOtp,  Status statusGetOtp,  Status statusConfirmOtp,  Status statusRefreshToken)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( bool isLoading,  Respons respon,  String errorMessage,  Failures error,  bool isGuest,  TokenModel dataToken,  Map<String, dynamic> errorOtp,  Map<String, dynamic> successOtp,  Type event,  String phoneOtp,  ActionConfirm actionConfirmOtp,  FromPage fromPage,  FromPage verificationTo,  LoginModel dataLogin,  RegistrationModel register,  Status statusCheckAuth,  Status statusLogin,  Status statusLogout,  Status statusDeleteAccount,  Status statusCancelDeleteAccount,  Status statusRegister,  Status statusSendOtp,  Status statusGetOtp,  Status statusConfirmOtp,  Status statusRefreshToken)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _UserState() when $default != null:
-return $default(_that.isLoading,_that.respon,_that.errorMessage,_that.error,_that.isGuest,_that.dataToken,_that.errorOtp,_that.successOtp,_that.event,_that.phoneOtp,_that.actionConfirmOtp,_that.fromPage,_that.verificationTo,_that.dataLogin,_that.register,_that.statusCheckAuth,_that.statusLogin,_that.statusLogout,_that.statusDeleteAccount,_that.statusRegister,_that.statusSendOtp,_that.statusGetOtp,_that.statusConfirmOtp,_that.statusRefreshToken);case _:
+return $default(_that.isLoading,_that.respon,_that.errorMessage,_that.error,_that.isGuest,_that.dataToken,_that.errorOtp,_that.successOtp,_that.event,_that.phoneOtp,_that.actionConfirmOtp,_that.fromPage,_that.verificationTo,_that.dataLogin,_that.register,_that.statusCheckAuth,_that.statusLogin,_that.statusLogout,_that.statusDeleteAccount,_that.statusCancelDeleteAccount,_that.statusRegister,_that.statusSendOtp,_that.statusGetOtp,_that.statusConfirmOtp,_that.statusRefreshToken);case _:
   return orElse();
 
 }
@@ -654,10 +693,10 @@ return $default(_that.isLoading,_that.respon,_that.errorMessage,_that.error,_tha
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( bool isLoading,  Respons respon,  String errorMessage,  Failures error,  bool isGuest,  TokenModel dataToken,  Map<String, dynamic> errorOtp,  Map<String, dynamic> successOtp,  Type event,  String phoneOtp,  ActionConfirm actionConfirmOtp,  FromPage fromPage,  FromPage verificationTo,  LoginModel dataLogin,  RegistrationModel register,  Status statusCheckAuth,  Status statusLogin,  Status statusLogout,  Status statusDeleteAccount,  Status statusRegister,  Status statusSendOtp,  Status statusGetOtp,  Status statusConfirmOtp,  Status statusRefreshToken)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( bool isLoading,  Respons respon,  String errorMessage,  Failures error,  bool isGuest,  TokenModel dataToken,  Map<String, dynamic> errorOtp,  Map<String, dynamic> successOtp,  Type event,  String phoneOtp,  ActionConfirm actionConfirmOtp,  FromPage fromPage,  FromPage verificationTo,  LoginModel dataLogin,  RegistrationModel register,  Status statusCheckAuth,  Status statusLogin,  Status statusLogout,  Status statusDeleteAccount,  Status statusCancelDeleteAccount,  Status statusRegister,  Status statusSendOtp,  Status statusGetOtp,  Status statusConfirmOtp,  Status statusRefreshToken)  $default,) {final _that = this;
 switch (_that) {
 case _UserState():
-return $default(_that.isLoading,_that.respon,_that.errorMessage,_that.error,_that.isGuest,_that.dataToken,_that.errorOtp,_that.successOtp,_that.event,_that.phoneOtp,_that.actionConfirmOtp,_that.fromPage,_that.verificationTo,_that.dataLogin,_that.register,_that.statusCheckAuth,_that.statusLogin,_that.statusLogout,_that.statusDeleteAccount,_that.statusRegister,_that.statusSendOtp,_that.statusGetOtp,_that.statusConfirmOtp,_that.statusRefreshToken);case _:
+return $default(_that.isLoading,_that.respon,_that.errorMessage,_that.error,_that.isGuest,_that.dataToken,_that.errorOtp,_that.successOtp,_that.event,_that.phoneOtp,_that.actionConfirmOtp,_that.fromPage,_that.verificationTo,_that.dataLogin,_that.register,_that.statusCheckAuth,_that.statusLogin,_that.statusLogout,_that.statusDeleteAccount,_that.statusCancelDeleteAccount,_that.statusRegister,_that.statusSendOtp,_that.statusGetOtp,_that.statusConfirmOtp,_that.statusRefreshToken);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -674,10 +713,10 @@ return $default(_that.isLoading,_that.respon,_that.errorMessage,_that.error,_tha
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( bool isLoading,  Respons respon,  String errorMessage,  Failures error,  bool isGuest,  TokenModel dataToken,  Map<String, dynamic> errorOtp,  Map<String, dynamic> successOtp,  Type event,  String phoneOtp,  ActionConfirm actionConfirmOtp,  FromPage fromPage,  FromPage verificationTo,  LoginModel dataLogin,  RegistrationModel register,  Status statusCheckAuth,  Status statusLogin,  Status statusLogout,  Status statusDeleteAccount,  Status statusRegister,  Status statusSendOtp,  Status statusGetOtp,  Status statusConfirmOtp,  Status statusRefreshToken)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( bool isLoading,  Respons respon,  String errorMessage,  Failures error,  bool isGuest,  TokenModel dataToken,  Map<String, dynamic> errorOtp,  Map<String, dynamic> successOtp,  Type event,  String phoneOtp,  ActionConfirm actionConfirmOtp,  FromPage fromPage,  FromPage verificationTo,  LoginModel dataLogin,  RegistrationModel register,  Status statusCheckAuth,  Status statusLogin,  Status statusLogout,  Status statusDeleteAccount,  Status statusCancelDeleteAccount,  Status statusRegister,  Status statusSendOtp,  Status statusGetOtp,  Status statusConfirmOtp,  Status statusRefreshToken)?  $default,) {final _that = this;
 switch (_that) {
 case _UserState() when $default != null:
-return $default(_that.isLoading,_that.respon,_that.errorMessage,_that.error,_that.isGuest,_that.dataToken,_that.errorOtp,_that.successOtp,_that.event,_that.phoneOtp,_that.actionConfirmOtp,_that.fromPage,_that.verificationTo,_that.dataLogin,_that.register,_that.statusCheckAuth,_that.statusLogin,_that.statusLogout,_that.statusDeleteAccount,_that.statusRegister,_that.statusSendOtp,_that.statusGetOtp,_that.statusConfirmOtp,_that.statusRefreshToken);case _:
+return $default(_that.isLoading,_that.respon,_that.errorMessage,_that.error,_that.isGuest,_that.dataToken,_that.errorOtp,_that.successOtp,_that.event,_that.phoneOtp,_that.actionConfirmOtp,_that.fromPage,_that.verificationTo,_that.dataLogin,_that.register,_that.statusCheckAuth,_that.statusLogin,_that.statusLogout,_that.statusDeleteAccount,_that.statusCancelDeleteAccount,_that.statusRegister,_that.statusSendOtp,_that.statusGetOtp,_that.statusConfirmOtp,_that.statusRefreshToken);case _:
   return null;
 
 }
@@ -689,7 +728,7 @@ return $default(_that.isLoading,_that.respon,_that.errorMessage,_that.error,_tha
 
 
 class _UserState implements UserState {
-  const _UserState({this.isLoading = false, this.respon = Respons.initial, this.errorMessage = "", this.error = const Failures(), this.isGuest = false, this.dataToken = const TokenModel(), final  Map<String, dynamic> errorOtp = const {}, final  Map<String, dynamic> successOtp = const {}, this.event = UserCheckAuth, this.phoneOtp = "", this.actionConfirmOtp = ActionConfirm.login, this.fromPage = FromPage.login, this.verificationTo = FromPage.login, this.dataLogin = const LoginModel(), this.register = const RegistrationModel(), this.statusCheckAuth = Status.initial, this.statusLogin = Status.initial, this.statusLogout = Status.initial, this.statusDeleteAccount = Status.initial, this.statusRegister = Status.initial, this.statusSendOtp = Status.initial, this.statusGetOtp = Status.initial, this.statusConfirmOtp = Status.initial, this.statusRefreshToken = Status.initial}): _errorOtp = errorOtp,_successOtp = successOtp;
+  const _UserState({this.isLoading = false, this.respon = Respons.initial, this.errorMessage = "", this.error = const Failures(), this.isGuest = false, this.dataToken = const TokenModel(), final  Map<String, dynamic> errorOtp = const {}, final  Map<String, dynamic> successOtp = const {}, this.event = UserCheckAuth, this.phoneOtp = "", this.actionConfirmOtp = ActionConfirm.login, this.fromPage = FromPage.login, this.verificationTo = FromPage.login, this.dataLogin = const LoginModel(), this.register = const RegistrationModel(), this.statusCheckAuth = Status.initial, this.statusLogin = Status.initial, this.statusLogout = Status.initial, this.statusDeleteAccount = Status.initial, this.statusCancelDeleteAccount = Status.initial, this.statusRegister = Status.initial, this.statusSendOtp = Status.initial, this.statusGetOtp = Status.initial, this.statusConfirmOtp = Status.initial, this.statusRefreshToken = Status.initial}): _errorOtp = errorOtp,_successOtp = successOtp;
   
 
 @override@JsonKey() final  bool isLoading;
@@ -725,6 +764,7 @@ class _UserState implements UserState {
 @override@JsonKey() final  Status statusLogin;
 @override@JsonKey() final  Status statusLogout;
 @override@JsonKey() final  Status statusDeleteAccount;
+@override@JsonKey() final  Status statusCancelDeleteAccount;
 @override@JsonKey() final  Status statusRegister;
 @override@JsonKey() final  Status statusSendOtp;
 @override@JsonKey() final  Status statusGetOtp;
@@ -741,16 +781,16 @@ _$UserStateCopyWith<_UserState> get copyWith => __$UserStateCopyWithImpl<_UserSt
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _UserState&&(identical(other.isLoading, isLoading) || other.isLoading == isLoading)&&(identical(other.respon, respon) || other.respon == respon)&&(identical(other.errorMessage, errorMessage) || other.errorMessage == errorMessage)&&(identical(other.error, error) || other.error == error)&&(identical(other.isGuest, isGuest) || other.isGuest == isGuest)&&(identical(other.dataToken, dataToken) || other.dataToken == dataToken)&&const DeepCollectionEquality().equals(other._errorOtp, _errorOtp)&&const DeepCollectionEquality().equals(other._successOtp, _successOtp)&&(identical(other.event, event) || other.event == event)&&(identical(other.phoneOtp, phoneOtp) || other.phoneOtp == phoneOtp)&&(identical(other.actionConfirmOtp, actionConfirmOtp) || other.actionConfirmOtp == actionConfirmOtp)&&(identical(other.fromPage, fromPage) || other.fromPage == fromPage)&&(identical(other.verificationTo, verificationTo) || other.verificationTo == verificationTo)&&(identical(other.dataLogin, dataLogin) || other.dataLogin == dataLogin)&&(identical(other.register, register) || other.register == register)&&(identical(other.statusCheckAuth, statusCheckAuth) || other.statusCheckAuth == statusCheckAuth)&&(identical(other.statusLogin, statusLogin) || other.statusLogin == statusLogin)&&(identical(other.statusLogout, statusLogout) || other.statusLogout == statusLogout)&&(identical(other.statusDeleteAccount, statusDeleteAccount) || other.statusDeleteAccount == statusDeleteAccount)&&(identical(other.statusRegister, statusRegister) || other.statusRegister == statusRegister)&&(identical(other.statusSendOtp, statusSendOtp) || other.statusSendOtp == statusSendOtp)&&(identical(other.statusGetOtp, statusGetOtp) || other.statusGetOtp == statusGetOtp)&&(identical(other.statusConfirmOtp, statusConfirmOtp) || other.statusConfirmOtp == statusConfirmOtp)&&(identical(other.statusRefreshToken, statusRefreshToken) || other.statusRefreshToken == statusRefreshToken));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _UserState&&(identical(other.isLoading, isLoading) || other.isLoading == isLoading)&&(identical(other.respon, respon) || other.respon == respon)&&(identical(other.errorMessage, errorMessage) || other.errorMessage == errorMessage)&&(identical(other.error, error) || other.error == error)&&(identical(other.isGuest, isGuest) || other.isGuest == isGuest)&&(identical(other.dataToken, dataToken) || other.dataToken == dataToken)&&const DeepCollectionEquality().equals(other._errorOtp, _errorOtp)&&const DeepCollectionEquality().equals(other._successOtp, _successOtp)&&(identical(other.event, event) || other.event == event)&&(identical(other.phoneOtp, phoneOtp) || other.phoneOtp == phoneOtp)&&(identical(other.actionConfirmOtp, actionConfirmOtp) || other.actionConfirmOtp == actionConfirmOtp)&&(identical(other.fromPage, fromPage) || other.fromPage == fromPage)&&(identical(other.verificationTo, verificationTo) || other.verificationTo == verificationTo)&&(identical(other.dataLogin, dataLogin) || other.dataLogin == dataLogin)&&(identical(other.register, register) || other.register == register)&&(identical(other.statusCheckAuth, statusCheckAuth) || other.statusCheckAuth == statusCheckAuth)&&(identical(other.statusLogin, statusLogin) || other.statusLogin == statusLogin)&&(identical(other.statusLogout, statusLogout) || other.statusLogout == statusLogout)&&(identical(other.statusDeleteAccount, statusDeleteAccount) || other.statusDeleteAccount == statusDeleteAccount)&&(identical(other.statusCancelDeleteAccount, statusCancelDeleteAccount) || other.statusCancelDeleteAccount == statusCancelDeleteAccount)&&(identical(other.statusRegister, statusRegister) || other.statusRegister == statusRegister)&&(identical(other.statusSendOtp, statusSendOtp) || other.statusSendOtp == statusSendOtp)&&(identical(other.statusGetOtp, statusGetOtp) || other.statusGetOtp == statusGetOtp)&&(identical(other.statusConfirmOtp, statusConfirmOtp) || other.statusConfirmOtp == statusConfirmOtp)&&(identical(other.statusRefreshToken, statusRefreshToken) || other.statusRefreshToken == statusRefreshToken));
 }
 
 
 @override
-int get hashCode => Object.hashAll([runtimeType,isLoading,respon,errorMessage,error,isGuest,dataToken,const DeepCollectionEquality().hash(_errorOtp),const DeepCollectionEquality().hash(_successOtp),event,phoneOtp,actionConfirmOtp,fromPage,verificationTo,dataLogin,register,statusCheckAuth,statusLogin,statusLogout,statusDeleteAccount,statusRegister,statusSendOtp,statusGetOtp,statusConfirmOtp,statusRefreshToken]);
+int get hashCode => Object.hashAll([runtimeType,isLoading,respon,errorMessage,error,isGuest,dataToken,const DeepCollectionEquality().hash(_errorOtp),const DeepCollectionEquality().hash(_successOtp),event,phoneOtp,actionConfirmOtp,fromPage,verificationTo,dataLogin,register,statusCheckAuth,statusLogin,statusLogout,statusDeleteAccount,statusCancelDeleteAccount,statusRegister,statusSendOtp,statusGetOtp,statusConfirmOtp,statusRefreshToken]);
 
 @override
 String toString() {
-  return 'UserState(isLoading: $isLoading, respon: $respon, errorMessage: $errorMessage, error: $error, isGuest: $isGuest, dataToken: $dataToken, errorOtp: $errorOtp, successOtp: $successOtp, event: $event, phoneOtp: $phoneOtp, actionConfirmOtp: $actionConfirmOtp, fromPage: $fromPage, verificationTo: $verificationTo, dataLogin: $dataLogin, register: $register, statusCheckAuth: $statusCheckAuth, statusLogin: $statusLogin, statusLogout: $statusLogout, statusDeleteAccount: $statusDeleteAccount, statusRegister: $statusRegister, statusSendOtp: $statusSendOtp, statusGetOtp: $statusGetOtp, statusConfirmOtp: $statusConfirmOtp, statusRefreshToken: $statusRefreshToken)';
+  return 'UserState(isLoading: $isLoading, respon: $respon, errorMessage: $errorMessage, error: $error, isGuest: $isGuest, dataToken: $dataToken, errorOtp: $errorOtp, successOtp: $successOtp, event: $event, phoneOtp: $phoneOtp, actionConfirmOtp: $actionConfirmOtp, fromPage: $fromPage, verificationTo: $verificationTo, dataLogin: $dataLogin, register: $register, statusCheckAuth: $statusCheckAuth, statusLogin: $statusLogin, statusLogout: $statusLogout, statusDeleteAccount: $statusDeleteAccount, statusCancelDeleteAccount: $statusCancelDeleteAccount, statusRegister: $statusRegister, statusSendOtp: $statusSendOtp, statusGetOtp: $statusGetOtp, statusConfirmOtp: $statusConfirmOtp, statusRefreshToken: $statusRefreshToken)';
 }
 
 
@@ -761,7 +801,7 @@ abstract mixin class _$UserStateCopyWith<$Res> implements $UserStateCopyWith<$Re
   factory _$UserStateCopyWith(_UserState value, $Res Function(_UserState) _then) = __$UserStateCopyWithImpl;
 @override @useResult
 $Res call({
- bool isLoading, Respons respon, String errorMessage, Failures error, bool isGuest, TokenModel dataToken, Map<String, dynamic> errorOtp, Map<String, dynamic> successOtp, Type event, String phoneOtp, ActionConfirm actionConfirmOtp, FromPage fromPage, FromPage verificationTo, LoginModel dataLogin, RegistrationModel register, Status statusCheckAuth, Status statusLogin, Status statusLogout, Status statusDeleteAccount, Status statusRegister, Status statusSendOtp, Status statusGetOtp, Status statusConfirmOtp, Status statusRefreshToken
+ bool isLoading, Respons respon, String errorMessage, Failures error, bool isGuest, TokenModel dataToken, Map<String, dynamic> errorOtp, Map<String, dynamic> successOtp, Type event, String phoneOtp, ActionConfirm actionConfirmOtp, FromPage fromPage, FromPage verificationTo, LoginModel dataLogin, RegistrationModel register, Status statusCheckAuth, Status statusLogin, Status statusLogout, Status statusDeleteAccount, Status statusCancelDeleteAccount, Status statusRegister, Status statusSendOtp, Status statusGetOtp, Status statusConfirmOtp, Status statusRefreshToken
 });
 
 
@@ -778,7 +818,7 @@ class __$UserStateCopyWithImpl<$Res>
 
 /// Create a copy of UserState
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? isLoading = null,Object? respon = null,Object? errorMessage = null,Object? error = null,Object? isGuest = null,Object? dataToken = null,Object? errorOtp = null,Object? successOtp = null,Object? event = null,Object? phoneOtp = null,Object? actionConfirmOtp = null,Object? fromPage = null,Object? verificationTo = null,Object? dataLogin = null,Object? register = null,Object? statusCheckAuth = null,Object? statusLogin = null,Object? statusLogout = null,Object? statusDeleteAccount = null,Object? statusRegister = null,Object? statusSendOtp = null,Object? statusGetOtp = null,Object? statusConfirmOtp = null,Object? statusRefreshToken = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? isLoading = null,Object? respon = null,Object? errorMessage = null,Object? error = null,Object? isGuest = null,Object? dataToken = null,Object? errorOtp = null,Object? successOtp = null,Object? event = null,Object? phoneOtp = null,Object? actionConfirmOtp = null,Object? fromPage = null,Object? verificationTo = null,Object? dataLogin = null,Object? register = null,Object? statusCheckAuth = null,Object? statusLogin = null,Object? statusLogout = null,Object? statusDeleteAccount = null,Object? statusCancelDeleteAccount = null,Object? statusRegister = null,Object? statusSendOtp = null,Object? statusGetOtp = null,Object? statusConfirmOtp = null,Object? statusRefreshToken = null,}) {
   return _then(_UserState(
 isLoading: null == isLoading ? _self.isLoading : isLoading // ignore: cast_nullable_to_non_nullable
 as bool,respon: null == respon ? _self.respon : respon // ignore: cast_nullable_to_non_nullable
@@ -799,6 +839,7 @@ as RegistrationModel,statusCheckAuth: null == statusCheckAuth ? _self.statusChec
 as Status,statusLogin: null == statusLogin ? _self.statusLogin : statusLogin // ignore: cast_nullable_to_non_nullable
 as Status,statusLogout: null == statusLogout ? _self.statusLogout : statusLogout // ignore: cast_nullable_to_non_nullable
 as Status,statusDeleteAccount: null == statusDeleteAccount ? _self.statusDeleteAccount : statusDeleteAccount // ignore: cast_nullable_to_non_nullable
+as Status,statusCancelDeleteAccount: null == statusCancelDeleteAccount ? _self.statusCancelDeleteAccount : statusCancelDeleteAccount // ignore: cast_nullable_to_non_nullable
 as Status,statusRegister: null == statusRegister ? _self.statusRegister : statusRegister // ignore: cast_nullable_to_non_nullable
 as Status,statusSendOtp: null == statusSendOtp ? _self.statusSendOtp : statusSendOtp // ignore: cast_nullable_to_non_nullable
 as Status,statusGetOtp: null == statusGetOtp ? _self.statusGetOtp : statusGetOtp // ignore: cast_nullable_to_non_nullable

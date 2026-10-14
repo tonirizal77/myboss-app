@@ -8,3 +8,4 @@ part 'access_server.dart';
 part 'endpoints.dart';
 part 'config_server.dart';
 part 'mixin_config.dart';
+part 'delete_account_local_mock.dart';

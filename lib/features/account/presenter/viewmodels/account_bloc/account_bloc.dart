@@ -22,6 +22,7 @@ part 'events/event_contact_us.dart';
 part 'events/event_tnc.dart';
 part 'events/event_stamps_history.dart';
 part 'events/event_vouchers.dart';
+part 'events/event_reasons.dart';
 part 'events/event_reset_account.dart';
 
 class AccountBloc extends HydratedBloc<AccountEvent, AccountState> {
@@ -32,6 +33,7 @@ class AccountBloc extends HydratedBloc<AccountEvent, AccountState> {
     on<_EventTnc>(_onEventTnc);
     on<_EventStampsHistory>(_onEventStampsHistory);
     on<_EventVouchers>(_onEventVouchers);
+    on<_EventReasons>(_onEventReasons);
     on<_EventResetAccount>(_onEventResetAccount);
   }
 

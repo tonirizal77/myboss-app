@@ -16,6 +16,7 @@ abstract class VerifyModel with _$VerifyModel {
     @Default("") String newEmail,
     @Default("") String otp,
     @Default("") String newOtp,
+    @Default(ReasonModel()) ReasonModel reason,
     @Default(RegistrationModel()) RegistrationModel register,
   }) = _VerifyModel;
 
