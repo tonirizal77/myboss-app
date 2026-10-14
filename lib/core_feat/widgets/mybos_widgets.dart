@@ -1,6 +1,8 @@
 export 'mybos_bottom_sheet.dart';
 export 'mybos_button.dart';
 export 'mybos_dialog.dart';
+export 'mybos_glow_panel.dart';
+export 'mybos_icon_tabs.dart';
 export 'mybos_header.dart';
 export 'mybos_segmented.dart';
 export 'mybos_status_chip.dart';

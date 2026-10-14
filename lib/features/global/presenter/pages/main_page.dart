@@ -110,7 +110,7 @@ class _MainPageState extends State<MainPage> with WidgetsBindingObserver {
             children: [
               const HomePage(),
               const MenuPage(),
-              const StoresPage(),
+              const PromoPage(),
               const AccountPage(),
             ],
           ),

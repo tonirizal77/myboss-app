@@ -3,6 +3,7 @@ import 'global/global_ft.dart';
 import 'home/home_ft.dart';
 import 'stores/stores_ft.dart';
 import 'menu/menu_ft.dart';
+import 'promo/promo_ft.dart';
 import 'account/account_ft.dart';
 import 'verifications/verifications_ft.dart';
 
@@ -11,6 +12,7 @@ export 'auth/auth_ft.dart';
 export 'global/global_ft.dart';
 export 'home/home_ft.dart';
 export 'menu/menu_ft.dart';
+export 'promo/promo_ft.dart';
 export 'stores/stores_ft.dart';
 export 'account/account_ft.dart';
 export 'verifications/verifications_ft.dart';
@@ -33,6 +35,9 @@ abstract class InjectionFeatures {
 
     /// 4. Menu
     await MenuFt.injectors();
+
+    /// 4b. Promo
+    await PromoFt.injectors();
 
     /// 5. Account
     await AccountFt.injectors();

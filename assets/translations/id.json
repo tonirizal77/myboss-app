@@ -111,6 +111,23 @@
     "new_badge": "Terbaru"
   },
 
+  "promo": {
+    "tab_all": "Semua",
+    "tab_points": "Poin",
+    "tab_voucher": "Voucher",
+    "redeem_title": "Tukar poin & voucher di toko.",
+    "redeem_subtitle": "Ketuk barcode untuk mulai menukar di kasir toko.",
+    "points_title": "Poin",
+    "points_available": "{} poin tersedia",
+    "points_guest": "Daftar untuk dapat poin di setiap pembelian dan tukarkan dengan produk gratis.",
+    "voucher_title": "Voucher",
+    "voucher_count": "{} diskon untukmu",
+    "voucher_guest": "Daftar untuk akses konten lebih banyak dan voucher khusus member.",
+    "code_copied": "Kode disalin",
+    "terms": "Syarat & ketentuan",
+    "copy_code": "Salin kode"
+  },
+
   "points": {
     "title": "Poin",
     "balance": "{} poin",

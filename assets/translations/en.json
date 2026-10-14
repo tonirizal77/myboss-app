@@ -111,6 +111,23 @@
     "new_badge": "New"
   },
 
+  "promo": {
+    "tab_all": "All",
+    "tab_points": "Points",
+    "tab_voucher": "Voucher",
+    "redeem_title": "Redeem points & vouchers in-store.",
+    "redeem_subtitle": "Tap barcode to start redeem at store's cashier.",
+    "points_title": "Points",
+    "points_available": "{} points available",
+    "points_guest": "Sign up to earn points with every purchase and redeem them for free items.",
+    "voucher_title": "Voucher",
+    "voucher_count": "{} discounts for you",
+    "voucher_guest": "Sign up to access more content and exclusive member vouchers.",
+    "code_copied": "Code copied",
+    "terms": "Terms & conditions",
+    "copy_code": "Copy code"
+  },
+
   "points": {
     "title": "Points",
     "balance": "{} points",

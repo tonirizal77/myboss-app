@@ -22,6 +22,7 @@ class ProductSearchField extends StatelessWidget {
         decoration: InputDecoration(
           filled: true,
           fillColor: MyBossColors.surface,
+          isDense: true,
           contentPadding: const EdgeInsets.symmetric(horizontal: 16),
           hintText: LocaleKeys.product_search.tr(),
           hintStyle: MyBossTextStyles.bodyBig2.copyWith(

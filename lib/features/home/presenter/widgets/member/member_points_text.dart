@@ -4,6 +4,36 @@ part of '../widgets.dart';
 /// expiry lines. Shared by the Home member hero, the redeem panel and the
 /// Membership Card sheet.
 class MemberPointsText extends StatelessWidget {
+  /// "100 expires in 9 days" with the amount in bold (Figma).
+  Widget _expiryLine(int days, TextAlign textAlign) {
+    final amount = '${summary.expiringPoints}';
+    final text = LocaleKeys.points_expires_in.tr(args: [amount, '$days']);
+    final style = MyBossTextStyles.body.copyWith(
+      color: MyBossColors.onSurfaceVariant,
+    );
+    final i = text.indexOf(amount);
+
+    return Text.rich(
+      i < 0
+          ? TextSpan(text: text)
+          : TextSpan(
+              children: [
+                TextSpan(text: text.substring(0, i)),
+                TextSpan(
+                  text: amount,
+                  style: style.copyWith(
+                    color: MyBossColors.onSurface,
+                    fontWeight: FontWeight.w700,
+                  ),
+                ),
+                TextSpan(text: text.substring(i + amount.length)),
+              ],
+            ),
+      textAlign: textAlign,
+      style: style,
+    );
+  }
+
   const MemberPointsText({
     super.key,
     required this.summary,
@@ -54,15 +84,7 @@ class MemberPointsText extends StatelessWidget {
         ),
         if (summary.expiringPoints > 0 && expires != null) ...[
           const SizedBox(height: 4),
-          Text(
-            LocaleKeys.points_expires_in.tr(
-              args: ['${summary.expiringPoints}', '$days'],
-            ),
-            textAlign: textAlign,
-            style: MyBossTextStyles.body.copyWith(
-              color: MyBossColors.onSurfaceVariant,
-            ),
-          ),
+          _expiryLine(days, textAlign),
           const SizedBox(height: 4),
           Text(
             PointsFormat.dateLong(expires, id: id),

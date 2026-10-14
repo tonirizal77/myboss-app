@@ -35,8 +35,8 @@ class _MenuPageState extends State<MenuPage> {
   @override
   Widget build(BuildContext context) {
     return ResponsivePage(
-      colorPage: MyBossColors.surface,
-      backgroundColor: MyBossColors.surface,
+      colorPage: ProductCategoryBar.background,
+      backgroundColor: ProductCategoryBar.background,
       useSafeArea: true,
       useScrollView: true,
       controller: _scroll,
@@ -84,6 +84,7 @@ class _MenuPageState extends State<MenuPage> {
       );
     }
 
+    // Filtered: grid straight on the page (Figma), no card.
     return ProductGrid(products: state.products);
   }
 }

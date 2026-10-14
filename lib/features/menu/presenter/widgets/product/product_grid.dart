@@ -64,7 +64,13 @@ class ProductTile extends StatelessWidget {
         width: width,
         child: Column(
           children: [
-            AspectRatio(aspectRatio: 1, child: ProductImage(product.cover)),
+            AspectRatio(
+              aspectRatio: 1,
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(8),
+                child: ProductImage(product.cover, fit: BoxFit.cover),
+              ),
+            ),
             const SizedBox(height: 4),
             Text(
               product.name,
@@ -104,33 +110,55 @@ class ProductSection extends StatelessWidget {
     final preview = ProductSection.preview(context);
 
     return Padding(
-      padding: const EdgeInsets.only(bottom: 48),
-      child: Column(
-        children: [
-          Text(
-            category.name,
-            style: MyBossTextStyles.title.copyWith(
-              color: MyBossColors.onSurface,
-            ),
-          ),
-          const SizedBox(height: 24),
-          ProductGrid(products: products.take(preview).toList()),
-          if (products.length > preview) ...[
-            const SizedBox(height: 16),
-            MyBossButton(
-              label: LocaleKeys.product_see_more.tr(),
-              role: MyBossButtonRole.secondary,
-              trailing: Icon(
-                Icons.arrow_forward,
-                size: 20,
+      padding: const EdgeInsets.only(bottom: 16),
+      child: ProductCard(
+        child: Column(
+          children: [
+            Text(
+              category.name,
+              style: MyBossTextStyles.title.copyWith(
                 color: MyBossColors.onSurface,
               ),
-              onPressed: () =>
-                  context.read<ProductCubit>().selectCategory(category.id),
             ),
+            const SizedBox(height: 16),
+            ProductGrid(products: products.take(preview).toList()),
+            if (products.length > preview) ...[
+              const SizedBox(height: 16),
+              MyBossButton(
+                label: LocaleKeys.product_see_more.tr(),
+                role: MyBossButtonRole.secondary,
+                trailing: Icon(
+                  Icons.arrow_forward,
+                  size: 20,
+                  color: MyBossColors.onSurface,
+                ),
+                onPressed: () =>
+                    context.read<ProductCubit>().selectCategory(category.id),
+              ),
+            ],
           ],
-        ],
+        ),
       ),
+    );
+  }
+}
+
+/// Black rounded card holding a category section or the filtered grid.
+class ProductCard extends StatelessWidget {
+  const ProductCard({super.key, required this.child});
+
+  final Widget child;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: double.infinity,
+      padding: const EdgeInsets.fromLTRB(16, 20, 16, 20),
+      decoration: BoxDecoration(
+        color: MyBossColors.surface,
+        borderRadius: BorderRadius.circular(20),
+      ),
+      child: child,
     );
   }
 }
