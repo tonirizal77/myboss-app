@@ -92,6 +92,10 @@ class _GuestCatalogState extends State<GuestCatalog> {
               Assets.icArrowSquareRight,
               width: 24,
               height: 24,
+              colorFilter: ColorFilter.mode(
+                MyBossColors.onPrimary,
+                BlendMode.srcIn,
+              ),
             ),
             // Product tab
             onPressed: () => MainPageFlow.onChangeTab(context, 1),

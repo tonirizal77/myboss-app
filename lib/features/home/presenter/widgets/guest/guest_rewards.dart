@@ -63,6 +63,10 @@ class GuestRewards extends StatelessWidget {
                 Assets.icArrowSquareRight,
                 width: 24,
                 height: 24,
+                colorFilter: ColorFilter.mode(
+                  MyBossColors.onPrimary,
+                  BlendMode.srcIn,
+                ),
               ),
               onPressed: () => UserFlows.goToRegisterPage(context),
             ),

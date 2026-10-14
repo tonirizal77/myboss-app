@@ -45,7 +45,15 @@ class GuestHero extends StatelessWidget {
               const SizedBox(height: 24),
               MyBossButton(
                 label: LocaleKeys.guest_home_sign_up.tr(),
-                leading: SvgPicture.asset(Assets.icUser, width: 24, height: 24),
+                leading: SvgPicture.asset(
+                  Assets.icUser,
+                  width: 24,
+                  height: 24,
+                  colorFilter: ColorFilter.mode(
+                    MyBossColors.onPrimary,
+                    BlendMode.srcIn,
+                  ),
+                ),
                 onPressed: () => UserFlows.goToRegisterPage(context),
               ),
               const SizedBox(height: 16),
