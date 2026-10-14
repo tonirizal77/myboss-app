@@ -109,6 +109,7 @@ flutter:
     - assets/icons/mybos/
     - assets/images/
     - assets/images/brands/
+    - assets/images/avatars/
     - assets/svg/
     - assets/translations/
 

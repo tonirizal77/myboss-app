@@ -24,6 +24,7 @@ class MyBossTextField extends StatelessWidget {
     this.obscureText = false,
     this.maxLength,
     this.autofocus = false,
+    this.textCapitalization = TextCapitalization.none,
   });
 
   final String? label;
@@ -42,6 +43,7 @@ class MyBossTextField extends StatelessWidget {
   final bool obscureText;
   final int? maxLength;
   final bool autofocus;
+  final TextCapitalization textCapitalization;
 
   OutlineInputBorder _border(Color color) => OutlineInputBorder(
     borderRadius: BorderRadius.circular(5),
@@ -68,6 +70,7 @@ class MyBossTextField extends StatelessWidget {
           focusNode: focusNode,
           enabled: enabled,
           autofocus: autofocus,
+          textCapitalization: textCapitalization,
           obscureText: obscureText,
           maxLength: maxLength,
           keyboardType: keyboardType,
@@ -88,12 +91,21 @@ class MyBossTextField extends StatelessWidget {
             isDense: false,
             filled: true,
             fillColor: MyBossColors.surface,
-            prefixIcon: prefix,
+            // Figma: 16px side padding, 22px icon, 8px gap.
+            prefixIcon: prefix == null
+                ? null
+                : Padding(
+                    padding: const EdgeInsets.only(left: 16, right: 8),
+                    child: prefix,
+                  ),
+            prefixIconConstraints: const BoxConstraints(),
             suffixIcon: suffix,
             constraints: const BoxConstraints(minHeight: 48),
-            contentPadding: const EdgeInsets.symmetric(
-              horizontal: 16,
-              vertical: 12,
+            contentPadding: EdgeInsets.fromLTRB(
+              prefix == null ? 16 : 0,
+              12,
+              16,
+              12,
             ),
             border: _border(MyBossColors.outline),
             enabledBorder: _border(MyBossColors.outline),

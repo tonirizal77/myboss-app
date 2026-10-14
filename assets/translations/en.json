@@ -204,16 +204,19 @@
   "auth": {
       "title": "Earn points,\nGet free quality gadgets",
       "subtitle": "Login to your Ha-Yo profile first",
-      "register_title": "Make Ha-Yo Profile",
+      "register_title": "Join & get benefits",
       "btn_ready": "I'm so ready!",
       "have_account": "Already have an account?",
-      "sign_in": "Sign In",
+      "sign_in": "Sign in",
       "error_name_required": "Name is required",
       "error_name_length": "Minimum name 3 letters",
       "tab_phone": "Phone",
       "tab_email": "Email",
       "label_email": "Email",
-      "invalid_email": "Invalid email address"
+      "invalid_email": "Invalid email address",
+      "btn_register": "Sign me in",
+      "terms_prefix": "By signing up, you agree to our ",
+      "terms_link": "Terms & Conditions"
   },
 
   "global": {

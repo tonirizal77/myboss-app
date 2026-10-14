@@ -1,5 +1,8 @@
 part of '../widgets.dart';
 
+/// Avatar picker (Figma `avatar`): a row of 64px avatars, the selected one is
+/// circled by a green ring. Uses the API list, falling back to the predefined
+/// MyBoss avatars.
 class AvatarWidget extends StatefulWidget {
   final void Function(AvatarsModel)? onTap;
 
@@ -13,6 +16,12 @@ class _AvatarWidgetState extends State<AvatarWidget>
     with AutomaticKeepAliveClientMixin {
   AvatarsModel _selected = AvatarsModel();
 
+  /// Predefined avatars (ids 1..n) used when the API has none.
+  late final List<AvatarsModel> _fallback = List.generate(
+    Assets.avatarsMyBoss.length,
+    (i) => AvatarsModel(id: i + 1, fimg: Assets.avatarsMyBoss[i]),
+  );
+
   @override
   void initState() {
     super.initState();
@@ -20,8 +29,6 @@ class _AvatarWidgetState extends State<AvatarWidget>
     context.read<ProfileBloc>().add(ProfileEvent.getAvatar());
 
     _selected = ProfileEditFlows.formData.avatar;
-
-    PrintHelper.printError("__init avatar: $_selected");
   }
 
   @override
@@ -40,130 +47,124 @@ class _AvatarWidgetState extends State<AvatarWidget>
         }
       },
       builder: (context, state) {
-        final List<AvatarsModel> _listAvatar =
-            state.avatarList.data?.toList() ?? _listDummy.toList();
+        final list = state.avatarList.data?.toList() ?? <AvatarsModel>[];
+        final avatars = list.isEmpty ? _fallback : list;
 
-        return state.map((state) {
-          // if (state.statusFecthAvatars == Status.loading) {
-          //   return const LoadingWidget(absolute: false);
-          // }
+        // Preselect the first avatar (and report it to the form).
+        if (_selected.id == null && avatars.isNotEmpty) {
+          _selected = avatars.first;
+          WidgetsBinding.instance.addPostFrameCallback((_) {
+            if (mounted) widget.onTap?.call(_selected);
+          });
+        }
 
-          return Responsive(
-            /// Phone
-            mobile: SingleChildScrollView(
-              scrollDirection: Axis.horizontal,
-              padding: EdgeInsets.symmetric(horizontal: 16),
-              child: Row(
-                crossAxisAlignment: .start,
-                spacing: 12,
-                children: _generateChild(context, _listAvatar),
-              ),
+        final children = [
+          for (var i = 0; i < avatars.length; i++)
+            _AvatarItem(
+              avatar: avatars[i],
+              fallbackAsset:
+                  Assets.avatarsMyBoss[i % Assets.avatarsMyBoss.length],
+              selected: _selected.id == avatars[i].id,
+              onTap: () {
+                setState(() => _selected = avatars[i]);
+                widget.onTap?.call(avatars[i]);
+              },
             ),
+        ];
 
-            /// Tablet
-            tablet: Container(
-              alignment: Alignment.center,
-              padding: EdgeInsets.all(8),
-              width: 240,
-              child: Wrap(
-                alignment: WrapAlignment.center,
-                crossAxisAlignment: .center,
-                spacing: 12,
-                runSpacing: 12,
-                children: _generateChild(context, _listAvatar),
-              ),
+        return Responsive(
+          /// Phone
+          mobile: SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            clipBehavior: Clip.none,
+            padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 4),
+            child: Row(spacing: 8, children: children),
+          ),
+
+          /// Tablet
+          tablet: Container(
+            alignment: Alignment.center,
+            padding: const EdgeInsets.all(8),
+            width: 260,
+            child: Wrap(
+              alignment: WrapAlignment.center,
+              spacing: 8,
+              runSpacing: 8,
+              children: children,
             ),
-          );
-        });
+          ),
+        );
       },
     );
   }
 
-  /// Dummy Avatars
-  final List<AvatarsModel> _listDummy = [
-    AvatarsModel(id: 1, fimg: Assets.icMaskot1),
-    AvatarsModel(id: 2, fimg: Assets.icMaskot2),
-    AvatarsModel(id: 3, fimg: Assets.icMaskot3),
-    AvatarsModel(id: 4, fimg: Assets.icMaskot4),
-    AvatarsModel(id: 5, fimg: Assets.icMaskot5),
-    AvatarsModel(id: 6, fimg: Assets.icMaskot6),
-    AvatarsModel(id: 7, fimg: Assets.icMaskot7),
-    AvatarsModel(id: 8, fimg: Assets.icMaskot8),
-  ];
-
-  /// Dummy Colors
-  final List<Color> _colors = [
-    AppColors.maskot1,
-    AppColors.maskot2,
-    AppColors.maskot3,
-    AppColors.maskot4,
-    AppColors.maskot5,
-    AppColors.maskot6,
-    AppColors.maskot7,
-    AppColors.maskot8,
-  ];
-
-  List<Widget> _generateChild(
-    BuildContext context,
-    List<AvatarsModel> _listAvatar,
-  ) {
-    return List.generate(_listAvatar.length, (i) {
-      final _avatar = _listAvatar[i];
-
-      final _icon = _avatar.fimg ?? _listDummy[i].fimg ?? "";
-      final _iconErr = _listDummy[i].fimg;
-      final _color = _colors[i];
-
-      if (_selected.id == null) {
-        _selected = _avatar;
-      }
-
-      final _isSelected = _selected.id == _avatar.id;
-
-      return ButtonsWidget(
-        rounded: 32,
-        height: 64,
-        width: 64,
-        isBorder: _isSelected,
-        borderColor: AppTheme.primary(context),
-        borderWidth: 2,
-        padding: EdgeInsets.all(4),
-        color: Colors.transparent,
-        onTap: () {
-          setState(() => _selected = _avatar);
-
-          PrintHelper.printWarning(" pilih avatar: $_selected");
-
-          widget.onTap != null ? widget.onTap!(_selected) : null;
-        },
-        child: Stack(
-          alignment: .topCenter,
-          children: [
-            Container(
-              alignment: Alignment.center,
-              height: 64,
-              width: 64,
-              padding: EdgeInsets.all(4),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(32),
-                color: _color,
-              ),
-              child: ImageNetwork(
-                imageUrl: _icon,
-                boxFit: BoxFit.cover,
-                width: 56,
-                radius: 28,
-                imgError: _iconErr,
-                onlyIcon: true,
-              ),
-            ),
-            // Text("${_selected.id}"),
-          ],
-        ),
-      );
-    });
-  }
-
   @override
   bool get wantKeepAlive => true;
+}
+
+class _AvatarItem extends StatelessWidget {
+  const _AvatarItem({
+    required this.avatar,
+    required this.fallbackAsset,
+    required this.selected,
+    required this.onTap,
+  });
+
+  final AvatarsModel avatar;
+  final String fallbackAsset;
+  final bool selected;
+  final VoidCallback onTap;
+
+  @override
+  Widget build(BuildContext context) {
+    final image = avatar.fimg ?? '';
+    final fallback = Image.asset(fallbackAsset, fit: BoxFit.cover);
+
+    final Widget picture = image.isEmpty
+        ? fallback
+        : image.startsWith('http')
+        ? Image.network(
+            image,
+            fit: BoxFit.cover,
+            frameBuilder: (_, child, frame, _) =>
+                frame == null ? fallback : child,
+            errorBuilder: (_, _, _) => fallback,
+          )
+        : Image.asset(
+            image,
+            fit: BoxFit.cover,
+            errorBuilder: (_, _, _) => fallback,
+          );
+
+    return GestureDetector(
+      onTap: onTap,
+      child: SizedBox(
+        width: 64,
+        height: 64,
+        child: Stack(
+          clipBehavior: Clip.none,
+          children: [
+            Positioned.fill(
+              child: ClipOval(
+                child: ColoredBox(
+                  color: MyBossColors.surfaceContainerLow,
+                  child: picture,
+                ),
+              ),
+            ),
+            if (selected)
+              Positioned(
+                left: -4,
+                top: -4,
+                child: SvgPicture.asset(
+                  Assets.avatarIndicator,
+                  width: 72,
+                  height: 72,
+                ),
+              ),
+          ],
+        ),
+      ),
+    );
+  }
 }

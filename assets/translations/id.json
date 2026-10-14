@@ -204,7 +204,7 @@
   "auth": {
       "title": "Kumpulkan poin,\nDapatkan gadget berkualitas gratis",
       "subtitle": "Login ke profil Ha-Yo kamu dulu",
-      "register_title": "Buat Profil Ha-Yo",
+      "register_title": "Gabung & dapatkan keuntungan",
       "btn_ready": "Aku siap banget!",
       "have_account": "Sudah punya akun?",
       "sign_in": "Masuk",
@@ -213,7 +213,10 @@
       "tab_phone": "Telepon",
       "tab_email": "Email",
       "label_email": "Email",
-      "invalid_email": "Alamat email tidak valid"
+      "invalid_email": "Alamat email tidak valid",
+      "btn_register": "Daftarkan saya",
+      "terms_prefix": "Dengan mendaftar, kamu menyetujui ",
+      "terms_link": "Syarat & Ketentuan"
   },
 
   "global": {

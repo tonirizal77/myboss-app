@@ -210,4 +210,46 @@ void main() {
       expect(picked, 'email');
     });
   });
+
+  group('MyBossHeader', () {
+    testWidgets('shows the title and closes via the X button', (tester) async {
+      var closed = 0;
+      await tester.pumpWidget(
+        MaterialApp(
+          theme: MyBossTheme.dark,
+          home: Scaffold(
+            appBar: MyBossHeader(
+              title: 'Join & get benefits',
+              onClose: () => closed++,
+            ),
+          ),
+        ),
+      );
+
+      expect(find.text('Join & get benefits'), findsOneWidget);
+      await tester.tap(find.byType(IconButton));
+      expect(closed, 1);
+    });
+
+    testWidgets('hides the close button without onClose', (tester) async {
+      await tester.pumpWidget(
+        MaterialApp(
+          theme: MyBossTheme.dark,
+          home: const Scaffold(appBar: MyBossHeader(title: 'Account')),
+        ),
+      );
+
+      expect(find.byType(IconButton), findsNothing);
+    });
+  });
+
+  group('MyBossTextField prefix', () {
+    testWidgets('renders the prefix icon next to the input', (tester) async {
+      await tester.pumpWidget(
+        _host(const MyBossTextField(label: 'Name', prefix: Icon(Icons.person))),
+      );
+
+      expect(find.byIcon(Icons.person), findsOneWidget);
+    });
+  });
 }

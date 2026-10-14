@@ -23,6 +23,27 @@ class Assets {
   /// Branch avatar fallback (when a branch has no image)
   static const String branchAvatar = 'assets/images/branch_avatar.png';
 
+  /// Register / profile
+  static const String icInputUser = 'assets/icons/mybos/ic_input_user.svg';
+  static const String icInputMail = 'assets/icons/mybos/ic_input_mail.svg';
+  static const String icClose = 'assets/icons/mybos/ic_close.svg';
+  static const String avatarIndicator =
+      'assets/icons/mybos/avatar_indicator.svg';
+
+  /// Predefined avatars (Figma `Pixel * portrait`), used when the API sends none.
+  static const List<String> avatarsMyBoss = [
+    'assets/images/avatars/avatar_01.png',
+    'assets/images/avatars/avatar_02.png',
+    'assets/images/avatars/avatar_03.png',
+    'assets/images/avatars/avatar_04.png',
+    'assets/images/avatars/avatar_05.png',
+    'assets/images/avatars/avatar_06.png',
+    'assets/images/avatars/avatar_07.png',
+    'assets/images/avatars/avatar_08.png',
+    'assets/images/avatars/avatar_09.png',
+    'assets/images/avatars/avatar_10.png',
+  ];
+
   /// Brand logos (Home guest)
   static const String brandOraimo = 'assets/images/brands/brand_oraimo.png';
   static const String brand02 = 'assets/images/brands/brand_02.png';
