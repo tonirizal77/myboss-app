@@ -96,7 +96,7 @@ class RewardCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.all(8),
+      clipBehavior: Clip.antiAlias,
       decoration: BoxDecoration(
         color: MyBossColors.surface,
         borderRadius: BorderRadius.circular(10),
@@ -110,26 +110,32 @@ class RewardCard extends StatelessWidget {
         ],
       ),
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          Expanded(
-            child: Center(
-              child: Image.asset(reward.image, fit: BoxFit.contain),
-            ),
-          ),
-          const SizedBox(height: 8),
-          Text(
-            reward.name,
-            maxLines: 1,
-            overflow: TextOverflow.ellipsis,
-            style: MyBossTextStyles.subtitleSmall.copyWith(
-              color: MyBossColors.onSurface,
-            ),
-          ),
-          Text(
-            LocaleKeys.guest_home_points_value.tr(args: ['${reward.points}']),
-            style: MyBossTextStyles.subtitleSmall.copyWith(
-              color: MyBossColors.onPrimaryContainer,
+          // Picture fills the card width (edge to edge), keeping its ratio.
+          Expanded(child: Image.asset(reward.image, fit: BoxFit.cover)),
+          Padding(
+            padding: const EdgeInsets.fromLTRB(8, 8, 8, 8),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  reward.name,
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                  style: MyBossTextStyles.subtitleSmall.copyWith(
+                    color: MyBossColors.onSurface,
+                  ),
+                ),
+                Text(
+                  LocaleKeys.guest_home_points_value.tr(
+                    args: ['${reward.points}'],
+                  ),
+                  style: MyBossTextStyles.subtitleSmall.copyWith(
+                    color: MyBossColors.onPrimaryContainer,
+                  ),
+                ),
+              ],
             ),
           ),
         ],
