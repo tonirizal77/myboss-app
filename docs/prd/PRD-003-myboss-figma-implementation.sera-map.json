@@ -1,0 +1,538 @@
+{
+  "prd": "PRD-003-myboss-figma-implementation.md",
+  "project_gid": "65ea6511-c5e4-4397-adf0-64a03c9159c7",
+  "epic": {
+    "key": "MYB-1"
+  },
+  "stories": [
+    {
+      "key": "MYB-79",
+      "name": "Fondasi Tema, Aset & Komponen Shared",
+      "tasks": [
+        {
+          "key": "MYB-168",
+          "title": "Cek token tema mobile_app_core (mybos-core) vs token Figma",
+          "deadline": "2026-10-21"
+        },
+        {
+          "key": "MYB-167",
+          "title": "Override token warna gelap & font Poppins di tema",
+          "deadline": "2026-10-21"
+        },
+        {
+          "key": "MYB-166",
+          "title": "Unduh aset logo MyBoss, ikon nav & logo brand dari Figma ke assets/",
+          "deadline": "2026-10-21"
+        },
+        {
+          "key": "MYB-165",
+          "title": "Bottom nav guest (Home, Product, Promo, Account)",
+          "deadline": "2026-10-21"
+        },
+        {
+          "key": "MYB-164",
+          "title": "Logic switch kondisi show/hide FAB + penyesuaian jarak antar menu (pakai template)",
+          "deadline": "2026-10-21"
+        },
+        {
+          "key": "MYB-163",
+          "title": "Komponen tombol primary/secondary & input field",
+          "deadline": "2026-10-21"
+        },
+        {
+          "key": "MYB-162",
+          "title": "Komponen chip status, bottom sheet (anchor+close), dialog konfirmasi",
+          "deadline": "2026-10-21"
+        },
+        {
+          "key": "MYB-161",
+          "title": "Komponen notification animation",
+          "deadline": "2026-10-21"
+        }
+      ]
+    },
+    {
+      "key": "MYB-78",
+      "name": "Splash & Branch Selector",
+      "tasks": [
+        {
+          "key": "MYB-160",
+          "title": "Splash Flutter sesuai frame 01",
+          "deadline": "2026-10-21"
+        },
+        {
+          "key": "MYB-159",
+          "title": "Entity & repository cabang (endpoint store yang ada)",
+          "deadline": "2026-10-21"
+        },
+        {
+          "key": "MYB-158",
+          "title": "BranchCubit + simpan pilihan (hydrated)",
+          "deadline": "2026-10-21"
+        },
+        {
+          "key": "MYB-157",
+          "title": "Widget BranchCard",
+          "deadline": "2026-10-21"
+        },
+        {
+          "key": "MYB-156",
+          "title": "BranchSelectorSheet (judul, list, close)",
+          "deadline": "2026-10-21"
+        },
+        {
+          "key": "MYB-155",
+          "title": "Header cabang di Home (nama, badge status, kota & jarak)",
+          "deadline": "2026-10-21"
+        },
+        {
+          "key": "MYB-154",
+          "title": "Hubungkan header -> sheet -> pilihan cabang",
+          "deadline": "2026-10-21"
+        }
+      ]
+    },
+    {
+      "key": "MYB-77",
+      "name": "Sign In (Telepon/Email)",
+      "tasks": [
+        {
+          "key": "MYB-153",
+          "title": "Layout SignInPage (logo, judul, form, tombol)",
+          "deadline": "2026-10-22"
+        },
+        {
+          "key": "MYB-152",
+          "title": "Switch Telepon/Email (2 tombol di atas input, default Telepon)",
+          "deadline": "2026-10-22"
+        },
+        {
+          "key": "MYB-151",
+          "title": "Input tunggal mengikuti mode switch + validasi tipe",
+          "deadline": "2026-10-22"
+        },
+        {
+          "key": "MYB-150",
+          "title": "State focus/filled & penyesuaian saat keyboard muncul",
+          "deadline": "2026-10-22"
+        },
+        {
+          "key": "MYB-149",
+          "title": "Tombol ikon kanan atas sebagai tombol tutup",
+          "deadline": "2026-10-22"
+        },
+        {
+          "key": "MYB-148",
+          "title": "Loading state Signing In + pesan error",
+          "deadline": "2026-10-22"
+        },
+        {
+          "key": "MYB-147",
+          "title": "Copy en/id sign in + wiring endpoint sign-in/send-code",
+          "deadline": "2026-10-22"
+        }
+      ]
+    },
+    {
+      "key": "MYB-76",
+      "name": "Register",
+      "tasks": [
+        {
+          "key": "MYB-146",
+          "title": "Layout RegisterPage",
+          "deadline": "2026-10-22"
+        },
+        {
+          "key": "MYB-145",
+          "title": "Avatar picker (10 avatar, scroll horizontal)",
+          "deadline": "2026-10-22"
+        },
+        {
+          "key": "MYB-144",
+          "title": "Tiga input form + validasi",
+          "deadline": "2026-10-22"
+        },
+        {
+          "key": "MYB-143",
+          "title": "State empty/filled/ready-to-submit",
+          "deadline": "2026-10-22"
+        },
+        {
+          "key": "MYB-142",
+          "title": "Teks persetujuan + tautan ke halaman T&C yang sudah ada di Account",
+          "deadline": "2026-10-22"
+        },
+        {
+          "key": "MYB-141",
+          "title": "Restyle halaman T&C yang dipakai ulang dari Account",
+          "deadline": "2026-10-22"
+        },
+        {
+          "key": "MYB-140",
+          "title": "Copy en/id register + wiring endpoint sign-up",
+          "deadline": "2026-10-22"
+        }
+      ]
+    },
+    {
+      "key": "MYB-75",
+      "name": "Verifikasi OTP (template)",
+      "tasks": [
+        {
+          "key": "MYB-139",
+          "title": "Restyle halaman metode verifikasi (phone & email)",
+          "deadline": "2026-10-22"
+        },
+        {
+          "key": "MYB-138",
+          "title": "Restyle OTP phone (empty/filled/error)",
+          "deadline": "2026-10-23"
+        },
+        {
+          "key": "MYB-137",
+          "title": "Restyle OTP email (empty/filled/error)",
+          "deadline": "2026-10-23"
+        },
+        {
+          "key": "MYB-136",
+          "title": "Ilustrasi OTP & state tombol resend",
+          "deadline": "2026-10-23"
+        },
+        {
+          "key": "MYB-135",
+          "title": "Copy en/id verifikasi",
+          "deadline": "2026-10-23"
+        }
+      ]
+    },
+    {
+      "key": "MYB-74",
+      "name": "Home Guest",
+      "tasks": [
+        {
+          "key": "MYB-134",
+          "title": "Blok poin & CTA Sign up / I already have an account",
+          "deadline": "2026-10-23"
+        },
+        {
+          "key": "MYB-133",
+          "title": "Strip logo brand + teks",
+          "deadline": "2026-10-23"
+        },
+        {
+          "key": "MYB-132",
+          "title": "Section Our Product Catalogs (kartu produk + chip kategori)",
+          "deadline": "2026-10-23"
+        },
+        {
+          "key": "MYB-131",
+          "title": "Panel Earn Points, Get Free Item (grid 2x2)",
+          "deadline": "2026-10-23"
+        },
+        {
+          "key": "MYB-130",
+          "title": "Separator & CTA View all / Explore",
+          "deadline": "2026-10-23"
+        },
+        {
+          "key": "MYB-129",
+          "title": "State scrolled Home guest",
+          "deadline": "2026-10-23"
+        },
+        {
+          "key": "MYB-128",
+          "title": "Model & datasource Home (statis dulu)",
+          "deadline": "2026-10-23"
+        },
+        {
+          "key": "MYB-127",
+          "title": "HomeCubit guest",
+          "deadline": "2026-10-23"
+        }
+      ]
+    },
+    {
+      "key": "MYB-73",
+      "name": "Home Signed-in & Membership Card",
+      "tasks": [
+        {
+          "key": "MYB-126",
+          "title": "Layout Signed-In Home (frame 02/06)",
+          "deadline": "2026-10-23"
+        },
+        {
+          "key": "MYB-125",
+          "title": "Kartu poin / ringkasan member",
+          "deadline": "2026-10-23"
+        },
+        {
+          "key": "MYB-124",
+          "title": "Bottom sheet Membership Card (barcode)",
+          "deadline": "2026-10-23"
+        },
+        {
+          "key": "MYB-123",
+          "title": "Notification animation Home",
+          "deadline": "2026-10-26"
+        },
+        {
+          "key": "MYB-122",
+          "title": "Adaptasi logika stamps hayo menjadi points",
+          "deadline": "2026-10-26"
+        },
+        {
+          "key": "MYB-121",
+          "title": "Model & HomeCubit signed-in",
+          "deadline": "2026-10-26"
+        }
+      ]
+    },
+    {
+      "key": "MYB-72",
+      "name": "Product Catalog & Detail",
+      "tasks": [
+        {
+          "key": "MYB-120",
+          "title": "Catalog page (top/scrolled)",
+          "deadline": "2026-10-26"
+        },
+        {
+          "key": "MYB-119",
+          "title": "Filter kategori & hasil filter",
+          "deadline": "2026-10-26"
+        },
+        {
+          "key": "MYB-118",
+          "title": "Empty results",
+          "deadline": "2026-10-26"
+        },
+        {
+          "key": "MYB-117",
+          "title": "Product details sheet (gambar, nama, deskripsi)",
+          "deadline": "2026-10-26"
+        },
+        {
+          "key": "MYB-116",
+          "title": "Specs list & related products",
+          "deadline": "2026-10-26"
+        },
+        {
+          "key": "MYB-115",
+          "title": "Model produk MyBoss (ganti MenuYogurtModel/Toping)",
+          "deadline": "2026-10-26"
+        },
+        {
+          "key": "MYB-114",
+          "title": "Repository/datasource produk (statis dulu)",
+          "deadline": "2026-10-26"
+        },
+        {
+          "key": "MYB-113",
+          "title": "Adaptasi MenuBloc",
+          "deadline": "2026-10-26"
+        }
+      ]
+    },
+    {
+      "key": "MYB-71",
+      "name": "Promo (fitur baru)",
+      "tasks": [
+        {
+          "key": "MYB-112",
+          "title": "Struktur feature promo (data/domain/presenter)",
+          "deadline": "2026-10-26"
+        },
+        {
+          "key": "MYB-111",
+          "title": "Promotions page (All) + tab",
+          "deadline": "2026-10-26"
+        },
+        {
+          "key": "MYB-110",
+          "title": "Points Rewards list",
+          "deadline": "2026-10-26"
+        },
+        {
+          "key": "MYB-109",
+          "title": "Vouchers list (coupon card)",
+          "deadline": "2026-10-26"
+        },
+        {
+          "key": "MYB-108",
+          "title": "Voucher details sheet",
+          "deadline": "2026-10-27"
+        },
+        {
+          "key": "MYB-107",
+          "title": "PromoCubit",
+          "deadline": "2026-10-27"
+        },
+        {
+          "key": "MYB-106",
+          "title": "Route & hubungkan ke tab nav Promo",
+          "deadline": "2026-10-27"
+        }
+      ]
+    },
+    {
+      "key": "MYB-70",
+      "name": "Account",
+      "tasks": [
+        {
+          "key": "MYB-105",
+          "title": "Account overview guest & signed-in",
+          "deadline": "2026-10-27"
+        },
+        {
+          "key": "MYB-104",
+          "title": "Enable & sesuaikan ListMenuAkun (termasuk T&C)",
+          "deadline": "2026-10-27"
+        },
+        {
+          "key": "MYB-103",
+          "title": "Edit Profile (avatar, input, button group)",
+          "deadline": "2026-10-27"
+        },
+        {
+          "key": "MYB-102",
+          "title": "Points History (ganti stamps menjadi points)",
+          "deadline": "2026-10-27"
+        },
+        {
+          "key": "MYB-101",
+          "title": "Points Transaction Detail sheet",
+          "deadline": "2026-10-27"
+        },
+        {
+          "key": "MYB-100",
+          "title": "Dialog Sign Out",
+          "deadline": "2026-10-27"
+        },
+        {
+          "key": "MYB-99",
+          "title": "Copy en/id account",
+          "deadline": "2026-10-27"
+        }
+      ]
+    },
+    {
+      "key": "MYB-69",
+      "name": "Change Phone Number",
+      "tasks": [
+        {
+          "key": "MYB-98",
+          "title": "Pilih metode verifikasi ubah nomor",
+          "deadline": "2026-10-27"
+        },
+        {
+          "key": "MYB-97",
+          "title": "OTP nomor lama",
+          "deadline": "2026-10-27"
+        },
+        {
+          "key": "MYB-96",
+          "title": "Input nomor baru (state keyboard)",
+          "deadline": "2026-10-27"
+        },
+        {
+          "key": "MYB-95",
+          "title": "OTP nomor baru",
+          "deadline": "2026-10-27"
+        },
+        {
+          "key": "MYB-94",
+          "title": "State Phone Number Updated + notifikasi",
+          "deadline": "2026-10-27"
+        },
+        {
+          "key": "MYB-93",
+          "title": "Wiring endpoint update phone yang ada",
+          "deadline": "2026-10-28"
+        }
+      ]
+    },
+    {
+      "key": "MYB-68",
+      "name": "Delete Account (template)",
+      "tasks": [
+        {
+          "key": "MYB-92",
+          "title": "Sheet konfirmasi hapus akun (dengan saldo / tanpa saldo)",
+          "deadline": "2026-10-28"
+        },
+        {
+          "key": "MYB-91",
+          "title": "Sheet verifikasi OTP hapus akun (sent/empty/filled)",
+          "deadline": "2026-10-28"
+        },
+        {
+          "key": "MYB-90",
+          "title": "Status request & loading Submitting",
+          "deadline": "2026-10-28"
+        },
+        {
+          "key": "MYB-89",
+          "title": "State Account Deletion Pending",
+          "deadline": "2026-10-28"
+        },
+        {
+          "key": "MYB-88",
+          "title": "Dialog Cancel Deletion & state Canceled",
+          "deadline": "2026-10-28"
+        },
+        {
+          "key": "MYB-87",
+          "title": "Wiring endpoint (tetap TODO(backend))",
+          "deadline": "2026-10-28"
+        }
+      ]
+    },
+    {
+      "key": "MYB-67",
+      "name": "Migrasi Konten Hayo ke MyBoss",
+      "tasks": [
+        {
+          "key": "MYB-86",
+          "title": "Catat endpoint hayo yang dipakai (tidak diubah)",
+          "deadline": "2026-10-28"
+        },
+        {
+          "key": "MYB-85",
+          "title": "Ganti copy hayo di en.json/id.json dan delete_account_sheet",
+          "deadline": "2026-10-28"
+        },
+        {
+          "key": "MYB-84",
+          "title": "Ganti aset logo_hayo_* ke logo MyBoss",
+          "deadline": "2026-10-28"
+        },
+        {
+          "key": "MYB-83",
+          "title": "Hapus aset & kode hayo tak terpakai (maskot, cup, stamps, tier)",
+          "deadline": "2026-10-28"
+        }
+      ]
+    },
+    {
+      "key": "MYB-66",
+      "name": "QA Visual & Verifikasi",
+      "tasks": [
+        {
+          "key": "MYB-82",
+          "title": "Bandingkan hasil dengan screenshot Figma per halaman",
+          "deadline": "2026-10-28"
+        },
+        {
+          "key": "MYB-81",
+          "title": "flutter analyze = No issues, flutter test",
+          "deadline": "2026-10-28"
+        },
+        {
+          "key": "MYB-80",
+          "title": "Build & uji di perangkat (Android staging)",
+          "deadline": "2026-10-28"
+        }
+      ]
+    }
+  ]
+}
