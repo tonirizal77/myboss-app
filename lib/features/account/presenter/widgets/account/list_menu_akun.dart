@@ -129,19 +129,6 @@ class ListMenuAkun extends StatelessWidget {
           Divider(indent: 8, endIndent: 8),
         ],
       ),
-
-      if (isLoggedIn) ...[
-        /// Logout
-        ButtonMenuAkun(
-          icon: Image.asset(Assets.menuLogout),
-          title: Text(
-            LocaleKeys.akun_logout.tr(),
-            style: MyBossTextStyles.subtitle,
-          ),
-          borderRadius: BorderRadius.vertical(bottom: Radius.circular(20)),
-          onTap: () => AccountFlows.goToLogout(context),
-        ),
-      ],
     ];
   }
 }

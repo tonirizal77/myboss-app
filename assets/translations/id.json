@@ -95,6 +95,25 @@
     "sign_up_for_points": "Daftar untuk mendapatkan poin"
   },
 
+  "points": {
+    "title": "Poin",
+    "balance": "{} poin",
+    "expires_in": "{} poin hangus dalam {} hari",
+    "earned": "Poin Diperoleh",
+    "redeemed": "Poin Ditukar",
+    "earned_value": "+{} poin",
+    "redeem_options": "Lihat opsi penukaran",
+    "close": "Tutup",
+    "subtotal": "Subtotal",
+    "discount": "Diskon",
+    "redeem_points": "Tukar Poin",
+    "service_fee": "Biaya Layanan",
+    "tax": "Pajak",
+    "shipping_cost": "Ongkos Kirim",
+    "total": "Total",
+    "empty": "Belum ada aktivitas poin"
+  },
+
   "branch": {
     "title": "Pilih cabang kami",
     "subtitle": "{} cabang di Indonesia",
@@ -118,7 +137,7 @@
     "stamps": "stempel",
     "contact_us": "Hubungi Kami",
     "logout": "Keluar",
-    "delete_account": "Hapus Akun",
+    "delete_account": "Hapus akun saya",
     "delete_account_success": "Akun berhasil dihapus",
     "login_required_title": "Masuk untuk melihat\nakun Anda",
     "login_required_desc": "Login atau daftar untuk melihat profil, stempel, dan voucher Anda.",

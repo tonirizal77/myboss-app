@@ -257,6 +257,10 @@ class AccountFlows {
   }
 
   /// 11. Goto Page TNC Us
+  static void goToPointsPage(BuildContext context) {
+    context.pushNamed(RouteNames.pointsPage);
+  }
+
   static void goToStampPage(BuildContext context) {
     context.pushNamed(RouteNames.stampsHistoryPage);
   }

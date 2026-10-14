@@ -25,6 +25,9 @@ class MyBossTextField extends StatelessWidget {
     this.maxLength,
     this.autofocus = false,
     this.textCapitalization = TextCapitalization.none,
+    this.readOnly = false,
+    this.fillColor,
+    this.onTap,
   });
 
   final String? label;
@@ -44,6 +47,11 @@ class MyBossTextField extends StatelessWidget {
   final int? maxLength;
   final bool autofocus;
   final TextCapitalization textCapitalization;
+
+  /// Shown but not editable (e.g. phone/email that change through OTP).
+  final bool readOnly;
+  final Color? fillColor;
+  final VoidCallback? onTap;
 
   OutlineInputBorder _border(Color color) => OutlineInputBorder(
     borderRadius: BorderRadius.circular(5),
@@ -71,6 +79,8 @@ class MyBossTextField extends StatelessWidget {
           enabled: enabled,
           autofocus: autofocus,
           textCapitalization: textCapitalization,
+          readOnly: readOnly,
+          onTap: onTap,
           obscureText: obscureText,
           maxLength: maxLength,
           keyboardType: keyboardType,
@@ -90,7 +100,7 @@ class MyBossTextField extends StatelessWidget {
             counterText: '',
             isDense: false,
             filled: true,
-            fillColor: MyBossColors.surface,
+            fillColor: fillColor ?? MyBossColors.surface,
             // Figma: 16px side padding, 22px icon, 8px gap.
             prefixIcon: prefix == null
                 ? null

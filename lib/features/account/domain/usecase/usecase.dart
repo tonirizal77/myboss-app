@@ -89,3 +89,30 @@ class GenerateCodeUc extends Usecase<GenCodeModel> {
     return await _repository.generateCode();
   }
 }
+
+class GetPointsSummaryUc extends Usecase<PointsSummary> {
+  final PointsRepo _repository;
+
+  GetPointsSummaryUc(this._repository);
+
+  @override
+  ResultFuture<PointsSummary> call() => _repository.getSummary();
+}
+
+class GetPointHistoryUc extends Usecase<List<PointEntry>> {
+  final PointsRepo _repository;
+
+  GetPointHistoryUc(this._repository);
+
+  @override
+  ResultFuture<List<PointEntry>> call() => _repository.getHistory();
+}
+
+class GetPointDetailUc extends UsecaseParams<PointDetail, int> {
+  final PointsRepo _repository;
+
+  GetPointDetailUc(this._repository);
+
+  @override
+  ResultFuture<PointDetail> call(int id) => _repository.getDetail(id);
+}

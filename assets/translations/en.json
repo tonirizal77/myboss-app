@@ -95,6 +95,25 @@
     "sign_up_for_points": "Sign up to get points"
   },
 
+  "points": {
+    "title": "Points",
+    "balance": "{} points",
+    "expires_in": "{} expires in {} days",
+    "earned": "Point Earned",
+    "redeemed": "Points Redeemed",
+    "earned_value": "+{} point",
+    "redeem_options": "Show redeem options",
+    "close": "Close",
+    "subtotal": "Subtotal",
+    "discount": "Discount",
+    "redeem_points": "Redeem Points",
+    "service_fee": "Service Fee",
+    "tax": "Tax",
+    "shipping_cost": "Shipping Cost",
+    "total": "Total",
+    "empty": "No points activity yet"
+  },
+
   "branch": {
     "title": "Select our branch",
     "subtitle": "{} branches in Indonesia",
@@ -117,8 +136,8 @@
     "tnc": "Terms & Conditions",
     "stamps": "stamps",
     "contact_us": "Contact Us",
-    "logout": "Sign Out",
-    "delete_account": "Delete Account",
+    "logout": "Log Out",
+    "delete_account": "Delete my account",
     "delete_account_success": "Account successfully deleted",
     "login_required_title": "Sign in to see \nyour account",
     "login_required_desc": "Login or register to see your profile, stamps, and vouchers.",

@@ -61,6 +61,12 @@ final class RouteAccount {
     ),
 
     GoRoute(
+      path: "/${RouteNames.pointsPage}",
+      name: RouteNames.pointsPage,
+      builder: (context, state) => const PointsPage(),
+    ),
+
+    GoRoute(
       path: "/${RouteNames.stampsHistoryPage}",
       name: RouteNames.stampsHistoryPage,
       builder: (context, state) => const StampsHistoryPage(),

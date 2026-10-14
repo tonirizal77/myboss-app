@@ -43,6 +43,7 @@ class RouteNames {
   static const String faqPage = 'faq';
   static const String voucherPage = 'voucher';
   static const String stampsHistoryPage = 'stamps-history';
+  static const String pointsPage = 'points';
 
   /// Main Feature (Shell)
   ///

@@ -14,6 +14,7 @@ export 'stamps_history_model/stamps_history_model.dart';
 export 'tnc_model/tnc_model.dart';
 export 'voucher_list_model/voucher_list_model.dart';
 export 'gen_code_model/gen_code_model.dart';
+export 'points/points.dart';
 
 /// Helpers
 class EditProfile extends Equatable {

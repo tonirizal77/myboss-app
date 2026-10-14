@@ -1,25 +1,26 @@
 part of '../pages.dart';
 
+/// Edit profile (Figma `Edit Profile`): avatar picker, name and the phone /
+/// email (changed through OTP), with Cancel / Save at the bottom.
 class EditProfilePage extends StatelessWidget {
   const EditProfilePage({super.key});
 
   @override
   Widget build(BuildContext context) {
     return ResponsivePage(
-      appBarCustom: AppBarCustom(
-        isBlur: false,
+      backgroundColor: MyBossColors.surfaceContainerLow,
+      appBar: MyBossHeader(
         title: LocaleKeys.edit_profile_title.tr(),
         onClose: () => context.pop(),
-        overRightButton: false,
-        rightButton: _rightHeaderButton(context),
       ),
+      padding: EdgeInsets.zero,
+      alignment: Alignment.topCenter,
+      maxWidth: 640,
       useScrollView: true,
       body: BlocConsumer<ProfileBloc, ProfileState>(
         listenWhen: (previous, current) =>
             current.action == EditProfileAction.changeProfile,
         listener: (context, state) async {
-          PrintHelper.printState("__state: ${state}");
-
           if (state.respon == Respons.loading) {
             getIt<LoadingHelper>().turnOnLoading();
           } else {
@@ -30,7 +31,6 @@ class EditProfilePage extends StatelessWidget {
                 message: state.errorMessage,
               );
             } else {
-              // await AccountFlows.getProfile(context);
               await getIt<FlushbarHelper>()
                   .showNormalFlushbar(
                     context: context,
@@ -41,74 +41,59 @@ class EditProfilePage extends StatelessWidget {
           }
         },
         builder: (context, state) {
-          return Container(
-            padding: Responsive.isMobile(context)
-                ? EdgeInsets.only(top: 16)
-                : null,
-            child: Flex(
-              direction: Responsive.isMobile(context) ? .vertical : .horizontal,
-              mainAxisSize: .min,
-              spacing: 16,
-              mainAxisAlignment: .center,
-              crossAxisAlignment: CrossAxisAlignment.center,
+          return Padding(
+            padding: const EdgeInsets.only(top: 24, bottom: 24),
+            child: Column(
               children: [
-                /// Generate Avatar
-                Flexible(
-                  child: AvatarWidget(
-                    onTap: (avatar) {
-                      ProfileEditFlows.updateAvatar(context, avatar);
-                    },
-                  ),
+                /// Avatars
+                AvatarWidget(
+                  onTap: (avatar) =>
+                      ProfileEditFlows.updateAvatar(context, avatar),
                 ),
+                const SizedBox(height: 16),
 
-                /// Form Register
-                Flexible(child: const FormProfile()),
+                /// Form
+                const FormProfile(),
               ],
             ),
           );
         },
       ),
-      bottomNav: _buttonAction(context),
-    );
-  }
+      bottomNav: Container(
+        color: MyBossColors.surface,
+        padding: const EdgeInsets.all(16),
+        child: SafeArea(
+          top: false,
+          child: Row(
+            children: [
+              Expanded(
+                child: MyBossButton(
+                  label: LocaleKeys.button_batal.tr(),
+                  role: MyBossButtonRole.secondary,
+                  size: MyBossButtonSize.large,
+                  expand: true,
+                  onPressed: () => context.pop(),
+                ),
+              ),
+              const SizedBox(width: 16),
+              Expanded(
+                child: MyBossButton(
+                  label: LocaleKeys.button_simpan.tr(),
+                  size: MyBossButtonSize.large,
+                  expand: true,
+                  onPressed: () async {
+                    final data = ProfileEditFlows.formData;
 
-  ButtonAction _buttonAction(BuildContext context) {
-    return ButtonAction(
-      label1: LocaleKeys.button_batal.tr(),
-      label2: LocaleKeys.button_simpan.tr(),
-      enabled: true,
-      onCancel: () => context.pop(),
-      onApply: () async {
-        final _data = ProfileEditFlows.formData;
-        // PrintHelper.inspectx(_data);
-
-        await ProfileEditFlows.updateProfile(context, {
-          'name': _data.name,
-          'avatar_id': _data.avatar.id,
-        });
-      },
-    );
-  }
-
-  SizedBox _rightHeaderButton(BuildContext context) {
-    return SizedBox(
-      width: 240,
-      child: ButtonAction(
-        padding: EdgeInsets.zero,
-        height: 40,
-        enabled: true,
-        onCancel: () {
-          context.pop();
-        },
-        onApply: () async {
-          final _data = ProfileEditFlows.formData;
-          // PrintHelper.inspectx(_data);
-
-          await ProfileEditFlows.updateProfile(context, {
-            'name': _data.name,
-            'avatar_id': _data.avatar.id,
-          });
-        },
+                    await ProfileEditFlows.updateProfile(context, {
+                      'name': data.name,
+                      'avatar_id': data.avatar.id,
+                    });
+                  },
+                ),
+              ),
+            ],
+          ),
+        ),
       ),
     );
   }

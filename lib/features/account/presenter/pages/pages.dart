@@ -16,3 +16,4 @@ part 'stamps_history_page.dart';
 part 'edit_profile/edit_profile_page.dart';
 part 'edit_profile/change_new_phone_page.dart';
 part 'edit_profile/change_new_email_page.dart';
+part 'points_page.dart';

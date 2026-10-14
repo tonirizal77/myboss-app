@@ -35,6 +35,9 @@ class _AccountPageState extends State<AccountPage>
 
     /// Get History Stamps
     await AccountFlows.historyStamps(context);
+
+    /// Points balance + history
+    if (mounted) await context.read<PointsCubit>().load();
   }
 
   @override
@@ -75,30 +78,14 @@ class _AccountPageState extends State<AccountPage>
       children: [
         if (_isLoggedIn) ...[
           const CardAccountMember(),
-          const ListMenuBonus(),
+          const AccountStatsCard(),
+          _logoutRow(context),
+          _deleteRow(context),
         ] else
           const CardLoginRequired(),
 
         /// List Menu
         const ListMenuAkun(),
-
-        /// Delete Account
-        if (_isLoggedIn)
-          CardCustom(
-            radius: 24,
-            isShadow: true,
-            color: AppTheme.surface(context),
-            padding: EdgeInsets.zero,
-            child: ButtonMenuAkun(
-              icon: Icon(Icons.person_remove, color: AppColors.error),
-              arrowRight: true,
-              title: Text(
-                LocaleKeys.akun_delete_account.tr(),
-                style: MyBossTextStyles.subtitle.copyWith(color: AppColors.error),
-              ),
-              onTap: () => AccountFlows.goToDeleteAccount(context),
-            ),
-          ),
 
         /// Follow Us
         const CardFollowUs(),
@@ -145,38 +132,31 @@ class _AccountPageState extends State<AccountPage>
                 spacing: 8,
                 children: [
                   const CardFollowUs(),
-                  if (_isLoggedIn) const ListMenuBonus(),
+                  if (_isLoggedIn) const AccountStatsCard(),
                 ],
               ),
             ),
           ],
         ),
 
-        Flexible(child: const ListMenuAkun()),
+        if (_isLoggedIn) ...[_logoutRow(context), _deleteRow(context)],
 
-        /// Delete Account
-        if (_isLoggedIn)
-          CardCustom(
-            radius: 24,
-            isShadow: true,
-            color: AppTheme.surface(context),
-            padding: EdgeInsets.zero,
-            child: ButtonMenuAkun(
-              icon: Icon(Icons.person_remove, color: AppColors.error),
-              arrowRight: true,
-              title: Text(
-                LocaleKeys.akun_delete_account.tr(),
-                style: MyBossTextStyles.subtitle.copyWith(color: AppColors.error),
-              ),
-              borderRadius: Responsive.isMobile(context)
-                  ? BorderRadius.vertical(bottom: Radius.circular(20))
-                  : BorderRadius.only(bottomRight: Radius.circular(20)),
-              onTap: () => AccountFlows.goToDeleteAccount(context),
-            ),
-          ),
+        Flexible(child: const ListMenuAkun()),
       ],
     );
   }
+
+  Widget _logoutRow(BuildContext context) => AccountDangerRow(
+    icon: Icons.logout,
+    label: LocaleKeys.akun_logout.tr(),
+    onTap: () => AccountFlows.goToLogout(context),
+  );
+
+  Widget _deleteRow(BuildContext context) => AccountDangerRow(
+    icon: Icons.person_remove_outlined,
+    label: LocaleKeys.akun_delete_account.tr(),
+    onTap: () => AccountFlows.goToDeleteAccount(context),
+  );
 
   @override
   bool get wantKeepAlive => true;

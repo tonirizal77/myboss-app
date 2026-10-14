@@ -21,11 +21,15 @@ class AccountFt {
     getIt.registerLazySingleton(() => AccountBloc());
 
     /// 2. Setup Cubit
+    getIt.registerLazySingleton(() => PointsCubit());
 
     /// 3. Setup Repository
     ///
     getIt.registerLazySingleton<ProfileRepo>(
       () => ProfileRepoImpl(remoteData: getIt()),
+    );
+    getIt.registerLazySingleton<PointsRepo>(
+      () => PointsRepoImpl(source: getIt()),
     );
     getIt.registerLazySingleton<AccountRepo>(
       () => AccountRepoImpl(remoteData: getIt()),
@@ -35,6 +39,7 @@ class AccountFt {
     ///
     getIt.registerLazySingleton<ProfileRemote>(() => ProfileRemoteImpl());
     getIt.registerLazySingleton<AccountRemote>(() => AccountRemoteImpl());
+    getIt.registerLazySingleton<PointsSource>(() => const PointsStatic());
 
     /// 5. Setup Usecase
     /// - Profile
@@ -42,6 +47,11 @@ class AccountFt {
     getIt.registerLazySingleton(() => GetProfileUc(getIt()));
     getIt.registerLazySingleton(() => UpdateProfileUc(getIt()));
     getIt.registerLazySingleton(() => GenerateCodeUc(getIt()));
+
+    /// - Points
+    getIt.registerLazySingleton(() => GetPointsSummaryUc(getIt()));
+    getIt.registerLazySingleton(() => GetPointHistoryUc(getIt()));
+    getIt.registerLazySingleton(() => GetPointDetailUc(getIt()));
 
     /// - Account
     getIt.registerLazySingleton(() => GetAboutUsUc(getIt()));
@@ -57,6 +67,7 @@ class AccountFt {
     BlocProviderInjectors.add([
       BlocProvider<ProfileBloc>(create: (_) => getIt<ProfileBloc>()),
       BlocProvider<AccountBloc>(create: (_) => getIt<AccountBloc>()),
+      BlocProvider<PointsCubit>(create: (_) => getIt<PointsCubit>()),
     ]);
   }
 }

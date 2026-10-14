@@ -24,3 +24,14 @@ abstract class AccountRepo {
 
   ResultFuture<VoucherListModel> getVouchers();
 }
+
+/// Points (replaces the hayo stamps).
+abstract class PointsRepo {
+  const PointsRepo();
+
+  ResultFuture<PointsSummary> getSummary();
+
+  ResultFuture<List<PointEntry>> getHistory();
+
+  ResultFuture<PointDetail> getDetail(int id);
+}

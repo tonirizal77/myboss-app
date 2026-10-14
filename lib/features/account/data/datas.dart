@@ -8,3 +8,6 @@ part 'datasource/account_remote.dart';
 
 part 'repository/profile_repo_impl.dart';
 part 'repository/account_repo_impl.dart';
+
+part 'datasource/points_static.dart';
+part 'repository/points_repo_impl.dart';
