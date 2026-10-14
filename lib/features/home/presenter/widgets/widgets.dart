@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:ui' as ui;
 
 import 'package:barcode_widget/barcode_widget.dart';
 import 'package:flutter/material.dart';
@@ -22,3 +23,8 @@ part 'guest/guest_brands.dart';
 part 'guest/guest_catalog.dart';
 part 'guest/guest_rewards.dart';
 part 'guest/guest_home_view.dart';
+
+part 'home_section_divider.dart';
+part 'member/member_points_text.dart';
+part 'member/member_hero.dart';
+part 'member/signed_in_home_view.dart';

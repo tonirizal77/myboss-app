@@ -95,6 +95,11 @@
     "sign_up_for_points": "Sign up to get points"
   },
 
+  "home_member": {
+    "popular_title": "Our Popular Products",
+    "redeem": "Redeem"
+  },
+
   "points": {
     "title": "Points",
     "balance": "{} points",

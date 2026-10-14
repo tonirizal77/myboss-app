@@ -3,10 +3,18 @@ part of '../widgets.dart';
 /// "Our Product Catalogs": centered carousel of product cards, the focused
 /// card is raised, followed by the "View all" call to action.
 class GuestCatalog extends StatefulWidget {
-  const GuestCatalog({super.key, required this.items, required this.total});
+  const GuestCatalog({
+    super.key,
+    required this.items,
+    required this.total,
+    this.title,
+  });
 
   final List<CatalogPreview> items;
   final int total;
+
+  /// Defaults to the guest title ("Our Product Catalogs").
+  final String? title;
 
   @override
   State<GuestCatalog> createState() => _GuestCatalogState();
@@ -48,7 +56,7 @@ class _GuestCatalogState extends State<GuestCatalog> {
       child: Column(
         children: [
           Text(
-            LocaleKeys.guest_home_catalogs_title.tr(),
+            widget.title ?? LocaleKeys.guest_home_catalogs_title.tr(),
             textAlign: TextAlign.center,
             style: MyBossTextStyles.title.copyWith(
               color: MyBossColors.onSurface,

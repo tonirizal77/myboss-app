@@ -25,13 +25,14 @@ class _GuestHomeViewState extends State<GuestHomeView> {
         return Column(
           children: [
             const GuestHero(),
-            Divider(height: 16, thickness: 0.5, color: MyBossColors.outline),
+            const HomeSectionDivider(),
             if (data.brands.isNotEmpty)
               GuestBrands(brands: data.brands, categories: data.categoryCount),
             if (data.catalog.isNotEmpty)
               GuestCatalog(items: data.catalog, total: data.productCount),
             if (data.rewards.isNotEmpty) GuestRewards(rewards: data.rewards),
-            const SizedBox(height: 80),
+            // Room for the bottom nav, in the section background.
+            Container(height: 80, color: MyBossColors.surfaceContainerLowest),
           ],
         );
       },

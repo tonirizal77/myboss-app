@@ -66,21 +66,15 @@ class MainPageFlow {
       await AccountFlows.generateCode(context);
     }
 
-    final _level = context.read<ProfileBloc>().state.profile.level;
-
-    final int _tiers = _level == 0 ? 1 : _level;
-
-    final _bgColor = _tiers == 3
-        ? AppColors.coolest
-        : _tiers == 2
-        ? AppColors.cooler
-        : AppTheme.primary(context);
+    final _bgColor = MyBossColors.surface;
 
     await ResponsiveDialog.sheetOrDialog(
       context,
       bgColor: _bgColor,
       colorFrame: _bgColor,
       colorBody: Colors.transparent,
+      // The card paints its own edge-to-edge glow.
+      paddingBody: 0,
       child: const CardMemberBarcode(),
     );
   }

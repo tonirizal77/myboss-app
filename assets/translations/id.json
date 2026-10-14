@@ -95,6 +95,11 @@
     "sign_up_for_points": "Daftar untuk mendapatkan poin"
   },
 
+  "home_member": {
+    "popular_title": "Produk Populer Kami",
+    "redeem": "Tukar"
+  },
+
   "points": {
     "title": "Poin",
     "balance": "{} poin",

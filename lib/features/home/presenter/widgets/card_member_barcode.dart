@@ -27,6 +27,9 @@ class _CardMemberBarcodeState extends State<CardMemberBarcode> {
     /// Turn on Prevent screenshot
     MainPageFlow.turnOnPrevent(context);
 
+    /// Balance shown under the name.
+    context.read<PointsCubit>().load();
+
     /// Resume the countdown from the active session (set in
     /// [AccountFlows.generateCode]) instead of always restarting at the
     /// full duration - covers the sheet being closed and reopened before
@@ -91,140 +94,145 @@ class _CardMemberBarcodeState extends State<CardMemberBarcode> {
   Widget build(BuildContext context) {
     return BlocBuilder<ProfileBloc, ProfileState>(
       builder: (context, state) {
-        final _tiers = (state.profile.level == 0 ? 1 : state.profile.level);
+        final onSurface = MyBossColors.onSurface;
+        final barcodeStyle = MyBossTextStyles.caption.copyWith(
+          color: onSurface,
+        );
+        final code = state.genCode.code.isEmpty
+            ? state.profile.code
+            : state.genCode.code;
+        final avatar = state.profile.favatar;
+        final fallback = Image.asset(
+          Assets.avatarsMyBoss.first,
+          fit: BoxFit.cover,
+        );
 
-        final _tierLabel = _tiers == 1
-            ? "Cool"
-            : _tiers == 2
-            ? "Cooler"
-            : "Coolest";
-
-        final _iconTier = _tiers == 1
-            ? Assets.icTierCool
-            : _tiers == 2
-            ? Assets.icTierCooler
-            : Assets.icTierCoolest;
-
-        /// Swith Logic Color Text L/D
-        /// 1 - Cool    : w/b
-        /// 2 - Cooler  : b/b
-        /// 3 - Coolest : w/w
-
-        Color? colorText;
-
-        if (_tiers == 1) {
-          colorText = AppTheme.surface(context);
-        } else if (_tiers == 2) {
-          colorText = AppColors.black;
-        } else {
-          colorText = AppColors.white;
-        }
-
-        final _nameStyle = MyBossTextStyles.titleBig1.copyWith(color: colorText);
-        final _tierColor = MyBossTextStyles.titleBig2.copyWith(color: colorText);
-        final _barcodeStyle = MyBossTextStyles.caption.copyWith(color: colorText);
-        final _showThis = MyBossTextStyles.bodyBig2.copyWith(color: colorText);
-        final _genCode = state.genCode.code;
-        final _barcode = _genCode.isEmpty ? state.profile.code : _genCode;
-        final _avatar = state.profile.favatar;
-
-        return Center(
+        // Figma `Membership Card`: brand glow at the top fading into the surface.
+        return Container(
+          width: double.infinity,
+          decoration: BoxDecoration(
+            gradient: RadialGradient(
+              center: Alignment.topCenter,
+              radius: 0.85,
+              // Wider than tall: a flat glow instead of a round arc.
+              transform: const _StretchX(1.4),
+              colors: [
+                MyBossColors.primary.withValues(alpha: 0.9),
+                MyBossColors.surface,
+              ],
+              stops: const [0, 0.7],
+            ),
+          ),
+          padding: const EdgeInsets.fromLTRB(24, 48, 24, 32),
           child: Column(
-            crossAxisAlignment: .center,
+            mainAxisSize: MainAxisSize.min,
             children: [
-              const SizedBox(height: 32),
-
-              /// Profile Circle
-              CircleImage(
-                color: Colors.transparent,
-                size: 80,
-                border: Border.all(color: AppTheme.surface(context), width: 2),
-                child: ImageNetwork(
-                  imageUrl: _avatar,
-                  imgError: widget.image,
-                  width: 80,
-                  radius: 40,
-                  boxFit: BoxFit.contain,
-                  showError: false,
+              /// Avatar
+              Container(
+                width: 84,
+                height: 84,
+                padding: const EdgeInsets.all(2),
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  color: MyBossColors.surface,
+                ),
+                child: ClipOval(
+                  child: avatar.isEmpty
+                      ? fallback
+                      : Image.network(
+                          avatar,
+                          fit: BoxFit.cover,
+                          errorBuilder: (_, _, _) => fallback,
+                        ),
                 ),
               ),
-
-              const SizedBox(height: 32),
-
-              /// Name and Tiers
-              Column(
-                mainAxisAlignment: .center,
-                spacing: 8,
-                children: [
-                  Text(
-                    state.profile.name,
-                    style: _nameStyle,
-                    overflow: TextOverflow.ellipsis,
-                    maxLines: 2,
-                    textAlign: TextAlign.center,
-                  ),
-                  Row(
-                    mainAxisSize: .min,
-                    spacing: 8,
-                    children: [
-                      Text(_tierLabel, style: _tierColor),
-                      Image.asset(_iconTier, height: 32),
-                    ],
-                  ),
-                ],
-              ),
-
               const SizedBox(height: 24),
 
-              /// Barcode
-              Container(
-                child: Column(
-                  mainAxisAlignment: .center,
-                  spacing: 8,
-                  children: [
-                    ClipRRect(
-                      borderRadius: BorderRadiusGeometry.circular(10),
-                      child: BarcodeWidget(
-                        barcode: Barcode.code128(),
-                        style: _barcodeStyle,
-                        backgroundColor: Colors.white,
-                        padding: EdgeInsets.all(24),
-                        data: _barcode,
-                        height: 140,
-                        width: 300,
-                        drawText: false,
-                        errorBuilder: (context, error) => Center(
-                          child: Text(
-                            error,
-                            style: MyBossTextStyles.caption.copyWith(
-                              color: AppColors.warning,
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
+              /// Name
+              Text(
+                state.profile.name,
+                maxLines: 2,
+                overflow: TextOverflow.ellipsis,
+                textAlign: TextAlign.center,
+                style: MyBossTextStyles.titleBig1.copyWith(color: onSurface),
+              ),
+              const SizedBox(height: 16),
 
-                    //
-                    Text(_barcode, style: _barcodeStyle),
-                  ],
+              /// Points
+              BlocBuilder<PointsCubit, PointsState>(
+                buildWhen: (a, b) => a.summary != b.summary,
+                builder: (context, points) => MemberPointsText(
+                  summary: points.summary,
+                  align: CrossAxisAlignment.center,
+                  size: 38,
                 ),
               ),
+              const SizedBox(height: 32),
+
+              /// Barcode
+              ClipRRect(
+                borderRadius: BorderRadius.circular(16),
+                child: BarcodeWidget(
+                  barcode: Barcode.code128(),
+                  style: barcodeStyle,
+                  backgroundColor: Colors.white,
+                  padding: const EdgeInsets.all(24),
+                  data: code.isEmpty ? '-' : code,
+                  height: 140,
+                  width: 280,
+                  drawText: false,
+                  errorBuilder: (context, error) => Center(
+                    child: Text(
+                      error,
+                      style: MyBossTextStyles.caption.copyWith(
+                        color: MyBossColors.danger,
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+              const SizedBox(height: 8),
+              Text(code, style: barcodeStyle),
 
               /// Label
               Padding(
-                padding: const EdgeInsets.only(top: 32.0, bottom: 16),
-                child: Text(LocaleKeys.label_barcode.tr(), style: _showThis),
+                padding: const EdgeInsets.only(top: 32, bottom: 12),
+                child: Text(
+                  LocaleKeys.label_barcode.tr(),
+                  textAlign: TextAlign.center,
+                  style: MyBossTextStyles.bodyBig2.copyWith(color: onSurface),
+                ),
               ),
 
               /// Timer Count Down
               Text(
                 LocaleKeys.label_refresh_in.tr(args: [_countDownLabel]),
-                style: _barcodeStyle,
+                style: barcodeStyle.copyWith(
+                  color: MyBossColors.onSurfaceVariant,
+                ),
               ),
             ],
           ),
         );
       },
     );
+  }
+}
+
+/// Stretches a gradient horizontally around the top center of its box.
+class _StretchX extends GradientTransform {
+  const _StretchX(this.factor);
+
+  final double factor;
+
+  @override
+  Matrix4 transform(Rect bounds, {ui.TextDirection? textDirection}) {
+    final cx = bounds.center.dx;
+    final top = bounds.top;
+
+    return Matrix4.identity()
+      ..translateByDouble(cx, top, 0, 1)
+      ..scaleByDouble(factor, 1, 1, 1)
+      ..translateByDouble(-cx, -top, 0, 1);
   }
 }

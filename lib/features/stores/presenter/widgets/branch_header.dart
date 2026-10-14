@@ -5,6 +5,23 @@ part of 'widgets.dart';
 class BranchHeader extends StatefulWidget {
   const BranchHeader({super.key});
 
+  /// Fixed height (without the status bar) so it can sit in a page header.
+  static const double height = 100;
+
+  /// Page header version: pinned above the scrolling body, below the status
+  /// bar. Use as `ResponsivePage(appBar: BranchHeader.appBar(context))`.
+  static PreferredSizeWidget appBar(BuildContext context) {
+    final top = MediaQuery.paddingOf(context).top;
+
+    return PreferredSize(
+      preferredSize: Size.fromHeight(height + top),
+      child: ColoredBox(
+        color: MyBossColors.surfaceContainerLowest,
+        child: const SafeArea(bottom: false, child: BranchHeader()),
+      ),
+    );
+  }
+
   @override
   State<BranchHeader> createState() => _BranchHeaderState();
 }
@@ -37,7 +54,9 @@ class _BranchHeaderState extends State<BranchHeader> {
             onTap: () => BranchSelectorSheet.show(context),
             child: Container(
               width: double.infinity,
-              padding: const EdgeInsets.fromLTRB(32, 24, 32, 16),
+              height: BranchHeader.height,
+              alignment: Alignment.centerLeft,
+              padding: const EdgeInsets.fromLTRB(32, 16, 32, 16),
               color: MyBossColors.surfaceContainerLowest,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,

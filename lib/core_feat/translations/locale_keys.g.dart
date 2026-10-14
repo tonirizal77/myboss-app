@@ -82,6 +82,9 @@ abstract class  LocaleKeys {
   static const guest_home_points_value = 'guest_home.points_value';
   static const guest_home_sign_up_for_points = 'guest_home.sign_up_for_points';
   static const guest_home = 'guest_home';
+  static const home_member_popular_title = 'home_member.popular_title';
+  static const home_member_redeem = 'home_member.redeem';
+  static const home_member = 'home_member';
   static const points_title = 'points.title';
   static const points_balance = 'points.balance';
   static const points_expires_in = 'points.expires_in';
