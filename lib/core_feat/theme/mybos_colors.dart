@@ -135,6 +135,16 @@ class MyBossColors {
   // Status
   static Color get danger => _palette.danger;
   static Color get onDanger => _palette.onDanger;
+
+  /// Container in the danger hue (vouchers, account deletion): deep
+  /// red-brown in dark mode (Figma), pale red in light mode so dark text
+  /// stays readable. Not a Figma variable - derived from [danger].
+  static Color get dangerContainer {
+    final hsl = HSLColor.fromColor(danger);
+    return _palette.brightness == Brightness.dark
+        ? hsl.withSaturation(0.65).withLightness(0.1).toColor()
+        : hsl.withSaturation(0.8).withLightness(0.95).toColor();
+  }
   static Color get success => _palette.success;
   static Color get onSuccess => _palette.onSuccess;
   static Color get successContainer => _palette.successContainer;

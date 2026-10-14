@@ -11,10 +11,8 @@ class VoucherTicket extends StatelessWidget {
   /// Defaults to opening [VoucherDetailSheet].
   final VoidCallback? onTap;
 
-  /// Deep red-brown from the brand danger hue (Figma coupon).
-  static Color background() => HSLColor.fromColor(
-    MyBossColors.danger,
-  ).withSaturation(0.65).withLightness(0.1).toColor();
+  /// Coupon fill: deep red-brown in dark mode (Figma), pale red in light.
+  static Color background() => MyBossColors.dangerContainer;
 
   @override
   Widget build(BuildContext context) {
@@ -98,7 +96,7 @@ class VoucherCodeBox extends StatelessWidget {
       height: 36,
       padding: const EdgeInsets.only(left: 12),
       decoration: BoxDecoration(
-        color: Colors.black,
+        color: MyBossColors.surface,
         borderRadius: BorderRadius.circular(4),
         border: Border.all(color: MyBossColors.outline),
       ),

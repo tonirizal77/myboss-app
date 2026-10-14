@@ -121,10 +121,8 @@ class DeleteAccountPendingPanel extends StatelessWidget {
       width: double.infinity,
       padding: const EdgeInsets.fromLTRB(24, 32, 24, 32),
       decoration: BoxDecoration(
-        // Deep red-brown (Figma), same hue as the Promo coupons.
-        color: HSLColor.fromColor(
-          danger,
-        ).withSaturation(0.65).withLightness(0.1).toColor(),
+        // Same container as the Promo coupons (dark: Figma red-brown).
+        color: MyBossColors.dangerContainer,
         borderRadius: BorderRadius.circular(24),
       ),
       child: Column(
