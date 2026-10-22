@@ -169,7 +169,7 @@ void main() {
       _phone(tester);
       Widget page({bool blur = false}) => host(
         ResponsivePage(
-          bottomNavBlur: blur,
+          // bottomNavBlur: blur,
           bottomNav: const SizedBox(height: 40, child: Text('nav')),
           body: const Text('x'),
         ),

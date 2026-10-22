@@ -35,6 +35,8 @@ class PromoPointsPanel extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 24),
+
+            /// Grid Product
             RewardGrid(rewards: rewards.take(preview).toList(), maxColumns: 2),
             if (rewards.length > preview) ...[
               const SizedBox(height: 24),

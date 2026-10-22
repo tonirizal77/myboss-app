@@ -18,9 +18,10 @@ dependencies:
   # `<app>_core` branch off `main` the same way hayo_app forked
   # `hayo_core` (see mobile_app_core's README / hayo_app's CLAUDE.md).
   mobile_app_core:
-    git:
-      url: https://github.com/Olsera/mobile_app_core.git
-      ref: mybos-core
+    path: ../mobile_app_core
+    # git:
+    #   url: https://github.com/Olsera/mobile_app_core.git
+    #   ref: myboss-core
 
   cupertino_icons: ^1.0.8
 
