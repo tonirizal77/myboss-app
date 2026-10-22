@@ -37,14 +37,7 @@
       "deviceId": "macos",
       "flutterMode": "debug",
       "args": ["--flavor", "prod"]
-    },
-    {
-      "name": "macOs live",
-      "request": "launch",
-      "type": "dart",
-      "deviceId": "macos",
-      "flutterMode": "debug",
-      "args": ["--flavor", "live"]
+      // "args": ["--flavor", "live"]
     },
     {
       "name": "Iphone16e",
@@ -61,29 +54,6 @@
     /// -----------
     /// 1. For Android
     {
-      "name": "XPrime",
-      "request": "launch",
-      "type": "dart",
-      "deviceId": "0123456789ABCDEF", // usb
-      // "deviceId": "192.168.100.189:5555",
-      "flutterMode": "debug",
-      "runTestsOnDevice": true,
-      "args": ["--flavor", "staging", "--android-skip-build-dependency-validation"]
-      // "args": ["--flavor", "production"]
-    },
-    {
-      "name": "Vivo",
-      "request": "launch",
-      "type": "dart",
-      "deviceId": "10DD2D00PA001QH", // usb
-      // "deviceId": "192.168.100.191:5556", // wifi
-      // "deviceId": "10.0.0.65:5556", // office
-      "flutterMode": "debug",
-      "runTestsOnDevice": true,
-      "args": ["--flavor", "staging", "--android-skip-build-dependency-validation"]
-      // "args": ["--flavor", "prod"]
-    },
-    {
       "name": "RealmeC85",
       "request": "launch",
       "type": "dart",
@@ -92,9 +62,28 @@
       // "deviceId": "10.0.0.65:5556", // office
       "flutterMode": "debug",
       "runTestsOnDevice": true,
-      "args": ["--flavor", "staging", "--android-skip-build-dependency-validation"]
+      "args": [
+        "--flavor",
+        "staging",
+        "--android-skip-build-dependency-validation"
+      ]
       // "args": ["--flavor", "prod"]
       // "args": ["--flavor", "live"]
+    },
+    {
+      "name": "XPrime",
+      "request": "launch",
+      "type": "dart",
+      "deviceId": "0123456789ABCDEF", // usb
+      // "deviceId": "192.168.100.189:5555",
+      "flutterMode": "debug",
+      "runTestsOnDevice": true,
+      "args": [
+        "--flavor",
+        "staging",
+        "--android-skip-build-dependency-validation"
+      ]
+      // "args": ["--flavor", "production"]
     },
 
     /// 2. For iOS
