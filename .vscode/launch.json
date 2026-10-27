@@ -27,17 +27,10 @@
       "deviceId": "macos",
       "flutterMode": "debug",
       "args": ["--flavor", "staging"]
+      // "args": ["--flavor", "prod"]
+      // "args": ["--flavor", "live"]
       // Flavors = Xcode schemes Staging / Prod / Live (build configurations
       // Debug-<flavor>, Release-<flavor>, Profile-<flavor>), same as iOS.
-    },
-    {
-      "name": "macOs prod",
-      "request": "launch",
-      "type": "dart",
-      "deviceId": "macos",
-      "flutterMode": "debug",
-      "args": ["--flavor", "prod"]
-      // "args": ["--flavor", "live"]
     },
     {
       "name": "Iphone16e",

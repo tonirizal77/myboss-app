@@ -26,6 +26,11 @@ subprojects {
             jvmTarget.set(org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_17)
         }
     }
+    // Same for Java: plugins still on source/target 8 trigger javac "[options] obsolete" warnings
+    tasks.withType<JavaCompile>().configureEach {
+        sourceCompatibility = JavaVersion.VERSION_17.toString()
+        targetCompatibility = JavaVersion.VERSION_17.toString()
+    }
 }
 
 tasks.register<Delete>("clean") {
