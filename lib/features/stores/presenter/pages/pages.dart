@@ -4,4 +4,4 @@ import 'package:myboss_app/core_feat/core_feat.dart';
 
 import '../presenters.dart';
 
-part 'stores_page.dart';
+part 'store_branches_page.dart';

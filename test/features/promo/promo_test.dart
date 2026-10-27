@@ -77,7 +77,7 @@ void main() {
     final promo = PromoCubit();
     final points = PointsCubit();
     final user = UserBloc();
-    final branch = BranchCubit();
+    final branch = StoreBranchCubit();
     addTearDown(() async {
       await promo.close();
       await points.close();

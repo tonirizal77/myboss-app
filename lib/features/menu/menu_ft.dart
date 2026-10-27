@@ -15,43 +15,29 @@ class MenuFt {
 
   /// Setup Injector
   static Future<void> injectors() async {
-    /// 1. Setup Bloc
-    getIt.registerLazySingleton(() => MenuBloc());
-
-    /// 2. Setup Cubit
+    /// 1. Setup Cubit
     getIt.registerLazySingleton(() => ProductCubit());
 
-    /// 3. Setup Repository
+    /// 2. Setup Repository
     ///
-    getIt.registerLazySingleton<MenuYogurtRepo>(
-      () => MenuYogurtRepoImpl(remoteData: getIt()),
-    );
-    getIt.registerLazySingleton<MenuTopingRepo>(
-      () => MenuTopingRepoImpl(remoteData: getIt()),
-    );
     getIt.registerLazySingleton<ProductRepo>(
       () => ProductRepoImpl(source: getIt()),
     );
 
-    /// 4. Setup Datasource
+    /// 3. Setup Datasource
     ///
-    getIt.registerLazySingleton<MenuYogurtRemote>(() => MenuYogurtRemoteImpl());
-    getIt.registerLazySingleton<MenuTopingRemote>(() => MenuTopingRemoteImpl());
     getIt.registerLazySingleton<ProductSource>(() => const ProductStatic());
 
-    /// 5. Setup Usecase
+    /// 4. Setup Usecase
     ///
-    getIt.registerLazySingleton(() => ListMenuYogurtUc(getIt()));
-    getIt.registerLazySingleton(() => ListMenuTopingUc(getIt()));
     getIt.registerLazySingleton(() => GetProductCatalogUc(getIt()));
 
-    /// 6. Setup Control / Flow
+    /// 5. Setup Control / Flow
     ///  - 1. [xxx]Flow (mode static) -> UsecaseFunc
 
-    /// 7. Setup Provider
+    /// 6. Setup Provider
     ///
     BlocProviderInjectors.add([
-      BlocProvider<MenuBloc>(create: (_) => getIt<MenuBloc>()),
       BlocProvider<ProductCubit>(create: (_) => getIt<ProductCubit>()),
     ]);
   }

@@ -7,17 +7,17 @@ import 'package:solar_icons/solar_icons.dart';
 import 'package:myboss_app/core_feat/core_feat.dart';
 import 'package:myboss_app/features/features.dart'
     show
-        BranchCubit,
-        BranchState,
-        BranchX,
+        StoreBranch,
+        StoreBranchCubit,
+        StoreBranchState,
+        StoreBranchX,
+        StoreBranchesBloc,
+        StoreBranchesState,
         StoreFlows,
-        StoreList,
-        StoresListBloc,
-        StoresListState,
         branchSubtitle;
 
-part 'button_direction_stores.dart';
-part 'card_stores.dart';
+part 'button_direction_branch.dart';
+part 'card_store_branch.dart';
 part 'branch_card.dart';
 part 'branch_header.dart';
 part 'branch_selector_sheet.dart';

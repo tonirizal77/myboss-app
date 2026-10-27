@@ -47,7 +47,6 @@ abstract class AppSetting {
   /// Is Blur BottomNavbar Expert
   static bool get isBlurBottomNav => false;
 
-  static bool get isWatchStamp => false;
   static bool get isWatchBloc => SyncUI.isDebugMode ? true : false;
 
   /// is Mode App [Light or Dark]

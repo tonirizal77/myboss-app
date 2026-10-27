@@ -1,0 +1,62 @@
+{
+  "prd": "PRD-005-store-branches-endpoints-cleanup.md",
+  "project_gid": "65ea6511-c5e4-4397-adf0-64a03c9159c7",
+  "epic": {
+    "id": "732c49ed-57ee-4368-b922-702cf65fd529",
+    "key": "MYB-1"
+  },
+  "stories": [
+    {
+      "id": "51c5c10b-a172-48dc-8ec8-85c67b586fad",
+      "key": "MYB-205",
+      "name": "StoreBranches — Daftar Cabang dari API",
+      "tasks": [
+        { "id": "1baad881-f37e-45e5-82c6-c75bc81fcc0d", "key": "MYB-229", "title": "Analisa respons /store/branches vs model StoreList lama", "deadline": "2026-10-27" },
+        { "id": "37e8dae0-2b07-4d6a-9e1f-c80dbd3a152e", "key": "MYB-228", "title": "Model StoreBranchesModel, StoreBranch & StoreBranchesMeta sesuai respons API", "deadline": "2026-10-27" },
+        { "id": "6a38028c-989d-41dc-83e2-dcf56778a36f", "key": "MYB-227", "title": "Rename fitur daftar cabang ke StoreBranch* (bloc, usecase, repo, cubit, page, widget)", "deadline": "2026-10-27" },
+        { "id": "99cda7ca-f4d8-40d0-8865-647e69a72aef", "key": "MYB-226", "title": "Kirim lat/lon perangkat ke API dan fetch ulang setelah posisi didapat", "deadline": "2026-10-27" },
+        { "id": "54f2fe8d-f9e9-42f4-8c2c-166ebac18d28", "key": "MYB-225", "title": "StoreBranchX: distanceKm (posisi lokal lalu distance API), logoUrl, mapsUrl", "deadline": "2026-10-27" },
+        { "id": "5d3c4f92-7cd0-4b35-8f96-79f26d1bc551", "key": "MYB-224", "title": "Sesuaikan BranchCard, BranchHeader, BranchSelectorSheet & CardStoreBranch ke field baru", "deadline": "2026-10-27" },
+        { "id": "33532f05-d171-4365-a59d-4f227082925d", "key": "MYB-223", "title": "Perbaiki 6 error analyzer dari refactor location yang belum selesai", "deadline": "2026-10-27" },
+        { "id": "8930f138-6ac4-4659-9dbc-e3f8dee3b7ea", "key": "MYB-222", "title": "Unit/widget test StoreBranch (parse respons, round-trip, jarak, logo, maps)", "deadline": "2026-10-27" },
+        { "id": "58881199-2fb2-4c0b-a605-2fd5f3783fba", "key": "MYB-221", "title": "Update ENDPOINT-MIGRATION.md bagian Cabang", "deadline": "2026-10-27" }
+      ]
+    },
+    {
+      "id": "22a1e4f4-81e3-42cc-8ad7-567c64167f3b",
+      "key": "MYB-204",
+      "name": "Rapikan endpoints.dart Sesuai Postman",
+      "tasks": [
+        { "id": "fb87a6f7-31b1-49fc-b07e-7fdef610fb11", "key": "MYB-220", "title": "Bandingkan endpoints.dart dengan folder Postman MyBoss", "deadline": "2026-10-27" },
+        { "id": "51dc0907-fc37-41c2-88da-1687fd65ed26", "key": "MYB-219", "title": "Susun ulang section Product, Store, Account Customer, Client Token + komentar METHOD", "deadline": "2026-10-27" },
+        { "id": "cca50d44-7964-45c1-b4bb-8e8e13d1cbe0", "key": "MYB-218", "title": "Tambah catalogGroupList & catalogBrandList, TODO Forgot Password & Old Email", "deadline": "2026-10-27" },
+        { "id": "f90d1f51-77f1-4493-a5a5-9da58bdc9279", "key": "MYB-217", "title": "Ganti contoh nomor HP asli di komentar endpoints dengan nilai dummy", "deadline": "2026-10-27" }
+      ]
+    },
+    {
+      "id": "4c255dae-7e0c-4ac0-a7eb-5ca17e17cda6",
+      "key": "MYB-203",
+      "name": "Bersihkan Sisa Hayo (Menu Yogurt/Topping & Stamps)",
+      "tasks": [
+        { "id": "9d3c1120-3221-4596-8756-bfa91b245123", "key": "MYB-216", "title": "Hapus menu Yogurt/Topping (datasource, repo, model, MenuBloc, widget, DI)", "deadline": "2026-10-27" },
+        { "id": "05c04d37-bf5d-4e8e-ac73-797186e80a5e", "key": "MYB-215", "title": "Hapus Stamps di Home (cubit, model, remote, widget, DI)", "deadline": "2026-10-27" },
+        { "id": "ac0169fe-133f-45d7-871e-820ea5f63f4b", "key": "MYB-214", "title": "Hapus Riwayat Stamps di Account (page, widget, event, state, flow, route, field ProfileModel)", "deadline": "2026-10-28" },
+        { "id": "5f3489cb-b338-4b25-bc1f-6f7aef14a758", "key": "MYB-213", "title": "Hapus endpoint, enum TypeStamps & flag isWatchStamp hayo", "deadline": "2026-10-28" },
+        { "id": "542ea5ab-340e-432b-b002-e2a2130c7058", "key": "MYB-212", "title": "Hapus 12 aset yatim, folder assets/gif & dependency lottie", "deadline": "2026-10-28" },
+        { "id": "4f369dde-62fd-42c6-9d1e-cd26481c0a1d", "key": "MYB-211", "title": "Hapus 23 key translasi yatim (en/id) dan generate ulang LocaleKeys", "deadline": "2026-10-28" },
+        { "id": "61f3b0bb-34d6-4966-8229-5fd1a042b94c", "key": "MYB-210", "title": "Update ENDPOINT-MIGRATION.md bagian Katalog & Stamps", "deadline": "2026-10-28" }
+      ]
+    },
+    {
+      "id": "d24cd991-0e97-406d-80d6-a7ea3cc36d70",
+      "key": "MYB-202",
+      "name": "QA StoreBranches & Cleanup Hayo",
+      "tasks": [
+        { "id": "9b2eb6ac-828b-46ce-b6c7-885d9991ffa6", "key": "MYB-209", "title": "build_runner + flutter analyze = No issues found", "deadline": "2026-10-28" },
+        { "id": "b56475e3-420e-46b0-88d8-dc45c8e42520", "key": "MYB-208", "title": "flutter test: test stores lulus, 22 kegagalan lama di luar scope dicatat", "deadline": "2026-10-28" },
+        { "id": "544fde47-5213-4b56-b011-8832c5468794", "key": "MYB-207", "title": "Verifikasi cabang, tab Product & Account di macOS 3 ukuran lewat Marionette", "deadline": "2026-10-28" },
+        { "id": "aef4d417-a009-44ec-8bc0-eb579d68dbea", "key": "MYB-206", "title": "Uji di Android staging RMX5566 (izin lokasi & jarak cabang)", "deadline": "2026-10-28" }
+      ]
+    }
+  ]
+}

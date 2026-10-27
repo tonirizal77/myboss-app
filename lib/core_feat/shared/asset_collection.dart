@@ -53,14 +53,6 @@ class Assets {
 
   /// Icons Logo
 
-  /// Frame
-  static const String icFrameStamp = 'assets/icons/frame_stamp.png';
-
-  /// Cup
-  static const String icBigCup = 'assets/icons/cup_big.png';
-  static const String icSmallCupGreen = 'assets/icons/cup_small_green.png';
-  static const String icSmallCupGrey = 'assets/icons/cup_small_grey.png';
-
   /// Image Background Tier Member
   static const String icBgCool = 'assets/icons/bg_cool.png';
   static const String icBgCooler = 'assets/icons/bg_cooler.png';
@@ -80,16 +72,6 @@ class Assets {
   static const String icTierCool = 'assets/icons/tier_cool.png';
   static const String icTierCooler = 'assets/icons/tier_cooler.png';
   static const String icTierCoolest = 'assets/icons/tier_coolest.png';
-
-  /// Toping
-
-  /// Produk
-  static const String icProduk1 = 'assets/icons/produk_1.png';
-  static const String icProduk2 = 'assets/icons/produk_2.png';
-  static const String icProduk3 = 'assets/icons/produk_3.png';
-  static const String icProduk4 = 'assets/icons/produk_4.png';
-  static const String icProduk5 = 'assets/icons/produk_5.png';
-  static const String icProduk6 = 'assets/icons/produk_6.png';
 
   // icon flag
 
@@ -118,7 +100,6 @@ class Assets {
   static const String noInternet = "assets/images/no_connection.png";
 
   /// Svg for Account Menu
-  static const String menuStamps = "assets/icons/menu_stamps.png";
   static const String menuSocial = "assets/icons/menu_social.png";
   static const String menuVoucher = "assets/icons/menu_voucher.png";
   static const String menuAboutUs = "assets/icons/menu_about_us.png";
@@ -143,7 +124,4 @@ class Assets {
   static const String voucherBR = "assets/icons/voucher_black_right.png";
 
   // static const String voucherW = "assets/icons/voucher_white.png";
-
-  /// Animasi Maskot at menu page
-  static const String animMaskot = "assets/gif/mascots.json";
 }

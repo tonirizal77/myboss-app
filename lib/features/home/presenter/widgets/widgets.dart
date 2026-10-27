@@ -14,9 +14,6 @@ part 'card_member_home.dart';
 part 'card_member_barcode.dart';
 part 'card_message.dart';
 part 'card_message_free.dart';
-part 'cup_check_info.dart';
-part 'stamps/stamps_frame.dart';
-part 'stamps/stamps_widget.dart';
 
 part 'guest/guest_hero.dart';
 part 'guest/guest_brands.dart';

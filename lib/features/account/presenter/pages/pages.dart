@@ -13,7 +13,6 @@ part 'about_us_page.dart';
 part 'tnc_page.dart';
 part 'faq_page.dart';
 part 'voucher_page.dart';
-part 'stamps_history_page.dart';
 
 part 'edit_profile/edit_profile_page.dart';
 part 'edit_profile/change_new_phone_page.dart';

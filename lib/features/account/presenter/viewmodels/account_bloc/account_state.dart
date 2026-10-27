@@ -12,7 +12,6 @@ abstract class AccountState with _$AccountState {
     @Default(FaqModel()) FaqModel faq,
     @Default(TncModel()) TncModel tnc,
     @Default(ContactUsModel()) ContactUsModel contactUs,
-    @Default(StampsHistoryModel()) StampsHistoryModel stampsHistory,
     @Default(VoucherListModel()) VoucherListModel vouchers,
     @Default(ReasonsModel()) ReasonsModel reasons,
     @Default(LoadListData()) LoadListData filter,

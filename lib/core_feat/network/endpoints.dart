@@ -1,164 +1,186 @@
 part of 'configs.dart';
 
+/// API endpoints, ordered like the **MyBoss** Postman collection:
+/// Product › Store › Account Customer › Client Token, then the endpoints that
+/// are not (yet) in the collection.
+///
+/// Each constant is documented as `METHOD <Postman request name>`.
 final class Endpoints {
-  /// === AUTHENTICATION === ///
-  ///
-  /// Authorization : {{user_refresh_token}}
-  static const String clientAuth = "/client/login";
-  static const String refreshToken = "/token/refresh";
-
-  /// === ACCOUNT CUSTOMER === ///
-  ///
+  /// ============================================================ ///
+  /// MyBoss › Product
   /// Authorization : {{bearer}}
+  /// Params : [search, sort, page, per_page] : Cek Dokumen
+  /// ============================================================ ///
+
+  /// === Product › Catalog Group === ///
   ///
-  /// 1. Sign Up
+  /// GET catalog group List
+  static const String catalogGroupList = "/catalog/group/lists";
+
+  /// === Product › Catalog === ///
+  ///
+  /// GET catalog List
+  static const String catalogList = "/catalog/lists";
+
+  /// GET catalog Show - not in Postman yet
+  static const String catalogShow = "/catalog/show/{id}";
+
+  /// === Product › Catalog Brand === ///
+  ///
+  /// GET catalog brand List
+  static const String catalogBrandList = "/catalog/brand/lists";
+
+  /// ============================================================ ///
+  /// MyBoss › Store
+  /// Authorization : {{bearer}}
+  /// ============================================================ ///
+
+  /// GET Store
+  /// Params: (with_footer : 1, html_format : 1)
+  static const String storeData = "/store/data";
+
+  /// GET Store Branch
+  /// Params: (lat: '-7.4705', lon: '110.2178') - sorted by distance
+  static const String storeBranches = "/store/branches";
+
+  /// ============================================================ ///
+  /// MyBoss › Account Customer › Auth
+  /// Authorization : {{bearer}}
+  /// ============================================================ ///
+
+  /// === Auth › Forgot Password === ///
+  ///
+  /// POST Send Verification
+  /// POST Verify Token
+  /// POST Update Password
+  // TODO(api): not used by the app (sign-in is OTP only) - add the paths
+  // here if a password flow is ever needed.
+
+  /// === Auth › Sign Up === ///
+  ///
+  /// POST Sign up
   static const String signUp = "/account/otp/sign-up";
 
-  /// 2. Sign Up Send Code
+  /// POST Sign Up Send Code
   /// Type : 1. sms, 2. whatsapp, 3. misscall
   static const String signUpSendCode = "/account/otp/sign-up/send";
 
-  /// 3. Sign In
+  /// === Auth › Sign In === ///
+  ///
+  /// POST Sign-In
   static const String signIn = "/account/otp/sign-in";
 
-  /// 4. Sign In Send Code
+  /// POST Sign In Send Code - not in Postman, still used by `verify_flows.dart`
   static const String signInSendCode = "/account/otp/sign-in/send";
 
-  /// 5. Sign Out
+  /// POST Logout
   /// Authorization : {{user_bearer}}
   static const String signOut = "/account/do/sign-out";
 
-  /// 6. Hapus Akun - eksekusi penghapusan yang sebenarnya, langsung (tanpa
+  /// ============================================================ ///
+  /// MyBoss › Account Customer › Profile
+  /// Authorization : {{user_bearer}}
+  /// ============================================================ ///
+
+  /// === Profile › UpdatePhone === ///
+  ///
+  /// POST Send Verification ( Old Phone )
+  /// Params: { "phone": "+628xxxxxxxxxx" }
+  static const String verifyOldGetOtp = "/customer/update/otp/send-old";
+
+  /// POST Verify Token ( Old Phone )
+  /// Params: { "phone": "+628xxxxxxxxxx", "otp_code": "9999" }
+  static const String verifyOldSendOtp = "/customer/update/otp/verify-old";
+
+  /// POST Send Verification ( New Phone )
+  /// Params: { "phone": "+628xxxxxxxxxx", "key": "LHQNSXBOKW" }
+  static const String verifyNewGetOtpPhone = "/customer/update/otp/send-new";
+
+  /// POST Verify Token ( New Phone ) - also used for New Email
+  /// Params: { "phone": "+628xxxxxxxxxx", "otp_code": "9999" }
+  static const String verifyNewSendOtp = "/customer/update/otp";
+
+  /// === Profile › Update Email === ///
+  ///
+  /// POST Send Verification ( Old Email )
+  /// POST Verify Token ( Old Email )
+  // TODO(api): add paths from Postman; the app currently reuses the phone
+  // endpoints above for the old email step.
+
+  /// POST Send Verification ( New Email )
+  /// Params: { "email": "user@example.com", "key": "LHQNSXBOKW" }
+  static const String verifyNewGetOtpEmail = "/customer/update/otp/send-new";
+
+  /// POST Verify Token ( New Email ) -> [verifyNewSendOtp]
+
+  /// === Profile === ///
+  ///
+  /// POST Generate Code
+  static const String generateCode = "/customer/generate-code";
+
+  /// GET Get Avatar list
+  static const String avatarList = "/customer/avatar/list";
+
+  /// PUT Update Profile
+  /// Params: { "avatar_id": 1, "name": "Olsera Indonesia" }
+  static const String updateProfile = "/customer/update";
+
+  /// GET Get Data Profile
+  /// Params: ?cart_v2=1
+  static const String profileInfo = "/profile/info";
+
+  /// ============================================================ ///
+  /// MyBoss › Client Token
+  /// Authorization : {{user_refresh_token}}
+  /// ============================================================ ///
+
+  /// POST Client Auth
+  static const String clientAuth = "/client/login";
+
+  /// POST Refresh Token
+  static const String refreshToken = "/token/refresh";
+
+  /// ============================================================ ///
+  /// Not in the MyBoss Postman collection (yet)
+  /// Still used by the app - confirm with backend before removing.
+  /// ============================================================ ///
+
+  /// === Delete Account === ///
+  /// Authorization : {{user_bearer}}
+  ///
+  /// DELETE Hapus Akun - eksekusi penghapusan yang sebenarnya, langsung (tanpa
   /// grace period). Dipanggil tepat setelah verifikasi OTP + reason sukses
   /// ([deleteAccountVerifyOtp]) - lihat [AccountFlows.submitDeleteAccountRequest].
-  /// Authorization : {{user_bearer}}
   /// Method: DELETE (terkonfirmasi lewat Postman - kalau pakai POST malah
   /// 406 "Page Not Found", route-nya tidak ada)
-  static const String deleteAccountReal = "/profile/hayo/delete-account";
+  static const String deleteAccountReal = "/profile/delete-account";
 
-  /// 6.a Hapus Akun - Kirim OTP
-  /// Authorization : {{user_bearer}}
-  static const String deleteAccountSendOtp = "/customer/hayo/delete/send-otp";
+  /// POST Hapus Akun - Kirim OTP
+  static const String deleteAccountSendOtp = "/customer/delete/send-otp";
 
-  /// 6.b Hapus Akun - Verifikasi OTP + reason
-  /// Authorization : {{user_bearer}}
+  /// POST Hapus Akun - Verifikasi OTP + reason
   /// Params : { "otp_code": "...", "reason_id": ..., "reason_description": "..." }
-  static const String deleteAccountVerifyOtp = "/customer/hayo/delete/request";
+  static const String deleteAccountVerifyOtp = "/customer/delete/request";
 
-  /// 6.c Hapus Akun - Membatalkan request penghapusan yang masih pending
-  /// Authorization : {{user_bearer}}
+  /// POST Hapus Akun - Membatalkan request penghapusan yang masih pending.
   /// Dipanggil dari aksi "Cancel request" di halaman status delete-account,
   /// selagi akun masih di dalam jendela retention/grace period-nya.
-  static const String deleteAccountCancel = "/customer/hayo/delete/cancel";
+  static const String deleteAccountCancel = "/customer/delete/cancel";
 
-  /// Ambil daftar reason untuk penghapusan akun
-  static const String deleteReason = "/customer/hayo/delete/reasons";
+  /// GET Daftar reason untuk penghapusan akun
+  static const String deleteReason = "/customer/delete/reasons";
 
-  /// Ambil status penghapusan akun
-  static const String statusDeleteAccount = "/customer/hayo/delete/status";
+  /// GET Status penghapusan akun
+  static const String statusDeleteAccount = "/customer/delete/status";
 
-  /// === STORE === ///
-  ///
+  /// === Voucher === ///
+  /// Authorization : {{user_bearer}}
+  static const String voucherList = "/profile/discount-vouchers/list";
+
+  /// === Pages === ///
   /// Authorization : {{bearer}}
-  /// Link Type: - Cek Dokumen [PRD, PGR, FEA, ..dll]
-  /// Params: (with_footer : 1, html_format : 1)
-  ///
-  /// 1. Store
-  static const String storeData = "/store/hayo";
-  static const String storeListData = "/store/hayo/list";
-
-  /// 2. Others
   static const String aboutUs = "/about-us";
   static const String faq = '/faq';
   static const String showSpecificPage = '/page/sad/{pageID}';
   static const String termsAndPolicy = '/terms-and-policy';
-
-  /// === PROFILE === ///
-  ///
-  /// Authorization : {{user_bearer}}
-  ///
-  /// A. Profile Info
-  /// Params: ?cart_v2=1
-  static const String profileInfo = "/profile/hayo/info";
-
-  /// -  Avatars
-  static const String avatarList = "/customer/hayo/avatar/list";
-
-  /// - Genereate Code Customer
-  static const String generateCode = "/customer/hayo/generate-code";
-
-  /// -  Voucher
-  static const String voucherList = "/profile/discount-vouchers/hayo/list";
-
-  /// B. UPDATE PHONE / EMAIL
-  ///
-  /// 1. Get OTP | Update Phone  and Email (Old)
-  /// Params: { "phone": "+6289636916356" }
-  static const String verifyOldGetOtp = "/customer/hayo/update/otp/send-old";
-
-  /// 2. Verify OTP | Update Phone [Old Phone]
-  /// Params: { "phone": "+6289636916356", "otp_code": "9999" }
-  static const String verifyOldSendOtp = "/customer/hayo/update/otp/verify-old";
-
-  /// 3. Verify OTP | Update Phone [Old Phone]
-  /// Params: { "phone": "+6289636916356", "key": "LHQNSXBOKW" }
-  static const String verifyNewGetOtpPhone =
-      "/customer/hayo/update/otp/send-new";
-
-  /// 3. Verify OTP | Update Email (new email)
-  /// Params: { "email": "+6289636916356", "key": "LHQNSXBOKW" }
-  static const String verifyNewGetOtpEmail =
-      "/customer/hayo/update/otp/send-new";
-
-  /// 4. Confirm OTP | Update Phone [New Phone]
-  /// Params: { "phone": "+6289636916356", "otp_code": "9999" }
-  static const String verifyNewSendOtp = "/customer/hayo/update/otp";
-
-  /// C. UPDATE PROFIL
-  ///
-  /// 1. Update Profile
-  /// - Nama and Avatar
-  /// Params: { "avatar_id": 1, "name": "Olsera Indonesia" }
-  static const String updateProfile = "/customer/hayo/update";
-  // "/profile/update";
-
-  /// === MENU CATALOG === ///
-  ///
-  /// Authorization : {{bearer}}
-  /// Label TAG : (1-New Release, 2-Sale, 3-Featured, 4-Populer, 5-Perorder, 6-Disount Persent)
-  /// Params : [Search, Sort, page, per_page] : Cek Dokumen
-  ///
-  /// 1. Get Menu Yogurt List
-  static const String menuYogurtList = "/catalog/hayo/yogurt/lists";
-
-  /// 2. Get Menu Yogurt Show
-  static const String menuYogurtShow = "/catalog/hayo/yogurt/show/{id}";
-
-  /// 3. Get Catalog List
-  static const String catalogList = "/catalog/hayo/lists";
-
-  /// 4. Get Catalog Show
-  static const String catalogShow = "/catalog/hayo/show/{id}";
-
-  /// === TOPING === ///
-  ///
-  /// Authorization : {{bearer}}
-  /// Label TAG : (1-New Release, 2-Sale, 3-Featured, 4-Populer, 5-Perorder, 6-Disount Persent)
-  /// Params : [Search, Sort, page, per_page] : Cek Dokumen
-  ///
-  /// 1. Menu Toping List
-  static const String menuTopingList = "/catalog/topping-hayo/lists";
-
-  /// 2. Menu Toping Show
-  static const String menuTopingShow = "/catalog/topping-hayo/show/{id}";
-
-  /// === STAMPS === ///
-  ///
-  /// Authorization : {{user_bearer}}
-  ///
-  /// 1. Stamps at Home
-  static const String stamps = "/hayo/stamp";
-  static const String stampsBreakFree = "/hayo/stamp-break-free/list";
-  static const String stampsHistoryList = "/hayo/stamp-history/list";
-  static const String stampsHistoryShow = "/hayo/stamp-history/show/{id}";
 }

@@ -11,7 +11,7 @@ class BranchCard extends StatelessWidget {
     this.onSelect,
   });
 
-  final StoreList data;
+  final StoreBranch data;
   final bool selected;
   final Position? position;
   final VoidCallback? onSelect;
@@ -97,7 +97,7 @@ class BranchCard extends StatelessWidget {
           Positioned(
             left: 16,
             top: 0,
-            child: _BranchAvatar(image: data.image, grayscale: !isOpen),
+            child: _BranchAvatar(image: data.logoUrl, grayscale: !isOpen),
           ),
 
           /// Action

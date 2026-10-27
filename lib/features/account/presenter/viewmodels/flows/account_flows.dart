@@ -485,15 +485,6 @@ class AccountFlows {
     context.pushNamed(RouteNames.pointsPage);
   }
 
-  static void goToStampPage(BuildContext context) {
-    context.pushNamed(RouteNames.stampsHistoryPage);
-  }
-
-  /// 12. Goto Page TNC Us
-  static void showStampsEearned(BuildContext context) {
-    ResponsiveDialog.sheetOrDialog(context, child: Text("Show Stamps Earned"));
-  }
-
   /// 13. Goto Page TNC Us
   static void showVoucherDetail(BuildContext context) {
     ResponsiveDialog.sheetOrDialog(context, child: Text("Show Detail Voucher"));
@@ -503,23 +494,6 @@ class AccountFlows {
   static Future<void> getVouchers(BuildContext context) async {
     final bloc = context.read<AccountBloc>();
     final event = AccountEvent.vouchers();
-
-    bloc.add(event);
-
-    await bloc.stream.firstWhere(
-      (s) =>
-          s.event == event.runtimeType &&
-          (s.respon == Respons.success || s.respon == Respons.failure),
-    );
-  }
-
-  /// 15. Get List History Stamps
-  static Future<void> historyStamps(
-    BuildContext context, {
-    LoadListData? param,
-  }) async {
-    final bloc = context.read<AccountBloc>();
-    final event = AccountEvent.stampsHistory(param: param ?? LoadListData());
 
     bloc.add(event);
 

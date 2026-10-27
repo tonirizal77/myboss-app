@@ -4,7 +4,7 @@ part of '../domains.dart';
 abstract class StoresRepo {
   const StoresRepo();
 
-  ResultFuture<StoreListModel> getStoreList();
+  ResultFuture<StoreBranchesModel> getStoreBranches(DataMap location);
 
   ResultFuture<StoreModel> getStore();
 }

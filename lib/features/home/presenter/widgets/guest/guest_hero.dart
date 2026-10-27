@@ -19,7 +19,7 @@ class GuestHero extends StatelessWidget {
       width: double.infinity,
       color: MyBossColors.surfaceContainerLowest,
       padding: const EdgeInsets.all(32),
-      child: BlocBuilder<BranchCubit, BranchState>(
+      child: BlocBuilder<StoreBranchCubit, StoreBranchState>(
         buildWhen: (previous, current) =>
             previous.selected?.name != current.selected?.name,
         builder: (context, branch) {

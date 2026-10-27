@@ -2,8 +2,8 @@ part of '../datas.dart';
 
 /// 2.a [Remote] Data
 abstract class StoresRemote {
-  /// -
-  ResultFuture<StoreListModel> getStoreList();
+  /// [location]: `{'lat': .., 'lon': ..}` or empty when the position is unknown.
+  ResultFuture<StoreBranchesModel> getStoreBranches(DataMap location);
 
   ResultFuture<StoreModel> getStore();
 }
@@ -13,12 +13,15 @@ class StoresRemoteImpl implements StoresRemote {
   const StoresRemoteImpl();
 
   @override
-  ResultFuture<StoreListModel> getStoreList() async {
-    final result = await DioGet.call(url: Endpoints.storeListData);
+  ResultFuture<StoreBranchesModel> getStoreBranches(DataMap location) async {
+    final result = await DioGet.call(
+      url: Endpoints.storeBranches,
+      queryParameters: location,
+    );
 
     return result.fold((_l) => Left(_l), (_r) {
       try {
-        return Right(StoreListModel.fromJson(_r));
+        return Right(StoreBranchesModel.fromJson(_r));
       } catch (e) {
         return Left(Failures(error: Error(message: "Parse Error : $e")));
       }

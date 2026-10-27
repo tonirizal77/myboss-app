@@ -46,7 +46,7 @@ extension _EventUserLogout on UserBloc {
         /// user's name/avatar once back in guest mode.
         getIt<ProfileBloc>().add(const ProfileEvent.reset());
 
-        /// Drop persisted vouchers/stamps history - avoid showing the
+        /// Drop persisted vouchers - avoid showing the
         /// previous user's data once back in guest mode.
         getIt<AccountBloc>().add(const AccountEvent.reset());
 

@@ -42,7 +42,6 @@ class RouteNames {
   static const String tncPage = 'tnc';
   static const String faqPage = 'faq';
   static const String voucherPage = 'voucher';
-  static const String stampsHistoryPage = 'stamps-history';
   static const String pointsPage = 'points';
 
   /// Delete Account (reason + OTP verification; status is a sheet)

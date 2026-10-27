@@ -14,7 +14,8 @@ class StoreFlows {
     return _setting;
   }
 
-  static StoreListModel get storeList => getIt<StoresListBloc>().state.stores;
+  static StoreBranchesModel get storeBranches =>
+      getIt<StoreBranchesBloc>().state.branches;
 
   static FutureOr<void> getStore(BuildContext context) async {
     context.read<StoreBloc>().add(StoreEvent.getStore());
@@ -43,7 +44,18 @@ class StoreFlows {
     );
   }
 
-  static FutureOr<void> getListStore(BuildContext context) async {
-    context.read<StoresListBloc>().add(StoresListEvent.fetchStores());
+  /// Fetch the branch list, sorted by distance from the last known device
+  /// position (see [StoreBranchCubit.loadPosition]) when there is one.
+  static FutureOr<void> getStoreBranches(BuildContext context) async {
+    final position = context.read<StoreBranchCubit>().state.position;
+
+    context.read<StoreBranchesBloc>().add(
+      StoreBranchesEvent.fetchBranches({
+        if (position != null) ...{
+          'lat': position.latitude,
+          'lon': position.longitude,
+        },
+      }),
+    );
   }
 }

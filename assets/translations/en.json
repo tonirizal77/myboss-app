@@ -58,13 +58,7 @@
   },
 
   "home": {
-    "title": "Stamps",
-    "stamps_to_go1": "{} stamps to go",
-    "stamps_to_go2": "for a Free Cup",
-    "you_have": "You've",
-    "point_free": "{} Free",
     "Start": "Start",
-    "free": "Free",
     "tier_info_12": "Collect all stamps \nto become",
     "tier_info_3": "You’re the \nCoolest!",
     "message_1": "Collect stamps for a Free Cup!",
@@ -74,13 +68,6 @@
     "tier_label3": "Coolest"
   },
 
-  "menu": {
-    "title": "Mix & Match",
-    "sub_title": "Up to {} \ntoppings to \nchoose from",
-    "info": "Endless choices, never boring!",
-    "yogurt_title": "Yogurt",
-    "toppings_title": "Toppings"
-  },
 
   "guest_home": {
     "subtitle": "Earn points with every purchase",
@@ -159,8 +146,7 @@
 
   "stores": {
     "title": "We are nearby",
-    "direction": "Direction",
-    "phone": "Phone: {}"
+    "direction": "Direction"
   },
 
   "akun": {
@@ -219,19 +205,6 @@
     "guest_desc": "Earn points with every purchase, sign up now."
   },
 
-  "stamps": {
-    "title": "Stamps",
-    "sub_title": "stamps",
-    "earned": "Stamp Earned",
-    "bonus": "Stamp Bonus",
-    "sub_total": "Subtotal",
-    "disc": "Discount",
-    "point": "Points Redemption",
-    "service": "Service Fee",
-    "tax": "Tax",
-    "shipping": "Shipping Cost",
-    "total": "Total"
-  },
 
   "voucher": {
     "label_valid1": "Valid Unlimited",

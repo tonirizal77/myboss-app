@@ -3,14 +3,14 @@ part of '../domains.dart';
 /// 4. [Usecase] Implements
 /// part of 'usecases.dart';
 
-class GetStoreListUc extends Usecase<StoreListModel> {
+class GetStoreBranchesUc extends UsecaseParams<StoreBranchesModel, DataMap> {
   final StoresRepo _repository;
 
-  GetStoreListUc(this._repository);
+  GetStoreBranchesUc(this._repository);
 
   @override
-  ResultFuture<StoreListModel> call() async {
-    return await _repository.getStoreList();
+  ResultFuture<StoreBranchesModel> call(DataMap param) async {
+    return await _repository.getStoreBranches(param);
   }
 }
 

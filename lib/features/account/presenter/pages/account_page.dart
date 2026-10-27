@@ -19,7 +19,7 @@ class _AccountPageState extends State<AccountPage>
   }
 
   /// Guest (client token only, no real login yet) has no profile/voucher/
-  /// stamps data to fetch - those endpoints require a real user session.
+  /// points data to fetch - those endpoints require a real user session.
   bool get _isLoggedIn => UserFlows.isLoggedIn(context);
 
   Future<void> refreshData() async {
@@ -32,9 +32,6 @@ class _AccountPageState extends State<AccountPage>
 
     /// Get List Voucher
     await AccountFlows.getVouchers(context);
-
-    /// Get History Stamps
-    await AccountFlows.historyStamps(context);
 
     /// Points balance + history
     if (mounted) await context.read<PointsCubit>().load();

@@ -67,12 +67,6 @@ final class RouteAccount {
     ),
 
     GoRoute(
-      path: "/${RouteNames.stampsHistoryPage}",
-      name: RouteNames.stampsHistoryPage,
-      builder: (context, state) => const StampsHistoryPage(),
-    ),
-
-    GoRoute(
       path: "/${RouteNames.deleteAccountVerifyPage}",
       name: RouteNames.deleteAccountVerifyPage,
       builder: (context, state) => const DeleteAccountVerifyPage(),

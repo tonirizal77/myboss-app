@@ -58,13 +58,7 @@
   },
 
   "home": {
-    "title": "Stempel",
-    "stamps_to_go1": "{} stempel lagi",
-    "stamps_to_go2": "untuk mendapatkan Cangkir Gratis",
-    "you_have": "Anda punya",
-    "point_free": "{} Gratis",
     "Start": "Mulai",
-    "free": "Gratis",
     "tier_info_12": "Kumpulkan semua stempel \nuntuk menjadi",
     "tier_info_3": "Kamu yang \npaling Keren!",
     "message_1": "Kumpulkan stempel untuk mendapatkan Cangkir Gratis!",
@@ -74,13 +68,6 @@
     "tier_label3": "Coolest"
   },
 
-  "menu": {
-    "title": "Campur & Cocokkan",
-    "sub_title": "Tersedia {} \npilihan topping \nuntuk dipilih",
-    "info": "Pilihan tak terbatas, tidak pernah membosankan!",
-    "yogurt_title": "Yogurt",
-    "toppings_title": "Topping"
-  },
 
   "guest_home": {
     "subtitle": "Kumpulkan poin di setiap pembelian",
@@ -159,8 +146,7 @@
 
   "stores": {
     "title": "Kami berada di dekat sini",
-    "direction": "Petunjuk",
-    "phone": "Telepon: {}"
+    "direction": "Petunjuk"
   },
 
   "akun": {
@@ -219,19 +205,6 @@
     "guest_desc": "Dapatkan poin di setiap pembelian, daftar sekarang."
   },
 
-  "stamps": {
-    "title": "Stempel",
-    "sub_title": "stempel",
-    "earned": "Stempel yang diperoleh",
-    "bonus": "Stempel Bonus",
-    "sub_total": "Subtotal",
-    "disc": "Diskon",
-    "point": "Tukar Point",
-    "service": "Biaya Layanan",
-    "tax": "Pajak",
-    "shipping": "Ongkos Kirim",
-    "total": "Total"
-  },
 
   "voucher": {
     "label_valid1": "Valid Unlimited",

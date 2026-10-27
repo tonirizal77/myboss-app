@@ -8,8 +8,8 @@ class StoresRepoImpl implements StoresRepo {
     : _remoteData = remoteData;
 
   @override
-  ResultFuture<StoreListModel> getStoreList() async {
-    final _result = await _remoteData.getStoreList();
+  ResultFuture<StoreBranchesModel> getStoreBranches(DataMap location) async {
+    final _result = await _remoteData.getStoreBranches(location);
 
     return _result.fold((_l) => Left(_l), (_r) => Right(_r));
   }

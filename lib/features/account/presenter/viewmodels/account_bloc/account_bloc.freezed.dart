@@ -55,7 +55,7 @@ extension AccountEventPatterns on AccountEvent {
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( _Initial value)?  initial,TResult Function( _EventAboutUs value)?  aboutUs,TResult Function( _EventFaq value)?  faq,TResult Function( _EventContactUs value)?  contactUs,TResult Function( _EventTnc value)?  tnc,TResult Function( _EventStampsHistory value)?  stampsHistory,TResult Function( _EventVouchers value)?  vouchers,TResult Function( _EventReasons value)?  reasons,TResult Function( _EventResetAccount value)?  reset,required TResult orElse(),}){
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( _Initial value)?  initial,TResult Function( _EventAboutUs value)?  aboutUs,TResult Function( _EventFaq value)?  faq,TResult Function( _EventContactUs value)?  contactUs,TResult Function( _EventTnc value)?  tnc,TResult Function( _EventVouchers value)?  vouchers,TResult Function( _EventReasons value)?  reasons,TResult Function( _EventResetAccount value)?  reset,required TResult orElse(),}){
 final _that = this;
 switch (_that) {
 case _Initial() when initial != null:
@@ -63,8 +63,7 @@ return initial(_that);case _EventAboutUs() when aboutUs != null:
 return aboutUs(_that);case _EventFaq() when faq != null:
 return faq(_that);case _EventContactUs() when contactUs != null:
 return contactUs(_that);case _EventTnc() when tnc != null:
-return tnc(_that);case _EventStampsHistory() when stampsHistory != null:
-return stampsHistory(_that);case _EventVouchers() when vouchers != null:
+return tnc(_that);case _EventVouchers() when vouchers != null:
 return vouchers(_that);case _EventReasons() when reasons != null:
 return reasons(_that);case _EventResetAccount() when reset != null:
 return reset(_that);case _:
@@ -85,7 +84,7 @@ return reset(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( _Initial value)  initial,required TResult Function( _EventAboutUs value)  aboutUs,required TResult Function( _EventFaq value)  faq,required TResult Function( _EventContactUs value)  contactUs,required TResult Function( _EventTnc value)  tnc,required TResult Function( _EventStampsHistory value)  stampsHistory,required TResult Function( _EventVouchers value)  vouchers,required TResult Function( _EventReasons value)  reasons,required TResult Function( _EventResetAccount value)  reset,}){
+@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( _Initial value)  initial,required TResult Function( _EventAboutUs value)  aboutUs,required TResult Function( _EventFaq value)  faq,required TResult Function( _EventContactUs value)  contactUs,required TResult Function( _EventTnc value)  tnc,required TResult Function( _EventVouchers value)  vouchers,required TResult Function( _EventReasons value)  reasons,required TResult Function( _EventResetAccount value)  reset,}){
 final _that = this;
 switch (_that) {
 case _Initial():
@@ -93,8 +92,7 @@ return initial(_that);case _EventAboutUs():
 return aboutUs(_that);case _EventFaq():
 return faq(_that);case _EventContactUs():
 return contactUs(_that);case _EventTnc():
-return tnc(_that);case _EventStampsHistory():
-return stampsHistory(_that);case _EventVouchers():
+return tnc(_that);case _EventVouchers():
 return vouchers(_that);case _EventReasons():
 return reasons(_that);case _EventResetAccount():
 return reset(_that);case _:
@@ -114,7 +112,7 @@ return reset(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( _Initial value)?  initial,TResult? Function( _EventAboutUs value)?  aboutUs,TResult? Function( _EventFaq value)?  faq,TResult? Function( _EventContactUs value)?  contactUs,TResult? Function( _EventTnc value)?  tnc,TResult? Function( _EventStampsHistory value)?  stampsHistory,TResult? Function( _EventVouchers value)?  vouchers,TResult? Function( _EventReasons value)?  reasons,TResult? Function( _EventResetAccount value)?  reset,}){
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( _Initial value)?  initial,TResult? Function( _EventAboutUs value)?  aboutUs,TResult? Function( _EventFaq value)?  faq,TResult? Function( _EventContactUs value)?  contactUs,TResult? Function( _EventTnc value)?  tnc,TResult? Function( _EventVouchers value)?  vouchers,TResult? Function( _EventReasons value)?  reasons,TResult? Function( _EventResetAccount value)?  reset,}){
 final _that = this;
 switch (_that) {
 case _Initial() when initial != null:
@@ -122,8 +120,7 @@ return initial(_that);case _EventAboutUs() when aboutUs != null:
 return aboutUs(_that);case _EventFaq() when faq != null:
 return faq(_that);case _EventContactUs() when contactUs != null:
 return contactUs(_that);case _EventTnc() when tnc != null:
-return tnc(_that);case _EventStampsHistory() when stampsHistory != null:
-return stampsHistory(_that);case _EventVouchers() when vouchers != null:
+return tnc(_that);case _EventVouchers() when vouchers != null:
 return vouchers(_that);case _EventReasons() when reasons != null:
 return reasons(_that);case _EventResetAccount() when reset != null:
 return reset(_that);case _:
@@ -143,15 +140,14 @@ return reset(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  initial,TResult Function()?  aboutUs,TResult Function()?  faq,TResult Function()?  contactUs,TResult Function()?  tnc,TResult Function( LoadListData param)?  stampsHistory,TResult Function( DataMap param)?  vouchers,TResult Function()?  reasons,TResult Function()?  reset,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  initial,TResult Function()?  aboutUs,TResult Function()?  faq,TResult Function()?  contactUs,TResult Function()?  tnc,TResult Function( DataMap param)?  vouchers,TResult Function()?  reasons,TResult Function()?  reset,required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _Initial() when initial != null:
 return initial();case _EventAboutUs() when aboutUs != null:
 return aboutUs();case _EventFaq() when faq != null:
 return faq();case _EventContactUs() when contactUs != null:
 return contactUs();case _EventTnc() when tnc != null:
-return tnc();case _EventStampsHistory() when stampsHistory != null:
-return stampsHistory(_that.param);case _EventVouchers() when vouchers != null:
+return tnc();case _EventVouchers() when vouchers != null:
 return vouchers(_that.param);case _EventReasons() when reasons != null:
 return reasons();case _EventResetAccount() when reset != null:
 return reset();case _:
@@ -172,15 +168,14 @@ return reset();case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  initial,required TResult Function()  aboutUs,required TResult Function()  faq,required TResult Function()  contactUs,required TResult Function()  tnc,required TResult Function( LoadListData param)  stampsHistory,required TResult Function( DataMap param)  vouchers,required TResult Function()  reasons,required TResult Function()  reset,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  initial,required TResult Function()  aboutUs,required TResult Function()  faq,required TResult Function()  contactUs,required TResult Function()  tnc,required TResult Function( DataMap param)  vouchers,required TResult Function()  reasons,required TResult Function()  reset,}) {final _that = this;
 switch (_that) {
 case _Initial():
 return initial();case _EventAboutUs():
 return aboutUs();case _EventFaq():
 return faq();case _EventContactUs():
 return contactUs();case _EventTnc():
-return tnc();case _EventStampsHistory():
-return stampsHistory(_that.param);case _EventVouchers():
+return tnc();case _EventVouchers():
 return vouchers(_that.param);case _EventReasons():
 return reasons();case _EventResetAccount():
 return reset();case _:
@@ -200,15 +195,14 @@ return reset();case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  initial,TResult? Function()?  aboutUs,TResult? Function()?  faq,TResult? Function()?  contactUs,TResult? Function()?  tnc,TResult? Function( LoadListData param)?  stampsHistory,TResult? Function( DataMap param)?  vouchers,TResult? Function()?  reasons,TResult? Function()?  reset,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  initial,TResult? Function()?  aboutUs,TResult? Function()?  faq,TResult? Function()?  contactUs,TResult? Function()?  tnc,TResult? Function( DataMap param)?  vouchers,TResult? Function()?  reasons,TResult? Function()?  reset,}) {final _that = this;
 switch (_that) {
 case _Initial() when initial != null:
 return initial();case _EventAboutUs() when aboutUs != null:
 return aboutUs();case _EventFaq() when faq != null:
 return faq();case _EventContactUs() when contactUs != null:
 return contactUs();case _EventTnc() when tnc != null:
-return tnc();case _EventStampsHistory() when stampsHistory != null:
-return stampsHistory(_that.param);case _EventVouchers() when vouchers != null:
+return tnc();case _EventVouchers() when vouchers != null:
 return vouchers(_that.param);case _EventReasons() when reasons != null:
 return reasons();case _EventResetAccount() when reset != null:
 return reset();case _:
@@ -382,81 +376,6 @@ String toString() {
 /// @nodoc
 
 
-class _EventStampsHistory implements AccountEvent {
-  const _EventStampsHistory({this.param = const LoadListData()});
-  
-
-@JsonKey() final  LoadListData param;
-
-/// Create a copy of AccountEvent
-/// with the given fields replaced by the non-null parameter values.
-@JsonKey(includeFromJson: false, includeToJson: false)
-@pragma('vm:prefer-inline')
-_$EventStampsHistoryCopyWith<_EventStampsHistory> get copyWith => __$EventStampsHistoryCopyWithImpl<_EventStampsHistory>(this, _$identity);
-
-
-
-@override
-bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _EventStampsHistory&&(identical(other.param, param) || other.param == param));
-}
-
-
-@override
-int get hashCode => Object.hash(runtimeType,param);
-
-@override
-String toString() {
-  return 'AccountEvent.stampsHistory(param: $param)';
-}
-
-
-}
-
-/// @nodoc
-abstract mixin class _$EventStampsHistoryCopyWith<$Res> implements $AccountEventCopyWith<$Res> {
-  factory _$EventStampsHistoryCopyWith(_EventStampsHistory value, $Res Function(_EventStampsHistory) _then) = __$EventStampsHistoryCopyWithImpl;
-@useResult
-$Res call({
- LoadListData param
-});
-
-
-$LoadListDataCopyWith<$Res> get param;
-
-}
-/// @nodoc
-class __$EventStampsHistoryCopyWithImpl<$Res>
-    implements _$EventStampsHistoryCopyWith<$Res> {
-  __$EventStampsHistoryCopyWithImpl(this._self, this._then);
-
-  final _EventStampsHistory _self;
-  final $Res Function(_EventStampsHistory) _then;
-
-/// Create a copy of AccountEvent
-/// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') $Res call({Object? param = null,}) {
-  return _then(_EventStampsHistory(
-param: null == param ? _self.param : param // ignore: cast_nullable_to_non_nullable
-as LoadListData,
-  ));
-}
-
-/// Create a copy of AccountEvent
-/// with the given fields replaced by the non-null parameter values.
-@override
-@pragma('vm:prefer-inline')
-$LoadListDataCopyWith<$Res> get param {
-  
-  return $LoadListDataCopyWith<$Res>(_self.param, (value) {
-    return _then(_self.copyWith(param: value));
-  });
-}
-}
-
-/// @nodoc
-
-
 class _EventVouchers implements AccountEvent {
   const _EventVouchers({final  DataMap param = const {}}): _param = param;
   
@@ -594,7 +513,7 @@ String toString() {
 mixin _$AccountState {
 
  Type? get event; Respons get respon; String get errorMessage;/// Models Data
- AboutUsModel get aboutUs; FaqModel get faq; TncModel get tnc; ContactUsModel get contactUs; StampsHistoryModel get stampsHistory; VoucherListModel get vouchers; ReasonsModel get reasons; LoadListData get filter;
+ AboutUsModel get aboutUs; FaqModel get faq; TncModel get tnc; ContactUsModel get contactUs; VoucherListModel get vouchers; ReasonsModel get reasons; LoadListData get filter;
 /// Create a copy of AccountState
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -605,16 +524,16 @@ $AccountStateCopyWith<AccountState> get copyWith => _$AccountStateCopyWithImpl<A
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is AccountState&&(identical(other.event, event) || other.event == event)&&(identical(other.respon, respon) || other.respon == respon)&&(identical(other.errorMessage, errorMessage) || other.errorMessage == errorMessage)&&(identical(other.aboutUs, aboutUs) || other.aboutUs == aboutUs)&&(identical(other.faq, faq) || other.faq == faq)&&(identical(other.tnc, tnc) || other.tnc == tnc)&&(identical(other.contactUs, contactUs) || other.contactUs == contactUs)&&(identical(other.stampsHistory, stampsHistory) || other.stampsHistory == stampsHistory)&&(identical(other.vouchers, vouchers) || other.vouchers == vouchers)&&(identical(other.reasons, reasons) || other.reasons == reasons)&&(identical(other.filter, filter) || other.filter == filter));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is AccountState&&(identical(other.event, event) || other.event == event)&&(identical(other.respon, respon) || other.respon == respon)&&(identical(other.errorMessage, errorMessage) || other.errorMessage == errorMessage)&&(identical(other.aboutUs, aboutUs) || other.aboutUs == aboutUs)&&(identical(other.faq, faq) || other.faq == faq)&&(identical(other.tnc, tnc) || other.tnc == tnc)&&(identical(other.contactUs, contactUs) || other.contactUs == contactUs)&&(identical(other.vouchers, vouchers) || other.vouchers == vouchers)&&(identical(other.reasons, reasons) || other.reasons == reasons)&&(identical(other.filter, filter) || other.filter == filter));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,event,respon,errorMessage,aboutUs,faq,tnc,contactUs,stampsHistory,vouchers,reasons,filter);
+int get hashCode => Object.hash(runtimeType,event,respon,errorMessage,aboutUs,faq,tnc,contactUs,vouchers,reasons,filter);
 
 @override
 String toString() {
-  return 'AccountState(event: $event, respon: $respon, errorMessage: $errorMessage, aboutUs: $aboutUs, faq: $faq, tnc: $tnc, contactUs: $contactUs, stampsHistory: $stampsHistory, vouchers: $vouchers, reasons: $reasons, filter: $filter)';
+  return 'AccountState(event: $event, respon: $respon, errorMessage: $errorMessage, aboutUs: $aboutUs, faq: $faq, tnc: $tnc, contactUs: $contactUs, vouchers: $vouchers, reasons: $reasons, filter: $filter)';
 }
 
 
@@ -625,11 +544,11 @@ abstract mixin class $AccountStateCopyWith<$Res>  {
   factory $AccountStateCopyWith(AccountState value, $Res Function(AccountState) _then) = _$AccountStateCopyWithImpl;
 @useResult
 $Res call({
- Type? event, Respons respon, String errorMessage, AboutUsModel aboutUs, FaqModel faq, TncModel tnc, ContactUsModel contactUs, StampsHistoryModel stampsHistory, VoucherListModel vouchers, ReasonsModel reasons, LoadListData filter
+ Type? event, Respons respon, String errorMessage, AboutUsModel aboutUs, FaqModel faq, TncModel tnc, ContactUsModel contactUs, VoucherListModel vouchers, ReasonsModel reasons, LoadListData filter
 });
 
 
-$AboutUsModelCopyWith<$Res> get aboutUs;$FaqModelCopyWith<$Res> get faq;$TncModelCopyWith<$Res> get tnc;$ContactUsModelCopyWith<$Res> get contactUs;$StampsHistoryModelCopyWith<$Res> get stampsHistory;$VoucherListModelCopyWith<$Res> get vouchers;$ReasonsModelCopyWith<$Res> get reasons;$LoadListDataCopyWith<$Res> get filter;
+$AboutUsModelCopyWith<$Res> get aboutUs;$FaqModelCopyWith<$Res> get faq;$TncModelCopyWith<$Res> get tnc;$ContactUsModelCopyWith<$Res> get contactUs;$VoucherListModelCopyWith<$Res> get vouchers;$ReasonsModelCopyWith<$Res> get reasons;$LoadListDataCopyWith<$Res> get filter;
 
 }
 /// @nodoc
@@ -642,7 +561,7 @@ class _$AccountStateCopyWithImpl<$Res>
 
 /// Create a copy of AccountState
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? event = freezed,Object? respon = null,Object? errorMessage = null,Object? aboutUs = null,Object? faq = null,Object? tnc = null,Object? contactUs = null,Object? stampsHistory = null,Object? vouchers = null,Object? reasons = null,Object? filter = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? event = freezed,Object? respon = null,Object? errorMessage = null,Object? aboutUs = null,Object? faq = null,Object? tnc = null,Object? contactUs = null,Object? vouchers = null,Object? reasons = null,Object? filter = null,}) {
   return _then(_self.copyWith(
 event: freezed == event ? _self.event : event // ignore: cast_nullable_to_non_nullable
 as Type?,respon: null == respon ? _self.respon : respon // ignore: cast_nullable_to_non_nullable
@@ -651,8 +570,7 @@ as String,aboutUs: null == aboutUs ? _self.aboutUs : aboutUs // ignore: cast_nul
 as AboutUsModel,faq: null == faq ? _self.faq : faq // ignore: cast_nullable_to_non_nullable
 as FaqModel,tnc: null == tnc ? _self.tnc : tnc // ignore: cast_nullable_to_non_nullable
 as TncModel,contactUs: null == contactUs ? _self.contactUs : contactUs // ignore: cast_nullable_to_non_nullable
-as ContactUsModel,stampsHistory: null == stampsHistory ? _self.stampsHistory : stampsHistory // ignore: cast_nullable_to_non_nullable
-as StampsHistoryModel,vouchers: null == vouchers ? _self.vouchers : vouchers // ignore: cast_nullable_to_non_nullable
+as ContactUsModel,vouchers: null == vouchers ? _self.vouchers : vouchers // ignore: cast_nullable_to_non_nullable
 as VoucherListModel,reasons: null == reasons ? _self.reasons : reasons // ignore: cast_nullable_to_non_nullable
 as ReasonsModel,filter: null == filter ? _self.filter : filter // ignore: cast_nullable_to_non_nullable
 as LoadListData,
@@ -693,15 +611,6 @@ $ContactUsModelCopyWith<$Res> get contactUs {
   
   return $ContactUsModelCopyWith<$Res>(_self.contactUs, (value) {
     return _then(_self.copyWith(contactUs: value));
-  });
-}/// Create a copy of AccountState
-/// with the given fields replaced by the non-null parameter values.
-@override
-@pragma('vm:prefer-inline')
-$StampsHistoryModelCopyWith<$Res> get stampsHistory {
-  
-  return $StampsHistoryModelCopyWith<$Res>(_self.stampsHistory, (value) {
-    return _then(_self.copyWith(stampsHistory: value));
   });
 }/// Create a copy of AccountState
 /// with the given fields replaced by the non-null parameter values.
@@ -812,10 +721,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( Type? event,  Respons respon,  String errorMessage,  AboutUsModel aboutUs,  FaqModel faq,  TncModel tnc,  ContactUsModel contactUs,  StampsHistoryModel stampsHistory,  VoucherListModel vouchers,  ReasonsModel reasons,  LoadListData filter)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( Type? event,  Respons respon,  String errorMessage,  AboutUsModel aboutUs,  FaqModel faq,  TncModel tnc,  ContactUsModel contactUs,  VoucherListModel vouchers,  ReasonsModel reasons,  LoadListData filter)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _AccountState() when $default != null:
-return $default(_that.event,_that.respon,_that.errorMessage,_that.aboutUs,_that.faq,_that.tnc,_that.contactUs,_that.stampsHistory,_that.vouchers,_that.reasons,_that.filter);case _:
+return $default(_that.event,_that.respon,_that.errorMessage,_that.aboutUs,_that.faq,_that.tnc,_that.contactUs,_that.vouchers,_that.reasons,_that.filter);case _:
   return orElse();
 
 }
@@ -833,10 +742,10 @@ return $default(_that.event,_that.respon,_that.errorMessage,_that.aboutUs,_that.
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( Type? event,  Respons respon,  String errorMessage,  AboutUsModel aboutUs,  FaqModel faq,  TncModel tnc,  ContactUsModel contactUs,  StampsHistoryModel stampsHistory,  VoucherListModel vouchers,  ReasonsModel reasons,  LoadListData filter)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( Type? event,  Respons respon,  String errorMessage,  AboutUsModel aboutUs,  FaqModel faq,  TncModel tnc,  ContactUsModel contactUs,  VoucherListModel vouchers,  ReasonsModel reasons,  LoadListData filter)  $default,) {final _that = this;
 switch (_that) {
 case _AccountState():
-return $default(_that.event,_that.respon,_that.errorMessage,_that.aboutUs,_that.faq,_that.tnc,_that.contactUs,_that.stampsHistory,_that.vouchers,_that.reasons,_that.filter);case _:
+return $default(_that.event,_that.respon,_that.errorMessage,_that.aboutUs,_that.faq,_that.tnc,_that.contactUs,_that.vouchers,_that.reasons,_that.filter);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -853,10 +762,10 @@ return $default(_that.event,_that.respon,_that.errorMessage,_that.aboutUs,_that.
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( Type? event,  Respons respon,  String errorMessage,  AboutUsModel aboutUs,  FaqModel faq,  TncModel tnc,  ContactUsModel contactUs,  StampsHistoryModel stampsHistory,  VoucherListModel vouchers,  ReasonsModel reasons,  LoadListData filter)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( Type? event,  Respons respon,  String errorMessage,  AboutUsModel aboutUs,  FaqModel faq,  TncModel tnc,  ContactUsModel contactUs,  VoucherListModel vouchers,  ReasonsModel reasons,  LoadListData filter)?  $default,) {final _that = this;
 switch (_that) {
 case _AccountState() when $default != null:
-return $default(_that.event,_that.respon,_that.errorMessage,_that.aboutUs,_that.faq,_that.tnc,_that.contactUs,_that.stampsHistory,_that.vouchers,_that.reasons,_that.filter);case _:
+return $default(_that.event,_that.respon,_that.errorMessage,_that.aboutUs,_that.faq,_that.tnc,_that.contactUs,_that.vouchers,_that.reasons,_that.filter);case _:
   return null;
 
 }
@@ -868,7 +777,7 @@ return $default(_that.event,_that.respon,_that.errorMessage,_that.aboutUs,_that.
 
 
 class _AccountState implements AccountState {
-  const _AccountState({this.event, this.respon = Respons.initial, this.errorMessage = '', this.aboutUs = const AboutUsModel(), this.faq = const FaqModel(), this.tnc = const TncModel(), this.contactUs = const ContactUsModel(), this.stampsHistory = const StampsHistoryModel(), this.vouchers = const VoucherListModel(), this.reasons = const ReasonsModel(), this.filter = const LoadListData()});
+  const _AccountState({this.event, this.respon = Respons.initial, this.errorMessage = '', this.aboutUs = const AboutUsModel(), this.faq = const FaqModel(), this.tnc = const TncModel(), this.contactUs = const ContactUsModel(), this.vouchers = const VoucherListModel(), this.reasons = const ReasonsModel(), this.filter = const LoadListData()});
   
 
 @override final  Type? event;
@@ -879,7 +788,6 @@ class _AccountState implements AccountState {
 @override@JsonKey() final  FaqModel faq;
 @override@JsonKey() final  TncModel tnc;
 @override@JsonKey() final  ContactUsModel contactUs;
-@override@JsonKey() final  StampsHistoryModel stampsHistory;
 @override@JsonKey() final  VoucherListModel vouchers;
 @override@JsonKey() final  ReasonsModel reasons;
 @override@JsonKey() final  LoadListData filter;
@@ -894,16 +802,16 @@ _$AccountStateCopyWith<_AccountState> get copyWith => __$AccountStateCopyWithImp
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _AccountState&&(identical(other.event, event) || other.event == event)&&(identical(other.respon, respon) || other.respon == respon)&&(identical(other.errorMessage, errorMessage) || other.errorMessage == errorMessage)&&(identical(other.aboutUs, aboutUs) || other.aboutUs == aboutUs)&&(identical(other.faq, faq) || other.faq == faq)&&(identical(other.tnc, tnc) || other.tnc == tnc)&&(identical(other.contactUs, contactUs) || other.contactUs == contactUs)&&(identical(other.stampsHistory, stampsHistory) || other.stampsHistory == stampsHistory)&&(identical(other.vouchers, vouchers) || other.vouchers == vouchers)&&(identical(other.reasons, reasons) || other.reasons == reasons)&&(identical(other.filter, filter) || other.filter == filter));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _AccountState&&(identical(other.event, event) || other.event == event)&&(identical(other.respon, respon) || other.respon == respon)&&(identical(other.errorMessage, errorMessage) || other.errorMessage == errorMessage)&&(identical(other.aboutUs, aboutUs) || other.aboutUs == aboutUs)&&(identical(other.faq, faq) || other.faq == faq)&&(identical(other.tnc, tnc) || other.tnc == tnc)&&(identical(other.contactUs, contactUs) || other.contactUs == contactUs)&&(identical(other.vouchers, vouchers) || other.vouchers == vouchers)&&(identical(other.reasons, reasons) || other.reasons == reasons)&&(identical(other.filter, filter) || other.filter == filter));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,event,respon,errorMessage,aboutUs,faq,tnc,contactUs,stampsHistory,vouchers,reasons,filter);
+int get hashCode => Object.hash(runtimeType,event,respon,errorMessage,aboutUs,faq,tnc,contactUs,vouchers,reasons,filter);
 
 @override
 String toString() {
-  return 'AccountState(event: $event, respon: $respon, errorMessage: $errorMessage, aboutUs: $aboutUs, faq: $faq, tnc: $tnc, contactUs: $contactUs, stampsHistory: $stampsHistory, vouchers: $vouchers, reasons: $reasons, filter: $filter)';
+  return 'AccountState(event: $event, respon: $respon, errorMessage: $errorMessage, aboutUs: $aboutUs, faq: $faq, tnc: $tnc, contactUs: $contactUs, vouchers: $vouchers, reasons: $reasons, filter: $filter)';
 }
 
 
@@ -914,11 +822,11 @@ abstract mixin class _$AccountStateCopyWith<$Res> implements $AccountStateCopyWi
   factory _$AccountStateCopyWith(_AccountState value, $Res Function(_AccountState) _then) = __$AccountStateCopyWithImpl;
 @override @useResult
 $Res call({
- Type? event, Respons respon, String errorMessage, AboutUsModel aboutUs, FaqModel faq, TncModel tnc, ContactUsModel contactUs, StampsHistoryModel stampsHistory, VoucherListModel vouchers, ReasonsModel reasons, LoadListData filter
+ Type? event, Respons respon, String errorMessage, AboutUsModel aboutUs, FaqModel faq, TncModel tnc, ContactUsModel contactUs, VoucherListModel vouchers, ReasonsModel reasons, LoadListData filter
 });
 
 
-@override $AboutUsModelCopyWith<$Res> get aboutUs;@override $FaqModelCopyWith<$Res> get faq;@override $TncModelCopyWith<$Res> get tnc;@override $ContactUsModelCopyWith<$Res> get contactUs;@override $StampsHistoryModelCopyWith<$Res> get stampsHistory;@override $VoucherListModelCopyWith<$Res> get vouchers;@override $ReasonsModelCopyWith<$Res> get reasons;@override $LoadListDataCopyWith<$Res> get filter;
+@override $AboutUsModelCopyWith<$Res> get aboutUs;@override $FaqModelCopyWith<$Res> get faq;@override $TncModelCopyWith<$Res> get tnc;@override $ContactUsModelCopyWith<$Res> get contactUs;@override $VoucherListModelCopyWith<$Res> get vouchers;@override $ReasonsModelCopyWith<$Res> get reasons;@override $LoadListDataCopyWith<$Res> get filter;
 
 }
 /// @nodoc
@@ -931,7 +839,7 @@ class __$AccountStateCopyWithImpl<$Res>
 
 /// Create a copy of AccountState
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? event = freezed,Object? respon = null,Object? errorMessage = null,Object? aboutUs = null,Object? faq = null,Object? tnc = null,Object? contactUs = null,Object? stampsHistory = null,Object? vouchers = null,Object? reasons = null,Object? filter = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? event = freezed,Object? respon = null,Object? errorMessage = null,Object? aboutUs = null,Object? faq = null,Object? tnc = null,Object? contactUs = null,Object? vouchers = null,Object? reasons = null,Object? filter = null,}) {
   return _then(_AccountState(
 event: freezed == event ? _self.event : event // ignore: cast_nullable_to_non_nullable
 as Type?,respon: null == respon ? _self.respon : respon // ignore: cast_nullable_to_non_nullable
@@ -940,8 +848,7 @@ as String,aboutUs: null == aboutUs ? _self.aboutUs : aboutUs // ignore: cast_nul
 as AboutUsModel,faq: null == faq ? _self.faq : faq // ignore: cast_nullable_to_non_nullable
 as FaqModel,tnc: null == tnc ? _self.tnc : tnc // ignore: cast_nullable_to_non_nullable
 as TncModel,contactUs: null == contactUs ? _self.contactUs : contactUs // ignore: cast_nullable_to_non_nullable
-as ContactUsModel,stampsHistory: null == stampsHistory ? _self.stampsHistory : stampsHistory // ignore: cast_nullable_to_non_nullable
-as StampsHistoryModel,vouchers: null == vouchers ? _self.vouchers : vouchers // ignore: cast_nullable_to_non_nullable
+as ContactUsModel,vouchers: null == vouchers ? _self.vouchers : vouchers // ignore: cast_nullable_to_non_nullable
 as VoucherListModel,reasons: null == reasons ? _self.reasons : reasons // ignore: cast_nullable_to_non_nullable
 as ReasonsModel,filter: null == filter ? _self.filter : filter // ignore: cast_nullable_to_non_nullable
 as LoadListData,
@@ -983,15 +890,6 @@ $ContactUsModelCopyWith<$Res> get contactUs {
   
   return $ContactUsModelCopyWith<$Res>(_self.contactUs, (value) {
     return _then(_self.copyWith(contactUs: value));
-  });
-}/// Create a copy of AccountState
-/// with the given fields replaced by the non-null parameter values.
-@override
-@pragma('vm:prefer-inline')
-$StampsHistoryModelCopyWith<$Res> get stampsHistory {
-  
-  return $StampsHistoryModelCopyWith<$Res>(_self.stampsHistory, (value) {
-    return _then(_self.copyWith(stampsHistory: value));
   });
 }/// Create a copy of AccountState
 /// with the given fields replaced by the non-null parameter values.

@@ -17,11 +17,11 @@ class StoresFt {
   /// Setup Injector
   static Future<void> injectors() async {
     /// 1. Setup Bloc
-    getIt.registerLazySingleton(() => StoresListBloc());
+    getIt.registerLazySingleton(() => StoreBranchesBloc());
     getIt.registerLazySingleton(() => StoreBloc());
 
     /// 2. Setup Cubit
-    getIt.registerLazySingleton(() => BranchCubit());
+    getIt.registerLazySingleton(() => StoreBranchCubit());
 
     /// 3. Setup Repository
     ///
@@ -35,7 +35,7 @@ class StoresFt {
 
     /// 5. Setup Usecase
     ///
-    getIt.registerLazySingleton(() => GetStoreListUc(getIt()));
+    getIt.registerLazySingleton(() => GetStoreBranchesUc(getIt()));
     getIt.registerLazySingleton(() => GetStoreUc(getIt()));
 
     /// 6. Setup Control / Flow
@@ -44,9 +44,9 @@ class StoresFt {
     /// 7. Setup Provider
     ///
     BlocProviderInjectors.add([
-      BlocProvider<StoresListBloc>(create: (_) => getIt<StoresListBloc>()),
+      BlocProvider<StoreBranchesBloc>(create: (_) => getIt<StoreBranchesBloc>()),
       BlocProvider<StoreBloc>(create: (_) => getIt<StoreBloc>()),
-      BlocProvider<BranchCubit>(create: (_) => getIt<BranchCubit>()),
+      BlocProvider<StoreBranchCubit>(create: (_) => getIt<StoreBranchCubit>()),
       //
     ]);
   }

@@ -31,22 +31,29 @@ class _BranchHeaderState extends State<BranchHeader> {
   void initState() {
     super.initState();
 
-    WidgetsBinding.instance.addPostFrameCallback((_) {
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
       if (!mounted) return;
-      StoreFlows.getListStore(context);
-      context.read<BranchCubit>().loadPosition();
-      context.read<BranchCubit>().ensureSelection(StoreFlows.storeList.data);
+      final cubit = context.read<StoreBranchCubit>();
+      cubit.ensureSelection(StoreFlows.storeBranches.data);
+      StoreFlows.getStoreBranches(context);
+
+      // Fetch again with lat/lon once known: the API sorts by distance.
+      await cubit.loadPosition();
+      if (!mounted || cubit.state.position == null) return;
+      StoreFlows.getStoreBranches(context);
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    return BlocListener<StoresListBloc, StoresListState>(
+    return BlocListener<StoreBranchesBloc, StoreBranchesState>(
       listenWhen: (previous, current) =>
-          previous.stores != current.stores && current.stores.data.isNotEmpty,
-      listener: (context, state) =>
-          context.read<BranchCubit>().ensureSelection(state.stores.data),
-      child: BlocBuilder<BranchCubit, BranchState>(
+          previous.branches != current.branches &&
+          current.branches.data.isNotEmpty,
+      listener: (context, state) => context
+          .read<StoreBranchCubit>()
+          .ensureSelection(state.branches.data),
+      child: BlocBuilder<StoreBranchCubit, StoreBranchState>(
         builder: (context, state) {
           final branch = state.selected;
 

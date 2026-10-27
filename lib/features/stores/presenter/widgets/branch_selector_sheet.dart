@@ -6,8 +6,8 @@ class BranchSelectorSheet {
 
   static Future<void> show(BuildContext context) {
     /// Make sure the list is fresh and the distance labels can be computed.
-    StoreFlows.getListStore(context);
-    context.read<BranchCubit>().loadPosition();
+    StoreFlows.getStoreBranches(context);
+    context.read<StoreBranchCubit>().loadPosition();
 
     return MyBossBottomSheet.show<void>(
       context,
@@ -21,9 +21,9 @@ class _BranchSelectorBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<StoresListBloc, StoresListState>(
+    return BlocBuilder<StoreBranchesBloc, StoreBranchesState>(
       builder: (context, listState) {
-        final branches = listState.stores.data;
+        final branches = listState.branches.data;
 
         return Column(
           mainAxisSize: MainAxisSize.min,
@@ -60,8 +60,8 @@ class _BranchSelectorBody extends StatelessWidget {
 
   Widget _list(
     BuildContext context,
-    StoresListState listState,
-    List<StoreList> branches,
+    StoreBranchesState listState,
+    List<StoreBranch> branches,
   ) {
     if (branches.isEmpty) {
       return Padding(
@@ -77,7 +77,7 @@ class _BranchSelectorBody extends StatelessWidget {
       );
     }
 
-    return BlocBuilder<BranchCubit, BranchState>(
+    return BlocBuilder<StoreBranchCubit, StoreBranchState>(
       builder: (context, branchState) {
         return ListView.separated(
           shrinkWrap: true,
@@ -92,7 +92,7 @@ class _BranchSelectorBody extends StatelessWidget {
               selected: branch.id == branchState.selected?.id,
               position: branchState.position,
               onSelect: () {
-                context.read<BranchCubit>().select(branch);
+                context.read<StoreBranchCubit>().select(branch);
                 Navigator.of(context).maybePop();
               },
             );

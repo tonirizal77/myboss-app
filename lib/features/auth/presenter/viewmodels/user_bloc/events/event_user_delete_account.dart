@@ -44,7 +44,7 @@ extension _UserDeleteAccountHandler on UserBloc {
         /// name/avatar once back in guest mode.
         getIt<ProfileBloc>().add(const ProfileEvent.reset());
 
-        /// Drop persisted vouchers/stamps history - avoid showing the
+        /// Drop persisted vouchers - avoid showing the
         /// deleted account's data once back in guest mode.
         getIt<AccountBloc>().add(const AccountEvent.reset());
         await DeleteAccountLocalState.clearPending();

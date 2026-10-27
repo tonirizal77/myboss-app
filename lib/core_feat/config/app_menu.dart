@@ -29,7 +29,7 @@ abstract class AppMenu {
         LocaleKeys.bottom_nav_nav3,
         Icons.tag,
         Icons.storefront_rounded,
-        const StoresPage(),
+        const StoreBranchesPage(),
       ),
     ),
 

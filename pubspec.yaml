@@ -3,7 +3,7 @@ description: "Starter template - full clean-architecture copy of hayo_app's core
 
 publish_to: "none" # Remove this line if you wish to publish to pub.dev
 
-version: 1.0.0+1
+version: 1.0.1+1
 
 environment:
   sdk: ^3.12.2 #">=3.10.0 <4.0.0"
@@ -68,7 +68,6 @@ dependencies:
   tuple: ^2.0.0
   url_launcher: ^6.3.2
   webview_flutter: ^4.13.1
-  lottie: ^3.3.2
   screen_protector: ^1.5.3
   socket_io_client: ^3.1.4
   flutter_html: ^3.0.0
@@ -104,7 +103,6 @@ flutter:
     - assets/fonts/Onest/
     - assets/fonts/Onest/static/
     - assets/fonts/Poppins/
-    - assets/gif/
     - assets/icons/
     - assets/icons/mybos/
     - assets/images/
