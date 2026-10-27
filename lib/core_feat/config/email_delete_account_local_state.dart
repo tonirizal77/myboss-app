@@ -1,4 +1,4 @@
-part of 'controllers.dart';
+part of 'configs.dart';
 
 /// Optimistic, unverified local marker for [DeleteAccountMode.emailConfirmation]
 /// - set once the user taps "Kirim Permintaan" and the mail app is

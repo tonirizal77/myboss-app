@@ -1,4 +1,4 @@
-part of 'controllers.dart';
+part of 'configs.dart';
 
 abstract class AppSetting {
   /// MARK: Control of Mode Development (Change HERE)

@@ -1,6 +1,6 @@
 // ignore_for_file: unused_local_variable
 
-part of 'controllers.dart';
+part of 'configs.dart';
 
 /// 0. GoRouter Redirect
 ///   - Initialize Auth dan User

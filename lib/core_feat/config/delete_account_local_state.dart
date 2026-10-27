@@ -1,4 +1,4 @@
-part of 'controllers.dart';
+part of 'configs.dart';
 
 /// Menyimpan state "request penghapusan akun sedang pending" secara lokal
 /// (SharedPreferences) supaya halaman Home dan member barcode sheet bisa

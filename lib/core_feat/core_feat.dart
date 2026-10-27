@@ -8,7 +8,7 @@ export 'package:mobile_app_core/mobile_app_core.dart';
 export 'network/configs.dart';
 export 'translations/translations.dart';
 export 'navigation/navigations.dart';
-export 'controller/controllers.dart';
+export 'config/configs.dart';
 export 'shared/app_shareds.dart';
 export 'support/supports.dart';
 export 'template/responsive_widget/responsive_widget_feat.dart';
