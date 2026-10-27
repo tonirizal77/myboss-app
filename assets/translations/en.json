@@ -290,8 +290,7 @@
 
   "global": {
     "server_error": "Server Error!",
-    "ignore": "Ignore for now",
-    "welcome_btn": "Let's be a friends!"
+    "ignore": "Ignore for now"
   },
 
   "verify": {

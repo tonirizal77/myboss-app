@@ -4,9 +4,6 @@ class RouteNames {
   /// Splash Page
   static const String splash = 'splash';
 
-  /// Welcome Page
-  static const String welcome = 'welcome';
-
   /// No Internet Connection
   static const String noInternet = 'no-internet';
 

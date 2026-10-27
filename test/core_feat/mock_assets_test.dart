@@ -123,8 +123,6 @@ void main() {
 
     test('store and branches', () {
       final store = StoreModel.fromJson(_data('GET', Endpoints.storeData));
-      // Splash goes straight to guest mode (no Welcome page): see
-      // AppSetting.isGuestModeEnabled.
       expect(store.mobileSetting?.isGuestMode, isTrue);
       expect(store.signinRequired, 0);
 

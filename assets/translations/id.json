@@ -290,8 +290,7 @@
 
   "global": {
     "server_error": "Error Server!",
-    "ignore": "Abaikan dulu ya",
-    "welcome_btn": "Ayo jadi teman!"
+    "ignore": "Abaikan dulu ya"
   },
 
   "verify": {

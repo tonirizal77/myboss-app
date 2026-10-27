@@ -18,8 +18,8 @@ class UserFlowsListen {
     } else {
       /// Check Status Login
       if (state.statusLogin == Status.initial) {
-        /// Goto Welcome Page
-        AuthFlows.goToWelcomePage(context);
+        /// Not signed in -> guest Main Page (MyBoss has no Welcome page)
+        AuthFlows.goToGuestMain(context);
       } else if (state.statusLogin == Status.failed) {
         /// Do Refresh Token
         await AuthFlows.refreshToken(context);
@@ -42,16 +42,8 @@ class UserFlowsListen {
       getIt<LoadingHelper>().turnOffLoading();
 
       if (state.statusLogout == Status.success) {
-        if (AppSetting.isGuestModeEnabled) {
-          /// Guest mode enabled - stay browsable on Main Page
-          /// (Home/Menu/Store) instead of forcing login, same as
-          /// [AuthFlowsListen.checkAuthListen] / [getTokenClient].
-          context.read<ResponsiveCubit>().swithMenuDrawer(true);
-          MainPageFlow.goToMainPage(context);
-        } else {
-          /// Guest mode disabled - force login
-          AuthFlows.goToWelcomePage(context);
-        }
+        /// No Welcome page: not signed in -> browse as guest.
+        AuthFlows.goToGuestMain(context);
 
         await getIt<FlushbarHelper>().showToastNotif(
           context: context,
@@ -78,16 +70,8 @@ class UserFlowsListen {
       getIt<LoadingHelper>().turnOffLoading();
 
       if (state.statusDeleteAccount == Status.success) {
-        if (AppSetting.isGuestModeEnabled) {
-          /// Guest mode enabled - stay browsable on Main Page
-          /// (Home/Menu/Store) instead of forcing login, same as
-          /// [AuthFlowsListen.checkAuthListen] / [getTokenClient].
-          context.read<ResponsiveCubit>().swithMenuDrawer(true);
-          MainPageFlow.goToMainPage(context);
-        } else {
-          /// Guest mode disabled - force login
-          AuthFlows.goToWelcomePage(context);
-        }
+        /// No Welcome page: not signed in -> browse as guest.
+        AuthFlows.goToGuestMain(context);
 
         await getIt<FlushbarHelper>().showToastNotif(
           context: context,

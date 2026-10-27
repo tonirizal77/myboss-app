@@ -59,7 +59,7 @@ extension _EventUserLogout on UserBloc {
         //
         // Keep `event: UserLogout` - a bare `UserState(...)` resets it to
         // the default, which breaks the `listenWhen` on the logout
-        // BlocListener (auth_ft.dart) and skips the redirect to welcome page.
+        // BlocListener (auth_ft.dart) and skips the redirect to the guest Main Page.
         emit(
           UserState(
             isLoading: false,

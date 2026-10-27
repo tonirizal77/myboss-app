@@ -11,13 +11,6 @@ final class RouteGlobal {
       builder: (context, state) => const SplashPage(),
     ),
 
-    /// Welcome screen.
-    GoRoute(
-      path: '/${RouteNames.welcome}',
-      name: RouteNames.welcome,
-      builder: (context, state) => const WelcomePage(),
-    ),
-
     GoRoute(
       path: '/${RouteNames.login}',
       name: RouteNames.login,

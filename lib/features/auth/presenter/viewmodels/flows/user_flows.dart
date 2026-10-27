@@ -87,4 +87,10 @@ class UserFlows {
   /// - Check status login
   static bool isLoggedIn(BuildContext context) =>
       context.read<UserBloc>().state.statusLogin == Status.success;
+
+  /// - `true` only on the transition into a signed-in session (not on every
+  ///   state change while signed in) - e.g. to reload user data once.
+  static bool justSignedIn(UserState previous, UserState current) =>
+      previous.statusLogin != Status.success &&
+      current.statusLogin == Status.success;
 }

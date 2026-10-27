@@ -40,21 +40,14 @@ class AuthFlowsListen {
             /// on UserBloc.statusLogin, which otherwise never gets synced
             /// on a normal app restart (AuthBloc only tracks the
             /// system/client token, not the user's own login state).
+            ///
+            /// Navigation to the Main Page is done once, by
+            /// [UserFlowsListen.cekAuthUserListen] when that check finishes -
+            /// navigating here too sent the app to the Main Page twice.
             await UserFlows.cekAutenticate(context);
-
-            /// Goto Main Page
-            await UserFlows.goToMainPage(context);
           } else {
-            if (AppSetting.isGuestModeEnabled) {
-              /// Guest (client token only, no real login yet) -
-              /// Menu & Store must stay browsable without forcing login.
-              /// true = semua menu tampil, false = login dan register
-              context.read<ResponsiveCubit>().swithMenuDrawer(true);
-              MainPageFlow.goToMainPage(context);
-            } else {
-              /// Guest mode disabled - force login
-              AuthFlows.goToWelcomePage(context);
-            }
+            /// No Welcome page: not signed in -> browse as guest.
+            AuthFlows.goToGuestMain(context);
           }
         } else {
           // todo: Bloc App
@@ -77,15 +70,8 @@ class AuthFlowsListen {
       getIt<LoadingHelper>().turnOffLoading();
 
       if (state.status == Status.success) {
-        if (AppSetting.isGuestModeEnabled) {
-          /// Guest client token obtained - go straight to the main shell
-          /// (Home/Menu/Store) instead of forcing login.
-          context.read<ResponsiveCubit>().swithMenuDrawer(true);
-          MainPageFlow.goToMainPage(context);
-        } else {
-          /// Guest mode disabled - force login
-          AuthFlows.goToWelcomePage(context);
-        }
+        /// No Welcome page: not signed in -> browse as guest.
+        AuthFlows.goToGuestMain(context);
       }
 
       if (state.status == Status.failed) {

@@ -11,12 +11,9 @@ class ResponsiveRouters extends StatelessWidget {
     final _location = GoRouterSingleton.shared.getCurrentLocation();
     final _initialLocation = "/";
     final _noInternet = "/${RouteNames.noInternet}";
-    final _welcome = "/${RouteNames.welcome}";
 
     final _stayOnTop =
-        (_location == _initialLocation ||
-        _noInternet == _location ||
-        _welcome == _location);
+        (_location == _initialLocation || _noInternet == _location);
 
     return Stack(
       children: [

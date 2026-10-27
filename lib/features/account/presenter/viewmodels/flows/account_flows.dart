@@ -238,7 +238,7 @@ class AccountFlows {
   /// the sheet when [AppSetting.needConfirmOTP] is `false`):
   /// - [DeleteAccountMode.direct]: really delete (DELETE
   ///   [Endpoints.deleteAccountReal]); on success the session is cleared and
-  ///   the user lands in guest mode (or on the welcome page).
+  ///   the user lands in guest mode.
   /// - [DeleteAccountMode.pending]: never calls the delete endpoint - marks
   ///   the account pending locally and opens [DeleteAccountStatusSheet]
   ///   (preview the grace-period UI without deleting a test account).
@@ -280,13 +280,8 @@ class AccountFlows {
     if (!context.mounted) return;
 
     if (_state.statusDeleteAccount == Status.success) {
-      if (AppSetting.isGuestModeEnabled) {
-        /// Guest mode: stay browsable on the Main Page.
-        context.read<ResponsiveCubit>().swithMenuDrawer(true);
-        MainPageFlow.goToMainPage(context);
-      } else {
-        AuthFlows.goToWelcomePage(context);
-      }
+      /// No Welcome page: not signed in -> browse as guest.
+      AuthFlows.goToGuestMain(context);
 
       MyBossToast.success(context, LocaleKeys.akun_delete_account_success.tr());
       return;

@@ -5,11 +5,6 @@ class AuthFlows {
 
   /// === HANDLERS === ///
   ///
-  /// 1. First Get Client Token
-  ///
-  /// Used in [WelcomePage] to fetch a client token on app boot.
-  ///
-
   /// 0. Fetch a client token on app boot.
   static Future<void> checkAuthClient(
     BuildContext context, {
@@ -23,10 +18,12 @@ class AuthFlows {
     context.read<AuthBloc>().add(const AuthEvent.clientToken());
   }
 
-  /// 1. Process to Register
-  static void goToWelcomePage(BuildContext context) {
-    PrintHelper.printData("__flow goto welcome page...: ${context.locale}");
-    context.goNamed(RouteNames.welcome);
+  /// 2. Guest Main Page - MyBoss has no Welcome page: after Splash a user
+  /// who is not signed in browses Home/Menu/Store as a guest.
+  static void goToGuestMain(BuildContext context) {
+    PrintHelper.printData("__flow goto guest main page");
+    context.read<ResponsiveCubit>().swithMenuDrawer(true);
+    MainPageFlow.goToMainPage(context);
   }
 
   /// - Refresh Token

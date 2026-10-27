@@ -89,13 +89,6 @@ abstract class AppSetting {
   /// Skip Send OTP Login at Login Flow
   static bool get isSkipOTP => true;
 
-  /// Enable/disable Guest Mode (browsing Home/Menu/Store without login,
-  /// using client token only). If `false`, user is redirected to the
-  /// Welcome page and must login before entering the app.
-  /// nilainya kebalikan dari nilai wajib login
-  static bool get isGuestModeEnabled =>
-      StoreFlows.setting.isGuestMode && StoreFlows.store.signinRequired == 0;
-
   /// Setup Edge to Edge
   static bool get isSetupEdge => true;
 

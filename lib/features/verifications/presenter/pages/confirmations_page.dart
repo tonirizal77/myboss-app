@@ -15,10 +15,10 @@ class ConfirmationsPage extends StatelessWidget {
           final _fromPage = VerifyFlows.verifyData.fromPage;
 
           if (_fromPage == FromPage.login || _fromPage == FromPage.register) {
-            /// Reset State and trigger listen user to welcome page
+            /// Reset State, back to the guest Main Page
             getIt<UserBloc>().add(UserEvent.userReset());
 
-            context.goNamed(RouteNames.welcome);
+            AuthFlows.goToGuestMain(context);
           } else {
             getIt<VerifyBloc>().add(VerifyEvent.reset());
 

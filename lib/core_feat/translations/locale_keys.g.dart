@@ -2,7 +2,7 @@
 
 // ignore_for_file: constant_identifier_names
 
-abstract class  LocaleKeys {
+abstract class LocaleKeys {
   static const bottom_nav_nav1 = 'bottom_nav.nav1';
   static const bottom_nav_nav2 = 'bottom_nav.nav2';
   static const bottom_nav_nav3 = 'bottom_nav.nav3';
@@ -144,36 +144,52 @@ abstract class  LocaleKeys {
   static const akun_delete_confirm_info1 = 'akun.delete_confirm_info1';
   static const akun_delete_confirm_info2 = 'akun.delete_confirm_info2';
   static const akun_delete_confirm_button = 'akun.delete_confirm_button';
-  static const akun_delete_confirm_email_button = 'akun.delete_confirm_email_button';
-  static const akun_delete_confirm_email_subject = 'akun.delete_confirm_email_subject';
-  static const akun_delete_confirm_email_body = 'akun.delete_confirm_email_body';
+  static const akun_delete_confirm_email_button =
+      'akun.delete_confirm_email_button';
+  static const akun_delete_confirm_email_subject =
+      'akun.delete_confirm_email_subject';
+  static const akun_delete_confirm_email_body =
+      'akun.delete_confirm_email_body';
   static const akun_dark_mode = 'akun.dark_mode';
-  static const akun_delete_active_voucher_desc = 'akun.delete_active_voucher_desc';
-  static const akun_delete_active_voucher_title = 'akun.delete_active_voucher_title';
+  static const akun_delete_active_voucher_desc =
+      'akun.delete_active_voucher_desc';
+  static const akun_delete_active_voucher_title =
+      'akun.delete_active_voucher_title';
   static const akun_delete_cancel_confirm_no = 'akun.delete_cancel_confirm_no';
-  static const akun_delete_cancel_confirm_title = 'akun.delete_cancel_confirm_title';
-  static const akun_delete_cancel_confirm_yes = 'akun.delete_cancel_confirm_yes';
+  static const akun_delete_cancel_confirm_title =
+      'akun.delete_cancel_confirm_title';
+  static const akun_delete_cancel_confirm_yes =
+      'akun.delete_cancel_confirm_yes';
   static const akun_delete_cancel_success = 'akun.delete_cancel_success';
-  static const akun_delete_confirm_email_resend_button = 'akun.delete_confirm_email_resend_button';
-  static const akun_delete_confirm_email_sent_desc = 'akun.delete_confirm_email_sent_desc';
-  static const akun_delete_confirm_email_sent_toast = 'akun.delete_confirm_email_sent_toast';
+  static const akun_delete_confirm_email_resend_button =
+      'akun.delete_confirm_email_resend_button';
+  static const akun_delete_confirm_email_sent_desc =
+      'akun.delete_confirm_email_sent_desc';
+  static const akun_delete_confirm_email_sent_toast =
+      'akun.delete_confirm_email_sent_toast';
   static const akun_delete_my_account = 'akun.delete_my_account';
   static const akun_delete_otp_submit_button = 'akun.delete_otp_submit_button';
   static const akun_delete_pending_banner = 'akun.delete_pending_banner';
-  static const akun_delete_reason_notification = 'akun.delete_reason_notification';
+  static const akun_delete_reason_notification =
+      'akun.delete_reason_notification';
   static const akun_delete_reason_other = 'akun.delete_reason_other';
   static const akun_delete_reason_other_app = 'akun.delete_reason_other_app';
   static const akun_delete_reason_page_title = 'akun.delete_reason_page_title';
   static const akun_delete_reason_privacy = 'akun.delete_reason_privacy';
-  static const akun_delete_reason_section_title = 'akun.delete_reason_section_title';
+  static const akun_delete_reason_section_title =
+      'akun.delete_reason_section_title';
   static const akun_delete_reason_skip = 'akun.delete_reason_skip';
   static const akun_delete_request_success = 'akun.delete_request_success';
-  static const akun_delete_status_cancel_button = 'akun.delete_status_cancel_button';
-  static const akun_delete_status_continue_button = 'akun.delete_status_continue_button';
+  static const akun_delete_status_cancel_button =
+      'akun.delete_status_cancel_button';
+  static const akun_delete_status_continue_button =
+      'akun.delete_status_continue_button';
   static const akun_delete_status_countdown = 'akun.delete_status_countdown';
   static const akun_delete_status_desc = 'akun.delete_status_desc';
-  static const akun_delete_status_desc_no_date = 'akun.delete_status_desc_no_date';
-  static const akun_delete_status_signout_button = 'akun.delete_status_signout_button';
+  static const akun_delete_status_desc_no_date =
+      'akun.delete_status_desc_no_date';
+  static const akun_delete_status_signout_button =
+      'akun.delete_status_signout_button';
   static const akun_delete_status_title = 'akun.delete_status_title';
   static const akun_delete_still_have = 'akun.delete_still_have';
   static const akun_guest_title = 'akun.guest_title';
@@ -245,13 +261,13 @@ abstract class  LocaleKeys {
   static const auth = 'auth';
   static const global_server_error = 'global.server_error';
   static const global_ignore = 'global.ignore';
-  static const global_welcome_btn = 'global.welcome_btn';
   static const global = 'global';
   static const verify_title = 'verify.title';
   static const verify_send_otp = 'verify.send_otp';
   static const verify_verify_phone = 'verify.verify_phone';
   static const verify_otp_instruction = 'verify.otp_instruction';
-  static const verify_otp_instruction_with_phone = 'verify.otp_instruction_with_phone';
+  static const verify_otp_instruction_with_phone =
+      'verify.otp_instruction_with_phone';
   static const verify_confirm_title = 'verify.confirm_title';
   static const verify_confirm_btn = 'verify.confirm_btn';
   static const verify_otp_sent = 'verify.otp_sent';
@@ -265,9 +281,11 @@ abstract class  LocaleKeys {
   static const edit_profile_new_email_title = 'edit_profile.new_email_title';
   static const edit_profile_email_label = 'edit_profile.email_label';
   static const edit_profile_error_phone_same = 'edit_profile.error_phone_same';
-  static const edit_profile_error_email_required = 'edit_profile.error_email_required';
+  static const edit_profile_error_email_required =
+      'edit_profile.error_email_required';
   static const edit_profile_error_email_same = 'edit_profile.error_email_same';
-  static const edit_profile_error_email_invalid = 'edit_profile.error_email_invalid';
+  static const edit_profile_error_email_invalid =
+      'edit_profile.error_email_invalid';
   static const edit_profile = 'edit_profile';
   static const tnc_title = 'tnc.title';
   static const tnc_desc = 'tnc.desc';
@@ -354,5 +372,4 @@ abstract class  LocaleKeys {
   static const tnc_12_desc = 'tnc.12.desc';
   static const tnc_12 = 'tnc.12';
   static const tnc = 'tnc';
-
 }

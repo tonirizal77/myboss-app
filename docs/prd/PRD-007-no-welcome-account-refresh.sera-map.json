@@ -1,0 +1,123 @@
+{
+  "prd": "PRD-007-no-welcome-account-refresh.md",
+  "project_gid": "65ea6511-c5e4-4397-adf0-64a03c9159c7",
+  "epic": {
+    "id": "732c49ed-57ee-4368-b922-702cf65fd529",
+    "key": "MYB-1"
+  },
+  "stories": [
+    {
+      "id": "7f3d7d8d-c78c-4a03-a129-e1456437e731",
+      "key": "MYB-265",
+      "name": "Splash Langsung ke Guest atau Signed-in (Tanpa Welcome)",
+      "tasks": [
+        {
+          "id": "a5ecf1d9-5c4e-4b8b-a43d-d588e355ee02",
+          "key": "MYB-276",
+          "title": "Audit semua jalur yang membuka WelcomePage",
+          "deadline": "2026-10-28"
+        },
+        {
+          "id": "be25c289-302d-44ea-883f-c1415e379723",
+          "key": "MYB-275",
+          "title": "AuthFlows.goToGuestMain menggantikan goToWelcomePage",
+          "deadline": "2026-10-28"
+        },
+        {
+          "id": "1a008b68-4f41-4492-be42-0ca58b2bd625",
+          "key": "MYB-274",
+          "title": "Arahkan check auth, client token, status login initial, logout & hapus akun ke guest Main Page",
+          "deadline": "2026-10-28"
+        },
+        {
+          "id": "38a1cbb2-30f2-4c74-9b1a-62928cf21f06",
+          "key": "MYB-273",
+          "title": "Tombol tutup verifikasi & konfirmasi (login/daftar) kembali ke guest Main Page",
+          "deadline": "2026-10-28"
+        },
+        {
+          "id": "d47178ac-f1cb-42c9-bf0c-00f708e98351",
+          "key": "MYB-272",
+          "title": "Hapus WelcomePage, route welcome, pengecualian di ResponsiveRouters & AppSetting.isGuestModeEnabled",
+          "deadline": "2026-10-28"
+        },
+        {
+          "id": "0aba9081-4ebc-43df-a837-bd7c257ea294",
+          "key": "MYB-271",
+          "title": "Test alur: splash ke guest walau server mengirim guest mode nonaktif",
+          "deadline": "2026-10-28"
+        }
+      ]
+    },
+    {
+      "id": "377bbba1-5530-444d-b950-a76b407de03e",
+      "key": "MYB-264",
+      "name": "Refresh Account Setelah Login",
+      "tasks": [
+        {
+          "id": "e8fa55d4-6700-45e0-9f01-d42b4634a503",
+          "key": "MYB-270",
+          "title": "Account refresh profil & voucher saat statusLogin berubah ke success",
+          "deadline": "2026-10-28"
+        },
+        {
+          "id": "5d23b8f4-8e21-449e-8f01-1858d7f1ca96",
+          "key": "MYB-269",
+          "title": "Widget test: voucher terisi setelah login tanpa restart",
+          "deadline": "2026-10-28"
+        }
+      ]
+    },
+    {
+      "id": "c984dd79-a4e9-4666-b44d-c69563b32f62",
+      "key": "MYB-263",
+      "name": "QA Tanpa Welcome & Refresh Account",
+      "tasks": [
+        {
+          "id": "50ceb94a-0c3a-4239-952e-9fdadf3e69b6",
+          "key": "MYB-268",
+          "title": "flutter analyze + flutter test (PRD-007)",
+          "deadline": "2026-10-28"
+        },
+        {
+          "id": "71775a42-335d-4f96-b154-5b7ce4020320",
+          "key": "MYB-267",
+          "title": "Verifikasi macOS 3 ukuran mode mock (splash ke guest, login, Account voucher, logout)",
+          "deadline": "2026-10-28"
+        },
+        {
+          "id": "fb3a9546-3a22-497b-9cdb-96432d99a0dc",
+          "key": "MYB-266",
+          "title": "Uji Android staging tanpa Welcome & refresh Account (RMX5566)",
+          "deadline": "2026-10-28"
+        }
+      ]
+    },
+    {
+      "id": "5fdfb6e3-417f-4955-afbb-93e1ad419708",
+      "key": "MYB-277",
+      "name": "Perpindahan Tab Main Page Stabil",
+      "tasks": [
+        {
+          "id": "eca1507c-a3f1-469a-b062-8347f79e096e",
+          "key": "MYB-280",
+          "title": "Startup login: navigasi ke Main Page hanya sekali (checkAuthListen serahkan ke cekAuthUserListen)",
+          "deadline": "2026-10-28"
+        },
+        {
+          "id": "78a1cc84-1fed-4b8c-983a-ad45eef82d2e",
+          "key": "MYB-279",
+          "title": "MainPage: PageView selalu mengikuti BottomNavCubit (hapus _syncIndex, jump tertunda bila belum terpasang)",
+          "deadline": "2026-10-28",
+          "note": "not needed - reverted"
+        },
+        {
+          "id": "5f7e6fb6-0f05-4a1e-96f8-70caa0432b6f",
+          "key": "MYB-278",
+          "title": "Test & verifikasi: tab berpindah setelah startup login dan setelah login (beberapa run)",
+          "deadline": "2026-10-28"
+        }
+      ]
+    }
+  ]
+}

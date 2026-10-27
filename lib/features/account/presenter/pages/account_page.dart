@@ -43,10 +43,17 @@ class _AccountPageState extends State<AccountPage>
 
     // PrintHelper.inspectx(StoreFlows.store);
 
-    return BlocBuilder<UserBloc, UserState>(
-      buildWhen: (previous, current) =>
-          previous.statusLogin != current.statusLogin,
-      builder: (context, state) => _build(context, state),
+    /// The tab is kept alive, so it may have been built as a guest: fetch
+    /// the user's data again once they sign in (initState already covers
+    /// opening it while signed in).
+    return BlocListener<UserBloc, UserState>(
+      listenWhen: UserFlows.justSignedIn,
+      listener: (context, _) => refreshData(),
+      child: BlocBuilder<UserBloc, UserState>(
+        buildWhen: (previous, current) =>
+            previous.statusLogin != current.statusLogin,
+        builder: (context, state) => _build(context, state),
+      ),
     );
   }
 

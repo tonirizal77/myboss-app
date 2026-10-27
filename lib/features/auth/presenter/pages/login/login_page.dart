@@ -39,19 +39,16 @@ class LoginPage extends StatelessWidget {
           ),
         ),
 
-        /// Close - only when there is somewhere to go: a page below us, or
-        /// guest mode. When sign-in is required the guest gate would send the
-        /// user straight back here.
-        if (context.canPop() || AppSetting.isGuestModeEnabled)
-          SafeArea(
-            child: Align(
-              alignment: Alignment.topRight,
-              child: Padding(
-                padding: const EdgeInsets.only(top: 24, right: 20),
-                child: _CloseButton(onTap: () => _close(context)),
-              ),
+        /// Close - back to the page below, or to the guest Main Page.
+        SafeArea(
+          child: Align(
+            alignment: Alignment.topRight,
+            child: Padding(
+              padding: const EdgeInsets.only(top: 24, right: 20),
+              child: _CloseButton(onTap: () => _close(context)),
             ),
           ),
+        ),
       ],
     );
   }

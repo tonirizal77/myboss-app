@@ -23,12 +23,10 @@ class StoreFlows {
 
   /// Fetch store data and wait until it resolves (success or failure).
   ///
-  /// [AppSetting.isGuestModeEnabled] reads [store.mobileSetting], but on a
-  /// cold app restart that data hasn't been fetched yet - [getStore] is only
-  /// dispatched (fire-and-forget) once [MainPage] mounts, which is *after*
-  /// the guest-mode gate in [AuthFlowsListen] already ran on the default
-  /// (empty) [StoreState]. Call and await this before that gate (in
-  /// [SplashPage]) so the real server setting is in place in time.
+  /// Called and awaited in [SplashPage] (loading & data step) so the store
+  /// data (mobileSetting, branches setting) is in place before the app
+  /// opens - [getStore] is otherwise only dispatched (fire-and-forget) once
+  /// [MainPage] mounts.
   static Future<void> ensureStoreLoaded(BuildContext context) async {
     final _bloc = context.read<StoreBloc>();
     final _respon = _bloc.state.respon;
