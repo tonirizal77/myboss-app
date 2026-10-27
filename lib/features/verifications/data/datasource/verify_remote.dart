@@ -13,9 +13,6 @@ class VerifyRemoteImpl implements VerifyRemote {
 
   @override
   ResultFuture<DataMap> getOtpCode(ParamOtp param) async {
-    final _mock = mockDeleteAccountResponse(param.url);
-    if (_mock != null) return Right(_mock);
-
     final result = await DioPost.call(url: param.url, body: param.body);
 
     return result.fold((_l) => Left(_l), (_r) => Right(_r));
@@ -23,9 +20,6 @@ class VerifyRemoteImpl implements VerifyRemote {
 
   @override
   ResultFuture<DataMap> sendOtpCode(ParamOtp param) async {
-    final _mock = mockDeleteAccountResponse(param.url);
-    if (_mock != null) return Right(_mock);
-
     final result = await DioPost.call(url: param.url, body: param.body);
 
     return result.fold((_l) => Left(_l), (_r) => Right(_r));

@@ -1,0 +1,70 @@
+{
+  "data": [
+    {
+      "id": 303476,
+      "url_id": "myboss-semarang",
+      "address": "Jl. Pandanaran No. 1, Semarang Tengah, Kota Semarang",
+      "logo": "https://olseratokomobile.indociti.com/img/no_photo/logo.png",
+      "name": "Oraimo Semarang",
+      "is_store_parent": 0,
+      "app_status": {
+        "store_status": "A",
+        "android_app_status": "A",
+        "ios_app_status": "A"
+      },
+      "location_lat": "-6.9846",
+      "location_lon": "110.4097",
+      "city_name": "Semarang",
+      "distance": 1.3,
+      "is_open": true,
+      "today_hours": "09:00 - 21:00"
+    },
+    {
+      "id": 303477,
+      "url_id": "myboss-magelang",
+      "address": "Jl. Pemuda No. 1, Magelang Tengah, Kota Magelang",
+      "logo": "https://olseratokomobile.indociti.com/img/no_photo/logo.png",
+      "name": "Oraimo Magelang",
+      "is_store_parent": 0,
+      "app_status": {
+        "store_status": "A",
+        "android_app_status": "A",
+        "ios_app_status": "A"
+      },
+      "location_lat": "-7.4705",
+      "location_lon": "110.2178",
+      "city_name": "Magelang",
+      "distance": 62.4,
+      "is_open": true,
+      "today_hours": "10:00 - 20:00"
+    },
+    {
+      "id": 303478,
+      "url_id": "myboss-jogja",
+      "address": "Jl. Malioboro No. 1, Gedong Tengen, Kota Yogyakarta",
+      "logo": "https://olseratokomobile.indociti.com/img/no_photo/logo.png",
+      "name": "Oraimo Jogja",
+      "is_store_parent": 0,
+      "app_status": {
+        "store_status": "A",
+        "android_app_status": "A",
+        "ios_app_status": "A"
+      },
+      "location_lat": "-7.7928",
+      "location_lon": "110.3658",
+      "city_name": "Yogyakarta",
+      "distance": 95.8,
+      "is_open": false,
+      "today_hours": "-"
+    }
+  ],
+  "meta": {
+    "total": 3,
+    "page": 1,
+    "offset": 0,
+    "per_page": 15,
+    "total_page": 1
+  },
+  "status": 200,
+  "error": 0
+}

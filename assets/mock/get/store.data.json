@@ -1,0 +1,39 @@
+{
+  "data": {
+    "id": 303475,
+    "url_id": "myboss",
+    "name": "Oraimo",
+    "address": "Jl. Mock No. 1, Jakarta",
+    "city_name": "Jakarta",
+    "email": "store@example.com",
+    "phone1": "+6280000000001",
+    "status": "A",
+    "logo": "",
+    "location_lat": "-6.2000",
+    "location_lon": "106.8166",
+    "currency_id": "IDR",
+    "app_status": {
+      "store_status": "A",
+      "android_app_status": "A",
+      "ios_app_status": "A"
+    },
+    "setting": {
+      "has_branch": 1,
+      "lang_code": "id"
+    },
+    "mobile_setting": {
+      "is_guest_mode": true,
+      "is_self_pickup": true,
+      "is_favorite": false,
+      "is_crm": true,
+      "is_shipper": false,
+      "is_disable_qris": false,
+      "is_switch_variant": false,
+      "is_hide_shipping": false,
+      "is_hide_whitelabel": true
+    },
+    "signin_required": 0
+  },
+  "status": 200,
+  "error": 0
+}

@@ -19,7 +19,15 @@ flutter test
 flutter run --flavor staging --android-skip-build-dependency-validation   # Android device
 flutter build apk --debug --flavor staging --android-skip-build-dependency-validation
 flutter run -d macos --flavor staging                       # macOS flavors: staging | prod | live (Xcode schemes Staging/Prod/Live)
+flutter run -d macos --flavor staging --dart-define=DATA_SOURCE=mock   # mock data, no backend (launch.json "(mock)" entries)
 ```
+
+## Data source: mock vs real API
+
+- One switch: `ServerAccess` in `lib/core_feat/config/server_access.dart`. `--dart-define=DATA_SOURCE=mock|api` (default `api`). Flavor `live` and release builds are locked to `api`.
+- Mock answers come from `MockServerInterceptor` (`lib/core_feat/network/`), added last on `DioHttp3.shared.request` in `main.dart`: `GET /store/branches` → `assets/mock/get/store.branches.json` (one folder per method, path `/` → `.`, numeric/`{id}` segments → `_id`). A missing file fails with `Mock not found`, never falls back to the server.
+- New endpoint = add its JSON under `assets/mock/<method>/`. Endpoints whose backend is not ready can be mocked in `api` mode via `ServerAccess.mockOverrides`. Non-HTTP sources (`*Static`) are registered with `ServerAccess.pick`.
+- Mock data is synthetic — never paste real customer data into `assets/mock/`.
 
 Flavors (Android `build.gradle.kts` + iOS schemes): `staging` (`.staging`), `prod` (`.prod`), `live` (no suffix). Application id / namespace: `com.olsmobile.myboss_app`. VS Code launch configs live in `.vscode/launch.json`.
 

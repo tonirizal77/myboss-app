@@ -39,6 +39,9 @@ Future<void> main() async {
   /// Setup Env
   await Env.init();
 
+  /// Data source: mock (assets/mock) or real API - see [ServerAccess]
+  ServerAccess.logMode();
+
   /// Wire the generic dio_http layer's base URL, the encryption helper's
   /// password, and the socket helper's URL/auth to this app's own
   /// environment/flavor config - must run before InjectionsCore.setupAll()
@@ -77,6 +80,12 @@ Future<void> main() async {
 
   /// Setup Injections Core-1
   await InjectionsCore.setupAll();
+
+  /// Mock data source - added after the core logger/retry interceptors so
+  /// requests and mock responses are still logged. Never on live/release.
+  if (ServerAccess.canMock) {
+    DioHttp3.shared.request.interceptors.add(MockServerInterceptor());
+  }
 
   /// Setup Injections Features-2
   await InjectionFeatures.setupAll();

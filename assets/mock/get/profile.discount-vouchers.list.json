@@ -1,0 +1,43 @@
+{
+  "data": [
+    {
+      "id": 1,
+      "title": "Diskon 20rb",
+      "code": "MOCK20K",
+      "status": "A",
+      "store_id": 303475,
+      "store_name": "Oraimo",
+      "active_date": "2026-10-01",
+      "expiry_date": "2026-12-31",
+      "discount_amount": 20000,
+      "min_order_amount": 100000,
+      "is_useable": "1",
+      "usage_limit": 1,
+      "once_per_customer": 1
+    },
+    {
+      "id": 2,
+      "title": "Diskon 50rb",
+      "code": "MOCK50K",
+      "status": "A",
+      "store_id": 303475,
+      "store_name": "Oraimo",
+      "active_date": "2026-10-01",
+      "expiry_date": "2026-12-31",
+      "discount_amount": 50000,
+      "min_order_amount": 100000,
+      "is_useable": "1",
+      "usage_limit": 1,
+      "once_per_customer": 1
+    }
+  ],
+  "meta": {
+    "total": 2,
+    "page": 1,
+    "offset": 0,
+    "per_page": 15,
+    "total_page": 1
+  },
+  "status": 200,
+  "error": 0
+}

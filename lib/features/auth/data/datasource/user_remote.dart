@@ -58,9 +58,6 @@ class UserRemoteImpl implements UserRemote {
 
   @override
   ResultFuture<DataMap> deleteAccount() async {
-    final _mock = mockDeleteAccountResponse(Endpoints.deleteAccountReal);
-    if (_mock != null) return Right(_mock);
-
     /// Confirmed in Postman (hayo): this route only exists for HTTP DELETE -
     /// a POST gets 406 "Page Not Found".
     final resp = await DioDelete.call(url: Endpoints.deleteAccountReal);
@@ -70,9 +67,6 @@ class UserRemoteImpl implements UserRemote {
 
   @override
   ResultFuture<DataMap> cancelDeleteAccount() async {
-    final _mock = mockDeleteAccountResponse(Endpoints.deleteAccountCancel);
-    if (_mock != null) return Right(_mock);
-
     final resp = await DioPost.call(
       url: Endpoints.deleteAccountCancel,
       body: null,

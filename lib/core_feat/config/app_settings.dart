@@ -4,6 +4,12 @@ abstract class AppSetting {
   /// MARK: Control of Mode Development (Change HERE)
   static DevMode get devMode => DevMode.development;
 
+  /// MARK: Control of Data Source (mock / real API)
+  ///
+  /// Set with `--dart-define=DATA_SOURCE=mock|api` (default `api`); see
+  /// [ServerAccess] for the live/release lock and per-endpoint overrides.
+  static DataSourceMode get dataSource => ServerAccess.mode;
+
   /// MARK: Control of Delete Account Flow (Change HERE)
   ///
   /// See [DeleteAccountMode] for what each value does. Use [DeleteAccountMode.direct]

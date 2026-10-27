@@ -39,7 +39,13 @@ class AccountFt {
     ///
     getIt.registerLazySingleton<ProfileRemote>(() => ProfileRemoteImpl());
     getIt.registerLazySingleton<AccountRemote>(() => AccountRemoteImpl());
-    getIt.registerLazySingleton<PointsSource>(() => const PointsStatic());
+    // TODO(backend): api -> PointsRemote once the endpoint exists.
+    getIt.registerLazySingleton<PointsSource>(
+      () => ServerAccess.pick<PointsSource>(
+        mock: () => const PointsStatic(),
+        api: () => const PointsStatic(),
+      ),
+    );
 
     /// 5. Setup Usecase
     /// - Profile

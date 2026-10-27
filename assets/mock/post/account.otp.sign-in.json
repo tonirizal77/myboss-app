@@ -1,0 +1,20 @@
+{
+  "data": {
+    "access_token": "mock-access-token",
+    "refresh_token": "mock-refresh-token",
+    "expired_at": "2099-12-31T23:59:59Z",
+    "customer": {
+      "id": 900001,
+      "name": "Mock User",
+      "email": "mock.user@example.com",
+      "phone": "+6280000000000",
+      "code": "MOCK0001",
+      "status": "A",
+      "store_id": 303475,
+      "is_verified": 1,
+      "is_email_verified": 1
+    }
+  },
+  "status": 200,
+  "error": 0
+}

@@ -33,6 +33,15 @@
       // Debug-<flavor>, Release-<flavor>, Profile-<flavor>), same as iOS.
     },
     {
+      // Mock data (assets/mock) instead of the server - see ServerAccess.
+      "name": "macOs staging (mock)",
+      "request": "launch",
+      "type": "dart",
+      "deviceId": "macos",
+      "flutterMode": "debug",
+      "args": ["--flavor", "staging", "--dart-define=DATA_SOURCE=mock"]
+    },
+    {
       "name": "Iphone16e",
       "request": "launch",
       "type": "dart",
@@ -62,6 +71,20 @@
       ]
       // "args": ["--flavor", "prod"]
       // "args": ["--flavor", "live"]
+    },
+    {
+      // Mock data (assets/mock) instead of the server - see ServerAccess.
+      "name": "RealmeC85 (mock)",
+      "request": "launch",
+      "type": "dart",
+      "deviceId": "40cb62ff",
+      "flutterMode": "debug",
+      "args": [
+        "--flavor",
+        "staging",
+        "--dart-define=DATA_SOURCE=mock",
+        "--android-skip-build-dependency-validation"
+      ]
     },
     {
       "name": "XPrime",

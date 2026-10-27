@@ -26,7 +26,13 @@ class MenuFt {
 
     /// 3. Setup Datasource
     ///
-    getIt.registerLazySingleton<ProductSource>(() => const ProductStatic());
+    // TODO(backend): api -> ProductRemote (catalog endpoints) once the endpoint exists.
+    getIt.registerLazySingleton<ProductSource>(
+      () => ServerAccess.pick<ProductSource>(
+        mock: () => const ProductStatic(),
+        api: () => const ProductStatic(),
+      ),
+    );
 
     /// 4. Setup Usecase
     ///

@@ -1,0 +1,24 @@
+{
+  "data": {
+    "id": 900001,
+    "name": "Mock User",
+    "email": "mock.user@example.com",
+    "phone": "+6280000000000",
+    "code": "MOCK0001",
+    "avatar": "",
+    "avatar_id": 1,
+    "status": "A",
+    "store_id": 303475,
+    "is_verified": 1,
+    "is_email_verified": 1,
+    "created_time": "2026-01-01 08:00:00",
+    "level": 2,
+    "level_name": "Gold",
+    "available_voucher_count": 2,
+    "cumulative_prev": 0,
+    "current_cycle": 1,
+    "total_point": 1250
+  },
+  "status": 200,
+  "error": 0
+}

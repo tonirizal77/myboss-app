@@ -11,3 +11,4 @@ part 'app_menu.dart';
 part 'app_settings.dart';
 part 'delete_account_local_state.dart';
 part 'email_delete_account_local_state.dart';
+part 'server_access.dart';

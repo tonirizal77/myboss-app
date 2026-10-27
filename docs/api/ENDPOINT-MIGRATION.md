@@ -7,6 +7,11 @@ Pendaftaran + OTP sudah berhasil diuji end-to-end dengan API hayo (staging).
 Prinsip migrasi: semua URL hanya ada di `endpoints.dart` dan base URL di `.env`, jadi perpindahan ke API MyBoss
 cukup mengganti konstanta (dan model respons bila bentuknya berbeda) tanpa menyentuh UI.
 
+**Mode mock (PRD-006):** aplikasi bisa dijalankan tanpa backend dengan `--dart-define=DATA_SOURCE=mock`. Setiap
+endpoint yang dipakai punya contoh respons di `assets/mock/<method>/<path>.json` (mis. `get/store.branches.json`).
+Saat bentuk respons MyBoss berubah, perbarui file mock-nya juga; endpoint yang backend-nya belum siap bisa tetap
+dijawab mock di mode `api` lewat `ServerAccess.mockOverrides`.
+
 ## Status
 
 | Kelompok | Endpoint (konstanta → path saat ini) | Dipakai oleh | Perlu keputusan backend |

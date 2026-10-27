@@ -1,0 +1,18 @@
+{
+  "data": [
+    {
+      "reason_id": 1,
+      "label": "Saya tidak lagi memakai aplikasi ini"
+    },
+    {
+      "reason_id": 2,
+      "label": "Saya punya akun lain"
+    },
+    {
+      "reason_id": 3,
+      "label": "Lainnya"
+    }
+  ],
+  "status": 200,
+  "error": 0
+}

@@ -1,0 +1,20 @@
+{
+  "data": [
+    {
+      "id": 1,
+      "store_id": 303475,
+      "question": "Apa itu MyBoss?",
+      "answer": "<p>Program member Oraimo (mock).</p>",
+      "view_order": 1
+    },
+    {
+      "id": 2,
+      "store_id": 303475,
+      "question": "Bagaimana mendapatkan poin?",
+      "answer": "<p>Belanja di cabang Oraimo (mock).</p>",
+      "view_order": 2
+    }
+  ],
+  "status": 200,
+  "error": 0
+}

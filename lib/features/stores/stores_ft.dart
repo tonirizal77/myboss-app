@@ -44,7 +44,9 @@ class StoresFt {
     /// 7. Setup Provider
     ///
     BlocProviderInjectors.add([
-      BlocProvider<StoreBranchesBloc>(create: (_) => getIt<StoreBranchesBloc>()),
+      BlocProvider<StoreBranchesBloc>(
+        create: (_) => getIt<StoreBranchesBloc>(),
+      ),
       BlocProvider<StoreBloc>(create: (_) => getIt<StoreBloc>()),
       BlocProvider<StoreBranchCubit>(create: (_) => getIt<StoreBranchCubit>()),
       //

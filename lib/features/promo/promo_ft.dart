@@ -24,7 +24,13 @@ class PromoFt {
     );
 
     /// 4. Setup Datasource
-    getIt.registerLazySingleton<PromoSource>(() => const PromoStatic());
+    // TODO(backend): api -> PromoRemote once the endpoint exists.
+    getIt.registerLazySingleton<PromoSource>(
+      () => ServerAccess.pick<PromoSource>(
+        mock: () => const PromoStatic(),
+        api: () => const PromoStatic(),
+      ),
+    );
 
     /// 5. Setup Usecase
     getIt.registerLazySingleton(() => GetPromoUc(getIt()));

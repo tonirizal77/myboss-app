@@ -111,6 +111,11 @@ flutter:
     - assets/images/products/
     - assets/svg/
     - assets/translations/
+    # Mock API responses, used with --dart-define=DATA_SOURCE=mock (ServerAccess)
+    - assets/mock/get/
+    - assets/mock/post/
+    - assets/mock/put/
+    - assets/mock/delete/
 
   fonts:
     - family: Poppins

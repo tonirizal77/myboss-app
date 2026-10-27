@@ -29,7 +29,13 @@ class HomeFt {
 
     /// 4. Setup Datasource
     ///
-    getIt.registerLazySingleton<GuestHomeSource>(() => const GuestHomeStatic());
+    // TODO(backend): api -> GuestHomeRemote once the endpoint exists.
+    getIt.registerLazySingleton<GuestHomeSource>(
+      () => ServerAccess.pick<GuestHomeSource>(
+        mock: () => const GuestHomeStatic(),
+        api: () => const GuestHomeStatic(),
+      ),
+    );
 
     /// 5. Setup Usecase
     ///

@@ -1,0 +1,70 @@
+{
+  "prd": "PRD-006-server-access-mock-api.md",
+  "project_gid": "65ea6511-c5e4-4397-adf0-64a03c9159c7",
+  "epic": {
+    "id": "732c49ed-57ee-4368-b922-702cf65fd529",
+    "key": "MYB-1"
+  },
+  "stories": [
+    {
+      "id": "7386568f-3d32-480d-906d-dd81dd0e552a",
+      "key": "MYB-234",
+      "name": "Kontrol Pusat ServerAccess",
+      "tasks": [
+        { "id": "e8324e1f-7fe1-4539-a931-59923a70e0d3", "key": "MYB-259", "title": "Enum DataSourceMode & ServerAccess di core_feat/config (mode dari --dart-define DATA_SOURCE)", "deadline": "2026-10-28" },
+        { "id": "cf05f015-9b3c-4287-ab35-3440fd4ee4c4", "key": "MYB-258", "title": "Pengaman: flavor live & build release selalu mode api", "deadline": "2026-10-28" },
+        { "id": "1a8de7ab-0040-4ee6-a90d-00ab94e8d264", "key": "MYB-257", "title": "Override per endpoint (mockOverrides) untuk endpoint yang backend-nya belum siap", "deadline": "2026-10-28" },
+        { "id": "5e2ad9cc-f8b3-4f43-bcd6-48f8600c8b67", "key": "MYB-256", "title": "Log mode aktif saat startup + dokumentasi di AppSetting", "deadline": "2026-10-28" }
+      ]
+    },
+    {
+      "id": "83cf077c-bc79-4f26-aa65-d4eed7e4531f",
+      "key": "MYB-233",
+      "name": "Mock Server Interceptor",
+      "tasks": [
+        { "id": "96b43f92-2036-4a94-867d-c5c26a62d358", "key": "MYB-255", "title": "MockServerInterceptor: jawab request dari assets/mock/<method>/<path>.json", "deadline": "2026-10-28" },
+        { "id": "349325e1-07b7-4995-a9d4-6c35a8f30188", "key": "MYB-254", "title": "Dukungan path dinamis ({id}) dan query string diabaikan", "deadline": "2026-10-28" },
+        { "id": "7c9a0bcf-0daf-4a57-af16-459e38af03f2", "key": "MYB-253", "title": "Jeda simulasi & error jelas saat file mock tidak ada", "deadline": "2026-10-28" },
+        { "id": "dbe336d5-0879-4684-8252-90351bec8329", "key": "MYB-252", "title": "Respons mock tetap diteruskan ke interceptor log/Alice", "deadline": "2026-10-28" },
+        { "id": "3d0d3cbf-a846-4e63-b52f-eb04aa995827", "key": "MYB-251", "title": "Daftarkan interceptor di bootstrap main.dart", "deadline": "2026-10-28" }
+      ]
+    },
+    {
+      "id": "bb9dc9b5-44fe-43a7-8c54-5819ec55f546",
+      "key": "MYB-232",
+      "name": "Data Mock JSON",
+      "tasks": [
+        { "id": "f8609aeb-3352-4940-b4e4-3d83ab428562", "key": "MYB-250", "title": "Mock Client Token (client/login, token/refresh)", "deadline": "2026-10-28" },
+        { "id": "438c45eb-0f30-45dc-a6ad-6fd55ead2872", "key": "MYB-249", "title": "Mock Auth OTP (sign-in, sign-in/send, sign-up, sign-up/send, sign-out)", "deadline": "2026-10-28" },
+        { "id": "081ada13-ebaa-4777-904c-1740966faf78", "key": "MYB-248", "title": "Mock Profile (profile/info, avatar/list, generate-code, PUT customer/update)", "deadline": "2026-10-28" },
+        { "id": "fc60dd19-e122-45db-868a-4ff3fc43befb", "key": "MYB-247", "title": "Mock Update Phone/Email OTP (send-old, verify-old, send-new, verify)", "deadline": "2026-10-28" },
+        { "id": "735e420f-8ebd-43d2-84cd-68dffca73e15", "key": "MYB-246", "title": "Mock Store & Store Branch (store/data, store/branches)", "deadline": "2026-10-28" },
+        { "id": "6a6e76cd-6fbb-46e6-bf15-a43c4f5f39e4", "key": "MYB-245", "title": "Mock Voucher, About Us & FAQ", "deadline": "2026-10-28" },
+        { "id": "6bac747c-9c6c-461e-a6ce-2e5a7c068e4d", "key": "MYB-244", "title": "Mock Delete Account (send-otp, request, cancel, reasons, DELETE profile/delete-account)", "deadline": "2026-10-29" }
+      ]
+    },
+    {
+      "id": "c21ee47b-5ed7-4639-bbfd-80b64bb691bc",
+      "key": "MYB-231",
+      "name": "Migrasi Mock Lama & Source Statis",
+      "tasks": [
+        { "id": "417e91e2-6a59-4e2a-af78-f76c120ce891", "key": "MYB-243", "title": "Hapus delete_account_local_mock.dart dan 4 pemanggilannya di remote", "deadline": "2026-10-29" },
+        { "id": "9ce2eea5-30bd-424f-98dc-766e48348941", "key": "MYB-242", "title": "Daftarkan ProductStatic, PromoStatic, PointsStatic, GuestHomeStatic lewat ServerAccess (+TODO remote)", "deadline": "2026-10-29" },
+        { "id": "f111596c-3079-43c3-b6c6-b127ded96b76", "key": "MYB-241", "title": "launch.json staging (mock) untuk macOS & Android + update CLAUDE.md & ENDPOINT-MIGRATION.md", "deadline": "2026-10-29" }
+      ]
+    },
+    {
+      "id": "3faffc73-0238-42d4-badc-b7b3af01a895",
+      "key": "MYB-230",
+      "name": "QA Kontrol Akses Server",
+      "tasks": [
+        { "id": "279df286-5d62-424d-ba84-0a6b7498229d", "key": "MYB-240", "title": "Unit test ServerAccess (mode, pengaman live/release, override)", "deadline": "2026-10-29" },
+        { "id": "474007c5-90c2-4a8c-a2f7-bc44b6711d10", "key": "MYB-239", "title": "Unit test MockServerInterceptor (mock ditemukan, tidak ditemukan, mode api diteruskan)", "deadline": "2026-10-29" },
+        { "id": "f0f37400-d442-4b58-88ab-e347f0875b3a", "key": "MYB-238", "title": "Test parse: setiap file mock bisa di-parse model terkait", "deadline": "2026-10-29" },
+        { "id": "d918198e-ce0a-4461-8c80-d49674fa1075", "key": "MYB-237", "title": "flutter analyze + flutter test (mode mock)", "deadline": "2026-10-29" },
+        { "id": "11cbec72-232e-40b2-b892-f49608395558", "key": "MYB-236", "title": "Jalankan macOS mode mock lewat Marionette (login, Home, cabang, Account)", "deadline": "2026-10-29" },
+        { "id": "0823f1f2-4c5f-446b-aa52-dadc8480ee6c", "key": "MYB-235", "title": "Uji Android staging mode mock (RMX5566)", "deadline": "2026-10-29" }
+      ]
+    }
+  ]
+}

@@ -22,7 +22,7 @@ void main() {
   test('release defaults: direct deletion with reason + OTP, no mock', () {
     expect(AppSetting.deleteAccountMode, DeleteAccountMode.direct);
     expect(AppSetting.needConfirmOTP, isTrue);
-    expect(kMockDeleteAccountApi, isFalse);
+    expect(ServerAccess.mode, DataSourceMode.api);
   });
 
   test('markPending stores a 30-day deadline and notifies', () async {

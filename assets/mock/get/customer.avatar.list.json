@@ -1,0 +1,49 @@
+{
+  "data": [
+    {
+      "id": 1,
+      "name": "Avatar 1",
+      "img": "",
+      "fimg": ""
+    },
+    {
+      "id": 2,
+      "name": "Avatar 2",
+      "img": "",
+      "fimg": ""
+    },
+    {
+      "id": 3,
+      "name": "Avatar 3",
+      "img": "",
+      "fimg": ""
+    },
+    {
+      "id": 4,
+      "name": "Avatar 4",
+      "img": "",
+      "fimg": ""
+    },
+    {
+      "id": 5,
+      "name": "Avatar 5",
+      "img": "",
+      "fimg": ""
+    },
+    {
+      "id": 6,
+      "name": "Avatar 6",
+      "img": "",
+      "fimg": ""
+    }
+  ],
+  "meta": {
+    "total": 6,
+    "page": 1,
+    "offset": 0,
+    "per_page": 15,
+    "total_page": 1
+  },
+  "status": 200,
+  "error": 0
+}
