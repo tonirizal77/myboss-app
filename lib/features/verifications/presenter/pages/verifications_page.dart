@@ -34,23 +34,31 @@ class VerificationsPage extends StatelessWidget {
             current.action == ActionVerify.getOtp,
         listener: VerifyFlowsListener.getOtpCodeListen,
         builder: (context, state) {
-          return Column(
-            mainAxisSize: .min,
-            mainAxisAlignment: Responsive.isMobile(context) ? .start : .center,
-            children: [
-              ImageAssets(image: Assets.imgShieldKey, width: 200, height: 200),
-              SizedBox(height: 24),
-              Padding(
-                padding: const EdgeInsets.all(16.0),
-                child: Column(
-                  children: [
-                    _contentBody(context, state),
-                    SizedBox(height: 16),
-                    _buttonSendOtp(context, state),
-                  ],
+          return SingleChildScrollView(
+            child: Column(
+              mainAxisSize: .min,
+              mainAxisAlignment: Responsive.isMobile(context)
+                  ? .start
+                  : .center,
+              children: [
+                ImageAssets(
+                  image: Assets.imgShieldKey,
+                  width: 200,
+                  height: 200,
                 ),
-              ),
-            ],
+                SizedBox(height: 24),
+                Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: Column(
+                    children: [
+                      _contentBody(context, state),
+                      SizedBox(height: 16),
+                      _buttonSendOtp(context, state),
+                    ],
+                  ),
+                ),
+              ],
+            ),
           );
         },
       ),
@@ -98,7 +106,10 @@ class VerificationsPage extends StatelessWidget {
           height: 60,
           color: AppTheme.surfaceContainer(context),
           child: Text(
-            getIt<GeneralHelper>().maskPhone(state.verifyData.phone, isMaskContact: AppSetting.isMaskContact.value),
+            getIt<GeneralHelper>().maskPhone(
+              state.verifyData.phone,
+              isMaskContact: AppSetting.isMaskContact.value,
+            ),
             style: MyBossTextStyles.subtitleBig1,
           ),
         ),

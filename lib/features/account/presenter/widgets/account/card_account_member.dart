@@ -76,13 +76,19 @@ class CardAccountMember extends StatelessWidget {
         ),
         const SizedBox(height: 12),
         Text(
-          profile.phone,
+          getIt<GeneralHelper>().maskPhone(
+            profile.phone,
+            isMaskContact: AppSetting.isMaskContact.value,
+          ),
           style: MyBossTextStyles.bodyMedium.copyWith(
             color: MyBossColors.onSurface,
           ),
         ),
         Text(
-          profile.email,
+          getIt<GeneralHelper>().maskEmail(
+            profile.email,
+            isMaskContact: AppSetting.isMaskContact.value,
+          ),
           style: MyBossTextStyles.bodyMedium.copyWith(
             color: MyBossColors.onSurface,
           ),

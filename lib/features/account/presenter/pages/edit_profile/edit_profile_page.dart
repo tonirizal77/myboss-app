@@ -9,7 +9,7 @@ class EditProfilePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return ResponsivePage(
       backgroundColor: MyBossColors.surfaceContainerLow,
-      appBar: MyBossHeader(
+      appBarCustom: MyBossHeader(
         title: LocaleKeys.edit_profile_title.tr(),
         onClose: () => context.pop(),
       ),
@@ -17,6 +17,7 @@ class EditProfilePage extends StatelessWidget {
       alignment: Alignment.topCenter,
       maxWidth: 640,
       useScrollView: true,
+      useSafeArea: true,
       body: BlocConsumer<ProfileBloc, ProfileState>(
         listenWhen: (previous, current) =>
             current.action == EditProfileAction.changeProfile,
@@ -42,7 +43,7 @@ class EditProfilePage extends StatelessWidget {
         },
         builder: (context, state) {
           return Padding(
-            padding: const EdgeInsets.only(top: 24, bottom: 24),
+            padding: const EdgeInsets.only(top: 72, bottom: 24),
             child: Column(
               children: [
                 /// Avatars

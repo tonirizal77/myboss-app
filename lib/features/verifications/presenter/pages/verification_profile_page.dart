@@ -24,22 +24,34 @@ class _VerificationProfilePageState extends State<VerificationProfilePage> {
         if (_data.fromPage == FromPage.changeNumber) {
           _changeLabelFor = [
             LocaleKeys.label_phone.tr(),
-            getIt<GeneralHelper>().maskPhone(_data.phone, isMaskContact: AppSetting.isMaskContact.value),
+            getIt<GeneralHelper>().maskPhone(
+              _data.phone,
+              isMaskContact: AppSetting.isMaskContact.value,
+            ),
           ];
         } else if (_data.fromPage == FromPage.changeEmail) {
           _changeLabelFor = [
             LocaleKeys.edit_profile_email_label.tr(),
-            getIt<GeneralHelper>().maskEmail(_data.email, isMaskContact: AppSetting.isMaskContact.value),
+            getIt<GeneralHelper>().maskEmail(
+              _data.email,
+              isMaskContact: AppSetting.isMaskContact.value,
+            ),
           ];
         } else if (_data.fromPage == FromPage.changeNewEmail) {
           _changeLabelFor = [
             LocaleKeys.edit_profile_email_label.tr(),
-            getIt<GeneralHelper>().maskEmail(_data.newEmail, isMaskContact: AppSetting.isMaskContact.value),
+            getIt<GeneralHelper>().maskEmail(
+              _data.newEmail,
+              isMaskContact: AppSetting.isMaskContact.value,
+            ),
           ];
         } else if (_data.fromPage == FromPage.changeNewNumber) {
           _changeLabelFor = [
             LocaleKeys.label_phone.tr(),
-            getIt<GeneralHelper>().maskPhone(_data.newPhone, isMaskContact: AppSetting.isMaskContact.value),
+            getIt<GeneralHelper>().maskPhone(
+              _data.newPhone,
+              isMaskContact: AppSetting.isMaskContact.value,
+            ),
           ];
         } else {
           _changeLabelFor = ['', ''];
@@ -50,7 +62,12 @@ class _VerificationProfilePageState extends State<VerificationProfilePage> {
         if (_data.fromPage == FromPage.changeEmail ||
             _data.fromPage == FromPage.changeNewEmail) {
           _info = LocaleKeys.verify_otp_instruction_with_phone.tr(
-            args: [getIt<GeneralHelper>().maskPhone(_data.phone, isMaskContact: AppSetting.isMaskContact.value)],
+            args: [
+              getIt<GeneralHelper>().maskPhone(
+                _data.phone,
+                isMaskContact: AppSetting.isMaskContact.value,
+              ),
+            ],
           );
         }
 
@@ -58,14 +75,17 @@ class _VerificationProfilePageState extends State<VerificationProfilePage> {
           useSafeArea: true,
           appBarCustom: AppBarCustom(
             isBlur: false,
-            title: LocaleKeys.verify_change_title.tr(args: [_changeLabelFor[0] ?? '']),
+            title: LocaleKeys.verify_change_title.tr(
+              args: [_changeLabelFor[0] ?? ''],
+            ),
             onClose: () {
               context.read<VerifyBloc>().add(VerifyEvent.reset());
 
               context.pop();
             },
           ),
-          padding: EdgeInsets.zero,
+          padding: EdgeInsets.only(top: 56, right: 16, left: 16),
+          useScrollView: true,
           body: BlocBuilder<VerifyBloc, VerifyState>(
             builder: (context, state) {
               return Flex(
@@ -75,13 +95,11 @@ class _VerificationProfilePageState extends State<VerificationProfilePage> {
                     ? .vertical
                     : .horizontal,
                 mainAxisSize: .min,
-                mainAxisAlignment: Responsive.isMobile(context)
-                    ? .start
-                    : .center,
+                mainAxisAlignment: .center,
                 children: [
-                  Expanded(child: _imageTop()),
+                  Flexible(child: _imageTop()),
 
-                  Expanded(
+                  Flexible(
                     child: Flex(
                       direction: .vertical,
                       mainAxisSize: .min,
@@ -92,11 +110,17 @@ class _VerificationProfilePageState extends State<VerificationProfilePage> {
                         SizedBox(height: 16),
 
                         _buttonSendOtp(context, state: state),
+
+                        SizedBox(height: 16),
+
+                        Text(
+                          _info,
+                          style: MyBossTextStyles.bodyBig2,
+                          textAlign: TextAlign.center,
+                        ),
                       ],
                     ),
                   ),
-
-                  // _oldDesign(context),
                 ],
               );
             },
@@ -121,13 +145,16 @@ class _VerificationProfilePageState extends State<VerificationProfilePage> {
         crossAxisAlignment: .start,
         children: [
           Text(
-            LocaleKeys.verify_change_instruction.tr(args: [_changeLabelFor[0] ?? '']),
+            LocaleKeys.verify_change_instruction.tr(
+              args: [_changeLabelFor[0] ?? ''],
+            ),
             style: MyBossTextStyles.subtitleHuge2,
             textAlign: TextAlign.center,
           ),
 
           SizedBox(height: 16),
 
+          /// Email or Phone
           CardCustom(
             isBorder: true,
             alignment: Alignment.center,
@@ -138,15 +165,8 @@ class _VerificationProfilePageState extends State<VerificationProfilePage> {
             child: Text(
               "${_changeLabelFor[1]}",
               style: MyBossTextStyles.subtitleBig1,
+              maxLines: 1,
             ),
-          ),
-
-          SizedBox(height: 16),
-
-          Text(
-            _info,
-            style: MyBossTextStyles.bodyBig2,
-            textAlign: TextAlign.center,
           ),
         ],
       ),
@@ -201,7 +221,10 @@ class _VerificationProfilePageState extends State<VerificationProfilePage> {
       child: Column(
         spacing: 16,
         children: [
-          Text(LocaleKeys.verify_send_otp.tr(), style: MyBossTextStyles.bodyBig2),
+          Text(
+            LocaleKeys.verify_send_otp.tr(),
+            style: MyBossTextStyles.bodyBig2,
+          ),
 
           /// Confirm by Phone Number
           _buttonPhoneNumber(context),

@@ -1,0 +1,102 @@
+{
+  "prd": "PRD-004-mask-contact-account.md",
+  "project_gid": "65ea6511-c5e4-4397-adf0-64a03c9159c7",
+  "epic": {
+    "key": "MYB-1"
+  },
+  "stories": [
+    {
+      "key": "MYB-185",
+      "name": "Mask Contact di Halaman Akun",
+      "tasks": [
+        {
+          "key": "MYB-200",
+          "title": "Audit titik tampil phone/email di halaman Account (CardAccountMember)",
+          "deadline": "2026-10-29"
+        },
+        {
+          "key": "MYB-199",
+          "title": "Terapkan maskPhone di CardAccountMember",
+          "deadline": "2026-10-29"
+        },
+        {
+          "key": "MYB-198",
+          "title": "Terapkan maskEmail di CardAccountMember",
+          "deadline": "2026-10-29"
+        },
+        {
+          "key": "MYB-197",
+          "title": "Pastikan tampilan Account saat mask on/off tidak overflow (Dark/Light)",
+          "deadline": "2026-10-29"
+        }
+      ]
+    },
+    {
+      "key": "MYB-184",
+      "name": "Mask Contact di Edit Akun",
+      "tasks": [
+        {
+          "key": "MYB-196",
+          "title": "Audit titik tampil phone/email di edit_profile_page dan form_profile",
+          "deadline": "2026-10-29"
+        },
+        {
+          "key": "MYB-195",
+          "title": "Mask phone di field read-only FormProfile",
+          "deadline": "2026-10-29"
+        },
+        {
+          "key": "MYB-194",
+          "title": "Mask email di field read-only FormProfile",
+          "deadline": "2026-10-29"
+        },
+        {
+          "key": "MYB-193",
+          "title": "Sinkronkan controller dengan nilai ter-mask (hindari rewrite berulang saat rebuild)",
+          "deadline": "2026-10-29"
+        },
+        {
+          "key": "MYB-192",
+          "title": "Pastikan VerifyFlows.verifyEditProfile tetap mengirim nilai asli, bukan yang ter-mask",
+          "deadline": "2026-10-29"
+        },
+        {
+          "key": "MYB-191",
+          "title": "Samakan format mask dengan halaman verifikasi (verification_profile_page)",
+          "deadline": "2026-10-29"
+        }
+      ]
+    },
+    {
+      "key": "MYB-183",
+      "name": "QA Mask Contact",
+      "tasks": [
+        {
+          "key": "MYB-190",
+          "title": "Widget test CardAccountMember (mask on/off)",
+          "deadline": "2026-10-29"
+        },
+        {
+          "key": "MYB-189",
+          "title": "Widget test FormProfile (mask on/off, nilai asli tetap terkirim)",
+          "deadline": "2026-10-29"
+        },
+        {
+          "key": "MYB-188",
+          "title": "flutter analyze = No issues found, lalu flutter test",
+          "deadline": "2026-10-29"
+        },
+        {
+          "key": "MYB-187",
+          "title": "Verifikasi mask contact di macOS pada 3 ukuran lewat Marionette",
+          "deadline": "2026-10-29"
+        },
+        {
+          "key": "MYB-186",
+          "title": "Uji mask contact di Android staging (RMX5566)",
+          "deadline": "2026-10-29"
+        }
+      ]
+    }
+  ]
+}

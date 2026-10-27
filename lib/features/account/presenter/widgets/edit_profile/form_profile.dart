@@ -29,12 +29,16 @@ class _FormProfileState extends State<FormProfile> {
       child: BlocBuilder<ProfileBloc, ProfileState>(
         builder: (context, state) {
           // Phone / email come from the profile (read-only here).
-          if (_phone.text != state.profile.phone) {
-            _phone.text = state.profile.phone;
-          }
-          if (_email.text != state.profile.email) {
-            _email.text = state.profile.email;
-          }
+          final _maskedPhone = getIt<GeneralHelper>().maskPhone(
+            state.profile.phone,
+            isMaskContact: AppSetting.isMaskContact.value,
+          );
+          final _maskedEmail = getIt<GeneralHelper>().maskEmail(
+            state.profile.email,
+            isMaskContact: AppSetting.isMaskContact.value,
+          );
+          if (_phone.text != _maskedPhone) _phone.text = _maskedPhone;
+          if (_email.text != _maskedEmail) _email.text = _maskedEmail;
 
           return Padding(
             padding: const EdgeInsets.symmetric(horizontal: 32),
