@@ -145,6 +145,7 @@ class MyBossColors {
         ? hsl.withSaturation(0.65).withLightness(0.1).toColor()
         : hsl.withSaturation(0.8).withLightness(0.95).toColor();
   }
+
   static Color get success => _palette.success;
   static Color get onSuccess => _palette.onSuccess;
   static Color get successContainer => _palette.successContainer;

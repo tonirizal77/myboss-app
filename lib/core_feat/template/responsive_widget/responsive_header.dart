@@ -127,7 +127,10 @@ class RmdMainHeaderChild extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(state.profile.name, style: MyBossTextStyles.caption),
-                  Text(state.profile.levelName, style: MyBossTextStyles.caption),
+                  Text(
+                    state.profile.levelName,
+                    style: MyBossTextStyles.caption,
+                  ),
                 ],
               ),
             ),

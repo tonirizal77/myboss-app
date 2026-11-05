@@ -123,10 +123,7 @@ class _FormRegisterState extends State<FormRegister> {
   }
 
   Widget _bodyForm(BuildContext context) {
-    final iconColor = ColorFilter.mode(
-      MyBossColors.onSurface,
-      BlendMode.srcIn,
-    );
+    final iconColor = ColorFilter.mode(MyBossColors.onSurface, BlendMode.srcIn);
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,

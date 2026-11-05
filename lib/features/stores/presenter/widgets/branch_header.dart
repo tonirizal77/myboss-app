@@ -50,9 +50,8 @@ class _BranchHeaderState extends State<BranchHeader> {
       listenWhen: (previous, current) =>
           previous.branches != current.branches &&
           current.branches.data.isNotEmpty,
-      listener: (context, state) => context
-          .read<StoreBranchCubit>()
-          .ensureSelection(state.branches.data),
+      listener: (context, state) =>
+          context.read<StoreBranchCubit>().ensureSelection(state.branches.data),
       child: BlocBuilder<StoreBranchCubit, StoreBranchState>(
         builder: (context, state) {
           final branch = state.selected;
@@ -96,6 +95,7 @@ class _BranchHeaderState extends State<BranchHeader> {
                     const SizedBox(height: 4),
                     Row(
                       children: [
+                        /// Status Buka or Tutup
                         MyBossStatusChip(
                           label: branch.isOpen
                               ? LocaleKeys.branch_open.tr()
@@ -104,7 +104,9 @@ class _BranchHeaderState extends State<BranchHeader> {
                               ? MyBossChipKind.success
                               : MyBossChipKind.danger,
                         ),
+
                         const SizedBox(width: 8),
+
                         Flexible(
                           child: Text(
                             branchSubtitle(branch, state.position),

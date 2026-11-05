@@ -16,7 +16,12 @@ class _ConfirmOtpProfileState extends State<ConfirmOtpProfile> {
       builder: (context, state) {
         return Column(
           children: [
-            _contentConfirm(getIt<GeneralHelper>().maskPhone(state.phone ?? "", isMaskContact: AppSetting.isMaskContact.value)),
+            _contentConfirm(
+              getIt<GeneralHelper>().maskPhone(
+                state.phone ?? "",
+                isMaskContact: AppSetting.isMaskContact.value,
+              ),
+            ),
             const SizedBox(height: 16),
 
             // Form Input Token
@@ -47,9 +52,7 @@ class _ConfirmOtpProfileState extends State<ConfirmOtpProfile> {
           color: AppTheme.onSurface(context),
         ),
         children: [
-          TextSpan(
-            text: LocaleKeys.verify_otp_sent.tr(),
-          ),
+          TextSpan(text: LocaleKeys.verify_otp_sent.tr()),
           TextSpan(
             text: phone,
             style: MyBossTextStyles.bodyBig1.copyWith(

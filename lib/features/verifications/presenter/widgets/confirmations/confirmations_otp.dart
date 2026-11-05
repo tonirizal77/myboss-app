@@ -52,10 +52,7 @@ class _ConfirmationsOtpState extends State<ConfirmationsOtp> {
               color: AppTheme.onSurface(context),
             ),
             children: [
-              TextSpan(
-                text:
-                    LocaleKeys.verify_otp_sent.tr(),
-              ),
+              TextSpan(text: LocaleKeys.verify_otp_sent.tr()),
               TextSpan(
                 text: _labelPhone,
                 style: MyBossTextStyles.bodyBig1.copyWith(

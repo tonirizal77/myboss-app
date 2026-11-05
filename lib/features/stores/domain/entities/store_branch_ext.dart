@@ -11,12 +11,7 @@ extension StoreBranchX on StoreBranch {
     final lon = double.tryParse(locationLon ?? '');
     if (from == null || lat == null || lon == null) return distance;
 
-    return Geolocator.distanceBetween(
-          from.latitude,
-          from.longitude,
-          lat,
-          lon,
-        ) /
+    return Geolocator.distanceBetween(from.latitude, from.longitude, lat, lon) /
         1000;
   }
 

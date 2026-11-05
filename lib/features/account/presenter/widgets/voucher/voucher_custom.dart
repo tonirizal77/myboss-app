@@ -57,26 +57,24 @@ class VoucherCustom extends StatelessWidget {
   }
 }
 
+// Container(
+//   height: height,
+//   alignment: Alignment.center,
+//   child: Stack(
+//     alignment: .center,
+//     children: [
 
-
-        // Container(
-        //   height: height,
-        //   alignment: Alignment.center,
-        //   child: Stack(
-        //     alignment: .center,
-        //     children: [
-
-        //       // /// White Right
-        //       // Align(
-        //       //   alignment: Alignment.centerRight,
-        //       //   child: ImageAssets(
-        //       //     // fit: BoxFit.fitHeight,
-        //       //     height: height + 8,
-        //       //     image: AppTheme.isDark(context)
-        //       //         ? Assets.voucherBR
-        //       //         : Assets.voucherWR,
-        //       //   ),
-        //       // ),
-        //     ],
-        //   ),
-        // ),
+//       // /// White Right
+//       // Align(
+//       //   alignment: Alignment.centerRight,
+//       //   child: ImageAssets(
+//       //     // fit: BoxFit.fitHeight,
+//       //     height: height + 8,
+//       //     image: AppTheme.isDark(context)
+//       //         ? Assets.voucherBR
+//       //         : Assets.voucherWR,
+//       //   ),
+//       // ),
+//     ],
+//   ),
+// ),

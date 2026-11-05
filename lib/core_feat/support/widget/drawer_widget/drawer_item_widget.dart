@@ -177,7 +177,9 @@ class DrawerNavItem extends StatelessWidget {
                 padding: EdgeInsets.only(left: 8),
                 child: Text(
                   label,
-                  style: MyBossTextStyles.bodyMedium.copyWith(color: _colorText),
+                  style: MyBossTextStyles.bodyMedium.copyWith(
+                    color: _colorText,
+                  ),
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
                 ),

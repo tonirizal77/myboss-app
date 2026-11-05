@@ -71,13 +71,7 @@ const _response = {
       'today_hours': '09:00 - 21:00',
     },
   ],
-  'meta': {
-    'total': 2,
-    'page': 1,
-    'offset': 0,
-    'per_page': 15,
-    'total_page': 1,
-  },
+  'meta': {'total': 2, 'page': 1, 'offset': 0, 'per_page': 15, 'total_page': 1},
   'status': 200,
   'error': 0,
 };
@@ -137,10 +131,7 @@ void main() {
     test('logoUrl hides the backend no-photo placeholder', () {
       final model = StoreBranchesModel.fromJson(_response);
       expect(model.data.first.logoUrl, isNull);
-      expect(
-        model.data.last.logoUrl,
-        'https://example.com/logo-semarang.png',
-      );
+      expect(model.data.last.logoUrl, 'https://example.com/logo-semarang.png');
     });
 
     test('mapsUrl uses the coordinates', () {
