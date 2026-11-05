@@ -96,6 +96,8 @@ class MainPageFlow {
   ///
   /// Used in [CardMemberBarcode]
   static void turnOnPrevent(BuildContext context) {
+    if (!_hasScreenProtector) return;
+
     /// Prevent screenshot
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) async {
       await ScreenProtector.preventScreenshotOn();
@@ -107,8 +109,14 @@ class MainPageFlow {
   ///
   /// Used in [CardMemberBarcode]
   static void turnOffPrevent() {
+    if (!_hasScreenProtector) return;
+
     /// Turn off prevent screen shot
     ScreenProtector.preventScreenshotOff();
     ScreenProtector.protectDataLeakageOff();
   }
+
+  /// `screen_protector` only has Android and iOS implementations; on
+  /// macOS / web every call throws MissingPluginException.
+  static bool get _hasScreenProtector => SyncUI.isAndroid || SyncUI.isIOS;
 }
