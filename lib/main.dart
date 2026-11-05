@@ -90,6 +90,13 @@ Future<void> main() async {
   /// Setup Injections Features-2
   await InjectionFeatures.setupAll();
 
+  /// Switched mock <-> api since the last run: the stored token belongs to
+  /// the other source (401 on the server) - start as a fresh guest.
+  if (await ServerAccess.syncSession()) {
+    getIt<ProfileBloc>().add(const ProfileEvent.reset());
+    getIt<AccountBloc>().add(const AccountEvent.reset());
+  }
+
   /// Keep the Light/Dark choice across restarts
   MyBossTheme.persistChanges();
 

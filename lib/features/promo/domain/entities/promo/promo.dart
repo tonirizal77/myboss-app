@@ -6,16 +6,51 @@ import 'package:myboss_app/features/home/domain/entities/guest_home/guest_home.d
 export 'package:myboss_app/features/home/domain/entities/guest_home/guest_home.dart'
     show RewardPreview;
 
+/// One request of the Promo content.
+enum PromoSection {
+  /// `GET /promotion/loyalty-points/list` - signed-in only.
+  points,
+
+  /// `GET /promotion/discount-vouchers/list` - guest and signed-in.
+  vouchers,
+}
+
+/// What to load: the branch and whether the user is signed in.
+class PromoParams extends Equatable {
+  const PromoParams({this.storeDomain = '', this.isLoggedIn = false});
+
+  /// `url_id` of the selected branch; empty = default domain.
+  final String storeDomain;
+
+  /// Guest: vouchers only (no loyalty points). Signed in: both, in parallel.
+  final bool isLoggedIn;
+
+  Set<PromoSection> get sections => isLoggedIn
+      ? const {PromoSection.points, PromoSection.vouchers}
+      : const {PromoSection.vouchers};
+
+  @override
+  List<Object?> get props => [storeDomain, isLoggedIn];
+}
+
 /// Content of the Promo tab (Figma `promotions`): items to redeem with points
 /// and discount vouchers.
 class PromoContent extends Equatable {
-  const PromoContent({this.rewards = const [], this.vouchers = const []});
+  const PromoContent({
+    this.rewards = const [],
+    this.vouchers = const [],
+    this.failed = const {},
+  });
 
   final List<RewardPreview> rewards;
   final List<Voucher> vouchers;
 
+  /// Sections whose request failed while the other one succeeded - the UI
+  /// shows a retry in that panel instead of failing the whole page.
+  final Set<PromoSection> failed;
+
   @override
-  List<Object?> get props => [rewards, vouchers];
+  List<Object?> get props => [rewards, vouchers, failed];
 }
 
 /// Discount voucher shown as a coupon (Figma `voucher`).
@@ -24,8 +59,8 @@ class Voucher extends Equatable {
     required this.id,
     required this.title,
     required this.discount,
-    required this.validUntil,
-    required this.code,
+    this.validUntil,
+    this.code = '',
     this.terms = const [],
   });
 
@@ -37,8 +72,10 @@ class Voucher extends Equatable {
   /// "Diskon 50%"
   final String discount;
 
-  /// "Hingga 31 Des 2026"
-  final String validUntil;
+  /// Last valid day; null = no expiry.
+  final DateTime? validUntil;
+
+  /// Empty when the server sends none (the code box is hidden).
   final String code;
   final List<String> terms;
 

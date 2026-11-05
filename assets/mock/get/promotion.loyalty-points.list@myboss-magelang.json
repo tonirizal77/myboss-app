@@ -1,0 +1,31 @@
+{
+  "data": [
+    {
+      "id": 39831,
+      "name": "oraimo FreePods 4",
+      "photo": "assets/images/products/audio_05.png",
+      "redeemed_points": 500
+    },
+    {
+      "id": 39832,
+      "name": "Watch 7",
+      "photo": "assets/images/products/watch_05.png",
+      "redeemed_points": 400
+    },
+    {
+      "id": 39833,
+      "name": "oraimo SpaceBuds Neo",
+      "photo": "assets/images/products/audio_01.png",
+      "redeemed_points": 350
+    }
+  ],
+  "meta": {
+    "total": 3,
+    "page": 1,
+    "offset": 0,
+    "per_page": 15,
+    "total_page": 1
+  },
+  "status": 200,
+  "error": 0
+}

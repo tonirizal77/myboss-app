@@ -1,7 +1,8 @@
 part of '../widgets.dart';
 
 /// Guest Home content (Figma `Guest Home`): hero, brands, catalog and the
-/// points rewards panel. Data comes from [GuestHomeCubit].
+/// points rewards panel. Data comes from [GuestHomeCubit], point rewards of
+/// the selected branch from [PromoCubit].
 class GuestHomeView extends StatefulWidget {
   const GuestHomeView({super.key});
 
@@ -18,24 +19,35 @@ class _GuestHomeViewState extends State<GuestHomeView> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<GuestHomeCubit, GuestHomeState>(
-      builder: (context, state) {
-        final data = state.data;
+    return PromoBranchSync(
+      child: BlocBuilder<GuestHomeCubit, GuestHomeState>(
+        builder: (context, state) {
+          final data = state.data;
 
-        return Column(
-          children: [
-            const GuestHero(),
-            const HomeSectionDivider(),
-            if (data.brands.isNotEmpty)
-              GuestBrands(brands: data.brands, categories: data.categoryCount),
-            if (data.catalog.isNotEmpty)
-              GuestCatalog(items: data.catalog, total: data.productCount),
-            if (data.rewards.isNotEmpty) GuestRewards(rewards: data.rewards),
-            // Room for the bottom nav, in the section background.
-            Container(height: 80, color: MyBossColors.surfaceContainerLowest),
-          ],
-        );
-      },
+          return Column(
+            children: [
+              const GuestHero(),
+              const HomeSectionDivider(),
+              if (data.brands.isNotEmpty)
+                GuestBrands(
+                  brands: data.brands,
+                  categories: data.categoryCount,
+                ),
+              if (data.catalog.isNotEmpty)
+                GuestCatalog(items: data.catalog, total: data.productCount),
+              // Point rewards of the selected branch (API, shared with Promo).
+              BlocBuilder<PromoCubit, PromoState>(
+                buildWhen: (a, b) => a.content.rewards != b.content.rewards,
+                builder: (context, promo) => promo.content.rewards.isEmpty
+                    ? const SizedBox.shrink()
+                    : GuestRewards(rewards: promo.content.rewards),
+              ),
+              // Room for the bottom nav, in the section background.
+              Container(height: 80, color: MyBossColors.surfaceContainerLowest),
+            ],
+          );
+        },
+      ),
     );
   }
 }

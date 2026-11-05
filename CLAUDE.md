@@ -71,5 +71,6 @@ lib/
 ## Workflow (Sera-App)
 
 - Project key **MYB** (Oraimo Project), epic **MYB-1**. PRDs live in `docs/prd/PRD-<nnn>-<slug>.md` with a `.sera-map.json` mapping stories/tasks; follow the existing PRD format. Use the `sera-scrum:workflow` skill — no tasks without a PRD.
-- Task sizing used so far: 1 task = 1 SP = 20 minutes, ~15 tasks per working day, status `Completed (Local)` when done; commits carry `Sera-Task: MYB-<n>` trailers.
+- Task sizing: 1 task = 1 SP = 30 minutes, ~15 tasks per working day, status `Completed (Local)` when done; commits carry `Sera-Task: MYB-<n>` trailers.
+- Sera time fields are in minutes: Est (`estimate_time`) = SP × 30; Real (`real_time`) = actual minutes worked, never Est − Real. Time saved versus the estimate goes in a story comment.
 - Commit only when asked; check the active branch first (`dev_myboss_v1` at the time of writing), do not push to `main` unprompted.

@@ -2,8 +2,9 @@ part of '../widgets.dart';
 
 /// Signed-in Home content (Figma `Home Signed-in`): member hero, brands,
 /// popular products and the points rewards panel with the balance + Redeem.
-/// Content comes from [GuestHomeCubit] (static until the API exists), the
-/// balance from [PointsCubit].
+/// Content comes from [GuestHomeCubit] (static until the API exists), point
+/// rewards of the selected branch from [PromoCubit], the balance from
+/// [PointsCubit].
 class SignedInHomeView extends StatefulWidget {
   const SignedInHomeView({super.key});
 
@@ -21,39 +22,45 @@ class _SignedInHomeViewState extends State<SignedInHomeView> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<GuestHomeCubit, GuestHomeState>(
-      builder: (context, state) {
-        final data = state.data;
+    return PromoBranchSync(
+      child: BlocBuilder<GuestHomeCubit, GuestHomeState>(
+        builder: (context, state) {
+          final data = state.data;
+          final rewards = context.select(
+            (PromoCubit c) => c.state.content.rewards,
+          );
 
-        return Column(
-          children: [
-            // Deletion pending: tell the user and link to the status page.
-            ValueListenableBuilder<bool>(
-              valueListenable: DeleteAccountLocalState.isPendingNotifier,
-              builder: (context, isPending, _) => isPending
-                  ? const DeleteAccountPendingCard()
-                  : const SizedBox.shrink(),
-            ),
-            MemberHero(rewards: data.rewards),
-            const HomeSectionDivider(),
-            if (data.brands.isNotEmpty)
-              GuestBrands(brands: data.brands, categories: data.categoryCount),
-            if (data.catalog.isNotEmpty)
-              GuestCatalog(
-                items: data.catalog,
-                total: data.productCount,
-                title: LocaleKeys.home_member_popular_title.tr(),
+          return Column(
+            children: [
+              // Deletion pending: tell the user and link to the status page.
+              ValueListenableBuilder<bool>(
+                valueListenable: DeleteAccountLocalState.isPendingNotifier,
+                builder: (context, isPending, _) => isPending
+                    ? const DeleteAccountPendingCard()
+                    : const SizedBox.shrink(),
               ),
-            if (data.rewards.isNotEmpty)
-              GuestRewards(
-                rewards: data.rewards,
-                footer: const _RedeemFooter(),
-              ),
-            // Room for the bottom nav, in the section background.
-            Container(height: 80, color: MyBossColors.surfaceContainerLowest),
-          ],
-        );
-      },
+              // Point rewards of the selected branch (API, shared with Promo).
+              MemberHero(rewards: rewards),
+              const HomeSectionDivider(),
+              if (data.brands.isNotEmpty)
+                GuestBrands(
+                  brands: data.brands,
+                  categories: data.categoryCount,
+                ),
+              if (data.catalog.isNotEmpty)
+                GuestCatalog(
+                  items: data.catalog,
+                  total: data.productCount,
+                  title: LocaleKeys.home_member_popular_title.tr(),
+                ),
+              if (rewards.isNotEmpty)
+                GuestRewards(rewards: rewards, footer: const _RedeemFooter()),
+              // Room for the bottom nav, in the section background.
+              Container(height: 80, color: MyBossColors.surfaceContainerLowest),
+            ],
+          );
+        },
+      ),
     );
   }
 }

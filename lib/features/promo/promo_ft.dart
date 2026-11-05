@@ -20,17 +20,12 @@ class PromoFt {
 
     /// 3. Setup Repository
     getIt.registerLazySingleton<PromoRepo>(
-      () => PromoRepoImpl(source: getIt()),
+      () => PromoRepoImpl(remoteData: getIt()),
     );
 
     /// 4. Setup Datasource
-    // TODO(backend): api -> PromoRemote once the endpoint exists.
-    getIt.registerLazySingleton<PromoSource>(
-      () => ServerAccess.pick<PromoSource>(
-        mock: () => const PromoStatic(),
-        api: () => const PromoStatic(),
-      ),
-    );
+    /// HTTP remote: mock mode is answered by MockServerInterceptor.
+    getIt.registerLazySingleton<PromoRemote>(() => const PromoRemoteImpl());
 
     /// 5. Setup Usecase
     getIt.registerLazySingleton(() => GetPromoUc(getIt()));

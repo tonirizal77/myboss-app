@@ -97,6 +97,9 @@ abstract class LocaleKeys {
   static const promo_code_copied = 'promo.code_copied';
   static const promo_terms = 'promo.terms';
   static const promo_copy_code = 'promo.copy_code';
+  static const promo_valid_until = 'promo.valid_until';
+  static const promo_load_failed = 'promo.load_failed';
+  static const promo_retry = 'promo.retry';
   static const promo = 'promo';
   static const points_title = 'points.title';
   static const points_balance = 'points.balance';

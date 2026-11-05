@@ -59,8 +59,8 @@ class AccessServer {
     /// Try to Get server local
     final _getServer = getIt<SharedPreferencesHelper>().getServer();
     final _isChanged =
-        _getServer?[0] != _id &&
-        _getServer?[1] != _domain &&
+        _getServer?[0] != _id ||
+        _getServer?[1] != _domain ||
         _getServer?[2] != _mobileAccess;
 
     PrintHelper.printWhite(

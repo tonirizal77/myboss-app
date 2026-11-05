@@ -35,6 +35,17 @@ final class Endpoints {
   static const String catalogShow = "/catalog/show/{id}";
 
   /// ============================================================ ///
+  /// MyBoss › Promo, Point & Voucher
+  /// Authorization : {{bearer}}
+  /// ============================================================ ///
+  ///
+  /// GET Loyalty Point List
+  static const String promoPointList = "/promotion/loyalty-points/list";
+
+  /// GET Voucher Discount List
+  static const String promoVoucherList = "/promotion/discount-vouchers/list";
+
+  /// ============================================================ ///
   /// MyBoss › Store
   /// Authorization : {{bearer}}
   /// ============================================================ ///

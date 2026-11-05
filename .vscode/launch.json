@@ -26,7 +26,7 @@
       "type": "dart",
       "deviceId": "macos",
       "flutterMode": "debug",
-      "args": ["--flavor", "staging"]
+      "args": ["--flavor", "staging", "--dart-define=DATA_SOURCE=api"]
       // "args": ["--flavor", "prod"]
       // "args": ["--flavor", "live"]
       // Flavors = Xcode schemes Staging / Prod / Live (build configurations
@@ -67,6 +67,7 @@
       "args": [
         "--flavor",
         "staging",
+        "--dart-define=DATA_SOURCE=api",
         "--android-skip-build-dependency-validation"
       ]
       // "args": ["--flavor", "prod"]

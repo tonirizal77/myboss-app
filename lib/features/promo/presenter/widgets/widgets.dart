@@ -10,3 +10,4 @@ part 'promo_cards.dart';
 part 'promo_panels.dart';
 part 'voucher_ticket.dart';
 part 'voucher_detail_sheet.dart';
+part 'promo_branch_sync.dart';

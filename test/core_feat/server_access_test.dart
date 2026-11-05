@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:io';
 
 import 'package:dio/dio.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -174,6 +175,205 @@ void main() {
         MockServerInterceptor.endpointPath(RequestOptions(path: '/store/data')),
         '/store/data',
       );
+    });
+
+    test('endpointPath: full URL on a branch domain (url_id)', () {
+      const base = 'https://api.example.com/id/myboss';
+      String path(String url) => MockServerInterceptor.endpointPath(
+        RequestOptions(baseUrl: base, path: url),
+      );
+
+      expect(
+        path('https://api.example.com/id/myboss-semarang/catalog/lists?page=1'),
+        '/catalog/lists',
+      );
+      expect(
+        path('https://api.example.com/id/other/catalog/show/12'),
+        '/catalog/show/12',
+      );
+      // Same domain still strips cleanly, other paths are left alone.
+      expect(
+        path('https://api.example.com/id/myboss/store/data'),
+        '/store/data',
+      );
+      expect(path('https://cdn.example.com/x/y.png'), '/x/y.png');
+    });
+
+    test(
+      'product page requests on a branch domain, real mock assets',
+      () async {
+        final client =
+            Dio(BaseOptions(baseUrl: 'https://api.example.com/en/myboss'))
+              ..interceptors.add(
+                MockServerInterceptor(
+                  delay: Duration.zero,
+                  useMock: (_) => true,
+                  loadAsset: (key) => File(key).readAsString(),
+                ),
+              );
+        const branch = 'https://api.example.com/en/myboss-magelang';
+
+        for (final endpoint in [
+          Endpoints.catalogGroupList,
+          Endpoints.catalogBrandList,
+          Endpoints.catalogGroupProd,
+          Endpoints.catalogList,
+          Endpoints.promoPointList,
+          Endpoints.promoVoucherList,
+        ]) {
+          final res = await client.get(
+            '$branch$endpoint',
+            queryParameters: {'per_page': 100},
+          );
+          expect(res.headers.value('x-mock-file'), isNotNull, reason: endpoint);
+          expect(res.data['data'], isNotEmpty, reason: endpoint);
+          // Simulated responses must stay `Map<String, dynamic>` all the way
+          // down, or the json_serializable models reject them.
+          expect(
+            res.data['meta'],
+            isA<Map<String, dynamic>>(),
+            reason: endpoint,
+          );
+        }
+        final detail = await client.get('$branch/catalog/show/106802904');
+        expect(detail.data['data'], isA<Map<String, dynamic>>());
+        expect(detail.data['data']['name'], 'oraimo Watch Pro 2');
+      },
+    );
+
+    group('server simulation', () {
+      const lists = 'assets/mock/get/catalog.lists.json';
+      const branch = 'https://api.example.com/id/myboss-magelang';
+      final catalog = jsonEncode({
+        'data': [
+          for (var i = 1; i <= 5; i++)
+            {
+              'id': i,
+              'name': i.isOdd ? 'Watch $i' : 'Buds $i',
+              'product_group_id': i <= 3 ? 10 : 20,
+              'brand_id': 7,
+            },
+        ],
+        'meta': {'total': 5, 'page': 1, 'per_page': 15, 'total_page': 1},
+      });
+      Map<String, Object> search(String column, Object text, String cond) => {
+        'search[0][search_column]': column,
+        'search[0][search_text]': text,
+        'search[0][search_condition]': cond,
+      };
+
+      test('branch file first, default file otherwise', () async {
+        final client = dio(
+          mock: true,
+          assets: {
+            'assets/mock/get/store.data.json': '{"data": "default"}',
+            'assets/mock/get/store.data@myboss-magelang.json':
+                '{"data": "magelang"}',
+          },
+        );
+
+        expect(
+          (await client.get('$branch/store/data')).data['data'],
+          'magelang',
+        );
+        final other = await client.get(
+          'https://api.example.com/id/myboss-jogja/store/data',
+        );
+        expect(other.data['data'], 'default');
+      });
+
+      test('search filters (= and like) and paging with meta', () async {
+        final client = dio(mock: true, assets: {lists: catalog});
+
+        final byGroup = await client.get(
+          '$branch/catalog/lists',
+          queryParameters: {
+            ...search('product_group_id', 10, '='),
+            'page': 2,
+            'per_page': 2,
+          },
+        );
+        expect([for (final e in byGroup.data['data']) e['id']], [3]);
+        expect(byGroup.data['meta'], containsPair('total', 3));
+        expect(byGroup.data['meta'], containsPair('total_page', 2));
+
+        final byName = await client.get(
+          Endpoints.catalogList,
+          queryParameters: search('name', 'wATCH', 'like'),
+        );
+        expect([for (final e in byName.data['data']) e['id']], [1, 3, 5]);
+      });
+
+      test('lists/group filters products and drops empty groups', () async {
+        final client = dio(
+          mock: true,
+          assets: {
+            'assets/mock/get/catalog.lists.group.json': jsonEncode({
+              'data': [
+                {
+                  'id': 10,
+                  'total_product': 2,
+                  'products': [
+                    {'id': 1, 'name': 'Watch 1'},
+                    {'id': 2, 'name': 'Buds 2'},
+                  ],
+                },
+                {
+                  'id': 20,
+                  'total_product': 1,
+                  'products': [
+                    {'id': 4, 'name': 'Buds 4'},
+                  ],
+                },
+              ],
+              'meta': {'total': 2, 'page': 1, 'per_page': 15},
+            }),
+          },
+        );
+
+        final res = await client.get(
+          Endpoints.catalogGroupProd,
+          queryParameters: search('name', 'watch', 'like'),
+        );
+        expect(res.data['data'], [
+          {
+            'id': 10,
+            'total_product': 1,
+            'products': [
+              {'id': 1, 'name': 'Watch 1'},
+            ],
+          },
+        ]);
+      });
+
+      test('detail answers for the requested id, unknown id is 404', () async {
+        final client = dio(
+          mock: true,
+          assets: {
+            lists: catalog,
+            'assets/mock/get/catalog.show._id.json':
+                '{"data": {"id": 99, "name": "Template", "label_tag": "Sale"}}',
+          },
+        );
+
+        final res = await client.get('$branch/catalog/show/4');
+        expect(res.data['data'], {
+          'id': 4,
+          'name': 'Buds 4',
+          'label_tag': 'Sale',
+        });
+
+        await expectLater(
+          client.get('$branch/catalog/show/404'),
+          throwsA(
+            isA<DioException>().having(
+              (e) => e.response?.statusCode,
+              'status',
+              404,
+            ),
+          ),
+        );
+      });
     });
 
     test('mock found: answered from the asset, network untouched', () async {

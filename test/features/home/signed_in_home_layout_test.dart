@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:myboss_app/core_feat/core_feat.dart';
@@ -74,6 +75,11 @@ void main() {
       () => GuestHomeRepoImpl(source: getIt()),
     );
     getIt.registerLazySingleton(() => GetGuestHomeUc(getIt()));
+    getIt.registerLazySingleton<PromoRemote>(() => const _MockFilePromo());
+    getIt.registerLazySingleton<PromoRepo>(
+      () => PromoRepoImpl(remoteData: getIt()),
+    );
+    getIt.registerLazySingleton(() => GetPromoUc(getIt()));
   });
   tearDown(() => getIt.reset());
 
@@ -86,10 +92,16 @@ void main() {
     getIt.registerSingleton<ProfileBloc>(profile);
     final points = PointsCubit();
     final guest = GuestHomeCubit();
+    final promo = PromoCubit();
+    final branch = StoreBranchCubit();
+    final user = _SignedInUserBloc();
     addTearDown(() async {
+      await user.close();
       await profile.close();
       await points.close();
       await guest.close();
+      await promo.close();
+      await branch.close();
     });
 
     await tester.pumpWidget(
@@ -108,6 +120,9 @@ void main() {
                 BlocProvider.value(value: profile),
                 BlocProvider.value(value: points),
                 BlocProvider.value(value: guest),
+                BlocProvider.value(value: promo),
+                BlocProvider.value(value: branch),
+                BlocProvider<UserBloc>.value(value: user),
               ],
               child: Scaffold(
                 backgroundColor: MyBossColors.surface,
@@ -170,4 +185,33 @@ void main() {
     expect(tester.takeException(), isNull);
     await shot(tester, 'membership_card');
   });
+}
+
+/// Point rewards / vouchers from the mock JSON files.
+/// Signed-in session: Promo loads rewards (loyalty points) too.
+class _SignedInUserBloc extends UserBloc {
+  _SignedInUserBloc() {
+    // ignore: invalid_use_of_visible_for_testing_member
+    emit(const UserState(statusLogin: Status.success));
+  }
+}
+
+class _MockFilePromo implements PromoRemote {
+  const _MockFilePromo();
+
+  static DataMap _read(String endpoint) =>
+      jsonDecode(
+            File(
+              MockServerInterceptor.assetKey('GET', endpoint),
+            ).readAsStringSync(),
+          )
+          as DataMap;
+
+  @override
+  ResultFuture<PromoPointsModel> getRewards(String storeDomain) async =>
+      Right(PromoPointsModel.fromJson(_read(Endpoints.promoPointList)));
+
+  @override
+  ResultFuture<PromoVouchersModel> getVouchers(String storeDomain) async =>
+      Right(PromoVouchersModel.fromJson(_read(Endpoints.promoVoucherList)));
 }

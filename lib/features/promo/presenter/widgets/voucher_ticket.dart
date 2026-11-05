@@ -56,14 +56,19 @@ class VoucherTicket extends StatelessWidget {
                           voucher.discount,
                           style: MyBossTextStyles.title.copyWith(color: accent),
                         ),
-                        Text(
-                          voucher.validUntil,
-                          style: MyBossTextStyles.caption.copyWith(
-                            color: MyBossColors.onSurfaceVariant,
+                        if (voucher.validUntil case final date?)
+                          Text(
+                            LocaleKeys.promo_valid_until.tr(
+                              args: [_date(context, date)],
+                            ),
+                            style: MyBossTextStyles.caption.copyWith(
+                              color: MyBossColors.onSurfaceVariant,
+                            ),
                           ),
-                        ),
-                        const SizedBox(height: 8),
-                        VoucherCodeBox(code: voucher.code),
+                        if (voucher.code.isNotEmpty) ...[
+                          const SizedBox(height: 8),
+                          VoucherCodeBox(code: voucher.code),
+                        ],
                       ],
                     ),
                   ),
@@ -75,6 +80,41 @@ class VoucherTicket extends StatelessWidget {
       ),
     );
   }
+}
+
+/// `26 Des 2026` / `26 Dec 2026` - month names by hand: intl date data for
+/// `id` is not initialized in this app.
+String _date(BuildContext context, DateTime date) {
+  const en = [
+    'Jan',
+    'Feb',
+    'Mar',
+    'Apr',
+    'May',
+    'Jun',
+    'Jul',
+    'Aug',
+    'Sep',
+    'Oct',
+    'Nov',
+    'Dec',
+  ];
+  const id = [
+    'Jan',
+    'Feb',
+    'Mar',
+    'Apr',
+    'Mei',
+    'Jun',
+    'Jul',
+    'Agu',
+    'Sep',
+    'Okt',
+    'Nov',
+    'Des',
+  ];
+  final months = context.locale.languageCode == 'id' ? id : en;
+  return '${date.day} ${months[date.month - 1]} ${date.year}';
 }
 
 /// Voucher code with a copy-to-clipboard button.

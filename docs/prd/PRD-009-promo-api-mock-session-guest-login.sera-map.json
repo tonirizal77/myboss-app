@@ -1,0 +1,226 @@
+{
+  "prd": "PRD-009-promo-api-mock-session-guest-login.md",
+  "project_gid": "65ea6511-c5e4-4397-adf0-64a03c9159c7",
+  "epic": {
+    "id": "732c49ed-57ee-4368-b922-702cf65fd529",
+    "key": "MYB-1"
+  },
+  "stories": [
+    {
+      "id": "d79fa0e9-3114-47f0-b987-56e4df849f69",
+      "key": "MYB-385",
+      "name": "Promo dari API (Loyalty Points & Discount Vouchers)",
+      "tasks": [
+        {
+          "id": "9ac9feb3-6944-4854-8816-21e4f41a5569",
+          "key": "MYB-414",
+          "title": "Endpoint promoPointList & promoVoucherList di endpoints.dart (grup Promo, Point & Voucher)",
+          "deadline": "2026-11-04"
+        },
+        {
+          "id": "032be742-3feb-4981-908b-ad91e94f90aa",
+          "key": "MYB-413",
+          "title": "Model freezed PromoPointsModel / PromoVouchersModel + build_runner",
+          "deadline": "2026-11-04"
+        },
+        {
+          "id": "ddccb2ad-2791-4df1-af9f-7fb7a15de0f1",
+          "key": "MYB-412",
+          "title": "Mapper PromoPoint ke RewardPreview, PromoVoucher ke Voucher (tanpa expiry = null)",
+          "deadline": "2026-11-04"
+        },
+        {
+          "id": "97e98d80-112f-4484-816c-3e3f45fa940c",
+          "key": "MYB-411",
+          "title": "PromoRemote (domain cabang, per_page 100) + PromoRepoImpl; hapus PromoStatic",
+          "deadline": "2026-11-04"
+        },
+        {
+          "id": "54303d24-2af8-4d41-91c2-471448b68b74",
+          "key": "MYB-410",
+          "title": "PromoCubit per cabang, abaikan respons usang; PromoBranchSync reload saat ganti cabang",
+          "deadline": "2026-11-04"
+        },
+        {
+          "id": "4e3b1f74-0e6d-4095-95ac-1efb8a340d42",
+          "key": "MYB-409",
+          "title": "Home guest & signed-in: rewards dari PromoCubit",
+          "deadline": "2026-11-04"
+        },
+        {
+          "id": "f03e7c76-7b70-4f4d-b061-fd31f5cc8108",
+          "key": "MYB-408",
+          "title": "VoucherTicket: kotak kode disembunyikan bila kosong, voucher tanpa masa berlaku",
+          "deadline": "2026-11-04"
+        },
+        {
+          "id": "1b9fce86-f262-475e-aee1-443aa19f7331",
+          "key": "MYB-407",
+          "title": "File mock promotion: default + 3 cabang (jogja/magelang/semarang)",
+          "deadline": "2026-11-04"
+        },
+        {
+          "id": "f2c6ef13-6e5e-49b6-b316-a78cfeda238c",
+          "key": "MYB-406",
+          "title": "Test promo (cubit + widget 3 ukuran) + daftar mock di mock_assets_test",
+          "deadline": "2026-11-04"
+        }
+      ]
+    },
+    {
+      "id": "487680c8-1754-4bfe-b810-eac7b5717283",
+      "key": "MYB-384",
+      "name": "Mock Server Meniru Aturan API",
+      "tasks": [
+        {
+          "id": "b44badef-4633-40f8-b1c4-583b25bffa01",
+          "key": "MYB-405",
+          "title": "Mock per cabang: baca <name>@<url_id>.json dulu, lalu fallback ke file biasa",
+          "deadline": "2026-11-04"
+        },
+        {
+          "id": "6f9f9c31-53b4-4cc6-81dd-e5e1c50a0b99",
+          "key": "MYB-404",
+          "title": "MockServerSimulation: filter search[n] (= / like)",
+          "deadline": "2026-11-04"
+        },
+        {
+          "id": "03f076f9-87af-4f01-ab67-4b8f0c59ba26",
+          "key": "MYB-403",
+          "title": "MockServerSimulation: page / per_page + meta dihitung ulang; lists/group membuang grup kosong",
+          "deadline": "2026-11-04"
+        },
+        {
+          "id": "5362720c-501e-4d13-9342-c3c194f6ce6f",
+          "key": "MYB-402",
+          "title": "/catalog/show/{id} dari katalog cabang (404 bila id tidak ada); brand_id khusus mock",
+          "deadline": "2026-11-04"
+        },
+        {
+          "id": "ac182c20-58cd-4d13-90ba-95ed5bc1956c",
+          "key": "MYB-401",
+          "title": "Test simulasi: file cabang, filter + paging, lists/group, detail/404",
+          "deadline": "2026-11-04"
+        }
+      ]
+    },
+    {
+      "id": "f1087e48-9550-486e-81ce-61dd28fcdb9e",
+      "key": "MYB-383",
+      "name": "Session Bersih Saat Ganti Data Source (Mock ↔ API)",
+      "tasks": [
+        {
+          "id": "f3fa4aff-aff6-4706-b015-c9dc938f726a",
+          "key": "MYB-400",
+          "title": "Analisa 401: token mock tersimpan terkirim ke server di mode api",
+          "deadline": "2026-11-05"
+        },
+        {
+          "id": "a3bec944-13b5-440e-8dcd-a4993e0bd353",
+          "key": "MYB-399",
+          "title": "ServerAccess.syncSession: simpan mode terakhir, hapus token + phone saat mode berubah",
+          "deadline": "2026-11-05"
+        },
+        {
+          "id": "ecd93bd2-b92d-428f-bbb5-446f90257e20",
+          "key": "MYB-398",
+          "title": "main.dart: panggil syncSession setelah InjectionFeatures, reset ProfileBloc & AccountBloc",
+          "deadline": "2026-11-05"
+        }
+      ]
+    },
+    {
+      "id": "dfd87cda-7bf3-482c-9271-29fcbfb9f5a0",
+      "key": "MYB-382",
+      "name": "Deteksi Pergantian Access Server",
+      "tasks": [
+        {
+          "id": "c63da474-bbd0-495f-b1fa-bce8c412723d",
+          "key": "MYB-397",
+          "title": "AccessServer._isChanged: ganti && menjadi ||",
+          "deadline": "2026-11-05"
+        }
+      ]
+    },
+    {
+      "id": "27b6e2ec-56d5-4008-9c40-36c21f958833",
+      "key": "MYB-381",
+      "name": "Promo — Endpoint Sesuai Guest vs Login",
+      "tasks": [
+        {
+          "id": "40e3dd3f-bc2d-421a-88e6-4d0912cac040",
+          "key": "MYB-396",
+          "title": "Domain: PromoParams, PromoSection, PromoContent.failed; usecase menerima params",
+          "deadline": "2026-11-05"
+        },
+        {
+          "id": "0a89b7bd-d2b2-4e3c-8db7-1e218d01ea27",
+          "key": "MYB-395",
+          "title": "PromoRepoImpl: guest voucher saja; login paralel (.wait); penanganan partial failure",
+          "deadline": "2026-11-05"
+        },
+        {
+          "id": "3e00fa02-9055-4cac-998f-b76a9fbca6dc",
+          "key": "MYB-394",
+          "title": "PromoCubit: cache per cabang + status login, reset konten saat ganti sesi, retry()",
+          "deadline": "2026-11-05"
+        },
+        {
+          "id": "f11b0bb5-ca4a-4298-a07d-bea346a675d7",
+          "key": "MYB-393",
+          "title": "PromoBranchSync: reload saat cabang berganti & login/logout",
+          "deadline": "2026-11-05"
+        },
+        {
+          "id": "49fbb766-1914-4feb-b8a1-e76536341e19",
+          "key": "MYB-392",
+          "title": "Promo page & panel: sembunyikan Points untuk guest, tab Points guest hanya ajakan sign-up",
+          "deadline": "2026-11-05"
+        },
+        {
+          "id": "4948432d-50d9-414f-9419-ed73ff2017da",
+          "key": "MYB-391",
+          "title": "PromoLoadError (halaman & per panel) + key translasi promo.load_failed / promo.retry",
+          "deadline": "2026-11-05"
+        },
+        {
+          "id": "5df8243c-9605-4154-8cc7-feca9404e10a",
+          "key": "MYB-390",
+          "title": "Test: guest/login, partial failure, semua gagal, logout; home signed-in test pakai UserBloc",
+          "deadline": "2026-11-05"
+        }
+      ]
+    },
+    {
+      "id": "99e41af4-78a4-4def-a674-013793b2aedb",
+      "key": "MYB-380",
+      "name": "QA Session & Promo Guest/Login",
+      "tasks": [
+        {
+          "id": "9eb5694e-79db-4378-91c2-88ad16792163",
+          "key": "MYB-389",
+          "title": "flutter analyze + flutter test (catat 15 test lama yang gagal, di luar scope)",
+          "deadline": "2026-11-05"
+        },
+        {
+          "id": "5c3330be-50a5-49d0-8d02-c67746de1e20",
+          "key": "MYB-388",
+          "title": "Rekap pekerjaan & draf PRD-009",
+          "deadline": "2026-11-05"
+        },
+        {
+          "id": "b7ecd08d-7b50-40d2-ab37-dc4279223338",
+          "key": "MYB-387",
+          "title": "Verifikasi macOS 3 ukuran: mock ke api tanpa 401, Promo guest vs login",
+          "deadline": "2026-11-06"
+        },
+        {
+          "id": "057d5dc9-7c71-416e-91de-4f602f62578c",
+          "key": "MYB-386",
+          "title": "Uji Android staging (RMX5566): ganti mode, login/logout, Promo",
+          "deadline": "2026-11-06"
+        }
+      ]
+    }
+  ]
+}

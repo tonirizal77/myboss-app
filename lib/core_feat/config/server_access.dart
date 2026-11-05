@@ -60,6 +60,35 @@ abstract final class ServerAccess {
   static T pick<T>({required T Function() mock, required T Function() api}) =>
       isMock ? mock() : api();
 
+  /// SharedPreferences key holding the data source of the stored session.
+  static const String _sessionModeKey = 'data_source_mode';
+
+  /// Drop the stored session when the data source changed since the last
+  /// run (mock <-> api). A mock token (`mock-access-token`) sent to the real
+  /// server answers 401, and a real token is meaningless to the mock - so
+  /// the app starts as a fresh guest and fetches a token from the active
+  /// source. Run after [InjectionsCore.setupAll] (needs
+  /// [SharedPreferencesHelper]).
+  ///
+  /// Returns `true` when the session was cleared, so the caller can reset
+  /// persisted per-user state (profile, account).
+  static Future<bool> syncSession() async {
+    final prefs = getIt<SharedPreferencesHelper>();
+    final previous = prefs.prefInstance.getString(_sessionModeKey);
+    final current = mode.name;
+
+    if (previous == current) return false;
+
+    PrintHelper.printWarning(
+      "__server access: data source changed ($previous -> $current), "
+      "clearing stored session",
+    );
+    await prefs.removeAccesToken(withPhone: true);
+    await prefs.prefInstance.setString(_sessionModeKey, current);
+
+    return true;
+  }
+
   /// Print the active data source once on app start.
   static void logMode() {
     PrintHelper.printWarning(

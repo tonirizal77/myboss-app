@@ -33,6 +33,13 @@ const _requests = [
   ('POST', Endpoints.deleteAccountCancel),
   ('GET', Endpoints.deleteReason),
   ('DELETE', Endpoints.deleteAccountReal),
+  ('GET', Endpoints.catalogGroupList),
+  ('GET', Endpoints.catalogBrandList),
+  ('GET', Endpoints.catalogGroupProd),
+  ('GET', Endpoints.catalogList),
+  ('GET', Endpoints.catalogShow),
+  ('GET', Endpoints.promoPointList),
+  ('GET', Endpoints.promoVoucherList),
 ];
 
 Map<String, dynamic> _mock(String method, String endpoint) {
@@ -55,6 +62,49 @@ void main() {
     expect(missing, isEmpty);
   });
 
+  test('every mock branch has its own catalog and promo data', () {
+    final branches = StoreBranchesModel.fromJson(
+      _mock('GET', Endpoints.storeBranches),
+    ).data;
+    for (final branch in branches) {
+      Map<String, dynamic> of(String endpoint) =>
+          jsonDecode(
+                File(
+                  MockServerInterceptor.branchKey(
+                    MockServerInterceptor.assetKey('GET', endpoint),
+                    branch.urlId!,
+                  ),
+                ).readAsStringSync(),
+              )
+              as Map<String, dynamic>;
+
+      final products = CatalogListModel.fromJson(
+        of(Endpoints.catalogList),
+      ).data;
+      expect(products, isNotEmpty, reason: branch.urlId);
+      expect(
+        CatalogGroupsModel.fromJson(of(Endpoints.catalogGroupList)).data,
+        isNotEmpty,
+      );
+      expect(
+        CatalogGroupsModel.fromJson(of(Endpoints.catalogGroupProd)).data,
+        isNotEmpty,
+      );
+      expect(
+        CatalogBrandsModel.fromJson(of(Endpoints.catalogBrandList)).data,
+        isNotEmpty,
+      );
+      expect(
+        PromoPointsModel.fromJson(of(Endpoints.promoPointList)).data,
+        isNotEmpty,
+      );
+      expect(
+        PromoVouchersModel.fromJson(of(Endpoints.promoVoucherList)).data,
+        isNotEmpty,
+      );
+    }
+  });
+
   test('every mock file belongs to a request (no stale files)', () {
     final expected = {
       for (final (method, endpoint) in _requests)
@@ -64,6 +114,8 @@ void main() {
         .listSync(recursive: true)
         .whereType<File>()
         .map((f) => f.path.replaceAll(r'\', '/'))
+        // Branch variants (`name@<url_id>.json`) belong to their base file.
+        .map((p) => p.replaceFirst(RegExp(r'@[^/]+\.json$'), '.json'))
         .toSet();
     expect(files.difference(expected), isEmpty);
   });
@@ -155,6 +207,46 @@ void main() {
         ReasonsModel.fromJson(_mock('GET', Endpoints.deleteReason)).data,
         isNotEmpty,
       );
+    });
+
+    test('product catalog', () {
+      expect(
+        CatalogGroupsModel.fromJson(
+          _mock('GET', Endpoints.catalogGroupList),
+        ).data,
+        hasLength(6),
+      );
+      expect(
+        CatalogBrandsModel.fromJson(
+          _mock('GET', Endpoints.catalogBrandList),
+        ).data,
+        isNotEmpty,
+      );
+      final groups = CatalogGroupsModel.fromJson(
+        _mock('GET', Endpoints.catalogGroupProd),
+      ).data;
+      expect(groups, isNotEmpty);
+      expect(groups.every((g) => g.products.isNotEmpty), isTrue);
+      expect(
+        CatalogListModel.fromJson(_mock('GET', Endpoints.catalogList)).data,
+        isNotEmpty,
+      );
+      final detail = CatalogDetail.fromJson(
+        _data('GET', Endpoints.catalogShow),
+      );
+      expect(detail.specifications, isNotEmpty);
+      expect(detail.relatedProducts, isNotEmpty);
+    });
+
+    test('promo rewards and vouchers', () {
+      expect(
+        PromoPointsModel.fromJson(_mock('GET', Endpoints.promoPointList)).data,
+        isNotEmpty,
+      );
+      final vouchers = PromoVouchersModel.fromJson(
+        _mock('GET', Endpoints.promoVoucherList),
+      ).data;
+      expect(vouchers.where((v) => v.expiryDate == null), isNotEmpty);
     });
 
     test('plain success responses carry a data map', () {

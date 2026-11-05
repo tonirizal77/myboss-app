@@ -1,0 +1,49 @@
+{
+  "data": [
+    {
+      "id": 630620,
+      "title": "Voucher Member Baru Rp50.000",
+      "discount_label": "Discount Rp 50.000",
+      "expiry_date": "2026-12-26"
+    },
+    {
+      "id": 630621,
+      "title": "Diskon 15% Produk Oraimo",
+      "discount_label": "Discount 15%",
+      "expiry_date": "2026-11-10"
+    },
+    {
+      "id": 630622,
+      "title": "Potongan Rp25.000",
+      "discount_label": "Discount Rp 25.000",
+      "expiry_date": "2026-11-26"
+    },
+    {
+      "id": 630623,
+      "title": "Diskon 10% Semua Produk",
+      "discount_label": "Discount 10%",
+      "expiry_date": null
+    },
+    {
+      "id": 630624,
+      "title": "Gratis Kabel Data",
+      "discount_label": "Free Gift",
+      "expiry_date": "2026-12-31"
+    },
+    {
+      "id": 630625,
+      "title": "Diskon 20% Audio",
+      "discount_label": "Discount 20%",
+      "expiry_date": "2026-12-15"
+    }
+  ],
+  "meta": {
+    "total": 6,
+    "page": 1,
+    "offset": 0,
+    "per_page": 15,
+    "total_page": 1
+  },
+  "status": 200,
+  "error": 0
+}

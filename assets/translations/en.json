@@ -113,7 +113,10 @@
     "voucher_guest": "Sign up to access more content and exclusive member vouchers.",
     "code_copied": "Code copied",
     "terms": "Terms & conditions",
-    "copy_code": "Copy code"
+    "copy_code": "Copy code",
+    "valid_until": "Valid until {}",
+    "load_failed": "Couldn't load promos",
+    "retry": "Try again"
   },
 
   "points": {

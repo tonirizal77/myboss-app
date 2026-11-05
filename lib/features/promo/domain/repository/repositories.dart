@@ -1,8 +1,10 @@
 part of '../domains.dart';
 
-/// Promo tab content: point rewards + vouchers.
+/// Promo tab content of a branch: point rewards (signed in) + vouchers.
 abstract class PromoRepo {
   const PromoRepo();
 
-  ResultFuture<PromoContent> getPromo();
+  /// Guest: vouchers only. Signed in: rewards + vouchers in parallel.
+  /// [Left] only when every requested section failed.
+  ResultFuture<PromoContent> getPromo(PromoParams params);
 }

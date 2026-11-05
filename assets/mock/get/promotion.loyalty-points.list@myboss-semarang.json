@@ -1,0 +1,61 @@
+{
+  "data": [
+    {
+      "id": 39830,
+      "name": "Ugreen USB-C Cable 1m",
+      "photo": "assets/images/products/product_08.png",
+      "redeemed_points": 100
+    },
+    {
+      "id": 39831,
+      "name": "oraimo FreePods 4",
+      "photo": "assets/images/products/audio_05.png",
+      "redeemed_points": 500
+    },
+    {
+      "id": 39832,
+      "name": "Watch 7",
+      "photo": "assets/images/products/watch_05.png",
+      "redeemed_points": 400
+    },
+    {
+      "id": 39833,
+      "name": "oraimo SpaceBuds Neo",
+      "photo": "assets/images/products/audio_01.png",
+      "redeemed_points": 350
+    },
+    {
+      "id": 39834,
+      "name": "PowerBox 10000",
+      "photo": "assets/images/products/product_05.png",
+      "redeemed_points": 250
+    },
+    {
+      "id": 39835,
+      "name": "Watch Nova 2",
+      "photo": "assets/images/products/watch_02.png",
+      "redeemed_points": 450
+    },
+    {
+      "id": 39836,
+      "name": "BoomPop 2",
+      "photo": "assets/images/products/audio_07.png",
+      "redeemed_points": 300
+    },
+    {
+      "id": 39837,
+      "name": "Toughlink C to C",
+      "photo": "assets/images/products/product_01.png",
+      "redeemed_points": 150
+    }
+  ],
+  "meta": {
+    "total": 8,
+    "page": 1,
+    "offset": 0,
+    "per_page": 15,
+    "total_page": 1
+  },
+  "status": 200,
+  "error": 0
+}

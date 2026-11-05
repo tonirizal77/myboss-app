@@ -113,7 +113,10 @@
     "voucher_guest": "Daftar untuk akses konten lebih banyak dan voucher khusus member.",
     "code_copied": "Kode disalin",
     "terms": "Syarat & ketentuan",
-    "copy_code": "Salin kode"
+    "copy_code": "Salin kode",
+    "valid_until": "Berlaku hingga {}",
+    "load_failed": "Promo gagal dimuat",
+    "retry": "Coba lagi"
   },
 
   "points": {
