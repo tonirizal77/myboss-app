@@ -39,17 +39,60 @@ class MockServerInterceptor extends Interceptor {
   }
 
   /// Endpoint path of [options], relative to the base URL
-  /// (`/store/branches`), even when the request was made with a full URL.
-  static String endpointPath(RequestOptions options) {
+  /// (`/store/branches`), even when the request was made with a full URL -
+  /// also one on another store domain (`{base}/{locale}/<branch url_id>/...`,
+  /// see [ConfigServer.urlFor]).
+  static String endpointPath(RequestOptions options) => _split(options).path;
+
+  /// Branch store domain of [options] (`myboss-magelang`), `null` on the
+  /// default domain.
+  static String? storeDomain(RequestOptions options) => _split(options).domain;
+
+  /// Branch variant of [key]: `catalog.lists.json` ->
+  /// `catalog.lists@myboss-magelang.json`. Without that file the branch
+  /// answers like the default domain.
+  static String branchKey(String key, String domain) =>
+      '${key.substring(0, key.length - '.json'.length)}@$domain.json';
+
+  static ({String? domain, String path}) _split(RequestOptions options) {
     final raw = options.path;
-    if (!raw.startsWith('http')) return raw;
+    if (!raw.startsWith('http')) return (domain: null, path: raw);
 
     final path = Uri.parse(raw).path;
     final basePath = Uri.tryParse(options.baseUrl)?.path ?? '';
+    if (basePath.isEmpty) return (domain: null, path: path);
 
-    return basePath.isNotEmpty && path.startsWith(basePath)
-        ? path.substring(basePath.length)
-        : path;
+    // Whole segments only: `/id/myboss` must not match `/id/myboss-semarang`.
+    if (path == basePath) return (domain: null, path: '/');
+    if (path.startsWith('$basePath/')) {
+      return (domain: null, path: path.substring(basePath.length));
+    }
+
+    // Same server and locale, other domain: drop `<parent>/<domain>`.
+    final parent = basePath.substring(0, basePath.lastIndexOf('/'));
+    if (parent.isNotEmpty && path.startsWith('$parent/')) {
+      final rest = path.substring(parent.length + 1);
+      final slash = rest.indexOf('/');
+      return slash < 0
+          ? (domain: rest, path: '/')
+          : (domain: rest.substring(0, slash), path: rest.substring(slash));
+    }
+
+    return (domain: null, path: path);
+  }
+
+  /// Mock [key] of [domain] (its branch file first), `null` when missing.
+  Future<String?> _load(String key, String? domain) async {
+    if (domain != null) {
+      try {
+        return await _loadAsset(branchKey(key, domain));
+      } catch (_) {}
+    }
+    try {
+      return await _loadAsset(key);
+    } catch (_) {
+      return null;
+    }
   }
 
   @override
@@ -57,23 +100,21 @@ class MockServerInterceptor extends Interceptor {
     RequestOptions options,
     RequestInterceptorHandler handler,
   ) async {
-    final path = endpointPath(options);
+    final (:domain, :path) = _split(options);
     if (!_useMock(path)) return handler.next(options);
 
     final key = assetKey(options.method, path);
     if (delay > Duration.zero) await Future<void>.delayed(delay);
 
-    final String raw;
-    try {
-      raw = await _loadAsset(key);
-    } catch (_) {
+    final raw = await _load(key, domain);
+    if (raw == null) {
       return handler.reject(
         _error(options, 'Mock not found: ${options.method} $path ($key)'),
         true,
       );
     }
 
-    final Object? data;
+    Object? data;
     try {
       data = jsonDecode(raw);
     } on FormatException catch (e) {
@@ -83,7 +124,25 @@ class MockServerInterceptor extends Interceptor {
       );
     }
 
-    PrintHelper.printWarning('__mock ${options.method} $path <- $key');
+    data = await MockServerSimulation.respond(
+      path,
+      options.queryParameters,
+      data,
+      load: (endpoint) async {
+        final other = await _load(assetKey('GET', endpoint), domain);
+        return other == null ? null : jsonDecode(other);
+      },
+    );
+    if (data == null) {
+      return handler.reject(
+        _error(options, 'Not found (mock): ${options.method} $path'),
+        true,
+      );
+    }
+
+    PrintHelper.printWarning(
+      '__mock ${options.method} $path <- $key${domain == null ? '' : ' @$domain'}',
+    );
 
     handler.resolve(
       Response(

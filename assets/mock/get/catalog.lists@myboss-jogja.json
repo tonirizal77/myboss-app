@@ -1,0 +1,61 @@
+{
+  "data": [
+    {
+      "id": 106802914,
+      "name": "Soundcore Q20i",
+      "photo_md": "assets/images/products/audio_09.png",
+      "product_group_id": 4364831,
+      "product_group_name": "Audio",
+      "brand_id": 2197334
+    },
+    {
+      "id": 106802916,
+      "name": "oraimo Traveler 4 20000mAh",
+      "photo_md": "assets/images/products/product_05.png",
+      "product_group_id": 4364832,
+      "product_group_name": "Power",
+      "brand_id": 2197333
+    },
+    {
+      "id": 106802917,
+      "name": "Anker PowerCore 10000",
+      "photo_md": "assets/images/products/product_05.png",
+      "product_group_id": 4364832,
+      "product_group_name": "Power",
+      "brand_id": 2197334
+    },
+    {
+      "id": 106802918,
+      "name": "Ugreen Nexode 65W",
+      "photo_md": "assets/images/products/product_01.png",
+      "product_group_id": 4364832,
+      "product_group_name": "Power",
+      "brand_id": 2197336
+    },
+    {
+      "id": 106802919,
+      "name": "oraimo Trimmer Neo",
+      "photo_md": "assets/images/products/product_07.png",
+      "product_group_id": 4364833,
+      "product_group_name": "Personal Care",
+      "brand_id": 2197333
+    },
+    {
+      "id": 106802920,
+      "name": "oraimo Hair Dryer Mini",
+      "photo_md": "assets/images/products/product_08.png",
+      "product_group_id": 4364833,
+      "product_group_name": "Personal Care",
+      "brand_id": 2197333
+    }
+  ],
+  "meta": {
+    "total": 6,
+    "page": 1,
+    "offset": 0,
+    "per_page": 15,
+    "total_page": 1
+  },
+  "status": 200,
+  "error": 0
+}

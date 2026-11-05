@@ -1,0 +1,73 @@
+{
+  "data": [
+    {
+      "id": 4364831,
+      "name_en": "Audio",
+      "name_id": "Audio",
+      "total_product": 1,
+      "products": [
+        {
+          "id": 106802914,
+          "name": "Soundcore Q20i",
+          "photo_md": "assets/images/products/audio_09.png",
+          "brand_id": 2197334
+        }
+      ]
+    },
+    {
+      "id": 4364832,
+      "name_en": "Power",
+      "name_id": "Daya",
+      "total_product": 3,
+      "products": [
+        {
+          "id": 106802916,
+          "name": "oraimo Traveler 4 20000mAh",
+          "photo_md": "assets/images/products/product_05.png",
+          "brand_id": 2197333
+        },
+        {
+          "id": 106802917,
+          "name": "Anker PowerCore 10000",
+          "photo_md": "assets/images/products/product_05.png",
+          "brand_id": 2197334
+        },
+        {
+          "id": 106802918,
+          "name": "Ugreen Nexode 65W",
+          "photo_md": "assets/images/products/product_01.png",
+          "brand_id": 2197336
+        }
+      ]
+    },
+    {
+      "id": 4364833,
+      "name_en": "Personal Care",
+      "name_id": "Perawatan Diri",
+      "total_product": 2,
+      "products": [
+        {
+          "id": 106802919,
+          "name": "oraimo Trimmer Neo",
+          "photo_md": "assets/images/products/product_07.png",
+          "brand_id": 2197333
+        },
+        {
+          "id": 106802920,
+          "name": "oraimo Hair Dryer Mini",
+          "photo_md": "assets/images/products/product_08.png",
+          "brand_id": 2197333
+        }
+      ]
+    }
+  ],
+  "meta": {
+    "total": 3,
+    "page": 1,
+    "offset": 0,
+    "per_page": 15,
+    "total_page": 1
+  },
+  "status": 200,
+  "error": 0
+}

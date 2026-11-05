@@ -1,0 +1,56 @@
+{
+  "data": {
+    "id": 106802911,
+    "name": "oraimo FreePods 4",
+    "label_id": 2,
+    "label_tag": "Sale",
+    "description": "Clear sound with deep bass and active noise cancellation.\nLight, comfortable and ready for calls, music and games all day long.",
+    "product_photos": [],
+    "specifications": [
+      {
+        "id": 12481,
+        "name": "Model",
+        "value": "OTW-330"
+      },
+      {
+        "id": 12480,
+        "name": "Bluetooth Version",
+        "value": "V5.3"
+      },
+      {
+        "id": 12478,
+        "name": "Playtime ANC OFF",
+        "value": "Up to 7.5 hours per charge, 35.5 hours with the charging case"
+      },
+      {
+        "id": 12477,
+        "name": "Playtime ANC ON",
+        "value": "Up to 5.5 hours per charge, 25.5 hours with the charging case"
+      },
+      {
+        "id": 12476,
+        "name": "Case Input",
+        "value": "Type-C"
+      }
+    ],
+    "related_products": [
+      {
+        "id": 106802913,
+        "name": "OPPO Enco Buds 2",
+        "photo_md": "assets/images/products/audio_03.png"
+      },
+      {
+        "id": 106802912,
+        "name": "oraimo SpaceBuds Neo",
+        "photo_md": "assets/images/products/audio_01.png"
+      },
+      {
+        "id": 106802915,
+        "name": "oraimo BoomPop 2",
+        "photo_md": "assets/images/products/audio_07.png"
+      }
+    ]
+  },
+  "status": 200,
+  "error": 0
+}

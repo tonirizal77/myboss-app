@@ -95,7 +95,8 @@
     "description": "Description",
     "specifications": "Specifications",
     "related": "Related products",
-    "new_badge": "New"
+    "load_failed": "Could not load products",
+    "retry": "Try again"
   },
 
   "promo": {

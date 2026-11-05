@@ -95,7 +95,8 @@
     "description": "Deskripsi",
     "specifications": "Spesifikasi",
     "related": "Produk Terkait",
-    "new_badge": "Terbaru"
+    "load_failed": "Gagal memuat produk",
+    "retry": "Coba lagi"
   },
 
   "promo": {

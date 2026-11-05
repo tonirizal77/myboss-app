@@ -1,0 +1,117 @@
+{
+  "data": [
+    {
+      "id": 106802904,
+      "name": "oraimo Watch Pro 2",
+      "photo_md": "assets/images/products/watch_01.png",
+      "product_group_id": 4364830,
+      "product_group_name": "Wearable",
+      "brand_id": 2197333
+    },
+    {
+      "id": 106802905,
+      "name": "Watch Nova 2",
+      "photo_md": "assets/images/products/watch_02.png",
+      "product_group_id": 4364830,
+      "product_group_name": "Wearable",
+      "brand_id": 2197333
+    },
+    {
+      "id": 106802906,
+      "name": "Watch Nova AM",
+      "photo_md": "assets/images/products/watch_03.png",
+      "product_group_id": 4364830,
+      "product_group_name": "Wearable",
+      "brand_id": 2197333
+    },
+    {
+      "id": 106802907,
+      "name": "Watch Mate 2",
+      "photo_md": "assets/images/products/watch_04.png",
+      "product_group_id": 4364830,
+      "product_group_name": "Wearable",
+      "brand_id": 2197333
+    },
+    {
+      "id": 106802908,
+      "name": "Watch 7",
+      "photo_md": "assets/images/products/watch_05.png",
+      "product_group_id": 4364830,
+      "product_group_name": "Wearable",
+      "brand_id": 2197333
+    },
+    {
+      "id": 106802909,
+      "name": "Watch 6 Max",
+      "photo_md": "assets/images/products/watch_06.png",
+      "product_group_id": 4364830,
+      "product_group_name": "Wearable",
+      "brand_id": 2197333
+    },
+    {
+      "id": 106802922,
+      "name": "Watch Nova 2 Lite",
+      "photo_md": "assets/images/products/watch_09.png",
+      "product_group_id": 4364830,
+      "product_group_name": "Wearable",
+      "brand_id": 2197333
+    },
+    {
+      "id": 106802923,
+      "name": "Watch ES",
+      "photo_md": "assets/images/products/watch_02.png",
+      "product_group_id": 4364830,
+      "product_group_name": "Wearable",
+      "brand_id": 2197333
+    },
+    {
+      "id": 106802911,
+      "name": "oraimo FreePods 4",
+      "photo_md": "assets/images/products/audio_05.png",
+      "product_group_id": 4364831,
+      "product_group_name": "Audio",
+      "brand_id": 2197333
+    },
+    {
+      "id": 106802912,
+      "name": "oraimo SpaceBuds Neo",
+      "photo_md": "assets/images/products/audio_01.png",
+      "product_group_id": 4364831,
+      "product_group_name": "Audio",
+      "brand_id": 2197333
+    },
+    {
+      "id": 106802913,
+      "name": "OPPO Enco Buds 2",
+      "photo_md": "assets/images/products/audio_03.png",
+      "product_group_id": 4364831,
+      "product_group_name": "Audio",
+      "brand_id": 2197335
+    },
+    {
+      "id": 106802914,
+      "name": "Soundcore Q20i",
+      "photo_md": "assets/images/products/audio_09.png",
+      "product_group_id": 4364831,
+      "product_group_name": "Audio",
+      "brand_id": 2197334
+    },
+    {
+      "id": 106802915,
+      "name": "oraimo BoomPop 2",
+      "photo_md": "assets/images/products/audio_07.png",
+      "product_group_id": 4364831,
+      "product_group_name": "Audio",
+      "brand_id": 2197333
+    }
+  ],
+  "meta": {
+    "total": 13,
+    "page": 1,
+    "offset": 0,
+    "per_page": 15,
+    "total_page": 1
+  },
+  "status": 200,
+  "error": 0
+}

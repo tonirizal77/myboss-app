@@ -406,8 +406,8 @@ App mengirim `branch_id` dari cabang yang dipilih di header (`GET /store/branche
 
 ## 6. Status di aplikasi
 
-- Konstanta endpoint sudah ada di `lib/core_feat/network/endpoints.dart`: `catalogGroupList`, `catalogList`, `catalogBrandList`, `catalogShow`. `catalogSummary` belum ada.
-- Tab Product masih memakai `ProductStatic` dan memfilter di app. Setelah kontrak ini disepakati, app akan:
-  1. menambah model respons + `ProductRemote`, didaftarkan lewat `ServerAccess.pick` (`menu_ft.dart`);
-  2. memindahkan filter, pencarian, dan section "All" ke server;
-  3. menambah file mock di `assets/mock/get/` (`catalog.group.lists.json`, `catalog.brand.lists.json`, `catalog.lists.json`, `catalog.show._id.json`, `catalog.summary.json`) agar app bisa jalan dengan kontrak ini sebelum backend siap (`--dart-define=DATA_SOURCE=mock`).
+> Pembaruan 2026-11-02: kontrak usulan di atas **tidak** dipakai apa adanya. Tab Product mengikuti respons backend yang sebenarnya — lihat [PRODUCT-CATALOG-API-REVIEW.md](PRODUCT-CATALOG-API-REVIEW.md) dan [PRD-008](../prd/PRD-008-product-catalog-api.md).
+
+- Endpoint yang dipakai: `catalogGroupList`, `catalogBrandList`, `catalogGroupProd` (`/catalog/lists/group`, tampilan "All"), `catalogList`, `catalogShow`. `catalogSummary` belum ada (Home masih statis).
+- `ProductStatic` sudah diganti `ProductRemote` (`product_ft.dart`). Filter memakai format `search[n]` (bukan `catalog_group_id` / `brand_id` / `search`), cabang dikirim sebagai domain (`url_id`), bukan `branch_id`.
+- File mock: `assets/mock/get/catalog.{group.list,brand.lists,lists.group,lists,show._id}.json`, plus varian per cabang `nama@<url_id>.json`. Mode mock meniru filter `search[n]` dan paginasi server.

@@ -1,0 +1,25 @@
+{
+  "data": [
+    {
+      "id": 2197333,
+      "name": "Oraimo"
+    },
+    {
+      "id": 2197334,
+      "name": "Anker"
+    },
+    {
+      "id": 2197335,
+      "name": "Oppo"
+    }
+  ],
+  "meta": {
+    "total": 3,
+    "page": 1,
+    "offset": 0,
+    "per_page": 15,
+    "total_page": 1
+  },
+  "status": 200,
+  "error": 0
+}

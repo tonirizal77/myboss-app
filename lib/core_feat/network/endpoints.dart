@@ -9,26 +9,30 @@ final class Endpoints {
   /// ============================================================ ///
   /// MyBoss › Product
   /// Authorization : {{bearer}}
-  /// Params : [search, sort, page, per_page] : Cek Dokumen
+  /// Params : [search, sort, page, per_page]
   /// ============================================================ ///
 
   /// === Product › Catalog Group === ///
   ///
-  /// GET catalog group List
+  /// GET catalog product List group All
   static const String catalogGroupList = "/catalog/group/lists";
-
-  /// === Product › Catalog === ///
-  ///
-  /// GET catalog List
-  static const String catalogList = "/catalog/lists";
-
-  /// GET catalog Show - not in Postman yet
-  static const String catalogShow = "/catalog/show/{id}";
 
   /// === Product › Catalog Brand === ///
   ///
   /// GET catalog brand List
   static const String catalogBrandList = "/catalog/brand/lists";
+
+  /// Get catalog all
+  static const String catalogGroupProd = "/catalog/lists/group";
+
+  /// === Product › Catalog === ///
+  ///
+  /// GET catalog List
+  /// Params : [search, sort, page, per_page]
+  static const String catalogList = "/catalog/lists";
+
+  /// GET catalog Show
+  static const String catalogShow = "/catalog/show/{id}";
 
   /// ============================================================ ///
   /// MyBoss › Store

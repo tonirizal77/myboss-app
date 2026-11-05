@@ -26,6 +26,7 @@ flutter run -d macos --flavor staging --dart-define=DATA_SOURCE=mock   # mock da
 
 - One switch: `ServerAccess` in `lib/core_feat/config/server_access.dart`. `--dart-define=DATA_SOURCE=mock|api` (default `api`). Flavor `live` and release builds are locked to `api`.
 - Mock answers come from `MockServerInterceptor` (`lib/core_feat/network/`), added last on `DioHttp3.shared.request` in `main.dart`: `GET /store/branches` → `assets/mock/get/store.branches.json` (one folder per method, path `/` → `.`, numeric/`{id}` segments → `_id`). A missing file fails with `Mock not found`, never falls back to the server.
+- Branch data: a request on a branch domain reads `<name>@<url_id>.json` first (e.g. `catalog.lists@myboss-magelang.json`), then the plain file. `MockServerSimulation` applies the server rules on top: `search[n]` filters (`=`/`like`), `page`/`per_page` with a recomputed `meta`, and `/catalog/show/{id}` answering for that id (404 when the branch catalog lacks it). Mock catalog products carry a mock-only `brand_id`.
 - New endpoint = add its JSON under `assets/mock/<method>/`. Endpoints whose backend is not ready can be mocked in `api` mode via `ServerAccess.mockOverrides`. Non-HTTP sources (`*Static`) are registered with `ServerAccess.pick`.
 - Mock data is synthetic — never paste real customer data into `assets/mock/`.
 

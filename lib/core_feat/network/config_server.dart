@@ -92,4 +92,16 @@ class ConfigServer with SettingLanguage {
   /// === COMBINED BASE URL === ///
   ///
   static String get combinedBaseUrl => "$baseURL/$locale/$domain";
+
+  /// [endpoint] on another store [storeDomain] (a branch `url_id`), as a full
+  /// URL `{baseURL}/{locale}/{storeDomain}{endpoint}`. The shared Dio base URL
+  /// is left alone, so every other request keeps the default [domain].
+  ///
+  /// Empty [storeDomain] or the default one -> [endpoint] unchanged.
+  static String urlFor(String endpoint, {String? storeDomain}) {
+    if (storeDomain == null || storeDomain.isEmpty) return endpoint;
+    if (storeDomain == domain) return endpoint;
+
+    return "$baseURL/$locale/$storeDomain$endpoint";
+  }
 }

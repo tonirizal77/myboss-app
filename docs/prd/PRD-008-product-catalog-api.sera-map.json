@@ -1,0 +1,158 @@
+{
+  "prd": "PRD-008-product-catalog-api.md",
+  "project_gid": "65ea6511-c5e4-4397-adf0-64a03c9159c7",
+  "epic": {
+    "id": "732c49ed-57ee-4368-b922-702cf65fd529",
+    "key": "MYB-1"
+  },
+  "stories": [
+    {
+      "id": "6fbc2265-58d2-42af-acbe-1735483f984e",
+      "key": "MYB-321",
+      "name": "Data Layer Katalog dari API",
+      "tasks": [
+        {
+          "id": "0c89b267-ced4-4be6-a232-547a1af94924",
+          "key": "MYB-341",
+          "title": "ConfigServer.urlFor (domain cabang) + MockServerInterceptor.endpointPath untuk domain lain",
+          "deadline": "2026-11-02"
+        },
+        {
+          "id": "17d10669-e18c-4980-999b-3efa0f16ded6",
+          "key": "MYB-340",
+          "title": "Model freezed katalog (grup, item, brand, detail, meta) + build_runner",
+          "deadline": "2026-11-02"
+        },
+        {
+          "id": "b851017d-4002-494f-8ac1-5188cb9f1104",
+          "key": "MYB-339",
+          "title": "CatalogQuery: builder search[n] (product_group_id, brand_id, name like) + page/per_page",
+          "deadline": "2026-11-02"
+        },
+        {
+          "id": "2bd749a3-5ce6-4c90-b736-6aea9c13631e",
+          "key": "MYB-338",
+          "title": "ProductRemote, repository & usecase 5 endpoint; hapus ProductStatic",
+          "deadline": "2026-11-02"
+        },
+        {
+          "id": "8f2551c5-2c53-4bf3-82b0-289c02344c8d",
+          "key": "MYB-337",
+          "title": "Mapper model ke entity (nama per bahasa, foto, label, spesifikasi, produk terkait)",
+          "deadline": "2026-11-02"
+        },
+        {
+          "id": "376bd394-99f6-4aa8-92b9-6045e81be169",
+          "key": "MYB-336",
+          "title": "File mock 5 endpoint katalog + daftar di mock_assets_test",
+          "deadline": "2026-11-02"
+        }
+      ]
+    },
+    {
+      "id": "0742feb9-d5c2-4d29-aecc-e549c879b388",
+      "key": "MYB-320",
+      "name": "Tab Product dari API",
+      "tasks": [
+        {
+          "id": "9d2d3baa-1d9a-4318-a043-15eb980fee86",
+          "key": "MYB-335",
+          "title": "ProductCubit: kategori, brand, All dan grid dari server; debounce pencarian; abaikan respons usang",
+          "deadline": "2026-11-02"
+        },
+        {
+          "id": "488f8010-8520-4531-8060-740275dc9132",
+          "key": "MYB-334",
+          "title": "Grid: muat lagi saat scroll (page/total_page)",
+          "deadline": "2026-11-02"
+        },
+        {
+          "id": "a5b30f86-c92d-45a1-8d1e-9b6ec0c348b0",
+          "key": "MYB-333",
+          "title": "Ganti cabang memuat ulang katalog (domain = url_id cabang)",
+          "deadline": "2026-11-02"
+        },
+        {
+          "id": "672cd775-458b-426f-96c3-8144b971fce7",
+          "key": "MYB-332",
+          "title": "ProductCategoryBar: ikon dari photo_md dengan fallback ikon bawaan",
+          "deadline": "2026-11-02"
+        },
+        {
+          "id": "742e33dc-129c-44a1-89e5-337940949854",
+          "key": "MYB-331",
+          "title": "ProductBrandChips memakai id brand",
+          "deadline": "2026-11-02"
+        },
+        {
+          "id": "007e07b9-cb68-487a-9b27-4fb5d9db5b6b",
+          "key": "MYB-330",
+          "title": "Section All dari /catalog/lists/group (See more ke kategori)",
+          "deadline": "2026-11-02"
+        }
+      ]
+    },
+    {
+      "id": "1878c5e5-ff70-44dd-aaf7-d99ae6e928e3",
+      "key": "MYB-319",
+      "name": "Detail Produk dari API",
+      "tasks": [
+        {
+          "id": "d407f7c2-e5b5-4624-a8ca-ef124e090b08",
+          "key": "MYB-329",
+          "title": "ProductDetailCubit memuat /catalog/show/{id} (dan produk terkait)",
+          "deadline": "2026-11-02"
+        },
+        {
+          "id": "99e49122-2f6c-4da4-b287-a3f866709d3b",
+          "key": "MYB-328",
+          "title": "Detail sheet: foto kartu sebagai fallback galeri, badge label_tag, bagian kosong disembunyikan",
+          "deadline": "2026-11-02"
+        }
+      ]
+    },
+    {
+      "id": "cbf6ccf7-97ee-4e5b-9da4-350122de9d10",
+      "key": "MYB-318",
+      "name": "QA Katalog Produk",
+      "tasks": [
+        {
+          "id": "8fd6395f-1528-49a2-8852-948870947789",
+          "key": "MYB-327",
+          "title": "Unit test: query builder, endpointPath domain cabang, mapper, cubit (remote palsu)",
+          "deadline": "2026-11-02"
+        },
+        {
+          "id": "a9ad6ceb-e2f6-448c-a9e3-a12cbb5da878",
+          "key": "MYB-326",
+          "title": "Widget test 3 ukuran: All, filter, kosong, detail",
+          "deadline": "2026-11-03"
+        },
+        {
+          "id": "6677e97d-ae1a-42a3-bfa2-acd6418f6680",
+          "key": "MYB-325",
+          "title": "flutter analyze + flutter test",
+          "deadline": "2026-11-03"
+        },
+        {
+          "id": "c6426011-17a0-4027-94f5-7069e348e294",
+          "key": "MYB-324",
+          "title": "Verifikasi macOS 3 ukuran (mode mock)",
+          "deadline": "2026-11-03"
+        },
+        {
+          "id": "572e4bd3-3b3b-4c51-bce4-bc91610817ef",
+          "key": "MYB-323",
+          "title": "Uji Android staging (RMX5566)",
+          "deadline": "2026-11-03"
+        },
+        {
+          "id": "b21dd838-c16d-40a2-9165-84a2522c890f",
+          "key": "MYB-322",
+          "title": "Update dokumen API (tanggapan review, status di PRODUCT-CATALOG-API)",
+          "deadline": "2026-11-03"
+        }
+      ]
+    }
+  ]
+}

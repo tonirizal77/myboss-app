@@ -12,3 +12,4 @@ part 'endpoints.dart';
 part 'config_server.dart';
 part 'mixin_config.dart';
 part 'mock_server_interceptor.dart';
+part 'mock_server_simulation.dart';

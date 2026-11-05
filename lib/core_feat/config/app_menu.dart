@@ -13,13 +13,13 @@ abstract class AppMenu {
       ),
     ),
 
-    /// Order
+    /// Product
     ItemNavBar(
       item: Tuple4(
         LocaleKeys.bottom_nav_nav2,
         Icons.assignment_outlined,
         Icons.assignment,
-        const MenuPage(),
+        const ProductPage(),
       ),
     ),
 

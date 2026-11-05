@@ -80,7 +80,8 @@ abstract class LocaleKeys {
   static const product_description = 'product.description';
   static const product_specifications = 'product.specifications';
   static const product_related = 'product.related';
-  static const product_new_badge = 'product.new_badge';
+  static const product_load_failed = 'product.load_failed';
+  static const product_retry = 'product.retry';
   static const product = 'product';
   static const promo_tab_all = 'promo.tab_all';
   static const promo_tab_points = 'promo.tab_points';

@@ -109,7 +109,7 @@ class _MainPageState extends State<MainPage> with WidgetsBindingObserver {
             physics: const NeverScrollableScrollPhysics(),
             children: [
               const HomePage(),
-              const MenuPage(),
+              const ProductPage(),
               const PromoPage(),
               const AccountPage(),
             ],
