@@ -48,6 +48,8 @@ class GuestBrands extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 24),
+
+          // Producst from trusted ...
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 40),
             child: Text(

@@ -21,12 +21,12 @@ class GuestHomeStatic implements GuestHomeSource {
         productCount: 100,
         categoryCount: 25,
         brands: [
+          BrandLogo(name: 'Advan', image: Assets.brandAdvan),
+          BrandLogo(name: 'Maestro', image: Assets.brandMaestro),
+          BrandLogo(name: 'Minimo', image: Assets.brandminimo),
           BrandLogo(name: 'Oraimo', image: Assets.brandOraimo),
-          BrandLogo(name: 'Brand 2', image: Assets.brand02),
-          BrandLogo(name: 'Oppo', image: Assets.brandOppo),
+          BrandLogo(name: 'Rapatech', image: Assets.brandrapatech),
           BrandLogo(name: 'Ugreen', image: Assets.brandUgreen),
-          BrandLogo(name: 'Vivan', image: Assets.brandVivan),
-          BrandLogo(name: 'Realme', image: Assets.brandRealme),
         ],
         catalog: [
           CatalogPreview(

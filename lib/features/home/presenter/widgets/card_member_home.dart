@@ -1,5 +1,6 @@
 part of 'widgets.dart';
 
+/// MARK: NOT USED
 class CardMemberHome extends StatelessWidget {
   final String image;
   final String name;

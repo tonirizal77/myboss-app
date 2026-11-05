@@ -44,12 +44,12 @@ class Assets {
   ];
 
   /// Brand logos (Home guest)
+  static const String brandAdvan = 'assets/images/brands/brand_advan.png';
+  static const String brandMaestro = 'assets/images/brands/brand_maestro.png';
+  static const String brandminimo = 'assets/images/brands/brand_minimo.png';
   static const String brandOraimo = 'assets/images/brands/brand_oraimo.png';
-  static const String brand02 = 'assets/images/brands/brand_02.png';
-  static const String brandOppo = 'assets/images/brands/brand_oppo.png';
-  static const String brandUgreen = 'assets/images/brands/brand_ugreen.png';
-  static const String brandVivan = 'assets/images/brands/brand_vivan.png';
-  static const String brandRealme = 'assets/images/brands/brand_realme.png';
+  static const String brandrapatech = 'assets/images/brands/brand_rapatech.png';
+  static const String brandUgreen = 'assets/images/brands/brand_ugreen2.png';
 
   /// Icons Logo
 
@@ -114,14 +114,10 @@ class Assets {
   static const String contactIG = "assets/icons/contact_instagram.png";
 
   /// Voucher
-  // static const String voucher3 = "assets/icons/voucher_3.png";
-  // static const String voucher4 = "assets/icons/voucher_4.png";
   static const String voucherR = "assets/icons/voucher_red.png";
   static const String voucherB = "assets/icons/voucher_red_soft.png";
   static const String voucherWL = "assets/icons/voucher_white_left.png";
   static const String voucherWR = "assets/icons/voucher_white_right.png";
   static const String voucherBL = "assets/icons/voucher_black_left.png";
   static const String voucherBR = "assets/icons/voucher_black_right.png";
-
-  // static const String voucherW = "assets/icons/voucher_white.png";
 }
