@@ -9,9 +9,17 @@ class BranchSelectorSheet {
     StoreFlows.getStoreBranches(context);
     context.read<StoreBranchCubit>().loadPosition();
 
-    return MyBossBottomSheet.show<void>(
+    // return MyBossBottomSheet.show<void>(
+    //   context,
+    //   builder: (_) => const _BranchSelectorBody(),
+    // );
+
+    return ResponsiveDialog.sheetOrDialog(
       context,
-      builder: (_) => const _BranchSelectorBody(),
+      bgColor: AppTheme.surface(context),
+      colorFrame: AppTheme.surface(context),
+      colorBody: AppTheme.surface(context),
+      child: const _BranchSelectorBody(),
     );
   }
 }
@@ -28,6 +36,7 @@ class _BranchSelectorBody extends StatelessWidget {
         return Column(
           mainAxisSize: MainAxisSize.min,
           children: [
+            /// Title Branch
             Padding(
               padding: const EdgeInsets.fromLTRB(24, 18, 24, 16),
               child: Column(
@@ -51,6 +60,8 @@ class _BranchSelectorBody extends StatelessWidget {
                 ],
               ),
             ),
+
+            /// List Branch
             Flexible(child: _list(context, listState, branches)),
           ],
         );
@@ -79,24 +90,32 @@ class _BranchSelectorBody extends StatelessWidget {
 
     return BlocBuilder<StoreBranchCubit, StoreBranchState>(
       builder: (context, branchState) {
-        return ListView.separated(
-          shrinkWrap: true,
-          padding: const EdgeInsets.fromLTRB(24, 0, 24, 24),
-          itemCount: branches.length,
-          separatorBuilder: (_, _) => const SizedBox(height: 16),
-          itemBuilder: (context, i) {
-            final branch = branches[i];
+        /// The sheet (`withScrolled`) and the dialog (`SimpleDialog`) both wrap
+        /// the body in a scroll view, so a shrink-wrapped list gets unbounded
+        /// height and never scrolls. Cap it so it scrolls on its own.
+        return ConstrainedBox(
+          constraints: BoxConstraints(
+            maxHeight: MediaQuery.sizeOf(context).height * 0.6,
+          ),
+          child: ListView.separated(
+            shrinkWrap: true,
+            padding: const EdgeInsets.fromLTRB(24, 0, 24, 24),
+            itemCount: branches.length,
+            separatorBuilder: (_, _) => const SizedBox(height: 16),
+            itemBuilder: (context, i) {
+              final branch = branches[i];
 
-            return BranchCard(
-              data: branch,
-              selected: branch.id == branchState.selected?.id,
-              position: branchState.position,
-              onSelect: () {
-                context.read<StoreBranchCubit>().select(branch);
-                Navigator.of(context).maybePop();
-              },
-            );
-          },
+              return BranchCard(
+                data: branch,
+                selected: branch.id == branchState.selected?.id,
+                position: branchState.position,
+                onSelect: () {
+                  context.read<StoreBranchCubit>().select(branch);
+                  Navigator.of(context).maybePop();
+                },
+              );
+            },
+          ),
         );
       },
     );
