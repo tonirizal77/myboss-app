@@ -58,10 +58,12 @@ class AccessServer {
 
     /// Try to Get server local
     final _getServer = getIt<SharedPreferencesHelper>().getServer();
-    final _isChanged =
-        _getServer?[0] != _id ||
-        _getServer?[1] != _domain ||
-        _getServer?[2] != _mobileAccess;
+    final _isChanged = isChanged(
+      _getServer,
+      id: _id,
+      domain: _domain,
+      mobileAccess: _mobileAccess,
+    );
 
     PrintHelper.printWhite(
       "Setting ACCESS SERVER: ${Env.flavor} >> server isChange: ${_isChanged}...: server:$_aksesServer --> old:$_getServer",
@@ -88,5 +90,24 @@ class AccessServer {
     /// Update Akses Server
     ///
     return _aksesServer;
+  }
+
+  /// Whether the [saved] access server (`[id, domain, mobileAccess]` as
+  /// strings, see `SharedPreferencesHelper.setServer`) differs from the
+  /// current one. Compared as strings: the id is saved as `'$id'`, so an
+  /// `int` comparison would always differ and drop the session on every
+  /// start. Nothing saved yet -> changed.
+  @visibleForTesting
+  static bool isChanged(
+    List<String>? saved, {
+    required Object? id,
+    required Object? domain,
+    required Object? mobileAccess,
+  }) {
+    if (saved == null || saved.length < 3) return true;
+
+    return saved[0] != '$id' ||
+        saved[1] != '$domain' ||
+        saved[2] != '$mobileAccess';
   }
 }
