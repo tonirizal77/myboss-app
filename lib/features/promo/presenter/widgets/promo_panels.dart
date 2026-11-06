@@ -40,6 +40,10 @@ class PromoPointsPanel extends StatelessWidget {
                 compact: true,
                 onRetry: context.read<PromoCubit>().retry,
               )
+            else if (rewards.isEmpty)
+              PromoEmptyState.points(
+                onRefresh: context.read<PromoCubit>().retry,
+              )
             else ...[
               /// Grid Product
               RewardGrid(
@@ -102,6 +106,13 @@ class PromoVoucherPanel extends StatelessWidget {
                 compact: true,
                 onRetry: context.read<PromoCubit>().retry,
               )
+
+            //
+            else if (vouchers.isEmpty)
+              PromoEmptyState.vouchers(
+                onRefresh: context.read<PromoCubit>().retry,
+              )
+            //
             else ...[
               for (final v in vouchers.take(preview))
                 Padding(
@@ -163,6 +174,132 @@ class PromoLoadError extends StatelessWidget {
             onPressed: onRetry,
           ),
         ],
+      ),
+    );
+  }
+}
+
+/// Empty list card (Figma empty state): 3D illustration, message and a
+/// black pill "Refresh" button on a rounded grey card.
+///
+/// Use [PromoEmptyState.points] / [PromoEmptyState.vouchers] for the promo
+/// lists, or the default constructor for any other list.
+class PromoEmptyState extends StatelessWidget {
+  const PromoEmptyState({
+    super.key,
+    required this.message,
+    required this.image,
+    required this.fallbackIcon,
+    this.onRefresh,
+    this.refreshLabel,
+  });
+
+  /// No loyalty rewards to redeem.
+  factory PromoEmptyState.points({Key? key, VoidCallback? onRefresh}) =>
+      PromoEmptyState(
+        key: key ?? const ValueKey('promo_points_empty'),
+        message: LocaleKeys.promo_points_empty.tr(),
+        image: Assets.imgEmptyPoints,
+        fallbackIcon: Icons.headset_mic_rounded,
+        onRefresh: onRefresh,
+      );
+
+  /// No vouchers.
+  factory PromoEmptyState.vouchers({Key? key, VoidCallback? onRefresh}) =>
+      PromoEmptyState(
+        key: key ?? const ValueKey('promo_voucher_empty'),
+        message: LocaleKeys.promo_voucher_empty.tr(),
+        image: Assets.imgEmptyVoucher,
+        fallbackIcon: Icons.confirmation_number_rounded,
+        onRefresh: onRefresh,
+      );
+
+  /// Size of the illustration.
+  static const double imageSize = 120;
+
+  /// Message under the illustration.
+  final String message;
+
+  /// Illustration asset path.
+  final String image;
+
+  /// Shown while [image] is missing or fails to load.
+  final IconData fallbackIcon;
+
+  /// Hides the button when null.
+  final VoidCallback? onRefresh;
+
+  /// Defaults to `promo.refresh`.
+  final String? refreshLabel;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: double.infinity,
+      padding: const EdgeInsets.fromLTRB(24, 32, 24, 24),
+      decoration: BoxDecoration(
+        color: MyBossColors.surfaceContainer,
+        borderRadius: BorderRadius.circular(16),
+      ),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Image.asset(
+            image,
+            width: imageSize,
+            height: imageSize,
+            fit: BoxFit.contain,
+            errorBuilder: (_, _, _) => Icon(
+              fallbackIcon,
+              size: imageSize * 0.8,
+              color: MyBossColors.primary,
+            ),
+          ),
+          const SizedBox(height: 24),
+          Text(
+            message,
+            textAlign: TextAlign.center,
+            style: MyBossTextStyles.bodyBig1.copyWith(
+              color: MyBossColors.onSurfaceVariant,
+              height: 1.3,
+            ),
+          ),
+          if (onRefresh != null) ...[
+            const SizedBox(height: 12),
+            _RefreshPill(
+              label: refreshLabel ?? LocaleKeys.promo_refresh.tr(),
+              onPressed: onRefresh!,
+            ),
+          ],
+        ],
+      ),
+    );
+  }
+}
+
+/// Black pill button with white text, the same in light and dark mode.
+class _RefreshPill extends StatelessWidget {
+  const _RefreshPill({required this.label, required this.onPressed});
+
+  final String label;
+  final VoidCallback onPressed;
+
+  @override
+  Widget build(BuildContext context) {
+    return Material(
+      color: MyBossColors.black,
+      shape: const StadiumBorder(),
+      clipBehavior: Clip.antiAlias,
+      child: InkWell(
+        key: const ValueKey('promo_refresh'),
+        onTap: onPressed,
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+          child: Text(
+            label,
+            style: MyBossTextStyles.button.copyWith(color: MyBossColors.white),
+          ),
+        ),
       ),
     );
   }

@@ -68,6 +68,11 @@ class Assets {
   static const String icMaskot1 = 'assets/icons/mascot_1.png';
   static const String icMaskot9 = 'assets/icons/mascot_9.png';
 
+  /// Empty state illustrations (Figma 3D headset / ticket). Export them from
+  /// Figma; until the files exist an icon is shown instead.
+  static const String imgEmptyPoints = 'assets/images/empty_points.png';
+  static const String imgEmptyVoucher = 'assets/images/empty_voucher.png';
+
   /// Tier Member
   static const String icTierCool = 'assets/icons/tier_cool.png';
   static const String icTierCooler = 'assets/icons/tier_cooler.png';

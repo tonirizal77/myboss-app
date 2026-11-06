@@ -116,7 +116,10 @@
     "copy_code": "Copy code",
     "valid_until": "Valid until {}",
     "load_failed": "Couldn't load promos",
-    "retry": "Try again"
+    "retry": "Try again",
+    "points_empty": "Product redemption is currently empty",
+    "voucher_empty": "Voucher is currently empty",
+    "refresh": "Refresh"
   },
 
   "points": {

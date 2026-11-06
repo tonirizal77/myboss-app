@@ -116,7 +116,10 @@
     "copy_code": "Salin kode",
     "valid_until": "Berlaku hingga {}",
     "load_failed": "Promo gagal dimuat",
-    "retry": "Coba lagi"
+    "retry": "Coba lagi",
+    "points_empty": "Penukaran produk masih kosong",
+    "voucher_empty": "Voucher masih kosong",
+    "refresh": "Muat ulang"
   },
 
   "points": {

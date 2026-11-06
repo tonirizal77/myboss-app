@@ -115,6 +115,10 @@ class _PromoPageState extends State<PromoPage> {
                     compact: true,
                     onRetry: context.read<PromoCubit>().retry,
                   )
+                : content.rewards.isEmpty
+                ? PromoEmptyState.points(
+                    onRefresh: context.read<PromoCubit>().retry,
+                  )
                 : RewardGrid(rewards: content.rewards),
           ] else
             // Guest: sign-up pitch only, the reward list is never loaded.
@@ -140,6 +144,10 @@ class _PromoPageState extends State<PromoPage> {
               ? PromoLoadError(
                   compact: true,
                   onRetry: context.read<PromoCubit>().retry,
+                )
+              : content.vouchers.isEmpty
+              ? PromoEmptyState.vouchers(
+                  onRefresh: context.read<PromoCubit>().retry,
                 )
               : _VoucherList(vouchers: content.vouchers),
         ],
