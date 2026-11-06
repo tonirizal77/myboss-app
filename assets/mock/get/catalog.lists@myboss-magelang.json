@@ -6,7 +6,8 @@
       "photo_md": "assets/images/products/watch_01.png",
       "product_group_id": 4364830,
       "product_group_name": "Wearable",
-      "brand_id": 2197333
+      "brand_id": 2197333,
+      "is_popular": 1
     },
     {
       "id": 106802905,
@@ -14,7 +15,8 @@
       "photo_md": "assets/images/products/watch_02.png",
       "product_group_id": 4364830,
       "product_group_name": "Wearable",
-      "brand_id": 2197333
+      "brand_id": 2197333,
+      "is_popular": 0
     },
     {
       "id": 106802906,
@@ -22,7 +24,8 @@
       "photo_md": "assets/images/products/watch_03.png",
       "product_group_id": 4364830,
       "product_group_name": "Wearable",
-      "brand_id": 2197333
+      "brand_id": 2197333,
+      "is_popular": 1
     },
     {
       "id": 106802907,
@@ -30,7 +33,8 @@
       "photo_md": "assets/images/products/watch_04.png",
       "product_group_id": 4364830,
       "product_group_name": "Wearable",
-      "brand_id": 2197333
+      "brand_id": 2197333,
+      "is_popular": 0
     },
     {
       "id": 106802908,
@@ -38,7 +42,8 @@
       "photo_md": "assets/images/products/watch_05.png",
       "product_group_id": 4364830,
       "product_group_name": "Wearable",
-      "brand_id": 2197333
+      "brand_id": 2197333,
+      "is_popular": 1
     },
     {
       "id": 106802909,
@@ -46,7 +51,8 @@
       "photo_md": "assets/images/products/watch_06.png",
       "product_group_id": 4364830,
       "product_group_name": "Wearable",
-      "brand_id": 2197333
+      "brand_id": 2197333,
+      "is_popular": 0
     },
     {
       "id": 106802922,
@@ -54,7 +60,8 @@
       "photo_md": "assets/images/products/watch_09.png",
       "product_group_id": 4364830,
       "product_group_name": "Wearable",
-      "brand_id": 2197333
+      "brand_id": 2197333,
+      "is_popular": 1
     },
     {
       "id": 106802923,
@@ -62,7 +69,8 @@
       "photo_md": "assets/images/products/watch_02.png",
       "product_group_id": 4364830,
       "product_group_name": "Wearable",
-      "brand_id": 2197333
+      "brand_id": 2197333,
+      "is_popular": 0
     },
     {
       "id": 106802911,
@@ -70,7 +78,8 @@
       "photo_md": "assets/images/products/audio_05.png",
       "product_group_id": 4364831,
       "product_group_name": "Audio",
-      "brand_id": 2197333
+      "brand_id": 2197333,
+      "is_popular": 1
     },
     {
       "id": 106802912,
@@ -78,7 +87,8 @@
       "photo_md": "assets/images/products/audio_01.png",
       "product_group_id": 4364831,
       "product_group_name": "Audio",
-      "brand_id": 2197333
+      "brand_id": 2197333,
+      "is_popular": 0
     },
     {
       "id": 106802913,
@@ -86,7 +96,8 @@
       "photo_md": "assets/images/products/audio_03.png",
       "product_group_id": 4364831,
       "product_group_name": "Audio",
-      "brand_id": 2197335
+      "brand_id": 2197335,
+      "is_popular": 1
     },
     {
       "id": 106802914,
@@ -94,7 +105,8 @@
       "photo_md": "assets/images/products/audio_09.png",
       "product_group_id": 4364831,
       "product_group_name": "Audio",
-      "brand_id": 2197334
+      "brand_id": 2197334,
+      "is_popular": 0
     },
     {
       "id": 106802915,
@@ -102,7 +114,8 @@
       "photo_md": "assets/images/products/audio_07.png",
       "product_group_id": 4364831,
       "product_group_name": "Audio",
-      "brand_id": 2197333
+      "brand_id": 2197333,
+      "is_popular": 0
     }
   ],
   "meta": {

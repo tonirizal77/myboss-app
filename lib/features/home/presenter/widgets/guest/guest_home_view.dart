@@ -1,8 +1,9 @@
 part of '../widgets.dart';
 
 /// Guest Home content (Figma `Guest Home`): hero, brands, catalog and the
-/// points rewards panel. Data comes from [GuestHomeCubit], point rewards of
-/// the selected branch from [PromoCubit].
+/// points rewards panel. Brands and counts come from [GuestHomeCubit], the
+/// catalog from [PopularProductsSection], point rewards of the selected
+/// branch from [PromoCubit].
 class GuestHomeView extends StatefulWidget {
   const GuestHomeView({super.key});
 
@@ -33,8 +34,8 @@ class _GuestHomeViewState extends State<GuestHomeView> {
                   brands: data.brands,
                   categories: data.categoryCount,
                 ),
-              if (data.catalog.isNotEmpty)
-                GuestCatalog(items: data.catalog, total: data.productCount),
+              // Popular products of the selected branch (API).
+              PopularProductsSection(total: data.productCount),
               // Point rewards of the selected branch (API, shared with Promo).
               BlocBuilder<PromoCubit, PromoState>(
                 buildWhen: (a, b) => a.content.rewards != b.content.rewards,

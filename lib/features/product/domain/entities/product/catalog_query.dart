@@ -4,13 +4,15 @@ import 'package:equatable/equatable.dart';
 ///
 /// Filters go out in the Postman `search[n]` format, indexes from 0 in this
 /// order (as in Postman): brand (`brand_id =`), category
-/// (`product_group_id =`), name (`name like`). Empty values are not sent.
+/// (`product_group_id =`), name (`name like`), popular (`is_popular = 1`).
+/// Empty values are not sent.
 class CatalogQuery extends Equatable {
   const CatalogQuery({
     this.storeDomain = '',
     this.categoryId = '',
     this.brandId = '',
     this.search = '',
+    this.popular = false,
     this.page = 1,
     this.perPage = 15,
   });
@@ -20,6 +22,9 @@ class CatalogQuery extends Equatable {
   final String categoryId;
   final String brandId;
   final String search;
+
+  /// Only products flagged `is_popular` by the backend (Home).
+  final bool popular;
   final int page;
   final int perPage;
 
@@ -29,6 +34,7 @@ class CatalogQuery extends Equatable {
       if (brandId.isNotEmpty) ('brand_id', brandId, '='),
       if (categoryId.isNotEmpty) ('product_group_id', categoryId, '='),
       if (search.isNotEmpty) ('name', search, 'like'),
+      if (popular) ('is_popular', '1', '='),
     ];
 
     return {
@@ -52,6 +58,7 @@ class CatalogQuery extends Equatable {
     String? categoryId,
     String? brandId,
     String? search,
+    bool? popular,
     int? page,
     int? perPage,
   }) => CatalogQuery(
@@ -59,6 +66,7 @@ class CatalogQuery extends Equatable {
     categoryId: categoryId ?? this.categoryId,
     brandId: brandId ?? this.brandId,
     search: search ?? this.search,
+    popular: popular ?? this.popular,
     page: page ?? this.page,
     perPage: perPage ?? this.perPage,
   );
@@ -69,6 +77,7 @@ class CatalogQuery extends Equatable {
     categoryId,
     brandId,
     search,
+    popular,
     page,
     perPage,
   ];

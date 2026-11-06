@@ -4,3 +4,4 @@ import 'package:myboss_app/features/features.dart';
 
 part 'datasource/guest_home_local.dart';
 part 'repository/guest_home_repo_impl.dart';
+part 'repository/popular_products_repo_impl.dart';

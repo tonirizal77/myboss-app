@@ -163,7 +163,8 @@ class GuestProductCard extends StatelessWidget {
                       aspectRatio: 1,
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(5),
-                        child: Image.asset(image, fit: BoxFit.contain),
+                        // Asset path (static) or URL (API).
+                        child: ProductImage(image),
                       ),
                     ),
                   ),

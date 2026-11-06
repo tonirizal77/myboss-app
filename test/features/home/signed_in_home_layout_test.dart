@@ -80,6 +80,11 @@ void main() {
       () => PromoRepoImpl(remoteData: getIt()),
     );
     getIt.registerLazySingleton(() => GetPromoUc(getIt()));
+    getIt.registerLazySingleton<ProductRemote>(() => const _MockFileCatalog());
+    getIt.registerLazySingleton<PopularProductsRepo>(
+      () => PopularProductsRepoImpl(remote: getIt()),
+    );
+    getIt.registerLazySingleton(() => GetPopularProductsUc(getIt()));
   });
   tearDown(() => getIt.reset());
 
@@ -92,6 +97,7 @@ void main() {
     getIt.registerSingleton<ProfileBloc>(profile);
     final points = PointsCubit();
     final guest = GuestHomeCubit();
+    final popular = PopularProductsCubit();
     final promo = PromoCubit();
     final branch = StoreBranchCubit();
     final user = _SignedInUserBloc();
@@ -100,6 +106,7 @@ void main() {
       await profile.close();
       await points.close();
       await guest.close();
+      await popular.close();
       await promo.close();
       await branch.close();
     });
@@ -120,6 +127,7 @@ void main() {
                 BlocProvider.value(value: profile),
                 BlocProvider.value(value: points),
                 BlocProvider.value(value: guest),
+                BlocProvider.value(value: popular),
                 BlocProvider.value(value: promo),
                 BlocProvider.value(value: branch),
                 BlocProvider<UserBloc>.value(value: user),
@@ -167,12 +175,36 @@ void main() {
 
       expect(find.text('6,969 points'), findsWidgets);
       expect(find.text('Our Popular Products'), findsOneWidget);
+      // Only `is_popular = 1` products of the mock catalog.
+      Finder inCarousel(String name) => find.descendant(
+        of: find.byType(GuestCatalog),
+        matching: find.text(name),
+      );
+      expect(inCarousel('oraimo Watch Pro 2'), findsOneWidget);
+      expect(inCarousel('Watch Nova 2'), findsNothing);
       expect(find.text('Redeem'), findsOneWidget);
       expect(find.text('Earn Points, Get Free Item!'), findsOneWidget);
       expect(tester.takeException(), isNull);
       await shot(tester, 'home_${e.key}');
     });
   }
+
+  testWidgets('Guest home shows popular products from the server', (
+    tester,
+  ) async {
+    await pumpHome(tester, const Size(400, 2300), const GuestHomeView());
+
+    Finder inCarousel(String name) => find.descendant(
+      of: find.byType(GuestCatalog),
+      matching: find.text(name),
+    );
+    expect(inCarousel('oraimo Watch Pro 2'), findsOneWidget);
+    expect(inCarousel('Watch Nova 2'), findsNothing);
+    // Static catalog is no longer shown.
+    expect(inCarousel('SpaceBuds 2'), findsNothing);
+    expect(find.text('Our Popular Products'), findsOneWidget);
+    expect(tester.takeException(), isNull);
+  });
 
   testWidgets('Membership card renders', (tester) async {
     await pumpHome(
@@ -214,4 +246,29 @@ class _MockFilePromo implements PromoRemote {
   @override
   ResultFuture<PromoVouchersModel> getVouchers(String storeDomain) async =>
       Right(PromoVouchersModel.fromJson(_read(Endpoints.promoVoucherList)));
+}
+
+/// `/catalog/lists` from the mock JSON file, `search[n]` filters applied the
+/// way the mock server does.
+class _MockFileCatalog implements ProductRemote {
+  const _MockFileCatalog();
+
+  @override
+  ResultFuture<CatalogListModel> getProducts(CatalogQuery query) async {
+    final json = _MockFilePromo._read(Endpoints.catalogList);
+    final f = query.filters;
+    final data = [
+      for (final item in (json['data'] as List).cast<DataMap>())
+        if ([
+          for (var i = 0; f.containsKey('search[$i][search_column]'); i++)
+            '${item[f['search[$i][search_column]']]}' ==
+                f['search[$i][search_text]'],
+        ].every((ok) => ok))
+          item,
+    ];
+    return Right(CatalogListModel.fromJson({...json, 'data': data}));
+  }
+
+  @override
+  dynamic noSuchMethod(Invocation invocation) => super.noSuchMethod(invocation);
 }

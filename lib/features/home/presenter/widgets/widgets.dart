@@ -22,6 +22,7 @@ part 'guest/guest_rewards.dart';
 part 'guest/guest_home_view.dart';
 
 part 'home_section_divider.dart';
+part 'popular_products_section.dart';
 part 'member/member_points_text.dart';
 part 'member/member_hero.dart';
 part 'member/signed_in_home_view.dart';

@@ -20,11 +20,17 @@ class HomeFt {
 
     /// 2. Setup Cubit
     getIt.registerLazySingleton(() => GuestHomeCubit());
+    getIt.registerLazySingleton(() => PopularProductsCubit());
 
     /// 3. Setup Repository
     ///
     getIt.registerLazySingleton<GuestHomeRepo>(
       () => GuestHomeRepoImpl(source: getIt()),
+    );
+    // Popular products: `/catalog/lists` + `is_popular` (mock or API via
+    // ProductRemote, registered by ProductFt).
+    getIt.registerLazySingleton<PopularProductsRepo>(
+      () => PopularProductsRepoImpl(remote: getIt()),
     );
 
     /// 4. Setup Datasource
@@ -40,6 +46,7 @@ class HomeFt {
     /// 5. Setup Usecase
     ///
     getIt.registerLazySingleton(() => GetGuestHomeUc(getIt()));
+    getIt.registerLazySingleton(() => GetPopularProductsUc(getIt()));
 
     /// 6. Setup Control / Flow
     ///  - 1. [xxx]Flow (mode static) -> UsecaseFunc
@@ -48,6 +55,9 @@ class HomeFt {
     ///
     BlocProviderInjectors.add([
       BlocProvider<GuestHomeCubit>(create: (_) => getIt<GuestHomeCubit>()),
+      BlocProvider<PopularProductsCubit>(
+        create: (_) => getIt<PopularProductsCubit>(),
+      ),
     ]);
   }
 }
