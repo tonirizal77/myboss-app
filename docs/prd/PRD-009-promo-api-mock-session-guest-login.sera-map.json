@@ -317,6 +317,16 @@
           "key": "MYB-472",
           "title": "Commit & push myboss_app + mobile_app_core",
           "deadline": "2026-11-09"
+        },
+        {
+          "id": "9e6fc73c-2e53-4f35-9ac1-8e493c7876a1",
+          "key": "MYB-483",
+          "title": "Empty state Points di tab Points mode guest"
+        },
+        {
+          "id": "e93fbd65-5095-45a3-a16d-63e82c11bea9",
+          "key": "MYB-482",
+          "title": "Teks tombol Refresh empty state memakai weight medium (Figma)"
         }
       ]
     }

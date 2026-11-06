@@ -26,14 +26,14 @@
 
 2. Semua request memakai domain cabang (`ConfigServer.urlFor`), dijalankan paralel, dan dimuat ulang saat cabang berganti; respons usang diabaikan.
 3. Logo brand: nama brand dicocokkan ke aset lokal sampai backend menyediakan logo (dikonfirmasi 2026-11-05). Brand tanpa aset ditampilkan sebagai teks.
-4. "Produk populer" untuk member sementara sama dengan katalog preview guest, sampai backend punya flag/sort populer (dikonfirmasi 2026-11-05).
+4. "Produk populer" (guest & member) = `GET /catalog/lists` dengan filter `search[n]` `is_popular = 1`, maksimal 8 produk, per cabang (flag dari backend, dikonfirmasi 2026-11-06). Judul section sama untuk guest & member: "Our Popular Products".
 5. Bagian "X poin hangus dalam N hari" disembunyikan sampai backend menyediakan datanya.
 6. Satu section gagal dimuat → hanya section itu disembunyikan; Beranda tetap tampil.
 
 ## Permintaan ke Backend
 
 1. Field logo di `GET /catalog/brand/lists` (mis. `photo_md`, seperti grup katalog).
-2. Sumber produk populer: flag `is_popular`, sort `popular`, atau endpoint terpisah.
+2. ~~Sumber produk populer~~ — sudah: filter `is_popular` di `/catalog/lists` (nilai `1` diasumsikan; konfirmasi bila backend memakai `true`).
 3. Info poin hangus: `expiring_point` + `expiring_at` di `profile/info`, atau endpoint ringkasan poin.
 4. Endpoint riwayat dan detail transaksi poin (halaman Points).
 
@@ -44,7 +44,7 @@
 
 ## Target Selesai
 
-2026-11-09 (15 task × 30 menit, mulai 2026-11-06).
+2026-11-09 (20 task × 30 menit, mulai 2026-11-06).
 
 ## User Stories / Scope
 
@@ -78,13 +78,23 @@ Sebagai member, saya ingin saldo poin di Beranda sesuai akun saya.
 1. PointsCubit: saldo dari ProfileBloc total_point
 2. Bagian poin hangus disembunyikan bila datanya tidak ada
 
-### Story: Produk Populer (Sementara)
+### Story: Produk Populer dari Flag is_popular
+
+Sebagai pengguna (guest maupun member), saya ingin melihat produk populer dari cabang yang saya pilih di Beranda.
 
 **Acceptance Criteria:**
-- Section "Produk Populer Kami" (member) memakai katalog per kategori dari API, ditandai `TODO(backend)`.
+- Section "Our Popular Products" di Beranda guest & member memakai `GET /catalog/lists` dengan filter `is_popular = 1` pada cabang terpilih.
+- Ganti cabang memuat ulang daftar; respons cabang lama diabaikan.
+- Section disembunyikan bila kosong, saat pemuatan pertama, atau gagal.
+- Gambar produk dari URL API tampil di carousel.
 
-**Task breakdown (1):**
-1. Produk populer = katalog per kategori + TODO(backend)
+**Task breakdown (6):**
+1. Produk populer dari /catalog/lists dengan filter is_popular = 1 (CatalogQuery.popular)
+2. PopularProductsRepo, usecase, dan PopularProductsCubit per cabang; respons cabang lama diabaikan
+3. PopularProductsSection dipakai Beranda guest & member, dimuat ulang saat ganti cabang, judul seragam
+4. Kartu carousel katalog mendukung gambar dari URL (ProductImage)
+5. Mock is_popular di catalog.lists*.json + unit test dan widget test (guest & member, 3 ukuran)
+6. Commit & push, update PRD-010 dan sera-map
 
 ### Story: QA Beranda API
 

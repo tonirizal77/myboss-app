@@ -34,7 +34,7 @@ Rekap pekerjaan yang sudah dikerjakan (2026-11-04 dan 2026-11-05) dan belum terc
 
 ## Target Selesai
 
-2026-11-09 (43 task × 30 menit). Story E & F: 2026-11-04; Story A–D: 2026-11-05; Perbaikan pasca integrasi: 2026-11-05 – 2026-11-06; QA device: 2026-11-06; Penyempurnaan UI: 2026-11-09.
+2026-11-09 (45 task × 30 menit). Story E & F: 2026-11-04; Story A–D: 2026-11-05; Perbaikan pasca integrasi: 2026-11-05 – 2026-11-06; QA device: 2026-11-06; Penyempurnaan UI: 2026-11-09.
 
 ## User Stories / Scope
 
@@ -152,9 +152,10 @@ Dikerjakan 2026-11-05 – 2026-11-06, deadline dicatat 2026-11-09.
 - BranchHeader tampil di main header (kiri tombol tema) di tablet/desktop; di mobile tetap di atas Beranda.
 - Avatar picker memakai `ResponsiveGridOrWrap`.
 - Points/Voucher kosong menampilkan empty state (ilustrasi, pesan, tombol Refresh) di tab All, Points, dan Voucher.
+- Tab Points mode guest menampilkan empty state Points di bawah ajakan daftar; teks tombol Refresh weight medium (Figma).
 - Tombol back-to-top tidak tampil di tab yang tidak di-scroll; ditangani `ResponsivePage` (mobile_app_core) sendiri tanpa bantuan halaman.
 
-**Task breakdown (8):**
+**Task breakdown (10):**
 1. BranchHeader compact di main header (tablet/desktop), mobile tetap di atas Beranda
 2. AvatarWidget memakai ResponsiveGridOrWrap
 3. PromoEmptyState reusable (Points/Voucher) + teks en/id + aset fallback
@@ -163,3 +164,5 @@ Dikerjakan 2026-11-05 – 2026-11-06, deadline dicatat 2026-11-09.
 6. Refactor back-to-top di ResponsivePage (mobile_app_core): notifikasi scroll, ValueNotifier, fade, heroTag
 7. Promo/Product dispose controller sendiri + widget test back-to-top
 8. Commit & push myboss_app + mobile_app_core
+9. Empty state Points di tab Points mode guest
+10. Teks tombol Refresh empty state memakai weight medium (Figma)

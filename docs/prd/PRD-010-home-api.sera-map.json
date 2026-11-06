@@ -71,13 +71,38 @@
     {
       "id": "e1445364-a4f6-4996-b4dc-adca198007c7",
       "key": "MYB-453",
-      "name": "Produk Populer (Sementara)",
+      "name": "Produk Populer dari Flag is_popular",
       "tasks": [
         {
           "id": "60fc4d2b-1433-4292-8b8b-cded575e98b6",
           "key": "MYB-462",
-          "title": "Produk populer = katalog per kategori + TODO(backend)",
+          "title": "Produk populer dari /catalog/lists dengan filter is_popular = 1 (CatalogQuery.popular)",
           "deadline": "2026-11-06"
+        },
+        {
+          "id": "2e8badf4-87c0-459b-a139-ed685799e046",
+          "key": "MYB-488",
+          "title": "PopularProductsRepo, usecase, dan PopularProductsCubit per cabang; respons cabang lama diabaikan"
+        },
+        {
+          "id": "dda851be-b858-4b40-ba97-a6f7916c1f6f",
+          "key": "MYB-487",
+          "title": "PopularProductsSection dipakai Beranda guest & member, dimuat ulang saat ganti cabang, judul seragam"
+        },
+        {
+          "id": "7cbc11e6-5492-44b0-907f-ef4038dbfb6d",
+          "key": "MYB-486",
+          "title": "Kartu carousel katalog mendukung gambar dari URL (ProductImage)"
+        },
+        {
+          "id": "0aa18aa2-fe84-4447-976b-125de4e40f3d",
+          "key": "MYB-485",
+          "title": "Mock is_popular di catalog.lists*.json + unit test dan widget test (guest & member, 3 ukuran)"
+        },
+        {
+          "id": "27c4f1f5-9250-44ad-86d2-b090b40ae7a3",
+          "key": "MYB-484",
+          "title": "Commit & push, update PRD-010 dan sera-map"
         }
       ]
     },
