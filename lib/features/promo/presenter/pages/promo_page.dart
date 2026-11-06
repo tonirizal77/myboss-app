@@ -11,13 +11,21 @@ class PromoPage extends StatefulWidget {
 }
 
 class _PromoPageState extends State<PromoPage> {
-  // Disposed by ResponsivePage (mybos-core) together with the page.
+  /// Used to jump back to the top when the tab changes. The back-to-top
+  /// button is handled by ResponsivePage itself.
   final _scroll = ScrollController();
 
   @override
   void initState() {
     super.initState();
     if (UserFlows.isLoggedIn(context)) context.read<PointsCubit>().load();
+  }
+
+  @override
+  void dispose() {
+    // ResponsivePage only disposes the controller it creates itself.
+    _scroll.dispose();
+    super.dispose();
   }
 
   void _toTop() {

@@ -26,8 +26,12 @@ class _ProductPageState extends State<ProductPage> {
     context.read<ProductCubit>().load(storeDomain: _storeDomain(context));
   }
 
-  // No dispose: ResponsivePage (mybos-core) disposes the controller it is
-  // given when useScrollView is on.
+  @override
+  void dispose() {
+    // ResponsivePage only disposes the controller it creates itself.
+    _scroll.dispose();
+    super.dispose();
+  }
 
   static String _storeDomain(BuildContext context) =>
       context.read<StoreBranchCubit>().state.selected?.urlId ?? '';
