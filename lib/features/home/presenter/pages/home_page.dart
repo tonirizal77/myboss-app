@@ -41,7 +41,10 @@ class _HomePageState extends State<HomePage>
       useSafeArea: true,
       useScrollView: true,
       // Branch selector stays put while the content scrolls.
-      appBar: BranchHeader.appBar(context),
+      // Phone only - tablet/desktop show it in the main header.
+      appBar: Responsive.isMobile(context)
+          ? BranchHeader.appBar(context)
+          : null,
       onRefresh: () async => await _onReload(context),
       body: BlocBuilder<UserBloc, UserState>(
         buildWhen: (previous, current) =>

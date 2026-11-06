@@ -20,6 +20,8 @@ class RmdMainHeaderChild extends StatelessWidget {
                 spacing: 8,
                 direction: Axis.horizontal,
                 children: [
+                  // Branch selector (on phones it sits on top of Home).
+                  const Flexible(child: BranchHeader(compact: true)),
                   _switchMode(_shadow),
                   _settingStyleApp(context, _shadow),
                   _searchInput(),

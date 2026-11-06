@@ -1,9 +1,17 @@
 part of 'widgets.dart';
 
-/// Branch header shown at the top of Home: "Oraimo Semarang ⌄", open/closed
-/// chip and "City · distance". Tapping it opens [BranchSelectorSheet].
+/// Branch header: "Oraimo Semarang ⌄", open/closed chip and
+/// "City · distance". Tapping it opens [BranchSelectorSheet].
+///
+/// - Phone: pinned on top of Home ([appBar]).
+/// - Tablet/desktop: [compact] in the main header, left of the theme switch
+///   (`RmdMainHeaderChild`).
 class BranchHeader extends StatefulWidget {
-  const BranchHeader({super.key});
+  const BranchHeader({super.key, this.compact = false});
+
+  /// Fits the 80px main header: no fixed size, own background or wide
+  /// padding.
+  final bool compact;
 
   /// Fixed height (without the status bar) so it can sit in a page header.
   static const double height = 86;
@@ -55,16 +63,22 @@ class _BranchHeaderState extends State<BranchHeader> {
       child: BlocBuilder<StoreBranchCubit, StoreBranchState>(
         builder: (context, state) {
           final branch = state.selected;
+          final compact = widget.compact;
 
           return InkWell(
+            key: const ValueKey('branch_header'),
+            borderRadius: compact ? BorderRadius.circular(12) : null,
             onTap: () => BranchSelectorSheet.show(context),
             child: Container(
-              width: double.infinity,
-              height: BranchHeader.height,
+              width: compact ? null : double.infinity,
+              height: compact ? null : BranchHeader.height,
               alignment: Alignment.centerLeft,
-              padding: const EdgeInsets.fromLTRB(32, 16, 32, 16),
-              color: MyBossColors.surfaceContainerLowest,
+              padding: compact
+                  ? const EdgeInsets.symmetric(horizontal: 8, vertical: 4)
+                  : const EdgeInsets.fromLTRB(32, 16, 32, 16),
+              color: compact ? null : MyBossColors.surfaceContainerLowest,
               child: Column(
+                mainAxisSize: MainAxisSize.min,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Row(
