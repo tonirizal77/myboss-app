@@ -128,12 +128,18 @@ class _PromoPageState extends State<PromoPage> {
                     onRefresh: context.read<PromoCubit>().retry,
                   )
                 : RewardGrid(rewards: content.rewards),
-          ] else
-            // Guest: sign-up pitch only, the reward list is never loaded.
+          ] else ...[
+            // Guest: sign-up pitch + empty card, the reward list is never
+            // loaded for guests.
             PromoHeading(
               title: LocaleKeys.promo_points_title.tr(),
               subtitle: LocaleKeys.promo_points_guest.tr(),
             ),
+            const SizedBox(height: 24),
+            PromoEmptyState.points(
+              onRefresh: context.read<PromoCubit>().retry,
+            ),
+          ],
         ],
       ),
       PromoTab.voucher => Column(

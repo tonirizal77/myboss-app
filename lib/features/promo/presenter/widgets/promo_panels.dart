@@ -297,7 +297,11 @@ class _RefreshPill extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
           child: Text(
             label,
-            style: MyBossTextStyles.button.copyWith(color: MyBossColors.white),
+            // Figma: medium weight, not the bold button style.
+            style: MyBossTextStyles.button.copyWith(
+              color: MyBossColors.white,
+              fontWeight: FontWeight.w500,
+            ),
           ),
         ),
       ),
