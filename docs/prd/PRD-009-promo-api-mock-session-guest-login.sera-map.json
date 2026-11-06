@@ -221,6 +221,104 @@
           "deadline": "2026-11-06"
         }
       ]
+    },
+    {
+      "id": "3b28edb7-1d9d-422b-bfcd-c5e50ed53adc",
+      "key": "MYB-415",
+      "name": "Perbaikan Pasca Integrasi PRD-009",
+      "tasks": [
+        {
+          "id": "54498518-33d0-4762-875b-fa04a16d18ec",
+          "key": "MYB-421",
+          "title": "Fix session hilang saat restart: AccessServer.isChanged bandingkan server tersimpan sebagai String + test (regresi MYB-397)",
+          "deadline": "2026-11-05"
+        },
+        {
+          "id": "b7ffcde3-c54a-46a4-8d43-2750e9c8025c",
+          "key": "MYB-420",
+          "title": "screen_protector hanya di Android/iOS (MissingPluginException di macOS saat buka barcode)",
+          "deadline": "2026-11-05"
+        },
+        {
+          "id": "58c41ab6-532e-410d-853d-5380114e327c",
+          "key": "MYB-419",
+          "title": "Reproduksi tombol main header tidak bisa ditekan di macOS (Marionette): semua tombol berfungsi di build terbaru",
+          "deadline": "2026-11-05"
+        },
+        {
+          "id": "1169dc49-58bc-4c72-a620-992d5d1f2f44",
+          "key": "MYB-418",
+          "title": "iOS: RunnerTests diberi 9 konfigurasi flavor (pod install gagal karena SWIFT_VERSION)",
+          "deadline": "2026-11-06"
+        },
+        {
+          "id": "028b42d4-09f2-4e16-ad54-0c24e74c2ef2",
+          "key": "MYB-417",
+          "title": "iOS: hapus CocoaPods, kembali ke SPM murni; verifikasi flutter build ios --flavor staging",
+          "deadline": "2026-11-06"
+        },
+        {
+          "id": "0982f6b6-3371-40fa-8587-f79db5f94eaf",
+          "key": "MYB-416",
+          "title": "Pisah commit per PRD (format, branch selector, brand, PRD-008, PRD-009) + verifikasi build tiap commit",
+          "deadline": "2026-11-06"
+        }
+      ]
+    },
+    {
+      "id": "3c140584-8819-433b-a0ac-bac11b1e9713",
+      "key": "MYB-471",
+      "name": "Penyempurnaan UI Header, Avatar & Promo",
+      "tasks": [
+        {
+          "id": "eeeb9152-e614-48f2-9ad7-84cd8be461ee",
+          "key": "MYB-479",
+          "title": "BranchHeader compact di main header (tablet/desktop), mobile tetap di atas Beranda",
+          "deadline": "2026-11-09"
+        },
+        {
+          "id": "ab3c879c-ddd2-40fb-81e5-a86633a76373",
+          "key": "MYB-478",
+          "title": "AvatarWidget memakai ResponsiveGridOrWrap",
+          "deadline": "2026-11-09"
+        },
+        {
+          "id": "4b1ba069-5b10-4203-bd74-6987f0ae2a42",
+          "key": "MYB-477",
+          "title": "PromoEmptyState reusable (Points/Voucher) + teks en/id + aset fallback",
+          "deadline": "2026-11-09"
+        },
+        {
+          "id": "ef33287f-6c89-4d68-89f3-f4a29daeb791",
+          "key": "MYB-476",
+          "title": "Pasang empty state di panel All dan tab Points/Voucher",
+          "deadline": "2026-11-09"
+        },
+        {
+          "id": "23b9f370-1f69-46f1-8132-93456b02240c",
+          "key": "MYB-475",
+          "title": "Analisa bug tombol back-to-top tetap tampil saat ganti tab Promo",
+          "deadline": "2026-11-09"
+        },
+        {
+          "id": "61d79b00-4279-4f4a-9d34-636ca1af4367",
+          "key": "MYB-474",
+          "title": "Refactor back-to-top di ResponsivePage (mobile_app_core): notifikasi scroll, ValueNotifier, fade, heroTag",
+          "deadline": "2026-11-09"
+        },
+        {
+          "id": "230b7aac-e5b6-40cd-a0b2-3c2696d7b9ce",
+          "key": "MYB-473",
+          "title": "Promo/Product dispose controller sendiri + widget test back-to-top",
+          "deadline": "2026-11-09"
+        },
+        {
+          "id": "0c08bbae-5aa2-41ab-af31-4473579c357d",
+          "key": "MYB-472",
+          "title": "Commit & push myboss_app + mobile_app_core",
+          "deadline": "2026-11-09"
+        }
+      ]
     }
   ]
 }

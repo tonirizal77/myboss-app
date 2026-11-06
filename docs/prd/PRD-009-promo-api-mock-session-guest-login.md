@@ -34,7 +34,7 @@ Rekap pekerjaan yang sudah dikerjakan (2026-11-04 dan 2026-11-05) dan belum terc
 
 ## Target Selesai
 
-2026-11-06 (29 task × 30 menit). Story E & F: 2026-11-04; Story A–D: 2026-11-05; QA device: 2026-11-06.
+2026-11-09 (43 task × 30 menit). Story E & F: 2026-11-04; Story A–D: 2026-11-05; Perbaikan pasca integrasi: 2026-11-05 – 2026-11-06; QA device: 2026-11-06; Penyempurnaan UI: 2026-11-09.
 
 ## User Stories / Scope
 
@@ -124,3 +124,42 @@ Sebagai guest, saya melihat voucher publik; sebagai member, saya melihat rewards
 2. Rekap pekerjaan & draf PRD-009
 3. Verifikasi macOS 3 ukuran: mock ke api tanpa 401, Promo guest vs login
 4. Uji Android staging (RMX5566): ganti mode, login/logout, Promo
+
+### Story: Perbaikan Pasca Integrasi PRD-009
+
+Ditemukan setelah commit PRD-009 (2026-11-05).
+
+**Acceptance Criteria:**
+- Session login tetap tersimpan setelah app di-restart.
+- Tidak ada MissingPluginException `screen_protector` di macOS.
+- Semua tombol main header (tema, tampilan aplikasi, barcode, profil/menu) berfungsi di macOS.
+- `flutter run` iOS tidak menjalankan `pod install`; build iOS staging berhasil dengan SPM murni.
+- Commit terpisah per PRD dan tiap commit bisa di-build.
+
+**Task breakdown (6):**
+1. Fix session hilang saat restart: AccessServer.isChanged bandingkan server tersimpan sebagai String + test (regresi MYB-397)
+2. screen_protector hanya di Android/iOS (MissingPluginException di macOS saat buka barcode)
+3. Reproduksi tombol main header tidak bisa ditekan di macOS (Marionette): semua tombol berfungsi di build terbaru
+4. iOS: RunnerTests diberi 9 konfigurasi flavor (pod install gagal karena SWIFT_VERSION)
+5. iOS: hapus CocoaPods, kembali ke SPM murni; verifikasi flutter build ios --flavor staging
+6. Pisah commit per PRD (format, branch selector, brand, PRD-008, PRD-009) + verifikasi build tiap commit
+
+### Story: Penyempurnaan UI Header, Avatar & Promo
+
+Dikerjakan 2026-11-05 – 2026-11-06, deadline dicatat 2026-11-09.
+
+**Acceptance Criteria:**
+- BranchHeader tampil di main header (kiri tombol tema) di tablet/desktop; di mobile tetap di atas Beranda.
+- Avatar picker memakai `ResponsiveGridOrWrap`.
+- Points/Voucher kosong menampilkan empty state (ilustrasi, pesan, tombol Refresh) di tab All, Points, dan Voucher.
+- Tombol back-to-top tidak tampil di tab yang tidak di-scroll; ditangani `ResponsivePage` (mobile_app_core) sendiri tanpa bantuan halaman.
+
+**Task breakdown (8):**
+1. BranchHeader compact di main header (tablet/desktop), mobile tetap di atas Beranda
+2. AvatarWidget memakai ResponsiveGridOrWrap
+3. PromoEmptyState reusable (Points/Voucher) + teks en/id + aset fallback
+4. Pasang empty state di panel All dan tab Points/Voucher
+5. Analisa bug tombol back-to-top tetap tampil saat ganti tab Promo
+6. Refactor back-to-top di ResponsivePage (mobile_app_core): notifikasi scroll, ValueNotifier, fade, heroTag
+7. Promo/Product dispose controller sendiri + widget test back-to-top
+8. Commit & push myboss_app + mobile_app_core

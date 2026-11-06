@@ -1,0 +1,128 @@
+{
+  "prd": "PRD-010-home-api.md",
+  "project_gid": "65ea6511-c5e4-4397-adf0-64a03c9159c7",
+  "epic": {
+    "id": "732c49ed-57ee-4368-b922-702cf65fd529",
+    "key": "MYB-1"
+  },
+  "stories": [
+    {
+      "id": "589986a7-fdee-4a8f-a006-c625374949f9",
+      "key": "MYB-455",
+      "name": "Data Beranda dari API Katalog",
+      "tasks": [
+        {
+          "id": "3db73425-d59e-450e-885a-972a2b33ee50",
+          "key": "MYB-470",
+          "title": "GuestHomeRemote: panggil 4 endpoint katalog paralel per cabang",
+          "deadline": "2026-11-06"
+        },
+        {
+          "id": "e5199e31-ddba-497f-9805-0941426352d1",
+          "key": "MYB-469",
+          "title": "Mapper: total dari meta, katalog preview 1 produk per kategori (nama kategori sesuai bahasa, photo_md)",
+          "deadline": "2026-11-06"
+        },
+        {
+          "id": "4530e5bf-555d-4b63-a80e-7cd9a81e255b",
+          "key": "MYB-468",
+          "title": "Logo brand: cocokkan nama ke aset lokal, brand tanpa logo tampil sebagai teks",
+          "deadline": "2026-11-06"
+        },
+        {
+          "id": "361b7858-da17-466d-8cd7-f2715a034852",
+          "key": "MYB-467",
+          "title": "GuestHomeCubit per cabang, abaikan respons usang, reload saat ganti cabang",
+          "deadline": "2026-11-06"
+        },
+        {
+          "id": "1530488b-8499-4b8a-acc2-0943162eeb1e",
+          "key": "MYB-466",
+          "title": "Daftarkan GuestHomeRemote di home_ft (mode mock & api), hapus GuestHomeStatic",
+          "deadline": "2026-11-06"
+        },
+        {
+          "id": "badc6bf8-627c-432e-be11-e11c8c2ca2da",
+          "key": "MYB-465",
+          "title": "Loading/error per section (section disembunyikan bila gagal atau kosong)",
+          "deadline": "2026-11-06"
+        }
+      ]
+    },
+    {
+      "id": "1ed4af15-cef8-442a-9257-33039ee8a127",
+      "key": "MYB-454",
+      "name": "Saldo Poin dari Profil",
+      "tasks": [
+        {
+          "id": "cd1547d9-3fda-4a30-a7c1-61aadedc22e2",
+          "key": "MYB-464",
+          "title": "PointsCubit: saldo dari ProfileBloc total_point",
+          "deadline": "2026-11-06"
+        },
+        {
+          "id": "20dc1b6d-3fe6-4e88-a35f-075d83170026",
+          "key": "MYB-463",
+          "title": "Bagian poin hangus disembunyikan bila datanya tidak ada",
+          "deadline": "2026-11-06"
+        }
+      ]
+    },
+    {
+      "id": "e1445364-a4f6-4996-b4dc-adca198007c7",
+      "key": "MYB-453",
+      "name": "Produk Populer (Sementara)",
+      "tasks": [
+        {
+          "id": "60fc4d2b-1433-4292-8b8b-cded575e98b6",
+          "key": "MYB-462",
+          "title": "Produk populer = katalog per kategori + TODO(backend)",
+          "deadline": "2026-11-06"
+        }
+      ]
+    },
+    {
+      "id": "7e2ccfaa-51ed-45cf-b55a-74ec01352f03",
+      "key": "MYB-452",
+      "name": "QA Beranda API",
+      "tasks": [
+        {
+          "id": "6f0db513-d826-483f-83c5-8d5890f7eec2",
+          "key": "MYB-461",
+          "title": "Unit test remote, mapper, dan cubit (remote palsu)",
+          "deadline": "2026-11-06"
+        },
+        {
+          "id": "682e4101-7abe-4aaf-bed5-c5ce5f174058",
+          "key": "MYB-460",
+          "title": "Widget test Beranda guest & login di 3 ukuran",
+          "deadline": "2026-11-09"
+        },
+        {
+          "id": "53b3b8f9-9694-474a-b9af-46792266ab7b",
+          "key": "MYB-459",
+          "title": "flutter analyze + flutter test",
+          "deadline": "2026-11-09"
+        },
+        {
+          "id": "b2aa1a54-a388-4138-b601-1422231551e3",
+          "key": "MYB-458",
+          "title": "Verifikasi macOS 3 ukuran (mode mock)",
+          "deadline": "2026-11-09"
+        },
+        {
+          "id": "4dcaa4d8-c671-4f5f-a0e1-be182ee7e847",
+          "key": "MYB-457",
+          "title": "Uji Android staging (RMX5566)",
+          "deadline": "2026-11-09"
+        },
+        {
+          "id": "ebf739bf-7f95-4686-aeb1-8861bb56a1a6",
+          "key": "MYB-456",
+          "title": "Dokumen permintaan backend di docs/api",
+          "deadline": "2026-11-09"
+        }
+      ]
+    }
+  ]
+}
