@@ -141,7 +141,7 @@ class _MainPageState extends State<MainPage> with WidgetsBindingObserver {
     if (_pageController.hasClients && _pageController.page?.toInt() != index) {
       _pageController.jumpToPage(index);
 
-      ThemeFlow.switchModeApp();
+      // ThemeFlow.switchModeApp();
     }
   }
 

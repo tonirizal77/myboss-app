@@ -62,7 +62,7 @@ class _AccountPageState extends State<AccountPage>
 
     return ResponsivePage(
       useSafeArea: true,
-      alignment: .center,
+      alignment: .topCenter,
       onRefresh: () async => await refreshData(),
       body: SingleChildScrollView(
         padding: EdgeInsets.all(24),
@@ -78,6 +78,7 @@ class _AccountPageState extends State<AccountPage>
     return Flex(
       mainAxisSize: .min,
       direction: Axis.vertical,
+      crossAxisAlignment: .start,
       spacing: 16,
       children: [
         if (_isLoggedIn) ...[
@@ -96,24 +97,27 @@ class _AccountPageState extends State<AccountPage>
           const CardLoginRequired(),
 
         /// List Menu
-        const ListMenuAkun(),
+        Visibility(visible: false, child: const ListMenuAkun()),
 
         /// Follow Us
         /// MARK: Belum diperlukan
         // const CardFollowUs(),
-        Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            /// Swith bahasa
-            Visibility(
-              visible: !Responsive.isPhoneLandscape(context),
-              child: SwitchLocaleBar(tipe: TipeSwitch.rolling),
-            ),
-            Visibility(
-              visible: !Responsive.isPhoneLandscape(context),
-              child: const DrawerVersionx(),
-            ),
-          ],
+        Visibility(
+          // visible: false,
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              /// Swith bahasa
+              Visibility(
+                visible: !Responsive.isPhoneLandscape(context),
+                child: SwitchLocaleBar(tipe: TipeSwitch.rolling),
+              ),
+              Visibility(
+                visible: !Responsive.isPhoneLandscape(context),
+                child: const DrawerVersionx(),
+              ),
+            ],
+          ),
         ),
       ],
     );
@@ -140,29 +144,36 @@ class _AccountPageState extends State<AccountPage>
               child: Flex(
                 direction: Axis.vertical,
                 mainAxisSize: .min,
-                spacing: 8,
+                spacing: 16,
+                mainAxisAlignment: .spaceBetween,
                 children: [
-                  const CardFollowUs(),
+                  // const CardFollowUs(),
                   if (_isLoggedIn) const AccountStatsCard(),
+
+                  if (_isLoggedIn) ...[
+                    _logoutRow(context),
+                    _deleteRow(context),
+                    // Deletion pending (Figma `Account — Deletion Pending`).
+                    ValueListenableBuilder<bool>(
+                      valueListenable:
+                          DeleteAccountLocalState.isPendingNotifier,
+                      builder: (context, isPending, _) => isPending
+                          ? const DeleteAccountPendingPanel()
+                          : const SizedBox.shrink(),
+                    ),
+                  ],
                 ],
               ),
             ),
           ],
         ),
 
-        if (_isLoggedIn) ...[
-          _logoutRow(context),
-          _deleteRow(context),
-          // Deletion pending (Figma `Account — Deletion Pending`).
-          ValueListenableBuilder<bool>(
-            valueListenable: DeleteAccountLocalState.isPendingNotifier,
-            builder: (context, isPending, _) => isPending
-                ? const DeleteAccountPendingPanel()
-                : const SizedBox.shrink(),
-          ),
-        ],
+        
 
-        Flexible(child: const ListMenuAkun()),
+        Visibility(
+          visible: false,
+          child: Flexible(child: const ListMenuAkun()),
+        ),
       ],
     );
   }

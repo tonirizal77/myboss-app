@@ -19,14 +19,13 @@ class RmdTabletView extends StatelessWidget {
             : shadowStyleLight);
 
         /// Sytle 2 specific for padding
-        final StyleApp _style = RmdStyleApp.shared.getStyleApp.value;
-        final _top = MediaQuery.of(context).viewPadding.top;
+        final StyleApp _style = RmdStyleApp.shared.getStyleApp.value; 
 
         return CardCustom(
           // state.paddingMain
           padding: _style == StyleApp.theme2
-              ? EdgeInsets.fromLTRB(16, _top, 16, 16)
-              : EdgeInsets.only(top: _top),
+              ? EdgeInsets.fromLTRB(16, 16, 16, 16)
+              : EdgeInsets.only(top: 0),
           color: _bgColor,
           child: Flex(
             direction: Axis.horizontal,
@@ -45,9 +44,8 @@ class RmdTabletView extends StatelessWidget {
                   radius: state.radiusLeft,
 
                   /// !Testing
-                  color: AppTheme.surface(
-                    context,
-                  ), // state.bgColorLeft ?? _bgColor,
+                  color: AppTheme.surface(context),
+                  // state.bgColorLeft ?? _bgColor,
                   alignment: Alignment.center,
                   constraints: BoxConstraints(
                     maxWidth: state.isCollapse

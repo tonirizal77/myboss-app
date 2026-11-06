@@ -16,6 +16,7 @@ class MemberHero extends StatelessWidget {
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+          ///
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -30,6 +31,8 @@ class MemberHero extends StatelessWidget {
               ],
             ),
           ),
+
+          //
           if (rewards.isNotEmpty) ...[
             const SizedBox(width: 12),
             _RewardPager(rewards: rewards),

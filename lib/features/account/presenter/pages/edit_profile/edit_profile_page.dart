@@ -51,6 +51,7 @@ class EditProfilePage extends StatelessWidget {
                   onTap: (avatar) =>
                       ProfileEditFlows.updateAvatar(context, avatar),
                 ),
+
                 const SizedBox(height: 16),
 
                 /// Form
