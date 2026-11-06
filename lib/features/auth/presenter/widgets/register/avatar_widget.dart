@@ -58,40 +58,49 @@ class _AvatarWidgetState extends State<AvatarWidget>
           });
         }
 
-        final children = [
-          for (var i = 0; i < avatars.length; i++)
-            _AvatarItem(
-              avatar: avatars[i],
-              fallbackAsset:
-                  Assets.avatarsMyBoss[i % Assets.avatarsMyBoss.length],
-              selected: _selected.id == avatars[i].id,
+        final grid = ResponsiveGridOrWrap<AvatarsModel>(
+          // Fixed 64px avatars, centered rows.
+          minWidth: _AvatarItem.size,
+          wrapAlignment: WrapAlignment.center,
+          spacing: 8,
+          runSpacing: 8,
+          padding: EdgeInsets.zero,
+          paddingBody: EdgeInsets.zero,
+          top: 0,
+          // The page scrolls; the list must not grab the drag.
+          physics: const NeverScrollableScrollPhysics(),
+          isSeperator: false,
+          listData: avatars,
+          child: (avatar) {
+            final i = avatars.indexOf(avatar);
+
+            String _fallbackAsset =
+                Assets.avatarsMyBoss[i % Assets.avatarsMyBoss.length];
+
+            return _AvatarItem(
+              avatar: avatar,
+              fallbackAsset: _fallbackAsset,
+              selected: _selected.id == avatar.id,
               onTap: () {
-                setState(() => _selected = avatars[i]);
-                widget.onTap?.call(avatars[i]);
+                setState(() => _selected = avatar);
+                widget.onTap?.call(avatar);
               },
-            ),
-        ];
+            );
+          },
+        );
 
         return Responsive(
           /// Phone
-          mobile: SingleChildScrollView(
-            scrollDirection: Axis.horizontal,
-            clipBehavior: Clip.none,
+          mobile: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 4),
-            child: Row(spacing: 8, children: children),
+            child: grid,
           ),
 
           /// Tablet
           tablet: Container(
             alignment: Alignment.center,
-            padding: const EdgeInsets.all(8),
-            width: 260,
-            child: Wrap(
-              alignment: WrapAlignment.center,
-              spacing: 8,
-              runSpacing: 8,
-              children: children,
-            ),
+            padding: const EdgeInsets.all(8), 
+            child: grid,
           ),
         );
       },
@@ -109,6 +118,9 @@ class _AvatarItem extends StatelessWidget {
     required this.selected,
     required this.onTap,
   });
+
+  /// Avatar diameter.
+  static const double size = 64;
 
   final AvatarsModel avatar;
   final String fallbackAsset;
@@ -139,8 +151,8 @@ class _AvatarItem extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: SizedBox(
-        width: 64,
-        height: 64,
+        width: size,
+        height: size,
         child: Stack(
           clipBehavior: Clip.none,
           children: [
@@ -153,15 +165,7 @@ class _AvatarItem extends StatelessWidget {
               ),
             ),
             if (selected)
-              Positioned(
-                left: -4,
-                top: -4,
-                child: SvgPicture.asset(
-                  Assets.avatarIndicator,
-                  width: 72,
-                  height: 72,
-                ),
-              ),
+              SvgPicture.asset(Assets.avatarIndicator),
           ],
         ),
       ),
