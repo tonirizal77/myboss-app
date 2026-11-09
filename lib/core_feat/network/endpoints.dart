@@ -144,6 +144,9 @@ final class Endpoints {
   /// Params: ?cart_v2=1
   static const String profileInfo = "/profile/info";
 
+  /// GET Loyalty points of the member (balance + history) - PRD-011.
+  static const String profileLoyaltyPoints = "/profile/loyalty-points";
+
   /// ============================================================ ///
   /// MyBoss › Client Token
   /// Authorization : {{user_refresh_token}}
@@ -187,10 +190,6 @@ final class Endpoints {
 
   /// GET Status penghapusan akun
   static const String statusDeleteAccount = "/customer/delete/status";
-
-  /// === Voucher === ///
-  /// Authorization : {{user_bearer}}
-  static const String voucherList = "/profile/discount-vouchers/list";
 
   /// === Pages === ///
   /// Authorization : {{bearer}}

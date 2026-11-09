@@ -152,6 +152,26 @@ class AccountFlows {
   }
 
   /// Confirm button of the in-app (direct / pending) confirmation sheet.
+  /// - Delete Account (Step 1b: final warning)
+  ///
+  /// "Are you sure...?" dialog over the confirmation sheet; only "Yes,
+  /// continue" goes on to [confirmDeleteAccount].
+  static Future<void> askDeleteAccount(BuildContext context) async {
+    final confirmed = await MyBossDialog.confirm(
+      context,
+      title: LocaleKeys.akun_delete_final_confirm_title.tr(),
+      cancelLabel: LocaleKeys.akun_delete_final_confirm_no.tr(),
+      confirmLabel: LocaleKeys.akun_delete_final_confirm_yes.tr(),
+      destructive: true,
+      icon: Icons.warning_rounded,
+      stacked: true,
+    );
+
+    if (confirmed == true && context.mounted) {
+      await confirmDeleteAccount(context);
+    }
+  }
+
   static Future<void> confirmDeleteAccount(BuildContext context) async {
     /// [AppSetting.needConfirmOTP] `false`: skip reason + OTP - close the
     /// sheet first, then delete right away.
@@ -483,20 +503,6 @@ class AccountFlows {
   /// 13. Goto Page TNC Us
   static void showVoucherDetail(BuildContext context) {
     ResponsiveDialog.sheetOrDialog(context, child: Text("Show Detail Voucher"));
-  }
-
-  /// 14. Get List Voucher
-  static Future<void> getVouchers(BuildContext context) async {
-    final bloc = context.read<AccountBloc>();
-    final event = AccountEvent.vouchers();
-
-    bloc.add(event);
-
-    await bloc.stream.firstWhere(
-      (s) =>
-          s.event == event.runtimeType &&
-          (s.respon == Respons.success || s.respon == Respons.failure),
-    );
   }
 
   /// 16. Get About Us

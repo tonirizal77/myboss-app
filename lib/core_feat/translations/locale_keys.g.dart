@@ -167,6 +167,10 @@ abstract class LocaleKeys {
       'akun.delete_cancel_confirm_title';
   static const akun_delete_cancel_confirm_yes =
       'akun.delete_cancel_confirm_yes';
+  static const akun_delete_final_confirm_title =
+      'akun.delete_final_confirm_title';
+  static const akun_delete_final_confirm_no = 'akun.delete_final_confirm_no';
+  static const akun_delete_final_confirm_yes = 'akun.delete_final_confirm_yes';
   static const akun_delete_cancel_success = 'akun.delete_cancel_success';
   static const akun_delete_confirm_email_resend_button =
       'akun.delete_confirm_email_resend_button';

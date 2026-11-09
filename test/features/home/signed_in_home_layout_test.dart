@@ -65,6 +65,12 @@ void main() {
   });
 
   setUp(() {
+    // Balance on Home = profile/info `balance_points` (mock: 1250).
+    getIt.registerLazySingleton<ProfileRemote>(() => const _MockFileProfile());
+    getIt.registerLazySingleton<ProfileRepo>(
+      () => ProfileRepoImpl(remoteData: getIt()),
+    );
+    getIt.registerLazySingleton(() => GetProfileUc(getIt()));
     getIt.registerLazySingleton<PointsRepo>(
       () => const PointsRepoImpl(source: PointsStatic()),
     );
@@ -95,6 +101,8 @@ void main() {
 
     final profile = ProfileBloc();
     getIt.registerSingleton<ProfileBloc>(profile);
+    // Signed in: the profile is already loaded (login / Account tab).
+    profile.add(const ProfileEvent.getProfile());
     final points = PointsCubit();
     final guest = GuestHomeCubit();
     final popular = PopularProductsCubit();
@@ -173,7 +181,7 @@ void main() {
         ),
       );
 
-      expect(find.text('6,969 points'), findsWidgets);
+      expect(find.text('1,250 points'), findsWidgets);
       expect(find.text('Our Popular Products'), findsOneWidget);
       // Only `is_popular = 1` products of the mock catalog.
       Finder inCarousel(String name) => find.descendant(
@@ -213,7 +221,7 @@ void main() {
       const SizedBox(width: 400, child: CardMemberBarcode()),
     );
 
-    expect(find.text('6,969 points'), findsWidgets);
+    expect(find.text('1,250 points'), findsWidgets);
     expect(tester.takeException(), isNull);
     await shot(tester, 'membership_card');
   });
@@ -267,6 +275,26 @@ class _MockFileCatalog implements ProductRemote {
           item,
     ];
     return Right(CatalogListModel.fromJson({...json, 'data': data}));
+  }
+
+  @override
+  dynamic noSuchMethod(Invocation invocation) => super.noSuchMethod(invocation);
+}
+
+/// `GET /profile/info` from the mock JSON file (`balance_points` 1250).
+class _MockFileProfile implements ProfileRemote {
+  const _MockFileProfile();
+
+  @override
+  ResultFuture<ProfileModel> getProfile() async {
+    final json =
+        jsonDecode(
+              File(
+                MockServerInterceptor.assetKey('GET', Endpoints.profileInfo),
+              ).readAsStringSync(),
+            )
+            as DataMap;
+    return Right(ProfileModel.fromJson(json['data'] as DataMap));
   }
 
   @override

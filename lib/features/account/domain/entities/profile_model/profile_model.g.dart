@@ -41,11 +41,10 @@ _ProfileModel _$ProfileModelFromJson(Map<String, dynamic> json) =>
       subdistrictId: (json['subdistrict_id'] as num?)?.toInt() ?? 0,
       level: (json['level'] as num?)?.toInt() ?? 1,
       levelName: json['level_name'] as String? ?? "Cool",
-      availableVoucherCount:
-          (json['available_voucher_count'] as num?)?.toInt() ?? 0,
+      voucherCount: (json['voucher_count'] as num?)?.toInt() ?? 0,
       cumulativePrev: (json['cumulative_prev'] as num?)?.toInt() ?? 0,
       currentCycle: (json['current_cycle'] as num?)?.toInt() ?? 0,
-      totalPoint: (json['total_point'] as num?)?.toInt() ?? 0,
+      balancePoints: (json['balance_points'] as num?)?.toInt() ?? 0,
     );
 
 Map<String, dynamic> _$ProfileModelToJson(_ProfileModel instance) =>
@@ -79,10 +78,10 @@ Map<String, dynamic> _$ProfileModelToJson(_ProfileModel instance) =>
       'subdistrict_id': instance.subdistrictId,
       'level': instance.level,
       'level_name': instance.levelName,
-      'available_voucher_count': instance.availableVoucherCount,
+      'voucher_count': instance.voucherCount,
       'cumulative_prev': instance.cumulativePrev,
       'current_cycle': instance.currentCycle,
-      'total_point': instance.totalPoint,
+      'balance_points': instance.balancePoints,
     };
 
 _CustomerTypeId _$CustomerTypeIdFromJson(Map<String, dynamic> json) =>

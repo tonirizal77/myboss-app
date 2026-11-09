@@ -1,0 +1,38 @@
+{
+  "data": {
+    "total_balance_point": 1250,
+    "expiring_points": {
+      "balance_points": 100,
+      "expire_date": "2026-11-18",
+      "expire_date_subtext": "Kadaluarsa dalam 9 hari"
+    },
+    "active_point": [
+      {
+        "id": 900101,
+        "sales_order_id": 900001,
+        "date": "2026-11-05 10:15:00",
+        "earned_points": 20,
+        "order_total": 300000,
+        "forder_total": "300.000"
+      },
+      {
+        "id": 900102,
+        "sales_order_id": null,
+        "date": "2026-10-28 09:00:00",
+        "earned_points": 50,
+        "order_total": null,
+        "forder_total": null
+      },
+      {
+        "id": 900103,
+        "sales_order_id": 900002,
+        "date": "2026-10-12 14:30:00",
+        "earned_points": 15,
+        "order_total": 225000,
+        "forder_total": "225.000"
+      }
+    ]
+  },
+  "status": 200,
+  "error": 0
+}

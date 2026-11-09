@@ -49,8 +49,12 @@ extension _UserDeleteAccountHandler on UserBloc {
         getIt<AccountBloc>().add(const AccountEvent.reset());
         await DeleteAccountLocalState.clearPending();
 
+        /// Fresh state (like logout): `statusLogin` back to initial, so the
+        /// app really switches to guest - with `copyWith` it stayed
+        /// `success` and Home rebuilt the member view (and refetched the
+        /// profile) right after the deletion.
         emit(
-          state.copyWith(
+          UserState(
             isLoading: false,
             statusDeleteAccount: Status.success,
             event: event.runtimeType,

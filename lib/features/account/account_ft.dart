@@ -39,13 +39,9 @@ class AccountFt {
     ///
     getIt.registerLazySingleton<ProfileRemote>(() => ProfileRemoteImpl());
     getIt.registerLazySingleton<AccountRemote>(() => AccountRemoteImpl());
-    // TODO(backend): api -> PointsRemote once the endpoint exists.
-    getIt.registerLazySingleton<PointsSource>(
-      () => ServerAccess.pick<PointsSource>(
-        mock: () => const PointsStatic(),
-        api: () => const PointsStatic(),
-      ),
-    );
+    // GET /profile/loyalty-points (PRD-011); mock mode is answered by
+    // MockServerInterceptor (assets/mock/get/profile.loyalty-points.json).
+    getIt.registerLazySingleton<PointsSource>(() => PointsRemote());
 
     /// 5. Setup Usecase
     /// - Profile
@@ -63,7 +59,6 @@ class AccountFt {
     getIt.registerLazySingleton(() => GetAboutUsUc(getIt()));
     getIt.registerLazySingleton(() => GetFaqUc(getIt()));
     getIt.registerLazySingleton(() => GetTncUc(getIt()));
-    getIt.registerLazySingleton(() => GetVouchersUc(getIt()));
     getIt.registerLazySingleton(() => GetReasonsUc(getIt()));
 
     /// 6. Setup Control / Flow

@@ -98,3 +98,29 @@ class MemberPointsText extends StatelessWidget {
     );
   }
 }
+
+/// [MemberPointsText] with the balance of the signed-in member: `balance_points`
+/// of `GET /profile/info`, already loaded by [ProfileBloc] (PRD-011). The
+/// expiry lines stay hidden until profile/info sends them.
+class ProfilePointsText extends StatelessWidget {
+  const ProfilePointsText({
+    super.key,
+    this.align = CrossAxisAlignment.start,
+    this.size = 40,
+  });
+
+  final CrossAxisAlignment align;
+  final double size;
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<ProfileBloc, ProfileState>(
+      buildWhen: (a, b) => a.profile.balancePoints != b.profile.balancePoints,
+      builder: (context, state) => MemberPointsText(
+        summary: PointsSummary(balance: state.profile.balancePoints),
+        align: align,
+        size: size,
+      ),
+    );
+  }
+}

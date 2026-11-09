@@ -37,10 +37,14 @@ abstract class ProfileModel with _$ProfileModel {
     @Default(0) int subdistrictId,
     @Default(1) int level,
     @Default("Cool") String levelName,
-    @Default(0) int availableVoucherCount,
+
+    /// `voucher_count` - the member's own vouchers (staging, 2026-11-09).
+    @Default(0) int voucherCount,
     @Default(0) int cumulativePrev,
     @Default(0) int currentCycle,
-    @Default(0) int totalPoint,
+
+    /// `balance_points` - points balance (staging, 2026-11-09).
+    @Default(0) int balancePoints,
   }) = _ProfileModel;
 
   factory ProfileModel.fromJson(Map<String, dynamic> json) =>

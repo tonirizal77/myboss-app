@@ -106,7 +106,6 @@ class PromoVoucherPanel extends StatelessWidget {
                 compact: true,
                 onRetry: context.read<PromoCubit>().retry,
               )
-
             //
             else if (vouchers.isEmpty)
               PromoEmptyState.vouchers(
@@ -345,6 +344,33 @@ class RewardGrid extends StatelessWidget {
       isSeperator: false,
       listData: rewards,
       child: (r) => RewardCard(reward: r, outlined: outlined),
+    );
+  }
+}
+
+/// Voucher tickets: one column on phones, two on wider windows (Promo
+/// Voucher tab, Account Vouchers page).
+class VoucherList extends StatelessWidget {
+  const VoucherList({super.key, required this.vouchers});
+
+  final List<Voucher> vouchers;
+
+  @override
+  Widget build(BuildContext context) {
+    return ResponsiveGridOrWrap<Voucher>(
+      tipe: TipeView.wrapview,
+      mobile: 1,
+      tablet: 2,
+      desktop: 2,
+      spacing: 16,
+      runSpacing: 16,
+      padding: EdgeInsets.zero,
+      paddingBody: EdgeInsets.zero,
+      top: 0,
+      physics: const NeverScrollableScrollPhysics(),
+      isSeperator: false,
+      listData: vouchers,
+      child: (v) => VoucherTicket(voucher: v),
     );
   }
 }

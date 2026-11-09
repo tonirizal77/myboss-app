@@ -27,8 +27,8 @@ class _HomePageState extends State<HomePage>
   FutureOr<void> _onReload(BuildContext context) async {
     if (!_isLoggedIn) return;
 
-    await AccountFlows.getProfile(context); // ProfileBloc
-    if (mounted) await context.read<PointsCubit>().load(); // balance
+    // Profile + points balance (`balance_points`), one request.
+    await AccountFlows.getProfile(context);
   }
 
   @override

@@ -19,9 +19,11 @@ void main() {
     expect(Endpoints.deleteReason, '/customer/hayo/delete/reasons');
   });
 
-  test('release defaults: direct deletion with reason + OTP, no mock', () {
+  // needConfirmOTP false since 2026-11-09: delete right away after the
+  // confirmation dialog, no reason + OTP step (no send-otp call).
+  test('release defaults: direct deletion without reason + OTP, no mock', () {
     expect(AppSetting.deleteAccountMode, DeleteAccountMode.direct);
-    expect(AppSetting.needConfirmOTP, isTrue);
+    expect(AppSetting.needConfirmOTP, isFalse);
     expect(ServerAccess.mode, DataSourceMode.api);
   });
 

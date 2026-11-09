@@ -13,13 +13,11 @@ part 'account_state.dart';
 /// - FAQ
 /// - TNC
 /// - Contact Us
-/// - Vouchers
 /// - Reset (user-specific data on logout/delete account)
 part 'events/event_about_us.dart';
 part 'events/event_faq.dart';
 part 'events/event_contact_us.dart';
 part 'events/event_tnc.dart';
-part 'events/event_vouchers.dart';
 part 'events/event_reasons.dart';
 part 'events/event_reset_account.dart';
 
@@ -29,7 +27,6 @@ class AccountBloc extends HydratedBloc<AccountEvent, AccountState> {
     on<_EventFaq>(_onEventFaq);
     on<_EventContactUs>(_onEventContactUs);
     on<_EventTnc>(_onEventTnc);
-    on<_EventVouchers>(_onEventVouchers);
     on<_EventReasons>(_onEventReasons);
     on<_EventResetAccount>(_onEventResetAccount);
   }
@@ -41,7 +38,6 @@ class AccountBloc extends HydratedBloc<AccountEvent, AccountState> {
       faq: FaqModel.fromJson(json['faq']),
       tnc: TncModel.fromJson(json['tnc']),
       contactUs: ContactUsModel.fromJson(json['contact_us']),
-      vouchers: VoucherListModel.fromJson(json['vouchers']),
     );
   }
 
@@ -52,7 +48,6 @@ class AccountBloc extends HydratedBloc<AccountEvent, AccountState> {
       'faq': state.faq.toJson(),
       'tnc': state.tnc.toJson(),
       'contact_us': state.contactUs.toJson(),
-      'vouchers': state.vouchers.toJson(),
     };
   }
 }

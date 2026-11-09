@@ -140,12 +140,14 @@ class _HistoryTile extends StatelessWidget {
                         : MyBossColors.danger,
                   ),
                 ),
-                Text(
-                  PointsFormat.rupiah(entry.amount),
-                  style: MyBossTextStyles.caption.copyWith(
-                    color: MyBossColors.onSurfaceVariant,
+                // Points not from an order (bonus) have no amount.
+                if (entry.amount > 0)
+                  Text(
+                    PointsFormat.rupiah(entry.amount),
+                    style: MyBossTextStyles.caption.copyWith(
+                      color: MyBossColors.onSurfaceVariant,
+                    ),
                   ),
-                ),
               ],
             ),
           ],

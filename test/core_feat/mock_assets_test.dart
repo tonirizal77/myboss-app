@@ -18,6 +18,7 @@ const _requests = [
   ('GET', Endpoints.avatarList),
   ('POST', Endpoints.generateCode),
   ('PUT', Endpoints.updateProfile),
+  ('GET', Endpoints.profileLoyaltyPoints),
   ('POST', Endpoints.verifyOldGetOtp),
   ('POST', Endpoints.verifyOldSendOtp),
   ('POST', Endpoints.verifyNewGetOtpPhone),
@@ -25,7 +26,6 @@ const _requests = [
   ('POST', Endpoints.verifyNewSendOtp),
   ('GET', Endpoints.storeData),
   ('GET', Endpoints.storeBranches),
-  ('GET', Endpoints.voucherList),
   ('GET', Endpoints.aboutUs),
   ('GET', Endpoints.faq),
   ('POST', Endpoints.deleteAccountSendOtp),
@@ -186,11 +186,7 @@ void main() {
       expect(branches.data.where((b) => !b.isOpen), isNotEmpty);
     });
 
-    test('voucher, about us, faq, delete reasons', () {
-      expect(
-        VoucherListModel.fromJson(_mock('GET', Endpoints.voucherList)).data,
-        isNotEmpty,
-      );
+    test('about us, faq, delete reasons', () {
       expect(
         AboutUsModel.fromJson(_data('GET', Endpoints.aboutUs)).title,
         isNotEmpty,

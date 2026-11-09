@@ -175,7 +175,11 @@ void main() {
     expect(cubit.state.errorMessage, 'boom');
   });
 
-  Future<PromoCubit> pump(WidgetTester tester, Size size) async {
+  Future<PromoCubit> pump(
+    WidgetTester tester,
+    Size size, {
+    Widget page = const PromoPage(),
+  }) async {
     tester.view.physicalSize = size;
     tester.view.devicePixelRatio = 1;
     addTearDown(tester.view.reset);
@@ -212,9 +216,7 @@ void main() {
               supportedLocales: context.supportedLocales,
               theme: MyBossTheme.dark,
               routerConfig: GoRouter(
-                routes: [
-                  GoRoute(path: '/', builder: (_, _) => const PromoPage()),
-                ],
+                routes: [GoRoute(path: '/', builder: (_, _) => page)],
               ),
             ),
           ),
@@ -254,4 +256,40 @@ void main() {
       expect(tester.takeException(), isNull);
     });
   }
+
+  for (final e in _screens.entries) {
+    testWidgets('Account Vouchers page lists branch vouchers on ${e.key}', (
+      tester,
+    ) async {
+      final promo = await pump(tester, e.value, page: const VoucherPage());
+
+      expect(_remote.calls, ['${Endpoints.promoVoucherList}@']);
+      expect(promo.state.content.vouchers, hasLength(6));
+      expect(find.byType(VoucherList), findsOneWidget);
+      expect(find.text('Discount 15%'), findsWidgets);
+      expect(tester.takeException(), isNull);
+    });
+  }
+
+  testWidgets('Account Vouchers page: load error, then retry', (tester) async {
+    _remote.failVouchers = true;
+    await pump(tester, _screens['phone']!, page: const VoucherPage());
+
+    expect(find.byType(PromoLoadError), findsOneWidget);
+    expect(find.byType(VoucherList), findsNothing);
+
+    _remote.failVouchers = false;
+    await tester.tap(
+      find
+          .descendant(
+            of: find.byType(PromoLoadError),
+            matching: find.byType(GestureDetector),
+          )
+          .first,
+    );
+    await tester.pumpAndSettle();
+
+    expect(find.byType(VoucherList), findsOneWidget);
+    expect(tester.takeException(), isNull);
+  });
 }

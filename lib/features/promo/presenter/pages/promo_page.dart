@@ -136,9 +136,7 @@ class _PromoPageState extends State<PromoPage> {
               subtitle: LocaleKeys.promo_points_guest.tr(),
             ),
             const SizedBox(height: 24),
-            PromoEmptyState.points(
-              onRefresh: context.read<PromoCubit>().retry,
-            ),
+            PromoEmptyState.points(onRefresh: context.read<PromoCubit>().retry),
           ],
         ],
       ),
@@ -163,35 +161,9 @@ class _PromoPageState extends State<PromoPage> {
               ? PromoEmptyState.vouchers(
                   onRefresh: context.read<PromoCubit>().retry,
                 )
-              : _VoucherList(vouchers: content.vouchers),
+              : VoucherList(vouchers: content.vouchers),
         ],
       ),
     };
-  }
-}
-
-/// One column on phones, two on wider windows.
-class _VoucherList extends StatelessWidget {
-  const _VoucherList({required this.vouchers});
-
-  final List<Voucher> vouchers;
-
-  @override
-  Widget build(BuildContext context) {
-    return ResponsiveGridOrWrap<Voucher>(
-      tipe: TipeView.wrapview,
-      mobile: 1,
-      tablet: 2,
-      desktop: 2,
-      spacing: 16,
-      runSpacing: 16,
-      padding: EdgeInsets.zero,
-      paddingBody: EdgeInsets.zero,
-      top: 0,
-      physics: const NeverScrollableScrollPhysics(),
-      isSeperator: false,
-      listData: vouchers,
-      child: (v) => VoucherTicket(voucher: v),
-    );
   }
 }

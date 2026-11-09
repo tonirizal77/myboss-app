@@ -113,7 +113,7 @@ class RewardCard extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           // Picture fills the card width (edge to edge), keeping its ratio.
-          Expanded(child: Image.asset(reward.image, fit: BoxFit.cover)),
+          Expanded(child: ProductImage(reward.image, fit: BoxFit.cover)),
           Padding(
             padding: const EdgeInsets.fromLTRB(8, 8, 8, 8),
             child: Column(

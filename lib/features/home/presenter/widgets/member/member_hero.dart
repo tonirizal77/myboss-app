@@ -23,11 +23,7 @@ class MemberHero extends StatelessWidget {
               children: [
                 const _AvatarRow(),
                 const SizedBox(height: 16),
-                BlocBuilder<PointsCubit, PointsState>(
-                  buildWhen: (a, b) => a.summary != b.summary,
-                  builder: (context, state) =>
-                      MemberPointsText(summary: state.summary, size: 36),
-                ),
+                const ProfilePointsText(size: 36),
               ],
             ),
           ),
@@ -206,7 +202,8 @@ class _RewardMini extends StatelessWidget {
       ),
       child: Column(
         children: [
-          Expanded(child: Image.asset(reward.image, fit: BoxFit.contain)),
+          // API photo URL (mock: asset path).
+          Expanded(child: ProductImage(reward.image)),
           const SizedBox(height: 4),
           FittedBox(
             fit: BoxFit.scaleDown,

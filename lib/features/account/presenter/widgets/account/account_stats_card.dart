@@ -24,10 +24,11 @@ class AccountStatsCard extends StatelessWidget {
             ),
           ),
           Divider(height: 1, thickness: 0.5, color: MyBossColors.outline),
-          BlocBuilder<AccountBloc, AccountState>(
+          // Same list as the Vouchers page: branch vouchers (PRD-011).
+          BlocBuilder<PromoCubit, PromoState>(
+            buildWhen: (p, c) =>
+                p.content.vouchers.length != c.content.vouchers.length,
             builder: (context, state) {
-              final vouchers = state.vouchers.data?.toList() ?? [];
-
               return _AccountRow(
                 icon: Icon(
                   Icons.confirmation_number,
@@ -35,7 +36,7 @@ class AccountStatsCard extends StatelessWidget {
                   color: MyBossColors.danger,
                 ),
                 label: LocaleKeys.akun_voucher_count.tr(
-                  args: [vouchers.length.toString()],
+                  args: ['${state.content.vouchers.length}'],
                 ),
                 labelStyle: MyBossTextStyles.title,
                 onTap: () => AccountFlows.goToVoucherPage(context),

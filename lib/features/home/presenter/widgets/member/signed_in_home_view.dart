@@ -4,7 +4,7 @@ part of '../widgets.dart';
 /// popular products and the points rewards panel with the balance + Redeem.
 /// Brands and counts come from [GuestHomeCubit] (static until the API
 /// exists), popular products from [PopularProductsSection], point rewards
-/// from [PromoCubit], the balance from [PointsCubit].
+/// from [PromoCubit], the balance from profile/info ([ProfilePointsText]).
 class SignedInHomeView extends StatefulWidget {
   const SignedInHomeView({super.key});
 
@@ -17,7 +17,8 @@ class _SignedInHomeViewState extends State<SignedInHomeView> {
   void initState() {
     super.initState();
     context.read<GuestHomeCubit>().load();
-    context.read<PointsCubit>().load();
+    // Balance = profile/info `balance_points` (ProfileBloc).
+    AccountFlows.getProfile(context);
   }
 
   @override
@@ -65,14 +66,7 @@ class _RedeemFooter extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        BlocBuilder<PointsCubit, PointsState>(
-          buildWhen: (a, b) => a.summary != b.summary,
-          builder: (context, state) => MemberPointsText(
-            summary: state.summary,
-            align: CrossAxisAlignment.center,
-            size: 34,
-          ),
-        ),
+        const ProfilePointsText(align: CrossAxisAlignment.center, size: 34),
         const SizedBox(height: 16),
         MyBossButton(
           label: LocaleKeys.home_member_redeem.tr(),

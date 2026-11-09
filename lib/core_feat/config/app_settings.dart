@@ -35,7 +35,7 @@ abstract class AppSetting {
   ///   menutup sheet dan memanggil [AccountFlows.submitDeleteAccountRequest].
   ///   `reason_id` TIDAK terkirim ke server karena endpoint delete real
   ///   ([Endpoints.deleteAccountReal]) dipanggil tanpa body sama sekali.
-  static bool get needConfirmOTP => true;
+  static bool get needConfirmOTP => false;
 
   static bool get isDevelopment => devMode == DevMode.development;
   static bool get isRelease => devMode == DevMode.release;

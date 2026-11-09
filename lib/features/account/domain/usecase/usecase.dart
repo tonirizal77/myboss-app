@@ -35,17 +35,6 @@ class GetTncUc extends Usecase<TncModel> {
   }
 }
 
-class GetVouchersUc extends Usecase<VoucherListModel> {
-  final AccountRepo _repository;
-
-  GetVouchersUc(this._repository);
-
-  @override
-  ResultFuture<VoucherListModel> call() async {
-    return await _repository.getVouchers();
-  }
-}
-
 class GetReasonsUc extends Usecase<ReasonsModel> {
   final AccountRepo _repository;
 

@@ -27,9 +27,6 @@ class _CardMemberBarcodeState extends State<CardMemberBarcode> {
     /// Turn on Prevent screenshot
     MainPageFlow.turnOnPrevent(context);
 
-    /// Balance shown under the name.
-    context.read<PointsCubit>().load();
-
     /// Resume the countdown from the active session (set in
     /// [AccountFlows.generateCode]) instead of always restarting at the
     /// full duration - covers the sheet being closed and reopened before
@@ -159,13 +156,9 @@ class _CardMemberBarcodeState extends State<CardMemberBarcode> {
               const SizedBox(height: 16),
 
               /// Points
-              BlocBuilder<PointsCubit, PointsState>(
-                buildWhen: (a, b) => a.summary != b.summary,
-                builder: (context, points) => MemberPointsText(
-                  summary: points.summary,
-                  align: CrossAxisAlignment.center,
-                  size: 38,
-                ),
+              const ProfilePointsText(
+                align: CrossAxisAlignment.center,
+                size: 38,
               ),
               const SizedBox(height: 32),
 

@@ -29,13 +29,6 @@ class AccountRepoImpl implements AccountRepo {
   }
 
   @override
-  ResultFuture<VoucherListModel> getVouchers() async {
-    final _result = await _remoteData.getVouchers();
-
-    return _result.fold((_l) => Left(_l), (_r) => Right(_r));
-  }
-
-  @override
   ResultFuture<ReasonsModel> getReasons() async {
     final _result = await _remoteData.getReasons();
 

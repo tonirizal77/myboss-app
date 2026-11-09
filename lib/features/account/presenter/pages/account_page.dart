@@ -22,19 +22,22 @@ class _AccountPageState extends State<AccountPage>
   /// points data to fetch - those endpoints require a real user session.
   bool get _isLoggedIn => UserFlows.isLoggedIn(context);
 
-  Future<void> refreshData() async {
+  /// [vouchers]: also reload the branch vouchers (pull to refresh) -
+  /// [PromoBranchSync] already loads them on open, branch and login changes.
+  Future<void> refreshData({bool vouchers = false}) async {
     if (!_isLoggedIn) return;
 
     PrintHelper.printError("__initsate or refresh ACCOUNT PAGE");
 
-    /// Re-Get Profile
-    await AccountFlows.getProfile(context);
-
-    /// Get List Voucher
-    await AccountFlows.getVouchers(context);
-
-    /// Points balance + history
-    if (mounted) await context.read<PointsCubit>().load();
+    /// Profile + points balance (`balance_points`) from profile/info, voucher
+    /// count from the branch voucher list (PRD-011).
+    final points = context.read<PointsCubit>();
+    final promo = context.read<PromoCubit>();
+    await Future.wait([
+      AccountFlows.getProfile(context),
+      points.load(),
+      if (vouchers) promo.retry(),
+    ]);
   }
 
   @override
@@ -46,13 +49,15 @@ class _AccountPageState extends State<AccountPage>
     /// The tab is kept alive, so it may have been built as a guest: fetch
     /// the user's data again once they sign in (initState already covers
     /// opening it while signed in).
-    return BlocListener<UserBloc, UserState>(
-      listenWhen: UserFlows.justSignedIn,
-      listener: (context, _) => refreshData(),
-      child: BlocBuilder<UserBloc, UserState>(
-        buildWhen: (previous, current) =>
-            previous.statusLogin != current.statusLogin,
-        builder: (context, state) => _build(context, state),
+    return PromoBranchSync(
+      child: BlocListener<UserBloc, UserState>(
+        listenWhen: UserFlows.justSignedIn,
+        listener: (context, _) => refreshData(),
+        child: BlocBuilder<UserBloc, UserState>(
+          buildWhen: (previous, current) =>
+              previous.statusLogin != current.statusLogin,
+          builder: (context, state) => _build(context, state),
+        ),
       ),
     );
   }
@@ -63,7 +68,7 @@ class _AccountPageState extends State<AccountPage>
     return ResponsivePage(
       useSafeArea: true,
       alignment: .topCenter,
-      onRefresh: () async => await refreshData(),
+      onRefresh: () => refreshData(vouchers: true),
       body: SingleChildScrollView(
         padding: EdgeInsets.all(24),
         child: Responsive(
@@ -167,8 +172,6 @@ class _AccountPageState extends State<AccountPage>
             ),
           ],
         ),
-
-        
 
         Visibility(
           visible: false,

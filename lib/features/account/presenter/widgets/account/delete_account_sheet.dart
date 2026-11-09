@@ -76,8 +76,7 @@ class _InAppDeleteAccount extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final points = context.read<PointsCubit>().state.summary.balance;
-    final vouchers =
-        context.read<AccountBloc>().state.vouchers.data?.length ?? 0;
+    final vouchers = context.read<PromoCubit>().state.content.vouchers.length;
     final hasBalance = points > 0 || vouchers > 0;
 
     return Column(
@@ -128,20 +127,31 @@ class _InAppDeleteAccount extends StatelessWidget {
           ),
         ],
         const SizedBox(height: 24),
-        MyBossButton(
-          label: LocaleKeys.akun_delete_my_account.tr(),
-          role: MyBossButtonRole.danger,
-          size: MyBossButtonSize.large,
-          expand: true,
-          onPressed: () => AccountFlows.confirmDeleteAccount(context),
-        ),
-        const SizedBox(height: 8),
-        MyBossButton(
-          label: LocaleKeys.button_back.tr(),
-          style: MyBossButtonStyle.text,
-          role: MyBossButtonRole.secondary,
-          expand: true,
-          onPressed: () => context.pop(),
+        Row(
+          spacing: 8,
+          children: [
+            Flexible(
+              child: MyBossButton(
+                label: LocaleKeys.button_back.tr(),
+                style: MyBossButtonStyle.text,
+                role: MyBossButtonRole.secondary,
+                expand: true,
+                onPressed: () => context.pop(),
+              ),
+            ),
+
+            Flexible(
+              child: MyBossButton(
+                pill: true,
+                label: "Lanjutkan",
+                role: MyBossButtonRole.danger,
+                size: MyBossButtonSize.large,
+                expand: true,
+                // Final warning dialog first, then the delete flow.
+                onPressed: () => AccountFlows.askDeleteAccount(context),
+              ),
+            ),
+          ],
         ),
       ],
     );
@@ -157,8 +167,7 @@ class _BalanceRow extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 52,
-      padding: const EdgeInsets.symmetric(horizontal: 16),
+      padding: const EdgeInsets.all(10),
       decoration: BoxDecoration(
         color: MyBossColors.surface,
         borderRadius: BorderRadius.circular(12),
@@ -170,7 +179,7 @@ class _BalanceRow extends StatelessWidget {
           Expanded(
             child: Text(
               label,
-              style: MyBossTextStyles.bodyBig2.copyWith(
+              style: MyBossTextStyles.bodyMedium.copyWith(
                 color: MyBossColors.onSurface,
               ),
             ),

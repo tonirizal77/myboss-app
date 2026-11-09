@@ -1,6 +1,4 @@
-import 'package:another_flushbar/flushbar.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
@@ -17,9 +15,6 @@ part 'account/list_menu_akun.dart';
 part 'account/account_stats_card.dart';
 part 'account/card_follow_us.dart';
 part 'edit_profile/form_profile.dart';
-part 'voucher/card_voucher.dart';
-part 'voucher/voucher_bottomsheet.dart';
-part 'voucher/voucher_custom.dart';
 part 'account/menu_theme_switch.dart';
 part 'points/points_format.dart';
 part 'points/points_badge.dart';

@@ -1,3 +1,6 @@
+import 'dart:convert';
+import 'dart:io';
+
 import 'package:flutter_test/flutter_test.dart';
 import 'package:myboss_app/core_feat/core_feat.dart';
 import 'package:myboss_app/features/features.dart';
@@ -71,6 +74,83 @@ void main() {
 
       expect(detail.lines, hasLength(1));
       expect(detail.total, detail.entry.amount);
+    });
+  });
+
+  test('profile/info staging shape: balance_points, voucher_count', () {
+    final p = ProfileModel.fromJson(const {
+      'id': 1,
+      'name': 'Test User',
+      'avatar_id': null,
+      'avatar': null,
+      'favatar': null,
+      'balance_points': 269,
+      'voucher_count': 3,
+    });
+
+    expect(p.balancePoints, 269);
+    expect(p.voucherCount, 3);
+    expect(p.favatar, '');
+  });
+
+  group('PointsRemote mapping (/profile/loyalty-points)', () {
+    LoyaltyPointsModel mock() => LoyaltyPointsModel.fromJson(
+      (jsonDecode(
+                File(
+                  MockServerInterceptor.assetKey(
+                    'GET',
+                    Endpoints.profileLoyaltyPoints,
+                  ),
+                ).readAsStringSync(),
+              )
+              as DataMap)['data']
+          as DataMap,
+    );
+
+    test('summary: total_balance_point and expiring_points', () {
+      final summary = PointsRemote.toSummary(mock());
+
+      expect(summary.balance, 1250);
+      expect(summary.expiringPoints, 100);
+      expect(summary.expiresAt, DateTime(2026, 11, 18));
+    });
+
+    test('no expiring_points: nothing expiring', () {
+      final summary = PointsRemote.toSummary(
+        LoyaltyPointsModel.fromJson(const {
+          'total_balance_point': 269,
+          'expiring_points': null,
+          'active_point': [],
+        }),
+      );
+
+      expect(summary.balance, 269);
+      expect(summary.expiringPoints, 0);
+      expect(summary.expiresAt, isNull);
+    });
+
+    test('history: active_point, bonus rows without an order total', () {
+      final history = PointsRemote.toHistory(mock());
+
+      expect(history, hasLength(3));
+      expect(history.first.points, 20);
+      expect(history.first.amount, 300000);
+      expect(history.first.date, DateTime(2026, 11, 5, 10, 15));
+      expect(history[1].amount, 0); // sales_order_id / order_total null
+      expect(history.every((e) => e.isEarned), isTrue);
+    });
+
+    test('rows with an unreadable date are skipped', () {
+      final history = PointsRemote.toHistory(
+        LoyaltyPointsModel.fromJson(const {
+          'active_point': [
+            {'id': 1, 'date': null, 'earned_points': 5},
+            {'id': 2, 'date': '2026-11-01 01:36:43', 'earned_points': 10},
+          ],
+        }),
+      );
+
+      expect(history.map((e) => e.id), [2]);
     });
   });
 
