@@ -9,7 +9,10 @@ class AccountStatsCard extends StatelessWidget {
     return _AccountCard(
       child: Column(
         children: [
-          BlocBuilder<PointsCubit, PointsState>(
+          // Balance: `balance_points` of /profile/info (same as Home).
+          BlocBuilder<ProfileBloc, ProfileState>(
+            buildWhen: (a, b) =>
+                a.profile.balancePoints != b.profile.balancePoints,
             builder: (context, state) => _AccountRow(
               icon: PointsBadge(
                 size: 32,
@@ -17,17 +20,16 @@ class AccountStatsCard extends StatelessWidget {
                 holeColor: MyBossColors.surface,
               ),
               label: LocaleKeys.points_balance.tr(
-                args: [PointsFormat.thousands(state.summary.balance)],
+                args: [PointsFormat.thousands(state.profile.balancePoints)],
               ),
               labelStyle: MyBossTextStyles.title,
               onTap: () => AccountFlows.goToPointsPage(context),
             ),
           ),
           Divider(height: 1, thickness: 0.5, color: MyBossColors.outline),
-          // Same list as the Vouchers page: branch vouchers (PRD-011).
-          BlocBuilder<PromoCubit, PromoState>(
-            buildWhen: (p, c) =>
-                p.content.vouchers.length != c.content.vouchers.length,
+          // Unused vouchers: total of `is_used=false` (Vouchers page, Active).
+          BlocBuilder<MemberVoucherCubit, MemberVoucherState>(
+            buildWhen: (p, c) => p.activeCount != c.activeCount,
             builder: (context, state) {
               return _AccountRow(
                 icon: Icon(
@@ -36,7 +38,7 @@ class AccountStatsCard extends StatelessWidget {
                   color: MyBossColors.danger,
                 ),
                 label: LocaleKeys.akun_voucher_count.tr(
-                  args: ['${state.content.vouchers.length}'],
+                  args: ['${state.activeCount}'],
                 ),
                 labelStyle: MyBossTextStyles.title,
                 onTap: () => AccountFlows.goToVoucherPage(context),

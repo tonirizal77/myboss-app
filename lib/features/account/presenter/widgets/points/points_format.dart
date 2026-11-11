@@ -2,6 +2,15 @@ part of '../widgets.dart';
 
 /// Formatting helpers for the points screens (follow the Figma copy).
 abstract class PointsFormat {
+  /// History row title: Point Earned / Points Redeemed / Points Expired.
+  static String label(PointEntry entry) =>
+      (entry.isExpired
+              ? LocaleKeys.points_expired
+              : entry.isEarned
+              ? LocaleKeys.points_earned
+              : LocaleKeys.points_redeemed)
+          .tr();
+
   /// 6969 -> "6,969"
   static String thousands(int value, {String separator = ','}) {
     final digits = value.abs().toString();

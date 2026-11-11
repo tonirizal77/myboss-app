@@ -35,3 +35,14 @@ abstract class PointsRepo {
 
   ResultFuture<PointDetail> getDetail(int id);
 }
+
+/// The member's own vouchers (`/profile/discount-vouchers`).
+abstract class MemberVoucherRepo {
+  const MemberVoucherRepo();
+
+  ResultFuture<MemberVoucherPage> getVouchers({
+    required VoucherStatus status,
+    int page = 1,
+    String storeDomain = '',
+  });
+}

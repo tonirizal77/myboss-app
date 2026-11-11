@@ -1,5 +1,7 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
+import '../loyalty_points_model/loyalty_points_model.dart';
+
 part 'profile_model.freezed.dart';
 part 'profile_model.g.dart';
 
@@ -45,6 +47,10 @@ abstract class ProfileModel with _$ProfileModel {
 
     /// `balance_points` - points balance (staging, 2026-11-09).
     @Default(0) int balancePoints,
+
+    /// `expiring_points` - the points that expire first and when
+    /// (staging, 2026-11-11); null when nothing expires.
+    ExpiringPointsModel? expiringPoints,
   }) = _ProfileModel;
 
   factory ProfileModel.fromJson(Map<String, dynamic> json) =>

@@ -18,7 +18,8 @@ class _PromoPageState extends State<PromoPage> {
   @override
   void initState() {
     super.initState();
-    if (UserFlows.isLoggedIn(context)) context.read<PointsCubit>().load();
+    // Points balance: `balance_points` of /profile/info.
+    if (UserFlows.isLoggedIn(context)) AccountFlows.getProfile(context);
   }
 
   @override
@@ -110,13 +111,7 @@ class _PromoPageState extends State<PromoPage> {
       PromoTab.points => Column(
         children: [
           if (isLoggedIn) ...[
-            BlocBuilder<PointsCubit, PointsState>(
-              buildWhen: (a, b) => a.summary != b.summary,
-              builder: (context, points) => MemberPointsText(
-                summary: points.summary,
-                align: CrossAxisAlignment.center,
-              ),
-            ),
+            const ProfilePointsText(align: CrossAxisAlignment.center),
             const SizedBox(height: 24),
             pointsFailed
                 ? PromoLoadError(

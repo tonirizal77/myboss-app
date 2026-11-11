@@ -49,6 +49,7 @@ extension _EventUserLogout on UserBloc {
         /// Drop persisted vouchers - avoid showing the
         /// previous user's data once back in guest mode.
         getIt<AccountBloc>().add(const AccountEvent.reset());
+        getIt<MemberVoucherCubit>().reset();
 
         // Intentionally NOT clearing DeleteAccountLocalState here - the
         // deletion request (if any) is still active server-side for this

@@ -110,6 +110,8 @@ abstract class LocaleKeys {
   static const points_earned = 'points.earned';
   static const points_redeemed = 'points.redeemed';
   static const points_earned_value = 'points.earned_value';
+  static const points_redeemed_value = 'points.redeemed_value';
+  static const points_expired = 'points.expired';
   static const points_redeem_options = 'points.redeem_options';
   static const points_close = 'points.close';
   static const points_subtotal = 'points.subtotal';
@@ -146,6 +148,12 @@ abstract class LocaleKeys {
   static const akun_folow_us = 'akun.folow_us';
   static const akun_voucher_title = 'akun.voucher_title';
   static const akun_voucher_count = 'akun.voucher_count';
+  static const akun_voucher_tab_active = 'akun.voucher_tab_active';
+  static const akun_voucher_tab_used = 'akun.voucher_tab_used';
+  static const akun_voucher_used_on = 'akun.voucher_used_on';
+  static const akun_voucher_empty = 'akun.voucher_empty';
+  static const akun_voucher_used_empty = 'akun.voucher_used_empty';
+  static const akun_voucher_load_more = 'akun.voucher_load_more';
   static const akun_delete_confirm_title = 'akun.delete_confirm_title';
   static const akun_delete_confirm_desc = 'akun.delete_confirm_desc';
   static const akun_delete_confirm_info1 = 'akun.delete_confirm_info1';

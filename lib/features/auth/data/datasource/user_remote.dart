@@ -60,7 +60,9 @@ class UserRemoteImpl implements UserRemote {
   ResultFuture<DataMap> deleteAccount() async {
     /// Confirmed in Postman (hayo): this route only exists for HTTP DELETE -
     /// a POST gets 406 "Page Not Found".
-    final resp = await DioDelete.call(url: Endpoints.deleteAccountReal);
+    final resp = await DioDelete.call(
+      url: ConfigServer.branchUrl(Endpoints.deleteAccountReal),
+    );
 
     return resp.fold((_l) => Left(_l), (_r) => Right(_r));
   }

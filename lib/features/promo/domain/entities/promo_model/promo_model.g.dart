@@ -48,15 +48,25 @@ Map<String, dynamic> _$PromoVouchersModelToJson(_PromoVouchersModel instance) =>
 _PromoVoucher _$PromoVoucherFromJson(Map<String, dynamic> json) =>
     _PromoVoucher(
       id: (json['id'] as num?)?.toInt() ?? 0,
+      code: json['code'] as String?,
       title: json['title'] as String? ?? '',
       discountLabel: json['discount_label'] as String? ?? '',
       expiryDate: json['expiry_date'] as String?,
+      tnc:
+          (json['tnc'] as List<dynamic>?)?.map((e) => e as String?).toList() ??
+          const [],
+      isUsed: json['is_used'] as bool? ?? false,
+      usedDate: json['used_date'] as String?,
     );
 
 Map<String, dynamic> _$PromoVoucherToJson(_PromoVoucher instance) =>
     <String, dynamic>{
       'id': instance.id,
+      'code': instance.code,
       'title': instance.title,
       'discount_label': instance.discountLabel,
       'expiry_date': instance.expiryDate,
+      'tnc': instance.tnc,
+      'is_used': instance.isUsed,
+      'used_date': instance.usedDate,
     };

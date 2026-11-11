@@ -44,10 +44,11 @@ class RmdMainHeaderChild extends StatelessWidget {
                     _profileUser(context),
                   ],
                 ),
-                child2: Text(
-                  "Let’s be a friend!",
-                  style: MyBossTextStyles.titleBig1,
-                ),
+                child2: const SizedBox.shrink(),
+                // Text(
+                //   "Let’s be a friend!",
+                //   style: MyBossTextStyles.titleBig1,
+                // ),
               ),
             ),
           ],

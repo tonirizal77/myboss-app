@@ -12,7 +12,15 @@ class _PointsPageState extends State<PointsPage> {
   @override
   void initState() {
     super.initState();
-    context.read<PointsCubit>().load();
+    _refresh();
+  }
+
+  /// History from /profile/loyalty-points; balance from /profile/info.
+  Future<void> _refresh() async {
+    await Future.wait([
+      context.read<PointsCubit>().load(),
+      AccountFlows.getProfile(context),
+    ]);
   }
 
   @override
@@ -34,7 +42,13 @@ class _PointsPageState extends State<PointsPage> {
           return Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              _Banner(summary: state.summary, id: id),
+              // Balance + expiring points from /profile/info (same as Home).
+              BlocBuilder<ProfileBloc, ProfileState>(
+                buildWhen: (a, b) =>
+                    a.profile.pointsSummary != b.profile.pointsSummary,
+                builder: (context, profile) =>
+                    _Banner(summary: profile.profile.pointsSummary, id: id),
+              ),
               Flexible(child: _history(context, state, id)),
             ],
           );
@@ -56,21 +70,30 @@ class _PointsPageState extends State<PointsPage> {
     );
   }
 
+  /// History list: phone = one column with separators, tablet / desktop =
+  /// two columns. Wrap view: the column width follows the real parent width.
   Widget _history(BuildContext context, PointsState state, bool id) {
     final isMobile = Responsive.isMobile(context);
 
     return ResponsiveGridOrWrap<PointEntry>(
+      tipe: TipeView.wrapview,
+      mobile: 1,
+      tablet: 2,
+      desktop: 2,
       useScrollView: true,
-      tipe: TipeView.gridview,
-      maxHeight: 76,
       padding: const EdgeInsets.fromLTRB(16, 24, 16, 8),
+      paddingBody: EdgeInsets.zero,
       isLoading: state.status == Status.loading && state.history.isEmpty,
-      isFailure: state.status == Status.failed,
-      onRefresh: () => context.read<PointsCubit>().load(),
+      isFailure: state.status == Status.failed && state.history.isEmpty,
+      onRetry: _refresh,
+      onRefresh: _refresh,
       listData: state.history,
-      showEmptyData: Center(
+      showEmptyData: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 24),
         child: Text(
           LocaleKeys.points_empty.tr(),
+          key: const ValueKey('points_empty'),
+          textAlign: TextAlign.center,
           style: MyBossTextStyles.body.copyWith(
             color: MyBossColors.onSurfaceVariant,
           ),
@@ -110,30 +133,34 @@ class _HistoryTile extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  entry.isEarned
-                      ? LocaleKeys.points_earned.tr()
-                      : LocaleKeys.points_redeemed.tr(),
-                  style: MyBossTextStyles.subtitleBig2.copyWith(
-                    color: MyBossColors.onSurface,
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    PointsFormat.label(entry),
+                    style: MyBossTextStyles.subtitleBig2.copyWith(
+                      color: MyBossColors.onSurface,
+                    ),
                   ),
-                ),
-                Text(
-                  PointsFormat.date(entry.date, id: id),
-                  style: MyBossTextStyles.caption.copyWith(
-                    color: MyBossColors.onSurfaceVariant,
+                  Text(
+                    PointsFormat.date(entry.date, id: id),
+                    style: MyBossTextStyles.caption.copyWith(
+                      color: MyBossColors.onSurfaceVariant,
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
+            const SizedBox(width: 12),
             Column(
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
                 Text(
-                  LocaleKeys.points_earned_value.tr(args: ['${entry.points}']),
+                  (entry.isEarned
+                          ? LocaleKeys.points_earned_value
+                          : LocaleKeys.points_redeemed_value)
+                      .tr(args: ['${entry.points.abs()}']),
                   style: MyBossTextStyles.subtitleBig2.copyWith(
                     color: entry.isEarned
                         ? MyBossColors.success

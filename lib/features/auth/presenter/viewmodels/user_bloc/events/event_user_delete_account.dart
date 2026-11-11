@@ -47,6 +47,7 @@ extension _UserDeleteAccountHandler on UserBloc {
         /// Drop persisted vouchers - avoid showing the
         /// deleted account's data once back in guest mode.
         getIt<AccountBloc>().add(const AccountEvent.reset());
+        getIt<MemberVoucherCubit>().reset();
         await DeleteAccountLocalState.clearPending();
 
         /// Fresh state (like logout): `statusLogin` back to initial, so the

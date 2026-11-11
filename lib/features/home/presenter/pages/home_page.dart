@@ -35,28 +35,33 @@ class _HomePageState extends State<HomePage>
   Widget build(BuildContext context) {
     super.build(context);
 
-    return ResponsivePage(
-      colorPage: MyBossColors.surfaceContainerLowest,
-      backgroundColor: MyBossColors.surfaceContainerLowest,
-      useSafeArea: true,
-      useScrollView: true,
-      // Branch selector stays put while the content scrolls.
-      // Phone only - tablet/desktop show it in the main header.
-      appBar: Responsive.isMobile(context)
-          ? BranchHeader.appBar(context)
-          : null,
-      onRefresh: () async => await _onReload(context),
-      body: BlocBuilder<UserBloc, UserState>(
-        buildWhen: (previous, current) =>
-            previous.statusLogin != current.statusLogin,
-        builder: (context, state) {
-          final _isLoggedIn = state.statusLogin == Status.success;
+    // Another branch: the member's profile (balance) is per branch.
+    return BlocListener<StoreBranchCubit, StoreBranchState>(
+      listenWhen: (a, b) => a.selected?.urlId != b.selected?.urlId,
+      listener: (context, _) => _onReload(context),
+      child: ResponsivePage(
+        colorPage: MyBossColors.surfaceContainerLowest,
+        backgroundColor: MyBossColors.surfaceContainerLowest,
+        useSafeArea: true,
+        useScrollView: true,
+        // Branch selector stays put while the content scrolls.
+        // Phone only - tablet/desktop show it in the main header.
+        appBar: Responsive.isMobile(context)
+            ? BranchHeader.appBar(context)
+            : null,
+        onRefresh: () async => await _onReload(context),
+        body: BlocBuilder<UserBloc, UserState>(
+          buildWhen: (previous, current) =>
+              previous.statusLogin != current.statusLogin,
+          builder: (context, state) {
+            final _isLoggedIn = state.statusLogin == Status.success;
 
-          return Responsive(
-            mobile: _mobileView(context, _isLoggedIn),
-            tablet: _tabletView(context, _isLoggedIn),
-          );
-        },
+            return Responsive(
+              mobile: _mobileView(context, _isLoggedIn),
+              tablet: _tabletView(context, _isLoggedIn),
+            );
+          },
+        ),
       ),
     );
   }

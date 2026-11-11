@@ -44,11 +44,21 @@ abstract class PromoVoucher with _$PromoVoucher {
   @JsonSerializable(fieldRename: FieldRename.snake)
   const factory PromoVoucher({
     @Default(0) int id,
+
+    /// Voucher code to copy, e.g. `MBVIP100`.
+    String? code,
     @Default('') String title,
     @Default('') String discountLabel,
 
     /// `yyyy-MM-dd`; null = no expiry.
     String? expiryDate,
+
+    /// Terms, already numbered by the server ("1. Discount 10%").
+    @Default([]) List<String?> tnc,
+
+    /// For a signed-in member: whether they already used it, and when.
+    @Default(false) bool isUsed,
+    String? usedDate,
   }) = _PromoVoucher;
 
   factory PromoVoucher.fromJson(Map<String, Object?> json) =>

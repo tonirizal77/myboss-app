@@ -19,3 +19,4 @@ part 'account/menu_theme_switch.dart';
 part 'points/points_format.dart';
 part 'points/points_badge.dart';
 part 'points/point_detail_sheet.dart';
+part 'vouchers/member_vouchers_view.dart';

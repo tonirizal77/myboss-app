@@ -45,6 +45,11 @@ _ProfileModel _$ProfileModelFromJson(Map<String, dynamic> json) =>
       cumulativePrev: (json['cumulative_prev'] as num?)?.toInt() ?? 0,
       currentCycle: (json['current_cycle'] as num?)?.toInt() ?? 0,
       balancePoints: (json['balance_points'] as num?)?.toInt() ?? 0,
+      expiringPoints: json['expiring_points'] == null
+          ? null
+          : ExpiringPointsModel.fromJson(
+              json['expiring_points'] as Map<String, dynamic>,
+            ),
     );
 
 Map<String, dynamic> _$ProfileModelToJson(_ProfileModel instance) =>
@@ -82,6 +87,7 @@ Map<String, dynamic> _$ProfileModelToJson(_ProfileModel instance) =>
       'cumulative_prev': instance.cumulativePrev,
       'current_cycle': instance.currentCycle,
       'balance_points': instance.balancePoints,
+      'expiring_points': instance.expiringPoints,
     };
 
 _CustomerTypeId _$CustomerTypeIdFromJson(Map<String, dynamic> json) =>

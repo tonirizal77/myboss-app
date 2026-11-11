@@ -113,9 +113,11 @@ class DeleteAccountPendingPanel extends StatelessWidget {
   Widget build(BuildContext context) {
     final countdown = DeleteAccountLocalState.countdownLabel;
     final danger = MyBossColors.danger;
-    final points = context.watch<PointsCubit>().state.summary.balance;
-    final vouchers = context.select<PromoCubit, int>(
-      (c) => c.state.content.vouchers.length,
+    final points = context.select<ProfileBloc, int>(
+      (b) => b.state.profile.balancePoints,
+    );
+    final vouchers = context.select<MemberVoucherCubit, int>(
+      (c) => c.state.activeCount,
     );
 
     return Container(

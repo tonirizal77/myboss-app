@@ -62,6 +62,7 @@ class Voucher extends Equatable {
     this.validUntil,
     this.code = '',
     this.terms = const [],
+    this.usedAt,
   });
 
   final String id;
@@ -79,6 +80,30 @@ class Voucher extends Equatable {
   final String code;
   final List<String> terms;
 
+  /// Member vouchers only: when it was used; null = still active.
+  final DateTime? usedAt;
+
+  bool get isUsed => usedAt != null;
+
+  /// Terms without the server's own numbering ("1. Discount 10%" ->
+  /// "Discount 10%"): the details sheet numbers them itself. Blank lines
+  /// are dropped.
+  static List<String> cleanTerms(Iterable<Object?> raw) => [
+    for (final t in raw)
+      if (t != null)
+        if ('$t'.replaceFirst(RegExp(r'^\s*\d+[.)]\s*'), '').trim() case final s
+            when s.isNotEmpty)
+          s,
+  ];
+
   @override
-  List<Object?> get props => [id, title, discount, validUntil, code, terms];
+  List<Object?> get props => [
+    id,
+    title,
+    discount,
+    validUntil,
+    code,
+    terms,
+    usedAt,
+  ];
 }

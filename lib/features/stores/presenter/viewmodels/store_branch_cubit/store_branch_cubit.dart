@@ -2,6 +2,7 @@ import 'package:equatable/equatable.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
 
+import 'package:myboss_app/core_feat/core_feat.dart' show ConfigServer;
 import 'package:myboss_app/features/stores/domain/domains.dart';
 
 part 'store_branch_state.dart';
@@ -9,7 +10,20 @@ part 'store_branch_state.dart';
 /// Currently selected branch (persisted) and the device position used to show
 /// the distance to each branch.
 class StoreBranchCubit extends HydratedCubit<StoreBranchState> {
-  StoreBranchCubit() : super(const StoreBranchState());
+  StoreBranchCubit() : super(const StoreBranchState()) {
+    // Restored (hydrated) selection: profile requests use it right away.
+    _syncDomain(state);
+  }
+
+  /// `/profile/...` requests go to the selected branch domain.
+  static void _syncDomain(StoreBranchState s) =>
+      ConfigServer.branchDomain = s.selected?.urlId ?? '';
+
+  @override
+  void onChange(Change<StoreBranchState> change) {
+    super.onChange(change);
+    _syncDomain(change.nextState);
+  }
 
   /// Select [branch] as the active branch.
   void select(StoreBranch branch) => emit(state.copyWith(selected: branch));

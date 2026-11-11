@@ -22,21 +22,24 @@ class _AccountPageState extends State<AccountPage>
   /// points data to fetch - those endpoints require a real user session.
   bool get _isLoggedIn => UserFlows.isLoggedIn(context);
 
-  /// [vouchers]: also reload the branch vouchers (pull to refresh) -
-  /// [PromoBranchSync] already loads them on open, branch and login changes.
-  Future<void> refreshData({bool vouchers = false}) async {
+  Future<void> refreshData() async {
     if (!_isLoggedIn) return;
 
     PrintHelper.printError("__initsate or refresh ACCOUNT PAGE");
 
     /// Profile + points balance (`balance_points`) from profile/info, voucher
-    /// count from the branch voucher list (PRD-011).
+    /// count = unused vouchers (`/profile/discount-vouchers?is_used=false`).
     final points = context.read<PointsCubit>();
-    final promo = context.read<PromoCubit>();
+    final vouchers = context.read<MemberVoucherCubit>();
     await Future.wait([
       AccountFlows.getProfile(context),
       points.load(),
-      if (vouchers) promo.retry(),
+      // Vouchers belong to the branch selected in the header.
+      vouchers.load(
+        VoucherStatus.active,
+        storeDomain:
+            context.read<StoreBranchCubit>().state.selected?.urlId ?? '',
+      ),
     ]);
   }
 
@@ -49,15 +52,22 @@ class _AccountPageState extends State<AccountPage>
     /// The tab is kept alive, so it may have been built as a guest: fetch
     /// the user's data again once they sign in (initState already covers
     /// opening it while signed in).
-    return PromoBranchSync(
-      child: BlocListener<UserBloc, UserState>(
-        listenWhen: UserFlows.justSignedIn,
-        listener: (context, _) => refreshData(),
-        child: BlocBuilder<UserBloc, UserState>(
-          buildWhen: (previous, current) =>
-              previous.statusLogin != current.statusLogin,
-          builder: (context, state) => _build(context, state),
+    return MultiBlocListener(
+      listeners: [
+        BlocListener<UserBloc, UserState>(
+          listenWhen: UserFlows.justSignedIn,
+          listener: (context, _) => refreshData(),
         ),
+        // Another branch: its own vouchers (count on the Vouchers row).
+        BlocListener<StoreBranchCubit, StoreBranchState>(
+          listenWhen: (a, b) => a.selected?.urlId != b.selected?.urlId,
+          listener: (context, _) => refreshData(),
+        ),
+      ],
+      child: BlocBuilder<UserBloc, UserState>(
+        buildWhen: (previous, current) =>
+            previous.statusLogin != current.statusLogin,
+        builder: (context, state) => _build(context, state),
       ),
     );
   }
@@ -68,7 +78,7 @@ class _AccountPageState extends State<AccountPage>
     return ResponsivePage(
       useSafeArea: true,
       alignment: .topCenter,
-      onRefresh: () => refreshData(vouchers: true),
+      onRefresh: refreshData,
       body: SingleChildScrollView(
         padding: EdgeInsets.all(24),
         child: Responsive(

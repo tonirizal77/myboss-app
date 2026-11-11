@@ -61,6 +61,18 @@ class ConfigServer with SettingLanguage {
   /// Locale setter
   static set setLocale(String newLocale) => _locale = newLocale;
 
+  /// Follow the app language: requests go to `{baseURL}/{lang}/{domain}`.
+  /// Called by the root widget whenever the locale changes (e.g. from
+  /// `SwitchLocaleBar`, which only saves the language and switches the UI).
+  /// Returns `true` when the API locale changed.
+  static bool syncLocale(String langCode) {
+    if (langCode.isEmpty || langCode == _locale) return false;
+
+    _locale = langCode;
+    resetDioBaseUrl();
+    return true;
+  }
+
   /// ==== SWITCH ACCESS SERVER ===
   ///
   /// Client ID
@@ -104,4 +116,13 @@ class ConfigServer with SettingLanguage {
 
     return "$baseURL/$locale/$storeDomain$endpoint";
   }
+
+  /// `url_id` of the branch selected in the header; empty = default
+  /// [domain]. Kept in sync by `StoreBranchCubit`.
+  static String branchDomain = '';
+
+  /// [endpoint] on the selected branch. The member's `/profile/...` data
+  /// (info, points, orders, vouchers, delete account) belongs to a branch.
+  static String branchUrl(String endpoint) =>
+      urlFor(endpoint, storeDomain: branchDomain);
 }

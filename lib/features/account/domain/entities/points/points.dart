@@ -26,6 +26,8 @@ class PointEntry extends Equatable {
     required this.date,
     required this.points,
     required this.amount,
+    this.salesOrderId,
+    this.isExpired = false,
   });
 
   final int id;
@@ -40,10 +42,25 @@ class PointEntry extends Equatable {
   /// Purchase amount (Rp) the points came from.
   final int amount;
 
+  /// Order behind the entry (receipt: `/profile/orders/find/{id}`); null for
+  /// points not from an order (e.g. bonus).
+  final int? salesOrderId;
+
+  /// Points that lapsed (`Expired`); [points] is negative.
+  final bool isExpired;
+
   bool get isEarned => points >= 0;
 
   @override
-  List<Object?> get props => [id, title, date, points, amount];
+  List<Object?> get props => [
+    id,
+    title,
+    date,
+    points,
+    amount,
+    salesOrderId,
+    isExpired,
+  ];
 }
 
 /// Receipt behind a [PointEntry] (Point Earned sheet).

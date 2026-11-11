@@ -12,5 +12,8 @@ extension PromoVoucherX on PromoVoucher {
     title: title,
     discount: discountLabel,
     validUntil: DateTime.tryParse(expiryDate ?? ''),
+    code: code ?? '',
+    terms: Voucher.cleanTerms(tnc),
+    usedAt: isUsed ? DateTime.tryParse(usedDate ?? '') : null,
   );
 }

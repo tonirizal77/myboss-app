@@ -15,7 +15,11 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$LoyaltyPointsModel {
 
- int get totalBalancePoint; ExpiringPointsModel? get expiringPoints; List<ActivePointModel> get activePoint;
+/// Not sent by staging (2026-11-11); the app shows `balance_points` of
+/// `/profile/info` instead.
+ int? get totalBalancePoint; ExpiringPointsModel? get expiringPoints;/// History, earned and redeemed (staging sends `all_point`; the older
+/// `active_point` is still read as a fallback).
+@JsonKey(readValue: _readHistory) List<ActivePointModel> get allPoint;
 /// Create a copy of LoyaltyPointsModel
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -28,16 +32,16 @@ $LoyaltyPointsModelCopyWith<LoyaltyPointsModel> get copyWith => _$LoyaltyPointsM
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is LoyaltyPointsModel&&(identical(other.totalBalancePoint, totalBalancePoint) || other.totalBalancePoint == totalBalancePoint)&&(identical(other.expiringPoints, expiringPoints) || other.expiringPoints == expiringPoints)&&const DeepCollectionEquality().equals(other.activePoint, activePoint));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is LoyaltyPointsModel&&(identical(other.totalBalancePoint, totalBalancePoint) || other.totalBalancePoint == totalBalancePoint)&&(identical(other.expiringPoints, expiringPoints) || other.expiringPoints == expiringPoints)&&const DeepCollectionEquality().equals(other.allPoint, allPoint));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,totalBalancePoint,expiringPoints,const DeepCollectionEquality().hash(activePoint));
+int get hashCode => Object.hash(runtimeType,totalBalancePoint,expiringPoints,const DeepCollectionEquality().hash(allPoint));
 
 @override
 String toString() {
-  return 'LoyaltyPointsModel(totalBalancePoint: $totalBalancePoint, expiringPoints: $expiringPoints, activePoint: $activePoint)';
+  return 'LoyaltyPointsModel(totalBalancePoint: $totalBalancePoint, expiringPoints: $expiringPoints, allPoint: $allPoint)';
 }
 
 
@@ -48,7 +52,7 @@ abstract mixin class $LoyaltyPointsModelCopyWith<$Res>  {
   factory $LoyaltyPointsModelCopyWith(LoyaltyPointsModel value, $Res Function(LoyaltyPointsModel) _then) = _$LoyaltyPointsModelCopyWithImpl;
 @useResult
 $Res call({
- int totalBalancePoint, ExpiringPointsModel? expiringPoints, List<ActivePointModel> activePoint
+ int? totalBalancePoint, ExpiringPointsModel? expiringPoints,@JsonKey(readValue: _readHistory) List<ActivePointModel> allPoint
 });
 
 
@@ -65,11 +69,11 @@ class _$LoyaltyPointsModelCopyWithImpl<$Res>
 
 /// Create a copy of LoyaltyPointsModel
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? totalBalancePoint = null,Object? expiringPoints = freezed,Object? activePoint = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? totalBalancePoint = freezed,Object? expiringPoints = freezed,Object? allPoint = null,}) {
   return _then(_self.copyWith(
-totalBalancePoint: null == totalBalancePoint ? _self.totalBalancePoint : totalBalancePoint // ignore: cast_nullable_to_non_nullable
-as int,expiringPoints: freezed == expiringPoints ? _self.expiringPoints : expiringPoints // ignore: cast_nullable_to_non_nullable
-as ExpiringPointsModel?,activePoint: null == activePoint ? _self.activePoint : activePoint // ignore: cast_nullable_to_non_nullable
+totalBalancePoint: freezed == totalBalancePoint ? _self.totalBalancePoint : totalBalancePoint // ignore: cast_nullable_to_non_nullable
+as int?,expiringPoints: freezed == expiringPoints ? _self.expiringPoints : expiringPoints // ignore: cast_nullable_to_non_nullable
+as ExpiringPointsModel?,allPoint: null == allPoint ? _self.allPoint : allPoint // ignore: cast_nullable_to_non_nullable
 as List<ActivePointModel>,
   ));
 }
@@ -167,10 +171,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( int totalBalancePoint,  ExpiringPointsModel? expiringPoints,  List<ActivePointModel> activePoint)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( int? totalBalancePoint,  ExpiringPointsModel? expiringPoints, @JsonKey(readValue: _readHistory)  List<ActivePointModel> allPoint)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _LoyaltyPointsModel() when $default != null:
-return $default(_that.totalBalancePoint,_that.expiringPoints,_that.activePoint);case _:
+return $default(_that.totalBalancePoint,_that.expiringPoints,_that.allPoint);case _:
   return orElse();
 
 }
@@ -188,10 +192,10 @@ return $default(_that.totalBalancePoint,_that.expiringPoints,_that.activePoint);
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( int totalBalancePoint,  ExpiringPointsModel? expiringPoints,  List<ActivePointModel> activePoint)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( int? totalBalancePoint,  ExpiringPointsModel? expiringPoints, @JsonKey(readValue: _readHistory)  List<ActivePointModel> allPoint)  $default,) {final _that = this;
 switch (_that) {
 case _LoyaltyPointsModel():
-return $default(_that.totalBalancePoint,_that.expiringPoints,_that.activePoint);case _:
+return $default(_that.totalBalancePoint,_that.expiringPoints,_that.allPoint);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -208,10 +212,10 @@ return $default(_that.totalBalancePoint,_that.expiringPoints,_that.activePoint);
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( int totalBalancePoint,  ExpiringPointsModel? expiringPoints,  List<ActivePointModel> activePoint)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( int? totalBalancePoint,  ExpiringPointsModel? expiringPoints, @JsonKey(readValue: _readHistory)  List<ActivePointModel> allPoint)?  $default,) {final _that = this;
 switch (_that) {
 case _LoyaltyPointsModel() when $default != null:
-return $default(_that.totalBalancePoint,_that.expiringPoints,_that.activePoint);case _:
+return $default(_that.totalBalancePoint,_that.expiringPoints,_that.allPoint);case _:
   return null;
 
 }
@@ -223,16 +227,22 @@ return $default(_that.totalBalancePoint,_that.expiringPoints,_that.activePoint);
 
 @JsonSerializable(fieldRename: FieldRename.snake)
 class _LoyaltyPointsModel implements LoyaltyPointsModel {
-  const _LoyaltyPointsModel({this.totalBalancePoint = 0, this.expiringPoints, final  List<ActivePointModel> activePoint = const []}): _activePoint = activePoint;
+  const _LoyaltyPointsModel({this.totalBalancePoint, this.expiringPoints, @JsonKey(readValue: _readHistory) final  List<ActivePointModel> allPoint = const []}): _allPoint = allPoint;
   factory _LoyaltyPointsModel.fromJson(Map<String, dynamic> json) => _$LoyaltyPointsModelFromJson(json);
 
-@override@JsonKey() final  int totalBalancePoint;
+/// Not sent by staging (2026-11-11); the app shows `balance_points` of
+/// `/profile/info` instead.
+@override final  int? totalBalancePoint;
 @override final  ExpiringPointsModel? expiringPoints;
- final  List<ActivePointModel> _activePoint;
-@override@JsonKey() List<ActivePointModel> get activePoint {
-  if (_activePoint is EqualUnmodifiableListView) return _activePoint;
+/// History, earned and redeemed (staging sends `all_point`; the older
+/// `active_point` is still read as a fallback).
+ final  List<ActivePointModel> _allPoint;
+/// History, earned and redeemed (staging sends `all_point`; the older
+/// `active_point` is still read as a fallback).
+@override@JsonKey(readValue: _readHistory) List<ActivePointModel> get allPoint {
+  if (_allPoint is EqualUnmodifiableListView) return _allPoint;
   // ignore: implicit_dynamic_type
-  return EqualUnmodifiableListView(_activePoint);
+  return EqualUnmodifiableListView(_allPoint);
 }
 
 
@@ -249,16 +259,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _LoyaltyPointsModel&&(identical(other.totalBalancePoint, totalBalancePoint) || other.totalBalancePoint == totalBalancePoint)&&(identical(other.expiringPoints, expiringPoints) || other.expiringPoints == expiringPoints)&&const DeepCollectionEquality().equals(other._activePoint, _activePoint));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _LoyaltyPointsModel&&(identical(other.totalBalancePoint, totalBalancePoint) || other.totalBalancePoint == totalBalancePoint)&&(identical(other.expiringPoints, expiringPoints) || other.expiringPoints == expiringPoints)&&const DeepCollectionEquality().equals(other._allPoint, _allPoint));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,totalBalancePoint,expiringPoints,const DeepCollectionEquality().hash(_activePoint));
+int get hashCode => Object.hash(runtimeType,totalBalancePoint,expiringPoints,const DeepCollectionEquality().hash(_allPoint));
 
 @override
 String toString() {
-  return 'LoyaltyPointsModel(totalBalancePoint: $totalBalancePoint, expiringPoints: $expiringPoints, activePoint: $activePoint)';
+  return 'LoyaltyPointsModel(totalBalancePoint: $totalBalancePoint, expiringPoints: $expiringPoints, allPoint: $allPoint)';
 }
 
 
@@ -269,7 +279,7 @@ abstract mixin class _$LoyaltyPointsModelCopyWith<$Res> implements $LoyaltyPoint
   factory _$LoyaltyPointsModelCopyWith(_LoyaltyPointsModel value, $Res Function(_LoyaltyPointsModel) _then) = __$LoyaltyPointsModelCopyWithImpl;
 @override @useResult
 $Res call({
- int totalBalancePoint, ExpiringPointsModel? expiringPoints, List<ActivePointModel> activePoint
+ int? totalBalancePoint, ExpiringPointsModel? expiringPoints,@JsonKey(readValue: _readHistory) List<ActivePointModel> allPoint
 });
 
 
@@ -286,11 +296,11 @@ class __$LoyaltyPointsModelCopyWithImpl<$Res>
 
 /// Create a copy of LoyaltyPointsModel
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? totalBalancePoint = null,Object? expiringPoints = freezed,Object? activePoint = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? totalBalancePoint = freezed,Object? expiringPoints = freezed,Object? allPoint = null,}) {
   return _then(_LoyaltyPointsModel(
-totalBalancePoint: null == totalBalancePoint ? _self.totalBalancePoint : totalBalancePoint // ignore: cast_nullable_to_non_nullable
-as int,expiringPoints: freezed == expiringPoints ? _self.expiringPoints : expiringPoints // ignore: cast_nullable_to_non_nullable
-as ExpiringPointsModel?,activePoint: null == activePoint ? _self._activePoint : activePoint // ignore: cast_nullable_to_non_nullable
+totalBalancePoint: freezed == totalBalancePoint ? _self.totalBalancePoint : totalBalancePoint // ignore: cast_nullable_to_non_nullable
+as int?,expiringPoints: freezed == expiringPoints ? _self.expiringPoints : expiringPoints // ignore: cast_nullable_to_non_nullable
+as ExpiringPointsModel?,allPoint: null == allPoint ? _self._allPoint : allPoint // ignore: cast_nullable_to_non_nullable
 as List<ActivePointModel>,
   ));
 }
@@ -587,8 +597,12 @@ as String?,
 /// @nodoc
 mixin _$ActivePointModel {
 
- int get id; int? get salesOrderId;/// `yyyy-MM-dd HH:mm:ss`
- String? get date; int get earnedPoints; int? get orderTotal; String? get forderTotal;
+ int get id;/// `Active` (earned), `Deducted` (redeemed) or `Expired`.
+ String? get status;/// Server label, e.g. "Point Earned" / "Point Redeemed".
+ String? get detail; int? get salesOrderId;/// `yyyy-MM-dd HH:mm:ss`
+ String? get date;/// Always positive; [status] says whether it was earned or deducted
+/// (older payloads: `earned_points`).
+@JsonKey(readValue: _readPoints) int get displayedPoint; int? get orderTotal; String? get forderTotal;
 /// Create a copy of ActivePointModel
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -601,16 +615,16 @@ $ActivePointModelCopyWith<ActivePointModel> get copyWith => _$ActivePointModelCo
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is ActivePointModel&&(identical(other.id, id) || other.id == id)&&(identical(other.salesOrderId, salesOrderId) || other.salesOrderId == salesOrderId)&&(identical(other.date, date) || other.date == date)&&(identical(other.earnedPoints, earnedPoints) || other.earnedPoints == earnedPoints)&&(identical(other.orderTotal, orderTotal) || other.orderTotal == orderTotal)&&(identical(other.forderTotal, forderTotal) || other.forderTotal == forderTotal));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is ActivePointModel&&(identical(other.id, id) || other.id == id)&&(identical(other.status, status) || other.status == status)&&(identical(other.detail, detail) || other.detail == detail)&&(identical(other.salesOrderId, salesOrderId) || other.salesOrderId == salesOrderId)&&(identical(other.date, date) || other.date == date)&&(identical(other.displayedPoint, displayedPoint) || other.displayedPoint == displayedPoint)&&(identical(other.orderTotal, orderTotal) || other.orderTotal == orderTotal)&&(identical(other.forderTotal, forderTotal) || other.forderTotal == forderTotal));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,id,salesOrderId,date,earnedPoints,orderTotal,forderTotal);
+int get hashCode => Object.hash(runtimeType,id,status,detail,salesOrderId,date,displayedPoint,orderTotal,forderTotal);
 
 @override
 String toString() {
-  return 'ActivePointModel(id: $id, salesOrderId: $salesOrderId, date: $date, earnedPoints: $earnedPoints, orderTotal: $orderTotal, forderTotal: $forderTotal)';
+  return 'ActivePointModel(id: $id, status: $status, detail: $detail, salesOrderId: $salesOrderId, date: $date, displayedPoint: $displayedPoint, orderTotal: $orderTotal, forderTotal: $forderTotal)';
 }
 
 
@@ -621,7 +635,7 @@ abstract mixin class $ActivePointModelCopyWith<$Res>  {
   factory $ActivePointModelCopyWith(ActivePointModel value, $Res Function(ActivePointModel) _then) = _$ActivePointModelCopyWithImpl;
 @useResult
 $Res call({
- int id, int? salesOrderId, String? date, int earnedPoints, int? orderTotal, String? forderTotal
+ int id, String? status, String? detail, int? salesOrderId, String? date,@JsonKey(readValue: _readPoints) int displayedPoint, int? orderTotal, String? forderTotal
 });
 
 
@@ -638,12 +652,14 @@ class _$ActivePointModelCopyWithImpl<$Res>
 
 /// Create a copy of ActivePointModel
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? salesOrderId = freezed,Object? date = freezed,Object? earnedPoints = null,Object? orderTotal = freezed,Object? forderTotal = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? status = freezed,Object? detail = freezed,Object? salesOrderId = freezed,Object? date = freezed,Object? displayedPoint = null,Object? orderTotal = freezed,Object? forderTotal = freezed,}) {
   return _then(_self.copyWith(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
-as int,salesOrderId: freezed == salesOrderId ? _self.salesOrderId : salesOrderId // ignore: cast_nullable_to_non_nullable
+as int,status: freezed == status ? _self.status : status // ignore: cast_nullable_to_non_nullable
+as String?,detail: freezed == detail ? _self.detail : detail // ignore: cast_nullable_to_non_nullable
+as String?,salesOrderId: freezed == salesOrderId ? _self.salesOrderId : salesOrderId // ignore: cast_nullable_to_non_nullable
 as int?,date: freezed == date ? _self.date : date // ignore: cast_nullable_to_non_nullable
-as String?,earnedPoints: null == earnedPoints ? _self.earnedPoints : earnedPoints // ignore: cast_nullable_to_non_nullable
+as String?,displayedPoint: null == displayedPoint ? _self.displayedPoint : displayedPoint // ignore: cast_nullable_to_non_nullable
 as int,orderTotal: freezed == orderTotal ? _self.orderTotal : orderTotal // ignore: cast_nullable_to_non_nullable
 as int?,forderTotal: freezed == forderTotal ? _self.forderTotal : forderTotal // ignore: cast_nullable_to_non_nullable
 as String?,
@@ -731,10 +747,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( int id,  int? salesOrderId,  String? date,  int earnedPoints,  int? orderTotal,  String? forderTotal)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( int id,  String? status,  String? detail,  int? salesOrderId,  String? date, @JsonKey(readValue: _readPoints)  int displayedPoint,  int? orderTotal,  String? forderTotal)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _ActivePointModel() when $default != null:
-return $default(_that.id,_that.salesOrderId,_that.date,_that.earnedPoints,_that.orderTotal,_that.forderTotal);case _:
+return $default(_that.id,_that.status,_that.detail,_that.salesOrderId,_that.date,_that.displayedPoint,_that.orderTotal,_that.forderTotal);case _:
   return orElse();
 
 }
@@ -752,10 +768,10 @@ return $default(_that.id,_that.salesOrderId,_that.date,_that.earnedPoints,_that.
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( int id,  int? salesOrderId,  String? date,  int earnedPoints,  int? orderTotal,  String? forderTotal)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( int id,  String? status,  String? detail,  int? salesOrderId,  String? date, @JsonKey(readValue: _readPoints)  int displayedPoint,  int? orderTotal,  String? forderTotal)  $default,) {final _that = this;
 switch (_that) {
 case _ActivePointModel():
-return $default(_that.id,_that.salesOrderId,_that.date,_that.earnedPoints,_that.orderTotal,_that.forderTotal);case _:
+return $default(_that.id,_that.status,_that.detail,_that.salesOrderId,_that.date,_that.displayedPoint,_that.orderTotal,_that.forderTotal);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -772,10 +788,10 @@ return $default(_that.id,_that.salesOrderId,_that.date,_that.earnedPoints,_that.
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( int id,  int? salesOrderId,  String? date,  int earnedPoints,  int? orderTotal,  String? forderTotal)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( int id,  String? status,  String? detail,  int? salesOrderId,  String? date, @JsonKey(readValue: _readPoints)  int displayedPoint,  int? orderTotal,  String? forderTotal)?  $default,) {final _that = this;
 switch (_that) {
 case _ActivePointModel() when $default != null:
-return $default(_that.id,_that.salesOrderId,_that.date,_that.earnedPoints,_that.orderTotal,_that.forderTotal);case _:
+return $default(_that.id,_that.status,_that.detail,_that.salesOrderId,_that.date,_that.displayedPoint,_that.orderTotal,_that.forderTotal);case _:
   return null;
 
 }
@@ -786,15 +802,21 @@ return $default(_that.id,_that.salesOrderId,_that.date,_that.earnedPoints,_that.
 /// @nodoc
 
 @JsonSerializable(fieldRename: FieldRename.snake)
-class _ActivePointModel implements ActivePointModel {
-  const _ActivePointModel({this.id = 0, this.salesOrderId, this.date, this.earnedPoints = 0, this.orderTotal, this.forderTotal});
+class _ActivePointModel extends ActivePointModel {
+  const _ActivePointModel({this.id = 0, this.status, this.detail, this.salesOrderId, this.date, @JsonKey(readValue: _readPoints) this.displayedPoint = 0, this.orderTotal, this.forderTotal}): super._();
   factory _ActivePointModel.fromJson(Map<String, dynamic> json) => _$ActivePointModelFromJson(json);
 
 @override@JsonKey() final  int id;
+/// `Active` (earned), `Deducted` (redeemed) or `Expired`.
+@override final  String? status;
+/// Server label, e.g. "Point Earned" / "Point Redeemed".
+@override final  String? detail;
 @override final  int? salesOrderId;
 /// `yyyy-MM-dd HH:mm:ss`
 @override final  String? date;
-@override@JsonKey() final  int earnedPoints;
+/// Always positive; [status] says whether it was earned or deducted
+/// (older payloads: `earned_points`).
+@override@JsonKey(readValue: _readPoints) final  int displayedPoint;
 @override final  int? orderTotal;
 @override final  String? forderTotal;
 
@@ -811,16 +833,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _ActivePointModel&&(identical(other.id, id) || other.id == id)&&(identical(other.salesOrderId, salesOrderId) || other.salesOrderId == salesOrderId)&&(identical(other.date, date) || other.date == date)&&(identical(other.earnedPoints, earnedPoints) || other.earnedPoints == earnedPoints)&&(identical(other.orderTotal, orderTotal) || other.orderTotal == orderTotal)&&(identical(other.forderTotal, forderTotal) || other.forderTotal == forderTotal));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _ActivePointModel&&(identical(other.id, id) || other.id == id)&&(identical(other.status, status) || other.status == status)&&(identical(other.detail, detail) || other.detail == detail)&&(identical(other.salesOrderId, salesOrderId) || other.salesOrderId == salesOrderId)&&(identical(other.date, date) || other.date == date)&&(identical(other.displayedPoint, displayedPoint) || other.displayedPoint == displayedPoint)&&(identical(other.orderTotal, orderTotal) || other.orderTotal == orderTotal)&&(identical(other.forderTotal, forderTotal) || other.forderTotal == forderTotal));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,id,salesOrderId,date,earnedPoints,orderTotal,forderTotal);
+int get hashCode => Object.hash(runtimeType,id,status,detail,salesOrderId,date,displayedPoint,orderTotal,forderTotal);
 
 @override
 String toString() {
-  return 'ActivePointModel(id: $id, salesOrderId: $salesOrderId, date: $date, earnedPoints: $earnedPoints, orderTotal: $orderTotal, forderTotal: $forderTotal)';
+  return 'ActivePointModel(id: $id, status: $status, detail: $detail, salesOrderId: $salesOrderId, date: $date, displayedPoint: $displayedPoint, orderTotal: $orderTotal, forderTotal: $forderTotal)';
 }
 
 
@@ -831,7 +853,7 @@ abstract mixin class _$ActivePointModelCopyWith<$Res> implements $ActivePointMod
   factory _$ActivePointModelCopyWith(_ActivePointModel value, $Res Function(_ActivePointModel) _then) = __$ActivePointModelCopyWithImpl;
 @override @useResult
 $Res call({
- int id, int? salesOrderId, String? date, int earnedPoints, int? orderTotal, String? forderTotal
+ int id, String? status, String? detail, int? salesOrderId, String? date,@JsonKey(readValue: _readPoints) int displayedPoint, int? orderTotal, String? forderTotal
 });
 
 
@@ -848,12 +870,14 @@ class __$ActivePointModelCopyWithImpl<$Res>
 
 /// Create a copy of ActivePointModel
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? salesOrderId = freezed,Object? date = freezed,Object? earnedPoints = null,Object? orderTotal = freezed,Object? forderTotal = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? status = freezed,Object? detail = freezed,Object? salesOrderId = freezed,Object? date = freezed,Object? displayedPoint = null,Object? orderTotal = freezed,Object? forderTotal = freezed,}) {
   return _then(_ActivePointModel(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
-as int,salesOrderId: freezed == salesOrderId ? _self.salesOrderId : salesOrderId // ignore: cast_nullable_to_non_nullable
+as int,status: freezed == status ? _self.status : status // ignore: cast_nullable_to_non_nullable
+as String?,detail: freezed == detail ? _self.detail : detail // ignore: cast_nullable_to_non_nullable
+as String?,salesOrderId: freezed == salesOrderId ? _self.salesOrderId : salesOrderId // ignore: cast_nullable_to_non_nullable
 as int?,date: freezed == date ? _self.date : date // ignore: cast_nullable_to_non_nullable
-as String?,earnedPoints: null == earnedPoints ? _self.earnedPoints : earnedPoints // ignore: cast_nullable_to_non_nullable
+as String?,displayedPoint: null == displayedPoint ? _self.displayedPoint : displayedPoint // ignore: cast_nullable_to_non_nullable
 as int,orderTotal: freezed == orderTotal ? _self.orderTotal : orderTotal // ignore: cast_nullable_to_non_nullable
 as int?,forderTotal: freezed == forderTotal ? _self.forderTotal : forderTotal // ignore: cast_nullable_to_non_nullable
 as String?,

@@ -38,9 +38,7 @@ class _PointDetailBody extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.fromLTRB(16, 16, 16, 8),
                 child: Text(
-                  entry.isEarned
-                      ? LocaleKeys.points_earned.tr()
-                      : LocaleKeys.points_redeemed.tr(),
+                  PointsFormat.label(entry),
                   style: MyBossTextStyles.titleBig2.copyWith(
                     color: MyBossColors.onSurface,
                   ),
@@ -145,9 +143,14 @@ class _Receipt extends StatelessWidget {
                   ),
                 ),
                 Text(
-                  LocaleKeys.points_earned_value.tr(args: ['${entry.points}']),
+                  (entry.isEarned
+                          ? LocaleKeys.points_earned_value
+                          : LocaleKeys.points_redeemed_value)
+                      .tr(args: ['${entry.points.abs()}']),
                   style: MyBossTextStyles.subtitleBig2.copyWith(
-                    color: MyBossColors.success,
+                    color: entry.isEarned
+                        ? MyBossColors.success
+                        : MyBossColors.danger,
                   ),
                 ),
               ],

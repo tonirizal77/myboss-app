@@ -825,8 +825,11 @@ as List<PromoVoucher>,
 /// @nodoc
 mixin _$PromoVoucher {
 
- int get id; String get title; String get discountLabel;/// `yyyy-MM-dd`; null = no expiry.
- String? get expiryDate;
+ int get id;/// Voucher code to copy, e.g. `MBVIP100`.
+ String? get code; String get title; String get discountLabel;/// `yyyy-MM-dd`; null = no expiry.
+ String? get expiryDate;/// Terms, already numbered by the server ("1. Discount 10%").
+ List<String?> get tnc;/// For a signed-in member: whether they already used it, and when.
+ bool get isUsed; String? get usedDate;
 /// Create a copy of PromoVoucher
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -839,16 +842,16 @@ $PromoVoucherCopyWith<PromoVoucher> get copyWith => _$PromoVoucherCopyWithImpl<P
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is PromoVoucher&&(identical(other.id, id) || other.id == id)&&(identical(other.title, title) || other.title == title)&&(identical(other.discountLabel, discountLabel) || other.discountLabel == discountLabel)&&(identical(other.expiryDate, expiryDate) || other.expiryDate == expiryDate));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is PromoVoucher&&(identical(other.id, id) || other.id == id)&&(identical(other.code, code) || other.code == code)&&(identical(other.title, title) || other.title == title)&&(identical(other.discountLabel, discountLabel) || other.discountLabel == discountLabel)&&(identical(other.expiryDate, expiryDate) || other.expiryDate == expiryDate)&&const DeepCollectionEquality().equals(other.tnc, tnc)&&(identical(other.isUsed, isUsed) || other.isUsed == isUsed)&&(identical(other.usedDate, usedDate) || other.usedDate == usedDate));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,id,title,discountLabel,expiryDate);
+int get hashCode => Object.hash(runtimeType,id,code,title,discountLabel,expiryDate,const DeepCollectionEquality().hash(tnc),isUsed,usedDate);
 
 @override
 String toString() {
-  return 'PromoVoucher(id: $id, title: $title, discountLabel: $discountLabel, expiryDate: $expiryDate)';
+  return 'PromoVoucher(id: $id, code: $code, title: $title, discountLabel: $discountLabel, expiryDate: $expiryDate, tnc: $tnc, isUsed: $isUsed, usedDate: $usedDate)';
 }
 
 
@@ -859,7 +862,7 @@ abstract mixin class $PromoVoucherCopyWith<$Res>  {
   factory $PromoVoucherCopyWith(PromoVoucher value, $Res Function(PromoVoucher) _then) = _$PromoVoucherCopyWithImpl;
 @useResult
 $Res call({
- int id, String title, String discountLabel, String? expiryDate
+ int id, String? code, String title, String discountLabel, String? expiryDate, List<String?> tnc, bool isUsed, String? usedDate
 });
 
 
@@ -876,12 +879,16 @@ class _$PromoVoucherCopyWithImpl<$Res>
 
 /// Create a copy of PromoVoucher
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? title = null,Object? discountLabel = null,Object? expiryDate = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? code = freezed,Object? title = null,Object? discountLabel = null,Object? expiryDate = freezed,Object? tnc = null,Object? isUsed = null,Object? usedDate = freezed,}) {
   return _then(_self.copyWith(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
-as int,title: null == title ? _self.title : title // ignore: cast_nullable_to_non_nullable
+as int,code: freezed == code ? _self.code : code // ignore: cast_nullable_to_non_nullable
+as String?,title: null == title ? _self.title : title // ignore: cast_nullable_to_non_nullable
 as String,discountLabel: null == discountLabel ? _self.discountLabel : discountLabel // ignore: cast_nullable_to_non_nullable
 as String,expiryDate: freezed == expiryDate ? _self.expiryDate : expiryDate // ignore: cast_nullable_to_non_nullable
+as String?,tnc: null == tnc ? _self.tnc : tnc // ignore: cast_nullable_to_non_nullable
+as List<String?>,isUsed: null == isUsed ? _self.isUsed : isUsed // ignore: cast_nullable_to_non_nullable
+as bool,usedDate: freezed == usedDate ? _self.usedDate : usedDate // ignore: cast_nullable_to_non_nullable
 as String?,
   ));
 }
@@ -967,10 +974,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( int id,  String title,  String discountLabel,  String? expiryDate)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( int id,  String? code,  String title,  String discountLabel,  String? expiryDate,  List<String?> tnc,  bool isUsed,  String? usedDate)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _PromoVoucher() when $default != null:
-return $default(_that.id,_that.title,_that.discountLabel,_that.expiryDate);case _:
+return $default(_that.id,_that.code,_that.title,_that.discountLabel,_that.expiryDate,_that.tnc,_that.isUsed,_that.usedDate);case _:
   return orElse();
 
 }
@@ -988,10 +995,10 @@ return $default(_that.id,_that.title,_that.discountLabel,_that.expiryDate);case 
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( int id,  String title,  String discountLabel,  String? expiryDate)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( int id,  String? code,  String title,  String discountLabel,  String? expiryDate,  List<String?> tnc,  bool isUsed,  String? usedDate)  $default,) {final _that = this;
 switch (_that) {
 case _PromoVoucher():
-return $default(_that.id,_that.title,_that.discountLabel,_that.expiryDate);case _:
+return $default(_that.id,_that.code,_that.title,_that.discountLabel,_that.expiryDate,_that.tnc,_that.isUsed,_that.usedDate);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -1008,10 +1015,10 @@ return $default(_that.id,_that.title,_that.discountLabel,_that.expiryDate);case 
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( int id,  String title,  String discountLabel,  String? expiryDate)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( int id,  String? code,  String title,  String discountLabel,  String? expiryDate,  List<String?> tnc,  bool isUsed,  String? usedDate)?  $default,) {final _that = this;
 switch (_that) {
 case _PromoVoucher() when $default != null:
-return $default(_that.id,_that.title,_that.discountLabel,_that.expiryDate);case _:
+return $default(_that.id,_that.code,_that.title,_that.discountLabel,_that.expiryDate,_that.tnc,_that.isUsed,_that.usedDate);case _:
   return null;
 
 }
@@ -1023,14 +1030,28 @@ return $default(_that.id,_that.title,_that.discountLabel,_that.expiryDate);case 
 
 @JsonSerializable(fieldRename: FieldRename.snake)
 class _PromoVoucher implements PromoVoucher {
-  const _PromoVoucher({this.id = 0, this.title = '', this.discountLabel = '', this.expiryDate});
+  const _PromoVoucher({this.id = 0, this.code, this.title = '', this.discountLabel = '', this.expiryDate, final  List<String?> tnc = const [], this.isUsed = false, this.usedDate}): _tnc = tnc;
   factory _PromoVoucher.fromJson(Map<String, dynamic> json) => _$PromoVoucherFromJson(json);
 
 @override@JsonKey() final  int id;
+/// Voucher code to copy, e.g. `MBVIP100`.
+@override final  String? code;
 @override@JsonKey() final  String title;
 @override@JsonKey() final  String discountLabel;
 /// `yyyy-MM-dd`; null = no expiry.
 @override final  String? expiryDate;
+/// Terms, already numbered by the server ("1. Discount 10%").
+ final  List<String?> _tnc;
+/// Terms, already numbered by the server ("1. Discount 10%").
+@override@JsonKey() List<String?> get tnc {
+  if (_tnc is EqualUnmodifiableListView) return _tnc;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableListView(_tnc);
+}
+
+/// For a signed-in member: whether they already used it, and when.
+@override@JsonKey() final  bool isUsed;
+@override final  String? usedDate;
 
 /// Create a copy of PromoVoucher
 /// with the given fields replaced by the non-null parameter values.
@@ -1045,16 +1066,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _PromoVoucher&&(identical(other.id, id) || other.id == id)&&(identical(other.title, title) || other.title == title)&&(identical(other.discountLabel, discountLabel) || other.discountLabel == discountLabel)&&(identical(other.expiryDate, expiryDate) || other.expiryDate == expiryDate));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _PromoVoucher&&(identical(other.id, id) || other.id == id)&&(identical(other.code, code) || other.code == code)&&(identical(other.title, title) || other.title == title)&&(identical(other.discountLabel, discountLabel) || other.discountLabel == discountLabel)&&(identical(other.expiryDate, expiryDate) || other.expiryDate == expiryDate)&&const DeepCollectionEquality().equals(other._tnc, _tnc)&&(identical(other.isUsed, isUsed) || other.isUsed == isUsed)&&(identical(other.usedDate, usedDate) || other.usedDate == usedDate));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,id,title,discountLabel,expiryDate);
+int get hashCode => Object.hash(runtimeType,id,code,title,discountLabel,expiryDate,const DeepCollectionEquality().hash(_tnc),isUsed,usedDate);
 
 @override
 String toString() {
-  return 'PromoVoucher(id: $id, title: $title, discountLabel: $discountLabel, expiryDate: $expiryDate)';
+  return 'PromoVoucher(id: $id, code: $code, title: $title, discountLabel: $discountLabel, expiryDate: $expiryDate, tnc: $tnc, isUsed: $isUsed, usedDate: $usedDate)';
 }
 
 
@@ -1065,7 +1086,7 @@ abstract mixin class _$PromoVoucherCopyWith<$Res> implements $PromoVoucherCopyWi
   factory _$PromoVoucherCopyWith(_PromoVoucher value, $Res Function(_PromoVoucher) _then) = __$PromoVoucherCopyWithImpl;
 @override @useResult
 $Res call({
- int id, String title, String discountLabel, String? expiryDate
+ int id, String? code, String title, String discountLabel, String? expiryDate, List<String?> tnc, bool isUsed, String? usedDate
 });
 
 
@@ -1082,12 +1103,16 @@ class __$PromoVoucherCopyWithImpl<$Res>
 
 /// Create a copy of PromoVoucher
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? title = null,Object? discountLabel = null,Object? expiryDate = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? code = freezed,Object? title = null,Object? discountLabel = null,Object? expiryDate = freezed,Object? tnc = null,Object? isUsed = null,Object? usedDate = freezed,}) {
   return _then(_PromoVoucher(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
-as int,title: null == title ? _self.title : title // ignore: cast_nullable_to_non_nullable
+as int,code: freezed == code ? _self.code : code // ignore: cast_nullable_to_non_nullable
+as String?,title: null == title ? _self.title : title // ignore: cast_nullable_to_non_nullable
 as String,discountLabel: null == discountLabel ? _self.discountLabel : discountLabel // ignore: cast_nullable_to_non_nullable
 as String,expiryDate: freezed == expiryDate ? _self.expiryDate : expiryDate // ignore: cast_nullable_to_non_nullable
+as String?,tnc: null == tnc ? _self._tnc : tnc // ignore: cast_nullable_to_non_nullable
+as List<String?>,isUsed: null == isUsed ? _self.isUsed : isUsed // ignore: cast_nullable_to_non_nullable
+as bool,usedDate: freezed == usedDate ? _self.usedDate : usedDate // ignore: cast_nullable_to_non_nullable
 as String?,
   ));
 }

@@ -2,9 +2,17 @@
   "data": [
     {
       "id": 630800,
+      "code": "JOGJAHEM00",
       "title": "Jogja Hemat Rp20.000",
       "discount_label": "Discount Rp 20.000",
-      "expiry_date": "2026-12-20"
+      "expiry_date": "2026-12-20",
+      "tnc": [
+        "1. Discount Rp 20.000",
+        "2. Minimum purchase of Rp 100.000",
+        "3. Valid until 20 December 2026"
+      ],
+      "is_used": false,
+      "used_date": null
     }
   ],
   "meta": {

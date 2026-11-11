@@ -48,6 +48,64 @@ class _FakePromoRemote implements PromoRemote {
 
 late _FakePromoRemote _remote;
 
+/// Member vouchers from the mock file, through the mock server rules
+/// (`is_used` split + paging). Records `<is_used>:<page>`.
+class _FakeMemberVoucherRemote implements MemberVoucherRemote {
+  final calls = <String>[];
+  bool fail = false;
+  bool empty = false;
+
+  /// Answer with this body instead of the mock file (staging payloads).
+  DataMap? body;
+
+  @override
+  ResultFuture<MemberVoucherPage> getVouchers({
+    required VoucherStatus status,
+    int page = 1,
+    String storeDomain = '',
+  }) async {
+    calls.add('${status.isUsed}:$page');
+    if (fail) return Left(Failures(error: Error(message: 'boom')));
+    if (empty) return const Right(MemberVoucherPage(totalPage: 1));
+    if (body case final body?) {
+      return Right(
+        MemberVoucherRemoteImpl.toPage(MemberVouchersModel.fromJson(body)),
+      );
+    }
+
+    final json = await MockServerSimulation.respond(
+      Endpoints.profileDiscountVouchers,
+      {'is_used': '${status.isUsed}', 'page': page, 'per_page': 15},
+      _mock(Endpoints.profileDiscountVouchers),
+      load: (_) async => null,
+    );
+    return Right(
+      MemberVoucherRemoteImpl.toPage(
+        MemberVouchersModel.fromJson(json as DataMap),
+      ),
+    );
+  }
+}
+
+late _FakeMemberVoucherRemote _vouchers;
+
+/// Signed-in session for the Promo page.
+class _SignedInUserBloc extends UserBloc {
+  _SignedInUserBloc() {
+    // ignore: invalid_use_of_visible_for_testing_member
+    emit(const UserState(statusLogin: Status.success));
+  }
+}
+
+class _Profile implements ProfileRepo {
+  @override
+  ResultFuture<ProfileModel> getProfile() async =>
+      const Right(ProfileModel(name: 'Member', balancePoints: 248));
+
+  @override
+  dynamic noSuchMethod(Invocation invocation) => super.noSuchMethod(invocation);
+}
+
 class _FileAssets extends AssetLoader {
   const _FileAssets();
 
@@ -92,8 +150,58 @@ void main() {
     getIt.registerLazySingleton(() => GetPointsSummaryUc(getIt()));
     getIt.registerLazySingleton(() => GetPointHistoryUc(getIt()));
     getIt.registerLazySingleton<GuestHomeSource>(() => const GuestHomeStatic());
+    // Wrap view with useLargestHeight (VoucherList) measures its items.
+    getIt.registerLazySingleton(() => GeneralHelper());
+    _vouchers = _FakeMemberVoucherRemote();
+    getIt.registerLazySingleton(
+      () => GetMemberVouchersUc(MemberVoucherRepoImpl(remote: _vouchers)),
+    );
   });
   tearDown(() => getIt.reset());
+
+  /// Item of `/promotion/discount-vouchers/list` as staging sends it.
+  const stagingVoucher = {
+    'id': 630650,
+    'code': 'MBVIP100',
+    'title': 'Voucher Spesial Member Rp100.000',
+    'discount_label': 'Discount Rp 100.000',
+    'expiry_date': '2026-12-31',
+    'tnc': [
+      '1. Discount Rp 100.000',
+      '2. Minimum purchase of Rp 1.000.000',
+      '3. Valid until 31 December 2026',
+    ],
+    'is_used': false,
+    'used_date': null,
+  };
+
+  test('staging voucher: code, terms without server numbering', () {
+    final v = PromoVoucher.fromJson(stagingVoucher).toVoucher();
+
+    expect(v.code, 'MBVIP100');
+    expect(v.terms, [
+      'Discount Rp 100.000',
+      'Minimum purchase of Rp 1.000.000',
+      'Valid until 31 December 2026',
+    ]);
+    expect(v.validUntil, DateTime(2026, 12, 31));
+    expect(v.isUsed, isFalse);
+
+    final noExpiry = PromoVoucher.fromJson({
+      ...stagingVoucher,
+      'expiry_date': null,
+      'tnc': ['1. Discount 10%', null, ' '],
+    }).toVoucher();
+    expect(noExpiry.validUntil, isNull);
+    expect(noExpiry.terms, ['Discount 10%']);
+
+    final used = PromoVoucher.fromJson({
+      ...stagingVoucher,
+      'is_used': true,
+      'used_date': '2026-11-05',
+    }).toVoucher();
+    expect(used.usedAt, DateTime(2026, 11, 5));
+  });
 
   test('guest: vouchers only, loyalty points never requested', () async {
     final cubit = PromoCubit();
@@ -179,6 +287,7 @@ void main() {
     WidgetTester tester,
     Size size, {
     Widget page = const PromoPage(),
+    bool signedIn = false,
   }) async {
     tester.view.physicalSize = size;
     tester.view.devicePixelRatio = 1;
@@ -186,9 +295,14 @@ void main() {
 
     final promo = PromoCubit();
     final points = PointsCubit();
-    final user = UserBloc();
+    final user = signedIn ? _SignedInUserBloc() : UserBloc();
     final branch = StoreBranchCubit();
+    final memberVouchers = MemberVoucherCubit();
+    final profile = ProfileBloc();
+    getIt.registerLazySingleton(() => GetProfileUc(_Profile()));
     addTearDown(() async {
+      await profile.close();
+      await memberVouchers.close();
       await promo.close();
       await points.close();
       await user.close();
@@ -208,6 +322,8 @@ void main() {
               BlocProvider.value(value: points),
               BlocProvider.value(value: user),
               BlocProvider.value(value: branch),
+              BlocProvider.value(value: memberVouchers),
+              BlocProvider.value(value: profile),
             ],
             // ResponsivePage reads GoRouterState (back-to-top button).
             child: MaterialApp.router(
@@ -258,27 +374,169 @@ void main() {
   }
 
   for (final e in _screens.entries) {
-    testWidgets('Account Vouchers page lists branch vouchers on ${e.key}', (
-      tester,
-    ) async {
-      final promo = await pump(tester, e.value, page: const VoucherPage());
+    testWidgets('Account Vouchers page: member vouchers, Load more, Used tab '
+        'on ${e.key}', (tester) async {
+      await pump(tester, e.value, page: const VoucherPage());
 
-      expect(_remote.calls, ['${Endpoints.promoVoucherList}@']);
-      expect(promo.state.content.vouchers, hasLength(6));
-      expect(find.byType(VoucherList), findsOneWidget);
-      expect(find.text('Discount 15%'), findsWidgets);
+      // Active tab: first page of is_used=false, branch list not used.
+      expect(_vouchers.calls, ['false:1']);
+      expect(_remote.calls, isEmpty);
+      expect(find.byType(VoucherTicket), findsNWidgets(15));
+      expect(find.text('MYB1212'), findsOneWidget);
+
+      final more = find.byKey(const ValueKey('voucher_load_more'));
+      await tester.ensureVisible(more);
+      await tester.tap(more);
+      await tester.pumpAndSettle();
+      expect(_vouchers.calls.last, 'false:2');
+      expect(find.byType(VoucherTicket), findsNWidgets(17));
+      expect(more, findsNothing);
+
+      // Used tab: is_used=true, used date instead of the code.
+      await tester.tap(find.text('Used'));
+      await tester.pumpAndSettle();
+      expect(_vouchers.calls.last, 'true:1');
+      expect(find.byType(VoucherTicket), findsNWidgets(6));
+      expect(find.text('Used 1 Nov 2026'), findsOneWidget);
+      expect(find.text('MYBU100'), findsNothing);
       expect(tester.takeException(), isNull);
     });
   }
 
+  testWidgets('voucher details sheet: code and numbered terms', (tester) async {
+    final voucher = PromoVoucher.fromJson(stagingVoucher).toVoucher();
+    await pump(
+      tester,
+      _screens['phone']!,
+      page: Builder(
+        builder: (context) => Scaffold(
+          body: Center(
+            child: TextButton(
+              onPressed: () => VoucherDetailSheet.show(context, voucher),
+              child: const Text('open'),
+            ),
+          ),
+        ),
+      ),
+    );
+
+    await tester.tap(find.text('open'));
+    await tester.pumpAndSettle();
+
+    expect(find.text('MBVIP100'), findsOneWidget);
+    expect(find.text('Terms & conditions'), findsOneWidget);
+    expect(find.text('1.'), findsOneWidget);
+    expect(find.text('Minimum purchase of Rp 1.000.000'), findsOneWidget);
+    expect(find.text('3.'), findsOneWidget);
+    expect(tester.takeException(), isNull);
+  });
+
+  testWidgets('Account Vouchers page: staging /profile/discount-vouchers', (
+    tester,
+  ) async {
+    _vouchers.body = {
+      'data': [
+        for (final (id, code, title, label, expiry) in [
+          (
+            630650,
+            'MBVIP100',
+            'Voucher Spesial Member Rp100.000',
+            'Discount Rp 100.000',
+            '2026-12-31',
+          ),
+          (630632, 'UGPUJKPTA67O', 'Diskon Soft Opening', 'Discount 10%', null),
+          (
+            630626,
+            'ORAIMO15',
+            'Diskon 15% Produk Oraimo',
+            'Discount 15%',
+            '2026-12-31',
+          ),
+          (
+            630625,
+            'HEMAT25K',
+            'Potongan Rp25.000',
+            'Discount Rp 25.000',
+            '2026-11-26',
+          ),
+          (630624, 'MYBOSS10', 'Diskon 10% Semua Produk', 'Discount 10%', null),
+        ])
+          {
+            'id': id,
+            'code': code,
+            'title': title,
+            'discount_label': label,
+            'expiry_date': expiry,
+            'tnc': ['1. $label'],
+            'is_used': false,
+            'used_date': null,
+          },
+      ],
+      'meta': {
+        'total': 5,
+        'page': 1,
+        'offset': 0,
+        'per_page': 15,
+        'total_page': 1,
+      },
+      'status': 200,
+      'error': 0,
+    };
+    await pump(tester, _screens['phone']!, page: const VoucherPage());
+
+    expect(_vouchers.calls, ['false:1']);
+    expect(find.byType(VoucherTicket), findsNWidgets(5));
+    expect(find.text('MBVIP100'), findsOneWidget);
+    expect(find.byKey(const ValueKey('voucher_load_more')), findsNothing);
+    expect(tester.takeException(), isNull);
+  });
+
+  for (final e in _screens.entries) {
+    testWidgets('Promo Voucher tab layout on ${e.key}', (tester) async {
+      final promo = await pump(tester, e.value);
+      promo.selectTab(PromoTab.voucher);
+      await tester.pumpAndSettle();
+
+      final tickets = [
+        for (final el in find.byType(VoucherTicket).evaluate())
+          tester.getRect(find.byElementPredicate((x) => x == el)),
+      ];
+      expect(tickets, isNotEmpty);
+
+      if (e.key == 'phone') {
+        // One column.
+        expect(tickets.map((r) => r.left).toSet(), hasLength(1));
+      } else {
+        // Two columns filling the content width, same width; tickets of a
+        // row share the height of the tallest one.
+        expect(tickets.map((r) => r.left).toSet(), hasLength(2));
+        expect(tickets[0].top, tickets[1].top);
+        expect(tickets[0].height, tickets[1].height);
+        expect(tickets[0].width, tickets[1].width);
+        expect(tickets[1].left - tickets[0].right, closeTo(16, 1));
+      }
+      // No ticket content overflows its cell.
+      expect(tester.takeException(), isNull);
+    });
+  }
+
+  testWidgets('Account Vouchers page: empty card with Refresh', (tester) async {
+    _vouchers.empty = true;
+    await pump(tester, _screens['phone']!, page: const VoucherPage());
+
+    expect(find.text("You don't have any vouchers yet."), findsOneWidget);
+    expect(find.text('Refresh'), findsOneWidget);
+    expect(find.byType(VoucherList), findsNothing);
+  });
+
   testWidgets('Account Vouchers page: load error, then retry', (tester) async {
-    _remote.failVouchers = true;
+    _vouchers.fail = true;
     await pump(tester, _screens['phone']!, page: const VoucherPage());
 
     expect(find.byType(PromoLoadError), findsOneWidget);
     expect(find.byType(VoucherList), findsNothing);
 
-    _remote.failVouchers = false;
+    _vouchers.fail = false;
     await tester.tap(
       find
           .descendant(

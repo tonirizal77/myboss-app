@@ -2,39 +2,86 @@
   "data": [
     {
       "id": 630620,
+      "code": "VOUCHERM20",
       "title": "Voucher Member Baru Rp50.000",
       "discount_label": "Discount Rp 50.000",
-      "expiry_date": "2026-12-26"
+      "expiry_date": "2026-12-26",
+      "tnc": [
+        "1. Discount Rp 50.000",
+        "2. Minimum purchase of Rp 100.000",
+        "3. Valid until 26 December 2026"
+      ],
+      "is_used": false,
+      "used_date": null
     },
     {
       "id": 630621,
+      "code": "DISKON1521",
       "title": "Diskon 15% Produk Oraimo",
       "discount_label": "Discount 15%",
-      "expiry_date": "2026-11-10"
+      "expiry_date": "2026-11-10",
+      "tnc": [
+        "1. Discount 15%",
+        "2. Minimum purchase of Rp 100.000",
+        "3. Valid until 10 November 2026"
+      ],
+      "is_used": false,
+      "used_date": null
     },
     {
       "id": 630622,
+      "code": "POTONGAN22",
       "title": "Potongan Rp25.000",
       "discount_label": "Discount Rp 25.000",
-      "expiry_date": "2026-11-26"
+      "expiry_date": "2026-11-26",
+      "tnc": [
+        "1. Discount Rp 25.000",
+        "2. Minimum purchase of Rp 100.000",
+        "3. Valid until 26 November 2026"
+      ],
+      "is_used": false,
+      "used_date": null
     },
     {
       "id": 630623,
+      "code": "DISKON1023",
       "title": "Diskon 10% Semua Produk",
       "discount_label": "Discount 10%",
-      "expiry_date": null
+      "expiry_date": null,
+      "tnc": [
+        "1. Discount 10%",
+        "2. Minimum purchase of Rp 100.000"
+      ],
+      "is_used": false,
+      "used_date": null
     },
     {
       "id": 630624,
+      "code": "GRATISKA24",
       "title": "Gratis Kabel Data",
       "discount_label": "Free Gift",
-      "expiry_date": "2026-12-31"
+      "expiry_date": "2026-12-31",
+      "tnc": [
+        "1. Free Gift",
+        "2. Minimum purchase of Rp 100.000",
+        "3. Valid until 31 December 2026"
+      ],
+      "is_used": false,
+      "used_date": null
     },
     {
       "id": 630625,
+      "code": "DISKON2025",
       "title": "Diskon 20% Audio",
       "discount_label": "Discount 20%",
-      "expiry_date": "2026-12-15"
+      "expiry_date": "2026-12-15",
+      "tnc": [
+        "1. Discount 20%",
+        "2. Minimum purchase of Rp 100.000",
+        "3. Valid until 15 December 2026"
+      ],
+      "is_used": false,
+      "used_date": null
     }
   ],
   "meta": {

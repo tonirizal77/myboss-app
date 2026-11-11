@@ -25,12 +25,13 @@ class PromoPointsPanel extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 40),
         child: Column(
           children: [
-            BlocBuilder<PointsCubit, PointsState>(
-              buildWhen: (a, b) => a.summary != b.summary,
-              builder: (context, points) => PromoHeading(
+            BlocBuilder<ProfileBloc, ProfileState>(
+              buildWhen: (a, b) =>
+                  a.profile.balancePoints != b.profile.balancePoints,
+              builder: (context, state) => PromoHeading(
                 title: LocaleKeys.promo_points_title.tr(),
                 subtitle: LocaleKeys.promo_points_available.tr(
-                  args: [PointsFormat.thousands(points.summary.balance)],
+                  args: [PointsFormat.thousands(state.profile.balancePoints)],
                 ),
               ),
             ),
@@ -187,8 +188,8 @@ class PromoEmptyState extends StatelessWidget {
   const PromoEmptyState({
     super.key,
     required this.message,
-    required this.image,
-    required this.fallbackIcon,
+    this.image,
+    this.fallbackIcon = Icons.inbox_outlined,
     this.onRefresh,
     this.refreshLabel,
   });
@@ -219,8 +220,8 @@ class PromoEmptyState extends StatelessWidget {
   /// Message under the illustration.
   final String message;
 
-  /// Illustration asset path.
-  final String image;
+  /// Illustration asset path; null = message and button only.
+  final String? image;
 
   /// Shown while [image] is missing or fails to load.
   final IconData fallbackIcon;
@@ -243,18 +244,20 @@ class PromoEmptyState extends StatelessWidget {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          Image.asset(
-            image,
-            width: imageSize,
-            height: imageSize,
-            fit: BoxFit.contain,
-            errorBuilder: (_, _, _) => Icon(
-              fallbackIcon,
-              size: imageSize * 0.8,
-              color: MyBossColors.primary,
+          if (image case final image?) ...[
+            Image.asset(
+              image,
+              width: imageSize,
+              height: imageSize,
+              fit: BoxFit.contain,
+              errorBuilder: (_, _, _) => Icon(
+                fallbackIcon,
+                size: imageSize * 0.8,
+                color: MyBossColors.primary,
+              ),
             ),
-          ),
-          const SizedBox(height: 24),
+            const SizedBox(height: 24),
+          ],
           Text(
             message,
             textAlign: TextAlign.center,
@@ -348,8 +351,10 @@ class RewardGrid extends StatelessWidget {
   }
 }
 
-/// Voucher tickets: one column on phones, two on wider windows (Promo
-/// Voucher tab, Account Vouchers page).
+/// Voucher tickets: one column on phones, a 2-column grid on tablet /
+/// desktop (Promo Voucher tab, Account Vouchers page). Wrap view: the column
+/// width comes from the parent width, and on wider screens every ticket of a
+/// row takes the height of the tallest one.
 class VoucherList extends StatelessWidget {
   const VoucherList({super.key, required this.vouchers});
 
@@ -362,6 +367,7 @@ class VoucherList extends StatelessWidget {
       mobile: 1,
       tablet: 2,
       desktop: 2,
+      useLargestHeight: true,
       spacing: 16,
       runSpacing: 16,
       padding: EdgeInsets.zero,

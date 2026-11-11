@@ -144,8 +144,18 @@ final class Endpoints {
   /// Params: ?cart_v2=1
   static const String profileInfo = "/profile/info";
 
+  /// == My Poin & Voucher == ///
   /// GET Loyalty points of the member (balance + history) - PRD-011.
   static const String profileLoyaltyPoints = "/profile/loyalty-points";
+
+  /// GET Detail Loyalty points
+  /// Params: sales_order_id
+  static const String profileOrdersPoints =
+      "/profile/orders/find/{sales_order_id}";
+
+  /// GET Discount Voucher
+  /// Params: is_used = true/false
+  static const String profileDiscountVouchers = "/profile/discount-vouchers";
 
   /// ============================================================ ///
   /// MyBoss › Client Token

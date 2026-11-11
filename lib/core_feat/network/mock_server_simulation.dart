@@ -2,7 +2,8 @@ part of 'configs.dart';
 
 /// Server behaviour applied to a mock response, so mock mode reacts like the
 /// API does: `search[n]` filters, `page` / `per_page` paging with a matching
-/// `meta`, and `/catalog/show/{id}` answering for the requested product.
+/// `meta`, `is_used` on the member vouchers, and `/catalog/show/{id}`
+/// answering for the requested product.
 ///
 /// Mock-only data: catalog products carry a `brand_id` (the API keeps it
 /// server side) so the brand filter has something to match.
@@ -32,6 +33,14 @@ class MockServerSimulation {
       items = ServerAccess.normalizePath(path) == Endpoints.catalogGroupProd
           ? _filterGroups(items, filters)
           : items.where((e) => _matches(e, filters)).toList();
+    }
+
+    // `/profile/discount-vouchers?is_used=true|false`: mock vouchers carry a
+    // mock-only `is_used` flag to split them between the two tabs.
+    if (query['is_used'] case final isUsed?) {
+      items = items
+          .where((e) => '${e['is_used'] ?? false}' == '$isUsed')
+          .toList();
     }
 
     return data['meta'] is Map<String, dynamic>

@@ -19,6 +19,8 @@ const _requests = [
   ('POST', Endpoints.generateCode),
   ('PUT', Endpoints.updateProfile),
   ('GET', Endpoints.profileLoyaltyPoints),
+  ('GET', Endpoints.profileOrdersPoints),
+  ('GET', Endpoints.profileDiscountVouchers),
   ('POST', Endpoints.verifyOldGetOtp),
   ('POST', Endpoints.verifyOldSendOtp),
   ('POST', Endpoints.verifyNewGetOtpPhone),

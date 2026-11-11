@@ -1,0 +1,177 @@
+{
+  "prd": "PRD-012-member-voucher-points-staging.md",
+  "project_gid": "65ea6511-c5e4-4397-adf0-64a03c9159c7",
+  "epic": {
+    "id": "732c49ed-57ee-4368-b922-702cf65fd529",
+    "key": "MYB-1"
+  },
+  "stories": [
+    {
+      "id": "3ed2285e-5f02-4e79-81df-95947a2a3cbc",
+      "key": "MYB-566",
+      "name": "Voucher Member di Akun",
+      "tasks": [
+        {
+          "id": "26a9fa29-83ac-456e-90e9-d467c02387a5",
+          "key": "MYB-588",
+          "title": "MemberVouchersModel + MemberVoucherRemote/Repo/Usecase: GET /profile/discount-vouchers (is_used, paging)",
+          "deadline": "2026-11-12"
+        },
+        {
+          "id": "d09aaaab-52b5-4bc7-8fc6-a43edec0b8cb",
+          "key": "MYB-587",
+          "title": "MemberVoucherCubit: tab Active/Used, load more, reset saat logout/hapus akun",
+          "deadline": "2026-11-12"
+        },
+        {
+          "id": "faa88a8c-0709-4a82-879a-1731e7ba788b",
+          "key": "MYB-586",
+          "title": "VoucherPage sesuai Figma: tab Active/Used, Load more, kartu kosong, error/retry",
+          "deadline": "2026-11-12"
+        },
+        {
+          "id": "5d7d4280-42d3-4cd9-b17b-ef7f3ae1990f",
+          "key": "MYB-585",
+          "title": "VoucherTicket voucher terpakai (abu-abu + \"Used {tanggal}\") + teks en/id",
+          "deadline": "2026-11-12"
+        },
+        {
+          "id": "0503940e-374b-46c0-9890-aab9434e04fe",
+          "key": "MYB-584",
+          "title": "Jumlah voucher Akun & panel/sheet hapus akun dari total is_used=false",
+          "deadline": "2026-11-12"
+        },
+        {
+          "id": "b2682365-eae2-46c2-9693-10e21cb27087",
+          "key": "MYB-583",
+          "title": "Mock profile.discount-vouchers + filter is_used di MockServerSimulation",
+          "deadline": "2026-11-12"
+        },
+        {
+          "id": "873e7ad5-f9f9-4958-a96b-a1a649d6dd5c",
+          "key": "MYB-582",
+          "title": "Model voucher member sesuai respons staging (code, tnc, used_date) + test payload staging",
+          "deadline": "2026-11-12"
+        },
+        {
+          "id": "b9666a07-5c13-402a-916a-f006abf4acc5",
+          "key": "MYB-581",
+          "title": "Unit & widget test voucher member (cubit, halaman, Load more, Used)",
+          "deadline": "2026-11-12"
+        }
+      ]
+    },
+    {
+      "id": "d623aa2a-dea9-4749-a089-752806370bfc",
+      "key": "MYB-565",
+      "name": "Poin dari API Staging",
+      "tasks": [
+        {
+          "id": "47c5fb5f-4366-4571-a989-3f125d9e1611",
+          "key": "MYB-580",
+          "title": "LoyaltyPointsModel: all_point, displayed_point, status Active/Deducted/Expired + label & format minus",
+          "deadline": "2026-11-12"
+        },
+        {
+          "id": "2817e173-82cf-4fa5-a1f8-88a05b350345",
+          "key": "MYB-579",
+          "title": "Detail poin dari /profile/orders/find/{sales_order_id} (OrderDetailModel -> struk)",
+          "deadline": "2026-11-12"
+        },
+        {
+          "id": "7ebbe0bd-0509-4d79-9639-7c9ec8f691b4",
+          "key": "MYB-578",
+          "title": "Saldo & poin hangus dari /profile/info (expiring_points) untuk Points, Beranda, Promo, Akun",
+          "deadline": "2026-11-12"
+        },
+        {
+          "id": "1b366f6a-e9ed-4c14-8b7f-b051e8b6bc57",
+          "key": "MYB-577",
+          "title": "Riwayat Points dengan ResponsiveGridOrWrap (1/2 kolom, tanpa list + empty bersamaan)",
+          "deadline": "2026-11-12"
+        },
+        {
+          "id": "d1ff7047-bcec-476e-bfe3-fea14fe614eb",
+          "key": "MYB-576",
+          "title": "Mock loyalty-points, orders.find, profile.info sesuai bentuk staging",
+          "deadline": "2026-11-12"
+        },
+        {
+          "id": "f4a0ae25-b20e-4675-ad17-4a99a6de965e",
+          "key": "MYB-575",
+          "title": "Test poin: mapper, struk, layout 3 ukuran + empty state",
+          "deadline": "2026-11-12"
+        }
+      ]
+    },
+    {
+      "id": "c4e58956-45e5-40a0-b9b2-ee52cf57e312",
+      "key": "MYB-564",
+      "name": "Detail Voucher Promo",
+      "tasks": [
+        {
+          "id": "9ab75e06-bad4-42d3-a4c3-59a6451aa750",
+          "key": "MYB-574",
+          "title": "PromoVoucher: code, tnc, is_used, used_date + sheet detail syarat & ketentuan",
+          "deadline": "2026-11-12"
+        },
+        {
+          "id": "fe90ce75-18c0-4bf1-b449-f77ea370e320",
+          "key": "MYB-573",
+          "title": "VoucherList grid 2 kolom tablet/desktop (wrapview useLargestHeight) + teks tiket dibatasi",
+          "deadline": "2026-11-12"
+        },
+        {
+          "id": "de1eabd8-23ae-4534-af91-c9145ee4608b",
+          "key": "MYB-572",
+          "title": "Mock voucher promo + test mapping, sheet detail, layout 3 ukuran",
+          "deadline": "2026-11-13"
+        }
+      ]
+    },
+    {
+      "id": "4732fdc4-507e-45c8-84b2-75f4e44053b1",
+      "key": "MYB-563",
+      "name": "Endpoint Mengikuti Cabang & Bahasa",
+      "tasks": [
+        {
+          "id": "9254e0f6-840a-4c9b-9563-58798ace3fb9",
+          "key": "MYB-571",
+          "title": "ConfigServer.branchDomain/branchUrl: endpoint /profile/* ke domain cabang terpilih",
+          "deadline": "2026-11-13"
+        },
+        {
+          "id": "d51a0a3a-cf3a-44b4-b0c0-5542f28d24b1",
+          "key": "MYB-570",
+          "title": "Muat ulang profil, poin, voucher saat cabang berganti (Akun, Beranda)",
+          "deadline": "2026-11-13"
+        },
+        {
+          "id": "2471057b-2e8d-47a8-ac2c-e7028f759d37",
+          "key": "MYB-569",
+          "title": "Locale API mengikuti bahasa app (SwitchLocaleBar -> ConfigServer.syncLocale)",
+          "deadline": "2026-11-13"
+        }
+      ]
+    },
+    {
+      "id": "1c1103aa-d56a-4453-a7bd-ac06586bfae2",
+      "key": "MYB-562",
+      "name": "Optimasi ResponsiveGridOrWrap",
+      "tasks": [
+        {
+          "id": "a3aa5fa9-5ab5-487a-a8db-9729f0ac6d7d",
+          "key": "MYB-568",
+          "title": "Port 7c790fa ke mobile_app_core myboss-core (wrapview, list/empty, refresh, load more, ResponsivePage)",
+          "deadline": "2026-11-13"
+        },
+        {
+          "id": "2e9fadb8-3e2d-45d1-a342-94c0d2bdbadf",
+          "key": "MYB-567",
+          "title": "responsive_widgets_test lulus (bottomNavBlur) + verifikasi app",
+          "deadline": "2026-11-13"
+        }
+      ]
+    }
+  ]
+}

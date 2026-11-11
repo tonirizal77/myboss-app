@@ -2,15 +2,30 @@
   "data": [
     {
       "id": 630700,
+      "code": "DISKONPE00",
       "title": "Diskon Pembukaan Magelang 25%",
       "discount_label": "Discount 25%",
-      "expiry_date": "2026-11-30"
+      "expiry_date": "2026-11-30",
+      "tnc": [
+        "1. Discount 25%",
+        "2. Minimum purchase of Rp 100.000",
+        "3. Valid until 30 November 2026"
+      ],
+      "is_used": false,
+      "used_date": null
     },
     {
       "id": 630701,
+      "code": "POTONGAN01",
       "title": "Potongan Rp10.000",
       "discount_label": "Discount Rp 10.000",
-      "expiry_date": null
+      "expiry_date": null,
+      "tnc": [
+        "1. Discount Rp 10.000",
+        "2. Minimum purchase of Rp 100.000"
+      ],
+      "is_used": false,
+      "used_date": null
     }
   ],
   "meta": {

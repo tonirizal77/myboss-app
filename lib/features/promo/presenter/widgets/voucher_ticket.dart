@@ -3,6 +3,9 @@ part of 'widgets.dart';
 /// Coupon card (Figma `voucher`): ticket icon, dashed divider, promo name,
 /// discount, validity and the code with a copy button. Round notches cut on
 /// both sides. Tap opens the voucher details.
+///
+/// A used member voucher ([Voucher.isUsed]) is greyed out and shows when it
+/// was used instead of the code.
 class VoucherTicket extends StatelessWidget {
   const VoucherTicket({super.key, required this.voucher, this.onTap});
 
@@ -16,12 +19,13 @@ class VoucherTicket extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final accent = MyBossColors.danger;
+    final used = voucher.isUsed;
+    final accent = used ? MyBossColors.onSurfaceVariant : MyBossColors.danger;
 
     return ClipPath(
       clipper: const _TicketClipper(),
       child: Material(
-        color: background(),
+        color: used ? MyBossColors.surfaceContainer : background(),
         child: InkWell(
           onTap: onTap ?? () => VoucherDetailSheet.show(context, voucher),
           child: IntrinsicHeight(
@@ -45,15 +49,21 @@ class VoucherTicket extends StatelessWidget {
                     padding: const EdgeInsets.fromLTRB(12, 12, 16, 12),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
+                      // Grid cells (tablet) are taller than the content.
+                      mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text(
                           voucher.title,
+                          maxLines: 2,
+                          overflow: TextOverflow.ellipsis,
                           style: MyBossTextStyles.body.copyWith(
                             color: MyBossColors.onSurface,
                           ),
                         ),
                         Text(
                           voucher.discount,
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
                           style: MyBossTextStyles.title.copyWith(color: accent),
                         ),
                         if (voucher.validUntil case final date?)
@@ -61,11 +71,20 @@ class VoucherTicket extends StatelessWidget {
                             LocaleKeys.promo_valid_until.tr(
                               args: [_date(context, date)],
                             ),
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
                             style: MyBossTextStyles.caption.copyWith(
                               color: MyBossColors.onSurfaceVariant,
                             ),
                           ),
-                        if (voucher.code.isNotEmpty) ...[
+                        if (voucher.usedAt case final date?) ...[
+                          const SizedBox(height: 8),
+                          _UsedBox(
+                            label: LocaleKeys.akun_voucher_used_on.tr(
+                              args: [_date(context, date)],
+                            ),
+                          ),
+                        ] else if (voucher.code.isNotEmpty) ...[
                           const SizedBox(height: 8),
                           VoucherCodeBox(code: voucher.code),
                         ],
@@ -159,6 +178,36 @@ class VoucherCodeBox extends StatelessWidget {
             icon: Icon(Icons.copy_outlined, color: MyBossColors.onSurface),
           ),
         ],
+      ),
+    );
+  }
+}
+
+/// "Used 5 Nov 2026" bar of a used voucher (Figma: black, no border).
+class _UsedBox extends StatelessWidget {
+  const _UsedBox({required this.label});
+
+  final String label;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: double.infinity,
+      height: 28,
+      alignment: Alignment.centerLeft,
+      padding: const EdgeInsets.symmetric(horizontal: 8),
+      decoration: BoxDecoration(
+        color: MyBossColors.surface,
+        borderRadius: BorderRadius.circular(4),
+      ),
+      child: Text(
+        label,
+        maxLines: 1,
+        overflow: TextOverflow.ellipsis,
+        style: MyBossTextStyles.body.copyWith(
+          color: MyBossColors.onSurface,
+          fontWeight: FontWeight.w500,
+        ),
       ),
     );
   }

@@ -75,8 +75,8 @@ class _InAppDeleteAccount extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final points = context.read<PointsCubit>().state.summary.balance;
-    final vouchers = context.read<PromoCubit>().state.content.vouchers.length;
+    final points = context.read<ProfileBloc>().state.profile.balancePoints;
+    final vouchers = context.read<MemberVoucherCubit>().state.activeCount;
     final hasBalance = points > 0 || vouchers > 0;
 
     return Column(

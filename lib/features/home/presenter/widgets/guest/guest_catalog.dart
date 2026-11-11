@@ -68,7 +68,7 @@ class _GuestCatalogState extends State<GuestCatalog> {
               final controller = _controllerFor(constraints.maxWidth);
 
               return SizedBox(
-                height: 196,
+                height: 186,
                 child: PageView.builder(
                   controller: controller,
                   itemCount: widget.items.length,
@@ -174,7 +174,7 @@ class GuestProductCard extends StatelessWidget {
                       padding: const EdgeInsets.symmetric(horizontal: 8),
                       child: Text(
                         name,
-                        maxLines: 1,
+                        maxLines: 2,
                         overflow: TextOverflow.ellipsis,
                         textAlign: TextAlign.center,
                         style: MyBossTextStyles.subtitleSmall.copyWith(

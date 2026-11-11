@@ -1,0 +1,279 @@
+{
+  "data": [
+    {
+      "id": 710100,
+      "title": "Promo 12.12",
+      "discount_label": "50% Off",
+      "expiry_date": "2026-12-01",
+      "code": "MYB1212",
+      "used_at": null,
+      "is_used": false,
+      "detail_voucher": [
+        "Berlaku untuk pembelian minimal Rp 100.000.",
+        "Tidak dapat digabung dengan promo lain.",
+        "Berlaku di semua cabang MyBoss."
+      ]
+    },
+    {
+      "id": 710101,
+      "title": "Voucher Member Baru",
+      "discount_label": "Discount Rp 50.000",
+      "expiry_date": "2026-12-02",
+      "code": "MYB1213",
+      "used_at": null,
+      "is_used": false,
+      "detail_voucher": null
+    },
+    {
+      "id": 710102,
+      "title": "Diskon Audio",
+      "discount_label": "20% Off",
+      "expiry_date": "2026-12-03",
+      "code": "MYB1214",
+      "used_at": null,
+      "is_used": false,
+      "detail_voucher": [
+        "Berlaku untuk pembelian minimal Rp 100.000.",
+        "Tidak dapat digabung dengan promo lain.",
+        "Berlaku di semua cabang MyBoss."
+      ]
+    },
+    {
+      "id": 710103,
+      "title": "Potongan Kabel Data",
+      "discount_label": "Discount Rp 25.000",
+      "expiry_date": null,
+      "code": "MYB1215",
+      "used_at": null,
+      "is_used": false,
+      "detail_voucher": null
+    },
+    {
+      "id": 710104,
+      "title": "Gratis Ongkir",
+      "discount_label": "Free Shipping",
+      "expiry_date": "2026-12-05",
+      "code": "MYB1216",
+      "used_at": null,
+      "is_used": false,
+      "detail_voucher": [
+        "Berlaku untuk pembelian minimal Rp 100.000.",
+        "Tidak dapat digabung dengan promo lain.",
+        "Berlaku di semua cabang MyBoss."
+      ]
+    },
+    {
+      "id": 710105,
+      "title": "Promo Payday",
+      "discount_label": "15% Off",
+      "expiry_date": "2026-12-06",
+      "code": "MYB1217",
+      "used_at": null,
+      "is_used": false,
+      "detail_voucher": null
+    },
+    {
+      "id": 710106,
+      "title": "Promo 12.12",
+      "discount_label": "50% Off",
+      "expiry_date": "2026-12-07",
+      "code": "MYB1218",
+      "used_at": null,
+      "is_used": false,
+      "detail_voucher": [
+        "Berlaku untuk pembelian minimal Rp 100.000.",
+        "Tidak dapat digabung dengan promo lain.",
+        "Berlaku di semua cabang MyBoss."
+      ]
+    },
+    {
+      "id": 710107,
+      "title": "Voucher Member Baru",
+      "discount_label": "Discount Rp 50.000",
+      "expiry_date": "2026-12-08",
+      "code": "MYB1219",
+      "used_at": null,
+      "is_used": false,
+      "detail_voucher": null
+    },
+    {
+      "id": 710108,
+      "title": "Diskon Audio",
+      "discount_label": "20% Off",
+      "expiry_date": "2026-12-09",
+      "code": "MYB1220",
+      "used_at": null,
+      "is_used": false,
+      "detail_voucher": [
+        "Berlaku untuk pembelian minimal Rp 100.000.",
+        "Tidak dapat digabung dengan promo lain.",
+        "Berlaku di semua cabang MyBoss."
+      ]
+    },
+    {
+      "id": 710109,
+      "title": "Potongan Kabel Data",
+      "discount_label": "Discount Rp 25.000",
+      "expiry_date": "2026-12-10",
+      "code": "MYB1221",
+      "used_at": null,
+      "is_used": false,
+      "detail_voucher": null
+    },
+    {
+      "id": 710110,
+      "title": "Gratis Ongkir",
+      "discount_label": "Free Shipping",
+      "expiry_date": "2026-12-11",
+      "code": "MYB1222",
+      "used_at": null,
+      "is_used": false,
+      "detail_voucher": [
+        "Berlaku untuk pembelian minimal Rp 100.000.",
+        "Tidak dapat digabung dengan promo lain.",
+        "Berlaku di semua cabang MyBoss."
+      ]
+    },
+    {
+      "id": 710111,
+      "title": "Promo Payday",
+      "discount_label": "15% Off",
+      "expiry_date": "2026-12-12",
+      "code": "MYB1223",
+      "used_at": null,
+      "is_used": false,
+      "detail_voucher": null
+    },
+    {
+      "id": 710112,
+      "title": "Promo 12.12",
+      "discount_label": "50% Off",
+      "expiry_date": "2026-12-13",
+      "code": "MYB1224",
+      "used_at": null,
+      "is_used": false,
+      "detail_voucher": [
+        "Berlaku untuk pembelian minimal Rp 100.000.",
+        "Tidak dapat digabung dengan promo lain.",
+        "Berlaku di semua cabang MyBoss."
+      ]
+    },
+    {
+      "id": 710113,
+      "title": "Voucher Member Baru",
+      "discount_label": "Discount Rp 50.000",
+      "expiry_date": "2026-12-14",
+      "code": "MYB1225",
+      "used_at": null,
+      "is_used": false,
+      "detail_voucher": null
+    },
+    {
+      "id": 710114,
+      "title": "Diskon Audio",
+      "discount_label": "20% Off",
+      "expiry_date": "2026-12-15",
+      "code": "MYB1226",
+      "used_at": null,
+      "is_used": false,
+      "detail_voucher": [
+        "Berlaku untuk pembelian minimal Rp 100.000.",
+        "Tidak dapat digabung dengan promo lain.",
+        "Berlaku di semua cabang MyBoss."
+      ]
+    },
+    {
+      "id": 710115,
+      "title": "Potongan Kabel Data",
+      "discount_label": "Discount Rp 25.000",
+      "expiry_date": "2026-12-16",
+      "code": "MYB1227",
+      "used_at": null,
+      "is_used": false,
+      "detail_voucher": null
+    },
+    {
+      "id": 710116,
+      "title": "Gratis Ongkir",
+      "discount_label": "Free Shipping",
+      "expiry_date": "2026-12-17",
+      "code": "MYB1228",
+      "used_at": null,
+      "is_used": false,
+      "detail_voucher": [
+        "Berlaku untuk pembelian minimal Rp 100.000.",
+        "Tidak dapat digabung dengan promo lain.",
+        "Berlaku di semua cabang MyBoss."
+      ]
+    },
+    {
+      "id": 710200,
+      "title": "Promo 12.12",
+      "discount_label": "50% Discount",
+      "expiry_date": "2026-12-31",
+      "code": "MYBU100",
+      "used_at": "2026-11-01 14:30:00",
+      "is_used": true,
+      "detail_voucher": null
+    },
+    {
+      "id": 710201,
+      "title": "Voucher Member Baru",
+      "discount_label": "Discount Rp 50.000",
+      "expiry_date": "2026-12-31",
+      "code": "MYBU101",
+      "used_at": "2026-11-02 14:30:00",
+      "is_used": true,
+      "detail_voucher": null
+    },
+    {
+      "id": 710202,
+      "title": "Diskon Audio",
+      "discount_label": "20% Discount",
+      "expiry_date": "2026-12-31",
+      "code": "MYBU102",
+      "used_at": "2026-11-03 14:30:00",
+      "is_used": true,
+      "detail_voucher": null
+    },
+    {
+      "id": 710203,
+      "title": "Potongan Kabel Data",
+      "discount_label": "Discount Rp 25.000",
+      "expiry_date": "2026-12-31",
+      "code": "MYBU103",
+      "used_at": "2026-11-04 14:30:00",
+      "is_used": true,
+      "detail_voucher": null
+    },
+    {
+      "id": 710204,
+      "title": "Gratis Ongkir",
+      "discount_label": "Free Shipping",
+      "expiry_date": "2026-12-31",
+      "code": "MYBU104",
+      "used_at": "2026-11-05 14:30:00",
+      "is_used": true,
+      "detail_voucher": null
+    },
+    {
+      "id": 710205,
+      "title": "Promo Payday",
+      "discount_label": "15% Discount",
+      "expiry_date": "2026-12-31",
+      "code": "MYBU105",
+      "used_at": "2026-11-06 14:30:00",
+      "is_used": true,
+      "detail_voucher": null
+    }
+  ],
+  "meta": {
+    "total": 23,
+    "page": 1,
+    "offset": 0,
+    "per_page": 15,
+    "total_page": 2
+  },
+  "status": 200,
+  "error": 0
+}

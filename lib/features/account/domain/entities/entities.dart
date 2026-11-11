@@ -14,7 +14,20 @@ export 'tnc_model/tnc_model.dart';
 export 'gen_code_model/gen_code_model.dart';
 export 'points/points.dart';
 export 'loyalty_points_model/loyalty_points_model.dart';
+export 'order_detail_model/order_detail_model.dart';
 export 'reasons_model/reasons_model.dart';
+export 'member_vouchers_model/member_vouchers_model.dart';
+export 'vouchers/member_vouchers.dart';
+
+/// Points banner data from `/profile/info`: balance and the points that
+/// expire first (Points page, Home, Promo).
+extension ProfilePointsX on ProfileModel {
+  PointsSummary get pointsSummary => PointsSummary(
+    balance: balancePoints,
+    expiringPoints: expiringPoints?.balancePoints ?? 0,
+    expiresAt: DateTime.tryParse(expiringPoints?.expireDate ?? ''),
+  );
+}
 
 /// Helpers
 class EditProfile extends Equatable {

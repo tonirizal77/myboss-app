@@ -99,9 +99,9 @@ class MemberPointsText extends StatelessWidget {
   }
 }
 
-/// [MemberPointsText] with the balance of the signed-in member: `balance_points`
-/// of `GET /profile/info`, already loaded by [ProfileBloc] (PRD-011). The
-/// expiry lines stay hidden until profile/info sends them.
+/// [MemberPointsText] of the signed-in member: `balance_points` and
+/// `expiring_points` of `GET /profile/info`, already loaded by [ProfileBloc]
+/// (PRD-011).
 class ProfilePointsText extends StatelessWidget {
   const ProfilePointsText({
     super.key,
@@ -115,9 +115,9 @@ class ProfilePointsText extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<ProfileBloc, ProfileState>(
-      buildWhen: (a, b) => a.profile.balancePoints != b.profile.balancePoints,
+      buildWhen: (a, b) => a.profile.pointsSummary != b.profile.pointsSummary,
       builder: (context, state) => MemberPointsText(
-        summary: PointsSummary(balance: state.profile.balancePoints),
+        summary: state.profile.pointsSummary,
         align: align,
         size: size,
       ),

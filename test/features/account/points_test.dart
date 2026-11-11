@@ -108,11 +108,25 @@ void main() {
     );
 
     test('summary: total_balance_point and expiring_points', () {
-      final summary = PointsRemote.toSummary(mock());
+      final summary = PointsRemote.toSummary(
+        LoyaltyPointsModel.fromJson(const {
+          'total_balance_point': 1250,
+          'expiring_points': {
+            'balance_points': 100,
+            'expire_date': '2026-11-18',
+          },
+        }),
+      );
 
       expect(summary.balance, 1250);
       expect(summary.expiringPoints, 100);
       expect(summary.expiresAt, DateTime(2026, 11, 18));
+    });
+
+    test('staging sends no balance or expiry', () {
+      final m = mock();
+      expect(m.totalBalancePoint, isNull);
+      expect(PointsRemote.toSummary(m).expiringPoints, 0);
     });
 
     test('no expiring_points: nothing expiring', () {
@@ -129,15 +143,134 @@ void main() {
       expect(summary.expiresAt, isNull);
     });
 
-    test('history: active_point, bonus rows without an order total', () {
+    test('history: all_point, earned and redeemed rows', () {
       final history = PointsRemote.toHistory(mock());
 
-      expect(history, hasLength(3));
-      expect(history.first.points, 20);
-      expect(history.first.amount, 300000);
-      expect(history.first.date, DateTime(2026, 11, 5, 10, 15));
-      expect(history[1].amount, 0); // sales_order_id / order_total null
-      expect(history.every((e) => e.isEarned), isTrue);
+      expect(history, hasLength(5));
+      // `Expired`: negative, flagged.
+      expect(history.last.points, -26);
+      expect(history.last.isExpired, isTrue);
+      expect(history.where((e) => e.isExpired), hasLength(1));
+      // `Deducted` = redeemed: negative.
+      expect(history.first.points, -20);
+      expect(history.first.isEarned, isFalse);
+      expect(history.first.title, 'Point Redeemed');
+      expect(history[1].points, 20);
+      expect(history[1].amount, 300000);
+      expect(history[1].date, DateTime(2026, 11, 5, 10, 15));
+      expect(history[2].amount, 0); // sales_order_id / order_total null
+    });
+
+    test('staging payload (all_point, displayed_point, status)', () {
+      final history = PointsRemote.toHistory(
+        LoyaltyPointsModel.fromJson(const {
+          'all_point': [
+            {
+              'id': 296,
+              'status': 'Deducted',
+              'detail': 'Point Redeemed',
+              'date': '2026-11-01 02:00:00',
+              'displayed_point': 20,
+              'sales_order_id': 1,
+              'order_total': 158000,
+              'forder_total': '158.000',
+            },
+            {
+              'id': 8241,
+              'status': 'Active',
+              'detail': 'Point Earned',
+              'date': '2026-11-01 01:36:43',
+              'displayed_point': 10,
+              'sales_order_id': 1,
+              'order_total': 158000,
+              'forder_total': '158.000',
+            },
+          ],
+        }),
+      );
+
+      expect(history.map((e) => e.points), [-20, 10]);
+      expect(history.map((e) => e.id), [296, 8241]);
+      expect(history.first.salesOrderId, 1);
+    });
+
+    test('receipt from /profile/orders/find (staging payload)', () {
+      final entry = PointEntry(
+        id: 8241,
+        title: 'Point Earned',
+        date: DateTime(2026, 11, 1),
+        points: 10,
+        amount: 158000,
+        salesOrderId: 1290528552,
+      );
+      final detail = PointsRemote.toDetail(
+        entry,
+        OrderDetailModel.fromJson(const {
+          'id': 1290528552,
+          'order_no': 'SMPL-MBS-0001',
+          'order_date': '2026-11-01',
+          'store_name': 'Oraimo Semarang',
+          'total_qty': 2,
+          'items': [
+            {
+              'id': 3272548838,
+              'item_id': 106802919,
+              'name': 'Ugreen USB-C Cable 1m',
+              'variant_name': '',
+              'qty': 2,
+              'amount': 158000,
+              'famount': '158.000',
+            },
+          ],
+          'amount': {
+            'order_amount': 158000,
+            'discount_amount': 0,
+            'redeemed_amount': 0,
+            'service_charge_amount': 0,
+            'tax_amount': 0,
+            'shipping_cost': 0,
+            'rounded_amount': 0,
+            'total_amount': 158000,
+          },
+        }),
+      );
+
+      expect(detail.lines.single.name, 'Ugreen USB-C Cable 1m');
+      expect(detail.lines.single.quantity, 2);
+      expect(detail.lines.single.price, 158000);
+      expect(detail.itemCount, 2);
+      expect(detail.subtotal, 158000);
+      expect(detail.total, 158000);
+    });
+
+    test('receipt: variant name is appended', () {
+      final m = OrderDetailModel.fromJson(
+        jsonDecode(
+              File(
+                MockServerInterceptor.assetKey(
+                  'GET',
+                  Endpoints.profileOrdersPoints,
+                ),
+              ).readAsStringSync(),
+            )['data']
+            as DataMap,
+      );
+      final detail = PointsRemote.toDetail(
+        PointEntry(
+          id: 1,
+          title: '',
+          date: DateTime(2026),
+          points: 1,
+          amount: 0,
+        ),
+        m,
+      );
+
+      expect(detail.lines.map((l) => l.name), [
+        'Ugreen USB-C Cable 1m',
+        'Oraimo FreePods 4 - Black',
+      ]);
+      expect(detail.itemCount, 3);
     });
 
     test('rows with an unreadable date are skipped', () {

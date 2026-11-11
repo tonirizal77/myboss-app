@@ -19,7 +19,10 @@ class ProfileRemoteImpl implements ProfileRemote {
 
   @override
   ResultFuture<ProfileModel> getProfile() async {
-    final result = await DioGet.call(url: Endpoints.profileInfo, body: null);
+    final result = await DioGet.call(
+      url: ConfigServer.branchUrl(Endpoints.profileInfo),
+      body: null,
+    );
 
     return result.fold((_l) => Left(_l), (_r) {
       try {

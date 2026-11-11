@@ -1,37 +1,64 @@
 {
   "data": {
-    "total_balance_point": 1250,
-    "expiring_points": {
-      "balance_points": 100,
-      "expire_date": "2026-11-18",
-      "expire_date_subtext": "Kadaluarsa dalam 9 hari"
-    },
-    "active_point": [
+    "all_point": [
+      {
+        "id": 900100,
+        "status": "Deducted",
+        "detail": "Point Redeemed",
+        "date": "2026-11-06 12:00:00",
+        "displayed_point": 20,
+        "sales_order_id": 900003,
+        "order_total": 158000,
+        "forder_total": "158.000"
+      },
       {
         "id": 900101,
-        "sales_order_id": 900001,
+        "status": "Active",
+        "detail": "Point Earned",
         "date": "2026-11-05 10:15:00",
-        "earned_points": 20,
+        "displayed_point": 20,
+        "sales_order_id": 900001,
         "order_total": 300000,
         "forder_total": "300.000"
       },
       {
         "id": 900102,
-        "sales_order_id": null,
+        "status": "Active",
+        "detail": "Point Earned",
         "date": "2026-10-28 09:00:00",
-        "earned_points": 50,
+        "displayed_point": 50,
+        "sales_order_id": null,
         "order_total": null,
         "forder_total": null
       },
       {
         "id": 900103,
-        "sales_order_id": 900002,
+        "status": "Active",
+        "detail": "Point Earned",
         "date": "2026-10-12 14:30:00",
-        "earned_points": 15,
+        "displayed_point": 15,
+        "sales_order_id": 900002,
         "order_total": 225000,
         "forder_total": "225.000"
+      },
+      {
+        "id": 900104,
+        "status": "Expired",
+        "detail": "Expired",
+        "date": "2025-09-30 01:36:44",
+        "displayed_point": 26,
+        "sales_order_id": 900004,
+        "order_total": 399000,
+        "forder_total": "399.000"
       }
     ]
+  },
+  "meta": {
+    "total": 5,
+    "page": 1,
+    "offset": 0,
+    "per_page": 15,
+    "total_page": 1
   },
   "status": 200,
   "error": 0

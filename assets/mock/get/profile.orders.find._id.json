@@ -1,0 +1,49 @@
+{
+  "data": {
+    "id": 900001,
+    "order_no": "SMPL-MBS-0001",
+    "order_date": "2026-11-05",
+    "store_name": "Oraimo Semarang",
+    "total_qty": 3,
+    "items": [
+      {
+        "id": 1,
+        "item_id": 101,
+        "name": "Ugreen USB-C Cable 1m",
+        "variant_name": "",
+        "qty": 2,
+        "amount": 158000,
+        "famount": "158.000"
+      },
+      {
+        "id": 2,
+        "item_id": 102,
+        "name": "Oraimo FreePods 4",
+        "variant_name": "Black",
+        "qty": 1,
+        "amount": 142000,
+        "famount": "142.000"
+      }
+    ],
+    "amount": {
+      "order_amount": 300000,
+      "discount_amount": 0,
+      "redeemed_amount": 0,
+      "service_charge_amount": 0,
+      "tax_amount": 0,
+      "shipping_cost": 0,
+      "rounded_amount": 0,
+      "total_amount": 300000,
+      "forder_amount": "300.000",
+      "fdiscount_amount": "0",
+      "fredeemed_amount": "0",
+      "fservice_charge_amount": "0",
+      "ftax_amount": "0",
+      "fshipping_cost": "0",
+      "frounded_amount": "0",
+      "ftotal_amount": "300.000"
+    }
+  },
+  "status": 200,
+  "error": 0
+}

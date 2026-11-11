@@ -22,6 +22,7 @@ class AccountFt {
 
     /// 2. Setup Cubit
     getIt.registerLazySingleton(() => PointsCubit());
+    getIt.registerLazySingleton(() => MemberVoucherCubit());
 
     /// 3. Setup Repository
     ///
@@ -30,6 +31,9 @@ class AccountFt {
     );
     getIt.registerLazySingleton<PointsRepo>(
       () => PointsRepoImpl(source: getIt()),
+    );
+    getIt.registerLazySingleton<MemberVoucherRepo>(
+      () => MemberVoucherRepoImpl(remote: getIt()),
     );
     getIt.registerLazySingleton<AccountRepo>(
       () => AccountRepoImpl(remoteData: getIt()),
@@ -42,6 +46,11 @@ class AccountFt {
     // GET /profile/loyalty-points (PRD-011); mock mode is answered by
     // MockServerInterceptor (assets/mock/get/profile.loyalty-points.json).
     getIt.registerLazySingleton<PointsSource>(() => PointsRemote());
+    // GET /profile/discount-vouchers?is_used=; mock mode:
+    // assets/mock/get/profile.discount-vouchers.json.
+    getIt.registerLazySingleton<MemberVoucherRemote>(
+      () => const MemberVoucherRemoteImpl(),
+    );
 
     /// 5. Setup Usecase
     /// - Profile
@@ -54,6 +63,9 @@ class AccountFt {
     getIt.registerLazySingleton(() => GetPointsSummaryUc(getIt()));
     getIt.registerLazySingleton(() => GetPointHistoryUc(getIt()));
     getIt.registerLazySingleton(() => GetPointDetailUc(getIt()));
+
+    /// - Vouchers
+    getIt.registerLazySingleton(() => GetMemberVouchersUc(getIt()));
 
     /// - Account
     getIt.registerLazySingleton(() => GetAboutUsUc(getIt()));
@@ -70,6 +82,9 @@ class AccountFt {
       BlocProvider<ProfileBloc>(create: (_) => getIt<ProfileBloc>()),
       BlocProvider<AccountBloc>(create: (_) => getIt<AccountBloc>()),
       BlocProvider<PointsCubit>(create: (_) => getIt<PointsCubit>()),
+      BlocProvider<MemberVoucherCubit>(
+        create: (_) => getIt<MemberVoucherCubit>(),
+      ),
     ]);
   }
 }

@@ -133,6 +133,9 @@ class MyApp extends StatelessWidget {
           }
         },
         builder: (context, state) {
+          /// API locale follows the app language (`/en/...` <-> `/id/...`).
+          ConfigServer.syncLocale(context.locale.languageCode);
+
           PrintHelper.printState(
             "__theme app: ${state.themeMode} - lang: ${context.locale} --> ${ConfigServer.locale}",
           );
