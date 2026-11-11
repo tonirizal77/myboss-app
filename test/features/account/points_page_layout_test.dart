@@ -72,13 +72,25 @@ const _staging = {
 
 /// [PointsRemote]'s mapping over the staging payload, without HTTP.
 class _StagingPoints implements PointsSource {
-  _StagingPoints({this.empty = false});
+  _StagingPoints({this.empty = false, this.withBalance = false});
 
   /// No history at all (`all_point: []`).
   final bool empty;
 
-  LoyaltyPointsModel get _m =>
-      LoyaltyPointsModel.fromJson(empty ? const {'all_point': []} : _staging);
+  /// Payload with `balance_points` + `expiring_points` (staging 2026-11-11).
+  final bool withBalance;
+
+  LoyaltyPointsModel get _m => LoyaltyPointsModel.fromJson({
+    ...(empty ? const {'all_point': []} : _staging),
+    if (withBalance) ...{
+      'balance_points': 269,
+      'expiring_points': {
+        'balance_points': 65,
+        'expire_date': '2026-11-13',
+        'expire_date_subtext': 'Expires in 1 days',
+      },
+    },
+  });
 
   @override
   ResultFuture<PointsSummary> getSummary() async =>
@@ -116,13 +128,16 @@ Future<PointsCubit> _pump(
   WidgetTester tester,
   Size size, {
   bool empty = false,
+  bool withBalance = false,
 }) async {
   tester.view.physicalSize = size;
   tester.view.devicePixelRatio = 1;
   addTearDown(tester.view.reset);
 
   getIt.registerLazySingleton<PointsRepo>(
-    () => PointsRepoImpl(source: _StagingPoints(empty: empty)),
+    () => PointsRepoImpl(
+      source: _StagingPoints(empty: empty, withBalance: withBalance),
+    ),
   );
   getIt.registerLazySingleton(() => GetPointsSummaryUc(getIt()));
   getIt.registerLazySingleton(() => GetPointHistoryUc(getIt()));
@@ -206,11 +221,20 @@ void main() {
       expect(find.text('-20 point'), findsOneWidget);
       expect(find.text('+50 point'), findsOneWidget);
 
-      final header = tester.getRect(find.byType(MyBossHeader));
+      final header = tester.getRect(find.byType(AppBarCustom));
       final badge = tester.getRect(find.byType(PointsBadge));
       final screen = Offset.zero & entry.value;
 
-      // Banner is not hidden under the header.
+      // Banner sits right under the header (not hidden, no gap).
+      final banner = tester.getRect(
+        find
+            .ancestor(
+              of: find.byType(PointsBadge),
+              matching: find.byType(Container),
+            )
+            .first,
+      );
+      expect(banner.top, closeTo(header.bottom, 1));
       expect(badge.top, greaterThanOrEqualTo(header.bottom));
 
       // Every history row is inside the screen (nothing spills sideways).
@@ -249,4 +273,32 @@ void main() {
     expect(find.text('Point Earned'), findsNothing);
     expect(tester.takeException(), isNull);
   });
+
+  for (final entry in _screens.entries) {
+    testWidgets('Points page: balance from loyalty-points on ${entry.key}', (
+      tester,
+    ) async {
+      await _pump(tester, entry.value, withBalance: true);
+
+      // loyalty-points (269 / 65) wins over /profile/info (248).
+      expect(find.text('269 points'), findsOneWidget);
+      expect(find.textContaining('65 expires in'), findsOneWidget);
+      expect(find.text('November 13, 2026'), findsOneWidget);
+
+      // Redeem button: one per page - at the bottom on phones, in the
+      // header (right) on tablet / desktop.
+      final redeem = find.byKey(const ValueKey('points_redeem'));
+      expect(redeem, findsOneWidget);
+      final inHeader = find.descendant(
+        of: find.byType(AppBarCustom),
+        matching: redeem,
+      );
+      expect(inHeader, entry.key == 'phone' ? findsNothing : findsOneWidget);
+      if (entry.key != 'phone') {
+        final header = tester.getRect(find.byType(AppBarCustom));
+        expect(tester.getRect(redeem).right, greaterThan(header.center.dx));
+      }
+      expect(tester.takeException(), isNull);
+    });
+  }
 }

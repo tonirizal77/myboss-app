@@ -76,7 +76,8 @@ class MainPageFlow {
     /// instead of hitting the generate-code API again.
     if (!AccountFlows.hasActiveCode) {
       AccountFlows.resetCodeRefreshSession();
-      await AccountFlows.generateCode(context);
+      /// TODO: tidak digunakan saat ini
+      // await AccountFlows.generateCode(context);
     }
 
     final _bgColor = MyBossColors.surface;

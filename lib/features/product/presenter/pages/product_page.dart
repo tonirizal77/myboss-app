@@ -70,6 +70,9 @@ class _ProductPageState extends State<ProductPage> {
       child: ResponsivePage(
         colorPage: ProductCategoryBar.background,
         backgroundColor: ProductCategoryBar.background,
+        // Tablet / desktop default to centered: short content (few
+        // products) would float down, away from the tabs.
+        alignment: Alignment.topCenter,
         useSafeArea: true,
         useScrollView: true,
         controller: _scroll,

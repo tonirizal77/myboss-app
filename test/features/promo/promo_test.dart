@@ -497,6 +497,12 @@ void main() {
       promo.selectTab(PromoTab.voucher);
       await tester.pumpAndSettle();
 
+      // Content starts right under the tabs, however little data there is
+      // (tablet / desktop used to center short content vertically).
+      final barBottom = tester.getRect(find.byType(MyBossIconTabBar)).bottom;
+      final headingTop = tester.getRect(find.byType(PromoHeading)).top;
+      expect(headingTop - barBottom, lessThan(40));
+
       final tickets = [
         for (final el in find.byType(VoucherTicket).evaluate())
           tester.getRect(find.byElementPredicate((x) => x == el)),

@@ -8,7 +8,8 @@ part of 'loyalty_points_model.dart';
 
 _LoyaltyPointsModel _$LoyaltyPointsModelFromJson(Map<String, dynamic> json) =>
     _LoyaltyPointsModel(
-      totalBalancePoint: (json['total_balance_point'] as num?)?.toInt(),
+      totalBalancePoint: (_readBalance(json, 'total_balance_point') as num?)
+          ?.toInt(),
       expiringPoints: json['expiring_points'] == null
           ? null
           : ExpiringPointsModel.fromJson(

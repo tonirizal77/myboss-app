@@ -38,7 +38,7 @@ class AccountFlows {
 
   /// Auto-close the sheet after this many refreshes so an idle barcode
   /// isn't left open indefinitely.
-  static const maxCodeRefresh = 2;
+  static const maxCodeRefresh = 1;
 
   static DateTime? _nextCodeRefreshAt;
   static int codeRefreshCount = 0;

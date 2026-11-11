@@ -33,8 +33,8 @@
 
 ## Permintaan ke Backend
 
-1. `GET /profile/loyalty-points` belum mengirim `total_balance_point` / `expiring_points` (saldo diambil dari `/profile/info`).
-2. Konfirmasi apakah `/profile/delete-account` memang mengikuti domain cabang.
+1. ~~`GET /profile/loyalty-points` belum mengirim `total_balance_point` / `expiring_points`.~~ Jawaban BE (2026-11-11): saldo tetap dari `balance_points` (`/profile/info`) — sudah sesuai.
+2. ~~Konfirmasi apakah `/profile/delete-account` memang mengikuti domain cabang.~~ Jawaban BE (2026-11-11): tidak harus, kedua domain (default & cabang) bisa dipakai — tidak ada perubahan.
 
 ## Out of Scope
 
@@ -44,7 +44,7 @@
 
 ## Target Selesai
 
-2026-11-13 (22 task × 30 menit, 16 task per hari: 16 task 2026-11-12, 6 task 2026-11-13).
+2026-11-13 (29 task × 30 menit, maks. 16 task per hari: 16 task 2026-11-12, 13 task 2026-11-13).
 
 ## User Stories / Scope
 
@@ -125,3 +125,23 @@ Sebagai developer, saya ingin `ResponsiveGridOrWrap` menghitung layout dari pare
 **Task breakdown (2):**
 1. Port 7c790fa ke mobile_app_core myboss-core (wrapview, list/empty, refresh, load more, ResponsivePage)
 2. responsive_widgets_test lulus (bottomNavBlur) + verifikasi app
+
+### Story: Tampilan Tablet & Data Poin Terbaru
+
+Sebagai member di tablet/desktop, saya ingin halaman Product, Promo, dan Points rapi, dengan saldo poin dari respons terbaru.
+
+**Acceptance Criteria:**
+- Product, Promo, Beranda: konten langsung di bawah tab di tablet/desktop, tidak turun ke tengah saat datanya sedikit.
+- `/profile/loyalty-points` terbaru (`balance_points`, `expiring_points`) dipakai banner Points; tanpa saldo di payload → `/profile/info`.
+- Riwayat Points di tablet/desktop berupa kartu 2 kolom; tombol "Show redeem options" di kanan header (`AppBarCustom.rightButton`), di ponsel tetap di bawah.
+- Kartu member: sheet tertutup setelah 1 kali refresh kode, label "Closed in {}"; generate-code saat membuka sheet dinonaktifkan sementara.
+- Jawaban BE dicatat: saldo tetap `balance_points`; `/profile/delete-account` boleh di domain default maupun cabang.
+
+**Task breakdown (7):**
+1. Product, Promo, Beranda rata atas di tablet/desktop + regression test jarak tab
+2. LoyaltyPointsModel baca balance_points & expiring_points (respons terbaru) + banner Points, fallback profil
+3. Riwayat Points kartu 2 kolom di tablet/desktop
+4. Tombol tukar poin di header (AppBarCustom.rightButton) tablet/desktop, bawah di ponsel
+5. Test layout Points (tombol header, banner, 3 ukuran) + test payload terbaru
+6. Kartu member: tutup setelah 1 refresh, label "Closed in {}", generate-code dinonaktifkan sementara
+7. Catat jawaban BE (balance_points, delete-account domain) di PRD-012

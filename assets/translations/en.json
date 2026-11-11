@@ -22,7 +22,8 @@
     "phone": "Phone number",
     "barcode": "Show this barcode to cashier",
     "invalid_phone": "Invalid phone number",
-    "refresh_in": "New code in {}"
+    "refresh_in": "New code in {}",
+    "closed_in": "Closed in {}"
   },
 
   "dialog": {

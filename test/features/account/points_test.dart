@@ -123,10 +123,33 @@ void main() {
       expect(summary.expiresAt, DateTime(2026, 11, 18));
     });
 
-    test('staging sends no balance or expiry', () {
-      final m = mock();
-      expect(m.totalBalancePoint, isNull);
-      expect(PointsRemote.toSummary(m).expiringPoints, 0);
+    test('staging: balance_points + expiring_points (2026-11-11)', () {
+      final summary = PointsRemote.toSummary(
+        LoyaltyPointsModel.fromJson(const {
+          'balance_points': 269,
+          'expiring_points': {
+            'balance_points': 65,
+            'expire_date': '2026-11-13',
+            'expire_date_subtext': 'Expires in 1 days',
+          },
+          'all_point': [],
+        }),
+      );
+
+      expect(summary.balance, 269);
+      expect(summary.hasBalance, isTrue);
+      expect(summary.expiringPoints, 65);
+      expect(summary.expiresAt, DateTime(2026, 11, 13));
+
+      // Mock file follows the same shape.
+      expect(PointsRemote.toSummary(mock()).balance, 1250);
+    });
+
+    test('no balance in the payload: flagged for the profile fallback', () {
+      final summary = PointsRemote.toSummary(
+        LoyaltyPointsModel.fromJson(const {'all_point': []}),
+      );
+      expect(summary.hasBalance, isFalse);
     });
 
     test('no expiring_points: nothing expiring', () {

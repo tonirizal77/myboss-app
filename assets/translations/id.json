@@ -22,7 +22,8 @@
     "phone": "Nomor telepon",
     "barcode": "Tunjukkan barcode ini kepada kasir",
     "invalid_phone": "Nomor tidak valid",
-    "refresh_in": "Kode baru dalam {}"
+    "refresh_in": "Kode baru dalam {}",
+    "closed_in": "Kode tertutup dalam {}"
   },
 
   "dialog": {

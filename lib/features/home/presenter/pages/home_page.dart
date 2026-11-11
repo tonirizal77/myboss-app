@@ -42,6 +42,9 @@ class _HomePageState extends State<HomePage>
       child: ResponsivePage(
         colorPage: MyBossColors.surfaceContainerLowest,
         backgroundColor: MyBossColors.surfaceContainerLowest,
+        // Tablet / desktop default to centered: short content (few
+        // products) would float down, away from the tabs.
+        alignment: Alignment.topCenter,
         useSafeArea: true,
         useScrollView: true,
         // Branch selector stays put while the content scrolls.

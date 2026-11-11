@@ -56,7 +56,8 @@ class _CardMemberBarcodeState extends State<CardMemberBarcode> {
       /// actually arrive before returning, so [remainingCodeDuration]
       /// read afterwards reflects the fresh server-driven duration -
       /// not the one that just expired.
-      await AccountFlows.generateCode(context);
+      /// TODO: tidak digunakan saat ini
+      // await AccountFlows.generateCode(context);
 
       if (mounted) {
         setState(() => _remaining = AccountFlows.remainingCodeDuration);
@@ -199,7 +200,7 @@ class _CardMemberBarcodeState extends State<CardMemberBarcode> {
 
               /// Timer Count Down
               Text(
-                LocaleKeys.label_refresh_in.tr(args: [_countDownLabel]),
+                LocaleKeys.label_closed_in.tr(args: [_countDownLabel]),
                 style: barcodeStyle.copyWith(
                   color: MyBossColors.onSurfaceVariant,
                 ),

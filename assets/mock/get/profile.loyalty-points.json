@@ -1,5 +1,11 @@
 {
   "data": {
+    "balance_points": 1250,
+    "expiring_points": {
+      "balance_points": 100,
+      "expire_date": "2026-11-20",
+      "expire_date_subtext": "Expires in 9 days"
+    },
     "all_point": [
       {
         "id": 900100,

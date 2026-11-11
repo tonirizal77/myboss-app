@@ -6,16 +6,21 @@ class PointsSummary extends Equatable {
     this.balance = 0,
     this.expiringPoints = 0,
     this.expiresAt,
+    this.hasBalance = true,
   });
 
   final int balance;
+
+  /// False when the source did not send a balance (older
+  /// `/profile/loyalty-points` payloads): use another source instead.
+  final bool hasBalance;
 
   /// Points that expire first, and when.
   final int expiringPoints;
   final DateTime? expiresAt;
 
   @override
-  List<Object?> get props => [balance, expiringPoints, expiresAt];
+  List<Object?> get props => [balance, expiringPoints, expiresAt, hasBalance];
 }
 
 /// One row of the points history.

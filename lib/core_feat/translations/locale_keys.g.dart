@@ -23,6 +23,7 @@ abstract class LocaleKeys {
   static const label_barcode = 'label.barcode';
   static const label_invalid_phone = 'label.invalid_phone';
   static const label_refresh_in = 'label.refresh_in';
+  static const label_closed_in = 'label.closed_in';
   static const label = 'label';
   static const dialog_title_logout = 'dialog.title_logout';
   static const dialog_desc_logout = 'dialog.desc_logout';

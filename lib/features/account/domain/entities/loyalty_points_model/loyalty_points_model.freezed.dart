@@ -15,9 +15,10 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$LoyaltyPointsModel {
 
-/// Not sent by staging (2026-11-11); the app shows `balance_points` of
-/// `/profile/info` instead.
- int? get totalBalancePoint; ExpiringPointsModel? get expiringPoints;/// History, earned and redeemed (staging sends `all_point`; the older
+/// Points balance: `balance_points` (staging, 2026-11-11), older
+/// payloads `total_balance_point`. Null when the server sends neither:
+/// the app then shows `balance_points` of `/profile/info`.
+@JsonKey(readValue: _readBalance) int? get totalBalancePoint; ExpiringPointsModel? get expiringPoints;/// History, earned and redeemed (staging sends `all_point`; the older
 /// `active_point` is still read as a fallback).
 @JsonKey(readValue: _readHistory) List<ActivePointModel> get allPoint;
 /// Create a copy of LoyaltyPointsModel
@@ -52,7 +53,7 @@ abstract mixin class $LoyaltyPointsModelCopyWith<$Res>  {
   factory $LoyaltyPointsModelCopyWith(LoyaltyPointsModel value, $Res Function(LoyaltyPointsModel) _then) = _$LoyaltyPointsModelCopyWithImpl;
 @useResult
 $Res call({
- int? totalBalancePoint, ExpiringPointsModel? expiringPoints,@JsonKey(readValue: _readHistory) List<ActivePointModel> allPoint
+@JsonKey(readValue: _readBalance) int? totalBalancePoint, ExpiringPointsModel? expiringPoints,@JsonKey(readValue: _readHistory) List<ActivePointModel> allPoint
 });
 
 
@@ -171,7 +172,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( int? totalBalancePoint,  ExpiringPointsModel? expiringPoints, @JsonKey(readValue: _readHistory)  List<ActivePointModel> allPoint)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function(@JsonKey(readValue: _readBalance)  int? totalBalancePoint,  ExpiringPointsModel? expiringPoints, @JsonKey(readValue: _readHistory)  List<ActivePointModel> allPoint)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _LoyaltyPointsModel() when $default != null:
 return $default(_that.totalBalancePoint,_that.expiringPoints,_that.allPoint);case _:
@@ -192,7 +193,7 @@ return $default(_that.totalBalancePoint,_that.expiringPoints,_that.allPoint);cas
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( int? totalBalancePoint,  ExpiringPointsModel? expiringPoints, @JsonKey(readValue: _readHistory)  List<ActivePointModel> allPoint)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@JsonKey(readValue: _readBalance)  int? totalBalancePoint,  ExpiringPointsModel? expiringPoints, @JsonKey(readValue: _readHistory)  List<ActivePointModel> allPoint)  $default,) {final _that = this;
 switch (_that) {
 case _LoyaltyPointsModel():
 return $default(_that.totalBalancePoint,_that.expiringPoints,_that.allPoint);case _:
@@ -212,7 +213,7 @@ return $default(_that.totalBalancePoint,_that.expiringPoints,_that.allPoint);cas
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( int? totalBalancePoint,  ExpiringPointsModel? expiringPoints, @JsonKey(readValue: _readHistory)  List<ActivePointModel> allPoint)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function(@JsonKey(readValue: _readBalance)  int? totalBalancePoint,  ExpiringPointsModel? expiringPoints, @JsonKey(readValue: _readHistory)  List<ActivePointModel> allPoint)?  $default,) {final _that = this;
 switch (_that) {
 case _LoyaltyPointsModel() when $default != null:
 return $default(_that.totalBalancePoint,_that.expiringPoints,_that.allPoint);case _:
@@ -227,12 +228,13 @@ return $default(_that.totalBalancePoint,_that.expiringPoints,_that.allPoint);cas
 
 @JsonSerializable(fieldRename: FieldRename.snake)
 class _LoyaltyPointsModel implements LoyaltyPointsModel {
-  const _LoyaltyPointsModel({this.totalBalancePoint, this.expiringPoints, @JsonKey(readValue: _readHistory) final  List<ActivePointModel> allPoint = const []}): _allPoint = allPoint;
+  const _LoyaltyPointsModel({@JsonKey(readValue: _readBalance) this.totalBalancePoint, this.expiringPoints, @JsonKey(readValue: _readHistory) final  List<ActivePointModel> allPoint = const []}): _allPoint = allPoint;
   factory _LoyaltyPointsModel.fromJson(Map<String, dynamic> json) => _$LoyaltyPointsModelFromJson(json);
 
-/// Not sent by staging (2026-11-11); the app shows `balance_points` of
-/// `/profile/info` instead.
-@override final  int? totalBalancePoint;
+/// Points balance: `balance_points` (staging, 2026-11-11), older
+/// payloads `total_balance_point`. Null when the server sends neither:
+/// the app then shows `balance_points` of `/profile/info`.
+@override@JsonKey(readValue: _readBalance) final  int? totalBalancePoint;
 @override final  ExpiringPointsModel? expiringPoints;
 /// History, earned and redeemed (staging sends `all_point`; the older
 /// `active_point` is still read as a fallback).
@@ -279,7 +281,7 @@ abstract mixin class _$LoyaltyPointsModelCopyWith<$Res> implements $LoyaltyPoint
   factory _$LoyaltyPointsModelCopyWith(_LoyaltyPointsModel value, $Res Function(_LoyaltyPointsModel) _then) = __$LoyaltyPointsModelCopyWithImpl;
 @override @useResult
 $Res call({
- int? totalBalancePoint, ExpiringPointsModel? expiringPoints,@JsonKey(readValue: _readHistory) List<ActivePointModel> allPoint
+@JsonKey(readValue: _readBalance) int? totalBalancePoint, ExpiringPointsModel? expiringPoints,@JsonKey(readValue: _readHistory) List<ActivePointModel> allPoint
 });
 
 

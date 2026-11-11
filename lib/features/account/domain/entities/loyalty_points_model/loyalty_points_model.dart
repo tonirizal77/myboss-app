@@ -9,9 +9,10 @@ part 'loyalty_points_model.g.dart';
 abstract class LoyaltyPointsModel with _$LoyaltyPointsModel {
   @JsonSerializable(fieldRename: FieldRename.snake)
   const factory LoyaltyPointsModel({
-    /// Not sent by staging (2026-11-11); the app shows `balance_points` of
-    /// `/profile/info` instead.
-    int? totalBalancePoint,
+    /// Points balance: `balance_points` (staging, 2026-11-11), older
+    /// payloads `total_balance_point`. Null when the server sends neither:
+    /// the app then shows `balance_points` of `/profile/info`.
+    @JsonKey(readValue: _readBalance) int? totalBalancePoint,
     ExpiringPointsModel? expiringPoints,
 
     /// History, earned and redeemed (staging sends `all_point`; the older
@@ -80,6 +81,9 @@ abstract class ActivePointModel with _$ActivePointModel {
   int get signedPoints =>
       isDeducted || isExpired ? -displayedPoint.abs() : displayedPoint.abs();
 }
+
+Object? _readBalance(Map<dynamic, dynamic> json, String key) =>
+    json['balance_points'] ?? json['total_balance_point'];
 
 Object? _readHistory(Map<dynamic, dynamic> json, String key) =>
     json['all_point'] ?? json['active_point'];

@@ -44,6 +44,9 @@ class _PromoPageState extends State<PromoPage> {
       child: ResponsivePage(
         colorPage: PromoTabBar.background,
         backgroundColor: PromoTabBar.background,
+        // Tablet / desktop default to centered: short content (few
+        // products) would float down, away from the tabs.
+        alignment: Alignment.topCenter,
         useSafeArea: true,
         useScrollView: true,
         controller: _scroll,

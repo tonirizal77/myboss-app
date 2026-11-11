@@ -172,6 +172,55 @@
           "deadline": "2026-11-13"
         }
       ]
+    },
+    {
+      "id": "0890a491-c96b-40f1-810c-9ef07bb4741b",
+      "key": "MYB-589",
+      "name": "Tampilan Tablet & Data Poin Terbaru",
+      "tasks": [
+        {
+          "id": "1ebab805-8940-4020-92c7-5b76188f069d",
+          "key": "MYB-596",
+          "title": "Product, Promo, Beranda rata atas di tablet/desktop + regression test jarak tab",
+          "deadline": "2026-11-13"
+        },
+        {
+          "id": "1e135b08-37a7-4675-8112-8d19ca1fa628",
+          "key": "MYB-595",
+          "title": "LoyaltyPointsModel baca balance_points & expiring_points (respons terbaru) + banner Points, fallback profil",
+          "deadline": "2026-11-13"
+        },
+        {
+          "id": "4f32d632-96d8-4937-95e1-8dd700559567",
+          "key": "MYB-594",
+          "title": "Riwayat Points kartu 2 kolom di tablet/desktop",
+          "deadline": "2026-11-13"
+        },
+        {
+          "id": "a9f6f113-b4ff-4b17-8124-4e4830a12589",
+          "key": "MYB-593",
+          "title": "Tombol tukar poin di header (AppBarCustom.rightButton) tablet/desktop, bawah di ponsel",
+          "deadline": "2026-11-13"
+        },
+        {
+          "id": "f5f380d0-7f9b-4828-8d47-10fdd5799363",
+          "key": "MYB-592",
+          "title": "Test layout Points (tombol header, banner, 3 ukuran) + test payload terbaru",
+          "deadline": "2026-11-13"
+        },
+        {
+          "id": "c854e8b7-ad0f-4da3-a160-8a8027d31e11",
+          "key": "MYB-591",
+          "title": "Kartu member: tutup setelah 1 refresh, label \"Closed in {}\", generate-code dinonaktifkan sementara",
+          "deadline": "2026-11-13"
+        },
+        {
+          "id": "6d49c849-749a-4d08-83ec-bc72832605f4",
+          "key": "MYB-590",
+          "title": "Catat jawaban BE (balance_points, delete-account domain) di PRD-012",
+          "deadline": "2026-11-13"
+        }
+      ]
     }
   ]
 }

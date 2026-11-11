@@ -1,10 +1,10 @@
 part of '../datas.dart';
 
-/// 2.b Points history from `GET /profile/loyalty-points` (PRD-011):
-/// `all_point` (`Active` earned, `Deducted` redeemed, `Expired`).
-///
-/// The balance shown in the app is `balance_points` of `/profile/info`
-/// ([ProfileBloc]); [getSummary] only maps what this endpoint sends.
+/// 2.b Points from `GET /profile/loyalty-points` (PRD-011/012): balance
+/// (`balance_points`), the points that expire first (`expiring_points`) and
+/// the history (`all_point`: `Active` earned, `Deducted` redeemed,
+/// `Expired`). Without a balance in the payload the Points page falls back
+/// to `/profile/info`.
 ///
 /// [PointsCubit.load] asks for the summary and then the history: both are
 /// answered by one request.
@@ -119,6 +119,7 @@ class PointsRemote implements PointsSource {
 
     return PointsSummary(
       balance: m.totalBalancePoint ?? 0,
+      hasBalance: m.totalBalancePoint != null,
       expiringPoints: expiring?.balancePoints ?? 0,
       expiresAt: DateTime.tryParse(expiring?.expireDate ?? ''),
     );
