@@ -1,0 +1,88 @@
+{
+  "prd": "PRD-013-guest-rewards-settings-locale-points-paging.md",
+  "project_gid": "65ea6511-c5e4-4397-adf0-64a03c9159c7",
+  "epic": {
+    "id": "732c49ed-57ee-4368-b922-702cf65fd529",
+    "key": "MYB-1"
+  },
+  "stories": [
+    {
+      "id": "73b1b6d4-5c10-437a-a2a6-e4d25274788c",
+      "key": "MYB-609",
+      "name": "Reward Poin untuk Guest & Member",
+      "tasks": [
+        {"id": "9fa5ecaa-7cc0-411a-bbf6-0432d221ec0c", "key": "MYB-631", "title": "PromoRepo: reward + voucher untuk guest & member (paralel) + test", "deadline": "2026-11-12"},
+        {"id": "30aa2227-dc94-45f2-bdf1-547f58299aff", "key": "MYB-630", "title": "Promo › Points guest: pitch sign-up + daftar reward (error/empty sama dengan member)", "deadline": "2026-11-12"},
+        {"id": "211f50c1-7c86-45a3-9dd8-461e77e358ec", "key": "MYB-629", "title": "Promo › All guest: panel Points dengan pitch sign-up + test 3 ukuran", "deadline": "2026-11-12"}
+      ]
+    },
+    {
+      "id": "2583442f-ee7c-4c23-93db-753184718dfc",
+      "key": "MYB-608",
+      "name": "Pengaturan Akun (Bahasa & Mode Gelap)",
+      "tasks": [
+        {"id": "e12afe57-43e8-4293-a878-0b622cbddcb2", "key": "MYB-628", "title": "AccountSettingsCard: baris Bahasa (toggle ID/EN) & Mode gelap + test", "deadline": "2026-11-12"},
+        {"id": "adbdd080-118c-4709-8822-78cd4d1d7ac4", "key": "MYB-627", "title": "Halaman Akun: kartu pengaturan di ponsel/tablet, Powered By rata bawah", "deadline": "2026-11-12"}
+      ]
+    },
+    {
+      "id": "82805559-96f2-436b-89d1-16121c050448",
+      "key": "MYB-607",
+      "name": "Terjemahan & Ganti Bahasa Langsung",
+      "tasks": [
+        {"id": "df36d0b6-c90b-4a98-b6dc-4f7caa4e4b63", "key": "MYB-626", "title": "Terjemahkan teks UI hardcoded + test konsistensi en/id (key & placeholder)", "deadline": "2026-11-12"},
+        {"id": "37f022bd-2b5d-410f-9132-f8d708ab5135", "key": "MYB-625", "title": "LocaleRebuilder: rebuild seluruh app setelah terjemahan baru dimuat + test", "deadline": "2026-11-12"},
+        {"id": "89d658e9-3549-4414-ad70-f73e311781b4", "key": "MYB-624", "title": "LocaleFlow: muat ulang voucher Promo & member setelah ganti bahasa + test", "deadline": "2026-11-12"},
+        {"id": "33212740-b61c-404b-b02c-a6bc3b166d81", "key": "MYB-623", "title": "Fix teks EN button.terapkan dan pesan WhatsApp Contact Us (bahasa app, URL-encoded)", "deadline": "2026-11-12"}
+      ]
+    },
+    {
+      "id": "e8436348-078c-400e-a9cf-28fcafb3eb4f",
+      "key": "MYB-606",
+      "name": "Pesan Register & Hapus Akun",
+      "tasks": [
+        {"id": "4d6641a4-a920-4f89-8e97-e37953883f70", "key": "MYB-622", "title": "Pesan sukses/gagal register (root navigator setelah redirect) + test", "deadline": "2026-11-12"},
+        {"id": "b593f998-6e31-4935-8515-92b827479acf", "key": "MYB-621", "title": "Hapus akun: lanjut di context root setelah sheet ditutup + pesan gagal hapus/batal + test", "deadline": "2026-11-12"},
+        {"id": "f718dd07-39d4-4051-a74a-5493e02c4c80", "key": "MYB-620", "title": "MyBossToast memakai overlay root navigator + regression test", "deadline": "2026-11-12"}
+      ]
+    },
+    {
+      "id": "d659c365-1edf-405e-875b-32e6b33282e6",
+      "key": "MYB-605",
+      "name": "Poin: Empty State & Paging",
+      "tasks": [
+        {"id": "30e4198c-c374-4ebf-a3fd-f49422b748e4", "key": "MYB-619", "title": "Empty state riwayat poin sesuai Figma + test 3 ukuran", "deadline": "2026-11-12"},
+        {"id": "905d135c-87b3-4f9b-a9c3-c7e1a35d5e3c", "key": "MYB-618", "title": "PointsRemote: page/per_page + meta (PointHistoryPage), total_balance_point", "deadline": "2026-11-12"},
+        {"id": "1f0a776e-fc84-4ded-b173-27074f98449d", "key": "MYB-617", "title": "PointsCubit.loadMore + onLoadMore di halaman Points + test paging", "deadline": "2026-11-12"}
+      ]
+    },
+    {
+      "id": "e7487afd-0c9d-4e43-a1b7-336e7352fd3f",
+      "key": "MYB-604",
+      "name": "Detail Produk dari Reward & Produk Populer",
+      "tasks": [
+        {"id": "aa9f4d9e-1f1f-4471-a389-ceea13b968ee", "key": "MYB-616", "title": "PromoPoint.product_id → RewardPreview + tap reward membuka ProductDetailSheet (storeDomain)", "deadline": "2026-11-12"},
+        {"id": "0fdbdf7e-ffbb-4f22-9d20-a03359b2c355", "key": "MYB-615", "title": "Produk populer Beranda: productId + tap membuka detail", "deadline": "2026-11-12"},
+        {"id": "5fd4049e-df88-4c72-aef6-694c4ab7a8e6", "key": "MYB-614", "title": "Mock product_id per cabang + test reward/produk populer", "deadline": "2026-11-12"}
+      ]
+    },
+    {
+      "id": "940784ef-d430-44ba-b14b-6e1f00a12f48",
+      "key": "MYB-603",
+      "name": "Statistik Katalog Beranda Dinamis",
+      "tasks": [
+        {"id": "ae8e9538-d555-4f68-837e-014b664613c7", "key": "MYB-613", "title": "CatalogStats: repo getStats + GetCatalogStatsUc + PopularProductsCubit", "deadline": "2026-11-12"},
+        {"id": "48a5e3fd-5af3-4f07-b2c7-94c9a619c1ac", "key": "MYB-612", "title": "Teks Beranda dari stats (sembunyi saat 0) + hapus angka statis + test", "deadline": "2026-11-12"}
+      ]
+    },
+    {
+      "id": "eb65236a-75b8-458d-ad47-fbc383e06570",
+      "key": "MYB-602",
+      "name": "Tombol Close Bottom Sheet",
+      "tasks": [
+        {"id": "2afdcaea-72c3-4548-9029-faae0112cd43", "key": "MYB-611", "title": "MyBossBottomSheet useRootNavigator + cek provider sheet di level app", "deadline": "2026-11-12"},
+        {"id": "2a04233b-0999-4cb5-a326-8377431da178", "key": "MYB-610", "title": "Regression test tombol close di atas lapisan shell", "deadline": "2026-11-12"}
+      ]
+    }
+  ]
+}
