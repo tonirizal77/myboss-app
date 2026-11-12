@@ -41,7 +41,8 @@
     "terapkan": "Terapkan",
     "back": "Kembali",
     "logout": "Ya, keluar",
-    "delete_account": "Ya, Hapus Akun"
+    "delete_account": "Ya, Hapus Akun",
+    "continue": "Lanjutkan"
   },
 
   "dio_msg": {
@@ -74,9 +75,9 @@
     "subtitle": "Kumpulkan poin di setiap pembelian",
     "sign_up": "Daftar",
     "have_account": "Saya sudah punya akun",
-    "brands_caption": "Produk dari brand terpercaya dalam lebih dari {} kategori",
+    "brands_caption": "Produk dari brand terpercaya dari {} kategori",
     "catalogs_title": "Katalog Produk Kami",
-    "view_all": "Lihat semua {}+ produk",
+    "view_all": "Lihat semua {} produk",
     "explore": "Jelajahi",
     "earn_title": "Kumpulkan Poin, Dapatkan Item Gratis!",
     "points_value": "{} poin",
@@ -141,7 +142,7 @@
     "tax": "Pajak",
     "shipping_cost": "Ongkos Kirim",
     "total": "Total",
-    "empty": "Belum ada aktivitas poin"
+    "empty": "Kamu belum punya poin."
   },
 
   "branch": {
@@ -165,9 +166,14 @@
     "tnc": "Syarat & Ketentuan",
     "stamps": "stempel",
     "contact_us": "Hubungi Kami",
+    "contact_wa_message": "Halo MyBoss",
     "logout": "Keluar",
     "delete_account": "Hapus akun saya",
     "delete_account_success": "Akun Anda berhasil dihapus!",
+    "delete_account_failed": "Gagal menghapus akun. Silakan coba lagi.",
+    "delete_account_failed_reason": "Gagal menghapus akun: {}",
+    "delete_cancel_failed": "Gagal membatalkan permintaan hapus akun. Silakan coba lagi.",
+    "delete_cancel_failed_reason": "Gagal membatalkan permintaan hapus akun: {}",
     "login_required_title": "Masuk untuk melihat\nakun Anda",
     "login_required_desc": "Login atau daftar untuk melihat profil, stempel, dan voucher Anda.",
     "lets_fun": "Ayo bergembira bersama!",
@@ -188,6 +194,7 @@
     "delete_confirm_email_button": "Kirim permintaan",
     "delete_confirm_email_subject": "Permintaan Hapus Akun - {}",
     "delete_confirm_email_body": "Saya ingin mengajukan penghapusan akun MyBoss dengan detail sbb:\n• Nama: {name}\n• Email: {email}\n• No. HP: {phone}.\n\nMohon konfirmasi proses penghapusannya.\n\nSaya memahami bahwa proses ini tidak dapat dibatalkan dan semua data saya akan dihapus secara permanen.",
+    "language": "Bahasa",
     "dark_mode": "Mode gelap",
     "delete_active_voucher_desc": "Kamu punya {} voucher yang belum digunakan.",
     "delete_active_voucher_title": "Voucher Aktif",
@@ -304,12 +311,19 @@
     "invalid_email": "Alamat email tidak valid",
     "btn_register": "Daftarkan saya",
     "terms_prefix": "Dengan mendaftar, kamu menyetujui ",
-    "terms_link": "Syarat & Ketentuan"
+    "terms_link": "Syarat & Ketentuan",
+    "register_success": "Pendaftaran berhasil! Selamat datang di MyBoss.",
+    "register_failed": "Pendaftaran gagal. Silakan coba lagi.",
+    "register_failed_reason": "Pendaftaran gagal: {}",
+    "logout_success": "Berhasil keluar."
   },
 
   "global": {
     "server_error": "Error Server!",
-    "ignore": "Abaikan dulu ya"
+    "ignore": "Abaikan dulu ya",
+    "server_error_retry": "Server error: {}. Mencoba lagi dalam 15 detik.",
+    "version": "Versi: {}",
+    "app_appearance": "Tampilan aplikasi"
   },
 
   "verify": {

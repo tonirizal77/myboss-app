@@ -284,7 +284,9 @@ as List<PromoPoint>,
 /// @nodoc
 mixin _$PromoPoint {
 
- int get id; String get name; String? get photo; int get redeemedPoints;
+ int get id;/// Catalog product of the reward: its details come from
+/// `/catalog/show/{product_id}`. Null on older payloads.
+ int? get productId; String get name; String? get photo; int get redeemedPoints;
 /// Create a copy of PromoPoint
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -297,16 +299,16 @@ $PromoPointCopyWith<PromoPoint> get copyWith => _$PromoPointCopyWithImpl<PromoPo
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is PromoPoint&&(identical(other.id, id) || other.id == id)&&(identical(other.name, name) || other.name == name)&&(identical(other.photo, photo) || other.photo == photo)&&(identical(other.redeemedPoints, redeemedPoints) || other.redeemedPoints == redeemedPoints));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is PromoPoint&&(identical(other.id, id) || other.id == id)&&(identical(other.productId, productId) || other.productId == productId)&&(identical(other.name, name) || other.name == name)&&(identical(other.photo, photo) || other.photo == photo)&&(identical(other.redeemedPoints, redeemedPoints) || other.redeemedPoints == redeemedPoints));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,id,name,photo,redeemedPoints);
+int get hashCode => Object.hash(runtimeType,id,productId,name,photo,redeemedPoints);
 
 @override
 String toString() {
-  return 'PromoPoint(id: $id, name: $name, photo: $photo, redeemedPoints: $redeemedPoints)';
+  return 'PromoPoint(id: $id, productId: $productId, name: $name, photo: $photo, redeemedPoints: $redeemedPoints)';
 }
 
 
@@ -317,7 +319,7 @@ abstract mixin class $PromoPointCopyWith<$Res>  {
   factory $PromoPointCopyWith(PromoPoint value, $Res Function(PromoPoint) _then) = _$PromoPointCopyWithImpl;
 @useResult
 $Res call({
- int id, String name, String? photo, int redeemedPoints
+ int id, int? productId, String name, String? photo, int redeemedPoints
 });
 
 
@@ -334,10 +336,11 @@ class _$PromoPointCopyWithImpl<$Res>
 
 /// Create a copy of PromoPoint
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? name = null,Object? photo = freezed,Object? redeemedPoints = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? productId = freezed,Object? name = null,Object? photo = freezed,Object? redeemedPoints = null,}) {
   return _then(_self.copyWith(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
-as int,name: null == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
+as int,productId: freezed == productId ? _self.productId : productId // ignore: cast_nullable_to_non_nullable
+as int?,name: null == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
 as String,photo: freezed == photo ? _self.photo : photo // ignore: cast_nullable_to_non_nullable
 as String?,redeemedPoints: null == redeemedPoints ? _self.redeemedPoints : redeemedPoints // ignore: cast_nullable_to_non_nullable
 as int,
@@ -425,10 +428,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( int id,  String name,  String? photo,  int redeemedPoints)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( int id,  int? productId,  String name,  String? photo,  int redeemedPoints)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _PromoPoint() when $default != null:
-return $default(_that.id,_that.name,_that.photo,_that.redeemedPoints);case _:
+return $default(_that.id,_that.productId,_that.name,_that.photo,_that.redeemedPoints);case _:
   return orElse();
 
 }
@@ -446,10 +449,10 @@ return $default(_that.id,_that.name,_that.photo,_that.redeemedPoints);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( int id,  String name,  String? photo,  int redeemedPoints)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( int id,  int? productId,  String name,  String? photo,  int redeemedPoints)  $default,) {final _that = this;
 switch (_that) {
 case _PromoPoint():
-return $default(_that.id,_that.name,_that.photo,_that.redeemedPoints);case _:
+return $default(_that.id,_that.productId,_that.name,_that.photo,_that.redeemedPoints);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -466,10 +469,10 @@ return $default(_that.id,_that.name,_that.photo,_that.redeemedPoints);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( int id,  String name,  String? photo,  int redeemedPoints)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( int id,  int? productId,  String name,  String? photo,  int redeemedPoints)?  $default,) {final _that = this;
 switch (_that) {
 case _PromoPoint() when $default != null:
-return $default(_that.id,_that.name,_that.photo,_that.redeemedPoints);case _:
+return $default(_that.id,_that.productId,_that.name,_that.photo,_that.redeemedPoints);case _:
   return null;
 
 }
@@ -481,10 +484,13 @@ return $default(_that.id,_that.name,_that.photo,_that.redeemedPoints);case _:
 
 @JsonSerializable(fieldRename: FieldRename.snake)
 class _PromoPoint implements PromoPoint {
-  const _PromoPoint({this.id = 0, this.name = '', this.photo, this.redeemedPoints = 0});
+  const _PromoPoint({this.id = 0, this.productId, this.name = '', this.photo, this.redeemedPoints = 0});
   factory _PromoPoint.fromJson(Map<String, dynamic> json) => _$PromoPointFromJson(json);
 
 @override@JsonKey() final  int id;
+/// Catalog product of the reward: its details come from
+/// `/catalog/show/{product_id}`. Null on older payloads.
+@override final  int? productId;
 @override@JsonKey() final  String name;
 @override final  String? photo;
 @override@JsonKey() final  int redeemedPoints;
@@ -502,16 +508,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _PromoPoint&&(identical(other.id, id) || other.id == id)&&(identical(other.name, name) || other.name == name)&&(identical(other.photo, photo) || other.photo == photo)&&(identical(other.redeemedPoints, redeemedPoints) || other.redeemedPoints == redeemedPoints));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _PromoPoint&&(identical(other.id, id) || other.id == id)&&(identical(other.productId, productId) || other.productId == productId)&&(identical(other.name, name) || other.name == name)&&(identical(other.photo, photo) || other.photo == photo)&&(identical(other.redeemedPoints, redeemedPoints) || other.redeemedPoints == redeemedPoints));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,id,name,photo,redeemedPoints);
+int get hashCode => Object.hash(runtimeType,id,productId,name,photo,redeemedPoints);
 
 @override
 String toString() {
-  return 'PromoPoint(id: $id, name: $name, photo: $photo, redeemedPoints: $redeemedPoints)';
+  return 'PromoPoint(id: $id, productId: $productId, name: $name, photo: $photo, redeemedPoints: $redeemedPoints)';
 }
 
 
@@ -522,7 +528,7 @@ abstract mixin class _$PromoPointCopyWith<$Res> implements $PromoPointCopyWith<$
   factory _$PromoPointCopyWith(_PromoPoint value, $Res Function(_PromoPoint) _then) = __$PromoPointCopyWithImpl;
 @override @useResult
 $Res call({
- int id, String name, String? photo, int redeemedPoints
+ int id, int? productId, String name, String? photo, int redeemedPoints
 });
 
 
@@ -539,10 +545,11 @@ class __$PromoPointCopyWithImpl<$Res>
 
 /// Create a copy of PromoPoint
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? name = null,Object? photo = freezed,Object? redeemedPoints = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? productId = freezed,Object? name = null,Object? photo = freezed,Object? redeemedPoints = null,}) {
   return _then(_PromoPoint(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
-as int,name: null == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
+as int,productId: freezed == productId ? _self.productId : productId // ignore: cast_nullable_to_non_nullable
+as int?,name: null == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
 as String,photo: freezed == photo ? _self.photo : photo // ignore: cast_nullable_to_non_nullable
 as String?,redeemedPoints: null == redeemedPoints ? _self.redeemedPoints : redeemedPoints // ignore: cast_nullable_to_non_nullable
 as int,

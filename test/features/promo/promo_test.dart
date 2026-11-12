@@ -203,17 +203,20 @@ void main() {
     expect(used.usedAt, DateTime(2026, 11, 5));
   });
 
-  test('guest: vouchers only, loyalty points never requested', () async {
+  test('guest: rewards + vouchers of the branch', () async {
     final cubit = PromoCubit();
     addTearDown(cubit.close);
 
     await cubit.load(storeDomain: 'myboss-semarang', isLoggedIn: false);
 
     expect(cubit.state.status, Status.success);
-    expect(cubit.state.content.rewards, isEmpty);
+    expect(cubit.state.content.rewards, hasLength(8));
     expect(cubit.state.content.vouchers, hasLength(6));
     expect(cubit.state.content.vouchers[3].validUntil, isNull);
-    expect(_remote.calls, ['${Endpoints.promoVoucherList}@myboss-semarang']);
+    expect(_remote.calls, [
+      '${Endpoints.promoPointList}@myboss-semarang',
+      '${Endpoints.promoVoucherList}@myboss-semarang',
+    ]);
   });
 
   test('signed in: rewards + vouchers, cached per branch', () async {
@@ -241,7 +244,7 @@ void main() {
     expect(cubit.state.tab, PromoTab.voucher);
   });
 
-  test('logout drops the rewards of the signed-in session', () async {
+  test('logout reloads the content for the guest session', () async {
     final cubit = PromoCubit();
     addTearDown(cubit.close);
 
@@ -249,8 +252,10 @@ void main() {
     expect(cubit.state.content.rewards, isNotEmpty);
 
     await cubit.load(isLoggedIn: false);
-    expect(cubit.state.content.rewards, isEmpty);
+    expect(cubit.state.params.isLoggedIn, isFalse);
+    expect(cubit.state.content.rewards, hasLength(8));
     expect(cubit.state.content.vouchers, hasLength(6));
+    expect(_remote.calls, hasLength(4)); // reloaded, not reused
   });
 
   test('one section failed: the other is kept, flagged for retry', () async {
@@ -343,17 +348,65 @@ void main() {
     return promo;
   }
 
+  group('language change: server texts fetched again', () {
+    test('Promo: reloaded only once it was loaded', () async {
+      final cubit = PromoCubit();
+      addTearDown(cubit.close);
+
+      await cubit.reloadLoaded();
+      expect(_remote.calls, isEmpty);
+
+      await cubit.load(storeDomain: 'myboss-semarang', isLoggedIn: true);
+      await cubit.reloadLoaded();
+      expect(_remote.calls, [
+        '${Endpoints.promoPointList}@myboss-semarang',
+        '${Endpoints.promoVoucherList}@myboss-semarang',
+        '${Endpoints.promoPointList}@myboss-semarang',
+        '${Endpoints.promoVoucherList}@myboss-semarang',
+      ]);
+      expect(cubit.state.status, Status.success);
+    });
+
+    test('member vouchers: only the tabs already opened', () async {
+      final cubit = MemberVoucherCubit();
+      addTearDown(cubit.close);
+
+      await cubit.reloadLoaded();
+      expect(_vouchers.calls, isEmpty);
+
+      await cubit.load(VoucherStatus.active);
+      await cubit.reloadLoaded();
+      // Active again (first page); Used was never opened.
+      expect(_vouchers.calls, ['false:1', 'false:1']);
+      expect(cubit.state.of(VoucherStatus.active).items, isNotEmpty);
+    });
+  });
+
   for (final e in _screens.entries) {
     testWidgets('guest Promo tabs on ${e.key}', (tester) async {
       final promo = await pump(tester, e.value);
 
-      // All (guest): sign-up card and the Voucher panel - no Points panel.
+      // All (guest): sign-up card, Points panel (pitch + rewards, no
+      // balance) and the Voucher panel - both with See more.
       expect(find.text('I already have an account'), findsOneWidget);
-      expect(find.text('See more'), findsOneWidget);
-      expect(_remote.calls, ['${Endpoints.promoVoucherList}@']);
+      expect(find.byType(PromoPointsPanel), findsOneWidget);
+      expect(
+        find.descendant(
+          of: find.byType(PromoPointsPanel),
+          matching: find.byType(RewardCard),
+        ),
+        findsNWidgets(PromoPointsPanel.preview),
+      );
+      expect(find.textContaining('points available'), findsNothing);
+      expect(find.text('See more'), findsNWidgets(2));
+      // Rewards are loaded for guests too (Home, Promo > Points).
+      expect(_remote.calls, [
+        '${Endpoints.promoPointList}@',
+        '${Endpoints.promoVoucherList}@',
+      ]);
       expect(tester.takeException(), isNull);
 
-      // Points (guest): sign-up pitch only, no reward list.
+      // Points (guest): sign-up pitch above the reward list of the branch.
       promo.selectTab(PromoTab.points);
       await tester.pumpAndSettle();
       expect(
@@ -363,7 +416,9 @@ void main() {
         ),
         findsOneWidget,
       );
-      expect(find.text('Toughlink C to C'), findsNothing);
+      expect(find.byType(RewardCard), findsWidgets);
+      expect(find.text('Toughlink C to C'), findsWidgets);
+      expect(tester.takeException(), isNull);
 
       promo.selectTab(PromoTab.voucher);
       await tester.pumpAndSettle();

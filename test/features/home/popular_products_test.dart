@@ -11,6 +11,9 @@ class _FakeRemote implements ProductRemote {
   final hold = <String, Completer<void>>{};
   bool fail = false;
 
+  /// `/catalog/group/lists` fails (the product total still answers).
+  bool failGroups = false;
+
   @override
   ResultFuture<CatalogListModel> getProducts(CatalogQuery query) async {
     queries.add(query);
@@ -19,6 +22,8 @@ class _FakeRemote implements ProductRemote {
 
     return Right(
       CatalogListModel(
+        // Catalog total of the branch, e.g. 42 rows over every page.
+        meta: CatalogMeta(total: query.storeDomain == 'jogja' ? 42 : 7),
         data: [
           CatalogItem(
             id: 1,
@@ -27,6 +32,19 @@ class _FakeRemote implements ProductRemote {
             productGroupName: 'Audio',
           ),
         ],
+      ),
+    );
+  }
+
+  @override
+  ResultFuture<CatalogGroupsModel> getGroups(CatalogQuery query) async {
+    await hold[query.storeDomain]?.future;
+    if (fail || failGroups) {
+      return Left(Failures(error: Error(message: 'offline')));
+    }
+    return Right(
+      CatalogGroupsModel(
+        meta: CatalogMeta(total: query.storeDomain == 'jogja' ? 9 : 3),
       ),
     );
   }
@@ -45,6 +63,7 @@ void main() {
       () => PopularProductsRepoImpl(remote: getIt()),
     );
     getIt.registerLazySingleton(() => GetPopularProductsUc(getIt()));
+    getIt.registerLazySingleton(() => GetCatalogStatsUc(getIt()));
   });
   tearDown(() => getIt.reset());
 
@@ -75,6 +94,8 @@ void main() {
           name: 'Popular jogja',
           category: 'Audio',
           image: 'https://example.test/p.png',
+          // Opens /catalog/show/1 when tapped.
+          productId: '1',
         ),
       ]);
     },
@@ -112,5 +133,50 @@ void main() {
     expect(cubit.state.items, isEmpty);
     remote.hold['b']!.complete();
     await next;
+  });
+
+  group('catalog totals (Home copy)', () {
+    test(
+      'products = meta.total of /catalog/lists, categories = groups',
+      () async {
+        final stats = (await getIt<PopularProductsRepo>().getStats(
+          'jogja',
+        )).getOrElse(() => throw StateError('failed'));
+
+        expect(stats, const CatalogStats(products: 42, categories: 9));
+        // One row is enough for meta.total.
+        expect(remote.queries.single.perPage, 1);
+        expect(remote.queries.single.popular, isFalse);
+        expect(remote.queries.single.storeDomain, 'jogja');
+      },
+    );
+
+    test('one request failing keeps the other total', () async {
+      remote.failGroups = true;
+      final stats = (await getIt<PopularProductsRepo>().getStats(
+        'jogja',
+      )).getOrElse(() => throw StateError('failed'));
+
+      expect(stats, const CatalogStats(products: 42));
+    });
+
+    test('cubit loads them per branch, never mixing branches', () async {
+      final cubit = PopularProductsCubit();
+      addTearDown(cubit.close);
+
+      await cubit.load('jogja');
+      expect(
+        cubit.state.stats,
+        const CatalogStats(products: 42, categories: 9),
+      );
+
+      remote.hold['solo'] = Completer();
+      final next = cubit.load('solo');
+      // Another branch: the previous totals are gone at once.
+      expect(cubit.state.stats, const CatalogStats());
+      remote.hold['solo']!.complete();
+      await next;
+      expect(cubit.state.stats, const CatalogStats(products: 7, categories: 3));
+    });
   });
 }

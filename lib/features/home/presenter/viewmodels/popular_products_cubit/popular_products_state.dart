@@ -5,6 +5,7 @@ class PopularProductsState extends Equatable {
     this.status = Status.initial,
     this.storeDomain = '',
     this.items = const [],
+    this.stats = const CatalogStats(),
   });
 
   final Status status;
@@ -13,16 +14,21 @@ class PopularProductsState extends Equatable {
   final String storeDomain;
   final List<CatalogPreview> items;
 
+  /// Product / category totals of the branch (Home copy).
+  final CatalogStats stats;
+
   PopularProductsState copyWith({
     Status? status,
     String? storeDomain,
     List<CatalogPreview>? items,
+    CatalogStats? stats,
   }) => PopularProductsState(
     status: status ?? this.status,
     storeDomain: storeDomain ?? this.storeDomain,
     items: items ?? this.items,
+    stats: stats ?? this.stats,
   );
 
   @override
-  List<Object?> get props => [status, storeDomain, items];
+  List<Object?> get props => [status, storeDomain, items, stats];
 }

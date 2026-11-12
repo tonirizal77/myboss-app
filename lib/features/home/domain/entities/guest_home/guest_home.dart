@@ -6,8 +6,6 @@ class GuestHome extends Equatable {
     this.brands = const [],
     this.catalog = const [],
     this.rewards = const [],
-    this.productCount = 0,
-    this.categoryCount = 0,
   });
 
   /// Trusted brand logos.
@@ -19,18 +17,24 @@ class GuestHome extends Equatable {
   /// Items that can be redeemed with points.
   final List<RewardPreview> rewards;
 
-  /// Totals shown in copy ("View all 100+ products", "25 categories").
-  final int productCount;
-  final int categoryCount;
+  @override
+  List<Object?> get props => [brands, catalog, rewards];
+}
+
+/// Catalog totals of a branch, shown in the Home copy: "... in more than
+/// {categories} categories" and "View all {products}+ products". 0 = not
+/// known (not loaded yet or the request failed): the copy is hidden.
+class CatalogStats extends Equatable {
+  const CatalogStats({this.products = 0, this.categories = 0});
+
+  /// `meta.total` of `GET /catalog/lists`.
+  final int products;
+
+  /// Categories of `GET /catalog/group/lists`.
+  final int categories;
 
   @override
-  List<Object?> get props => [
-    brands,
-    catalog,
-    rewards,
-    productCount,
-    categoryCount,
-  ];
+  List<Object?> get props => [products, categories];
 }
 
 /// [image] is an asset path or an http(s) URL.
@@ -49,14 +53,21 @@ class CatalogPreview extends Equatable {
     required this.name,
     required this.category,
     required this.image,
+    this.productId = '',
   });
 
   final String name;
   final String category;
   final String image;
 
+  /// Catalog product shown when the card is tapped; empty = no details
+  /// (static Figma cards).
+  final String productId;
+
+  bool get hasDetail => productId.isNotEmpty;
+
   @override
-  List<Object?> get props => [name, category, image];
+  List<Object?> get props => [name, category, image, productId];
 }
 
 class RewardPreview extends Equatable {
@@ -64,12 +75,19 @@ class RewardPreview extends Equatable {
     required this.name,
     required this.points,
     required this.image,
+    this.productId = '',
   });
 
   final String name;
   final int points;
   final String image;
 
+  /// Catalog product shown when the reward is tapped; empty = no details
+  /// (static rewards, older payloads).
+  final String productId;
+
+  bool get hasDetail => productId.isNotEmpty;
+
   @override
-  List<Object?> get props => [name, points, image];
+  List<Object?> get props => [name, points, image, productId];
 }

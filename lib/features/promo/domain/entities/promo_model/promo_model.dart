@@ -19,6 +19,10 @@ abstract class PromoPoint with _$PromoPoint {
   @JsonSerializable(fieldRename: FieldRename.snake)
   const factory PromoPoint({
     @Default(0) int id,
+
+    /// Catalog product of the reward: its details come from
+    /// `/catalog/show/{product_id}`. Null on older payloads.
+    int? productId,
     @Default('') String name,
     String? photo,
     @Default(0) int redeemedPoints,

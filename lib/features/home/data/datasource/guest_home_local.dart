@@ -18,8 +18,6 @@ class GuestHomeStatic implements GuestHomeSource {
   ResultFuture<GuestHome> getGuestHome() async {
     return const Right(
       GuestHome(
-        productCount: 100,
-        categoryCount: 25,
         brands: [
           BrandLogo(name: 'Advan', image: Assets.brandAdvan),
           BrandLogo(name: 'Maestro', image: Assets.brandMaestro),

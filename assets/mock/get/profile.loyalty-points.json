@@ -1,6 +1,6 @@
 {
   "data": {
-    "balance_points": 1250,
+    "total_balance_point": 1250,
     "expiring_points": {
       "balance_points": 100,
       "expire_date": "2026-11-20",

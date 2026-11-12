@@ -47,19 +47,21 @@ class GuestBrands extends StatelessWidget {
               ),
             ),
           ),
-          const SizedBox(height: 24),
-
-          // Producst from trusted ...
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 40),
-            child: Text(
-              LocaleKeys.guest_home_brands_caption.tr(args: ['$categories']),
-              textAlign: TextAlign.center,
-              style: MyBossTextStyles.caption.copyWith(
-                color: MyBossColors.onSurfaceVariant.withValues(alpha: 0.74),
+          // "Products from trusted brands across more than N categories":
+          // hidden while the category total is not known.
+          if (categories > 0) ...[
+            const SizedBox(height: 24),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 40),
+              child: Text(
+                LocaleKeys.guest_home_brands_caption.tr(args: ['$categories']),
+                textAlign: TextAlign.center,
+                style: MyBossTextStyles.caption.copyWith(
+                  color: MyBossColors.onSurfaceVariant.withValues(alpha: 0.74),
+                ),
               ),
             ),
-          ),
+          ],
         ],
       ),
     );

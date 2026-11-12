@@ -101,11 +101,13 @@ class _AccountCard extends StatelessWidget {
 
 class _AccountRow extends StatelessWidget {
   const _AccountRow({
+    super.key,
     required this.icon,
     required this.label,
     required this.labelStyle,
     required this.onTap,
     this.showChevron = false,
+    this.trailing,
   });
 
   final Widget icon;
@@ -113,6 +115,9 @@ class _AccountRow extends StatelessWidget {
   final TextStyle labelStyle;
   final VoidCallback onTap;
   final bool showChevron;
+
+  /// Control at the end of the row (switch, toggle); replaces the chevron.
+  final Widget? trailing;
 
   @override
   Widget build(BuildContext context) {
@@ -135,7 +140,9 @@ class _AccountRow extends StatelessWidget {
                 ),
               ),
             ),
-            if (showChevron)
+            if (trailing case final trailing?)
+              trailing
+            else if (showChevron)
               Icon(
                 Icons.chevron_right,
                 size: 24,

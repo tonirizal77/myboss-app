@@ -75,15 +75,39 @@ class _AccountPageState extends State<AccountPage>
   Widget _build(BuildContext context, UserState state) {
     final _isLoggedIn = state.statusLogin == Status.success;
 
+    const padding = 24.0;
+
     return ResponsivePage(
       useSafeArea: true,
       alignment: .topCenter,
       onRefresh: refreshData,
-      body: SingleChildScrollView(
-        padding: EdgeInsets.all(24),
-        child: Responsive(
-          mobile: _mobileView(_isLoggedIn, context),
-          tablet: _tabletView(_isLoggedIn, context),
+      // At least one screen tall, so "Powered By" + version sit at the
+      // bottom; longer content scrolls them along. Always scrollable, so
+      // pull to refresh works on short content too.
+      body: LayoutBuilder(
+        builder: (context, constraints) => SingleChildScrollView(
+          physics: const AlwaysScrollableScrollPhysics(),
+          padding: const EdgeInsets.all(padding),
+          child: ConstrainedBox(
+            constraints: BoxConstraints(
+              minHeight: constraints.hasBoundedHeight
+                  ? (constraints.maxHeight - padding * 2).clamp(0, .infinity)
+                  : 0,
+            ),
+            child: Column(
+              mainAxisAlignment: .spaceBetween,
+              children: [
+                Responsive(
+                  mobile: _mobileView(_isLoggedIn, context),
+                  tablet: _tabletView(_isLoggedIn, context),
+                ),
+                const Padding(
+                  padding: EdgeInsets.only(top: 16),
+                  child: DrawerVersionx(key: Key('account_version')),
+                ),
+              ],
+            ),
+          ),
         ),
       ),
     );
@@ -111,29 +135,15 @@ class _AccountPageState extends State<AccountPage>
         ] else
           const CardLoginRequired(),
 
+        /// Language + dark mode (guest and member).
+        const AccountSettingsCard(),
+
         /// List Menu
         Visibility(visible: false, child: const ListMenuAkun()),
 
         /// Follow Us
         /// MARK: Belum diperlukan
         // const CardFollowUs(),
-        Visibility(
-          // visible: false,
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              /// Swith bahasa
-              Visibility(
-                visible: !Responsive.isPhoneLandscape(context),
-                child: SwitchLocaleBar(tipe: TipeSwitch.rolling),
-              ),
-              Visibility(
-                visible: !Responsive.isPhoneLandscape(context),
-                child: const DrawerVersionx(),
-              ),
-            ],
-          ),
-        ),
       ],
     );
   }
@@ -164,6 +174,9 @@ class _AccountPageState extends State<AccountPage>
                 children: [
                   // const CardFollowUs(),
                   if (_isLoggedIn) const AccountStatsCard(),
+
+                  /// Language + dark mode (guest and member).
+                  const AccountSettingsCard(),
 
                   if (_isLoggedIn) ...[
                     _logoutRow(context),

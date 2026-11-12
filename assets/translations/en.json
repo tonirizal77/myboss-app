@@ -38,10 +38,11 @@
     "register": "Make a new account",
     "batal": "Cancel",
     "simpan": "Save",
-    "terapkan": "Terapkan",
+    "terapkan": "Apply",
     "back": "Back",
     "logout": "Yes, sign out",
-    "delete_account": "Yes, Delete Account"
+    "delete_account": "Yes, Delete Account",
+    "continue": "Continue"
   },
 
   "dio_msg": {
@@ -74,9 +75,9 @@
     "subtitle": "Earn points with every purchase",
     "sign_up": "Sign up",
     "have_account": "I already have an account",
-    "brands_caption": "Products from trusted brands across more than {} categories",
+    "brands_caption": "Products from trusted brands across {} categories",
     "catalogs_title": "Our Product Catalogs",
-    "view_all": "View all {}+ products",
+    "view_all": "View all {} products",
     "explore": "Explore",
     "earn_title": "Earn Points, Get Free Item!",
     "points_value": "{} points",
@@ -141,7 +142,7 @@
     "tax": "Tax",
     "shipping_cost": "Shipping Cost",
     "total": "Total",
-    "empty": "No points activity yet"
+    "empty": "You don't have any points yet."
   },
 
   "branch": {
@@ -165,9 +166,14 @@
     "tnc": "Terms & Conditions",
     "stamps": "stamps",
     "contact_us": "Contact Us",
+    "contact_wa_message": "Hello MyBoss",
     "logout": "Log Out",
     "delete_account": "Delete my account",
     "delete_account_success": "Your account was deleted successfully!",
+    "delete_account_failed": "Failed to delete your account. Please try again.",
+    "delete_account_failed_reason": "Failed to delete your account: {}",
+    "delete_cancel_failed": "Failed to cancel the deletion request. Please try again.",
+    "delete_cancel_failed_reason": "Failed to cancel the deletion request: {}",
     "login_required_title": "Sign in to see \nyour account",
     "login_required_desc": "Login or register to see your profile, stamps, and vouchers.",
     "lets_fun": "Let’s fun together!",
@@ -188,6 +194,7 @@
     "delete_confirm_email_button": "Send request",
     "delete_confirm_email_subject": "Delete Account Request - {}",
     "delete_confirm_email_body": "I would like to request the deletion of my MyBoss account with the following details:\n• Name: {name}\n• Email: {email}\n• Phone: {phone}.\n\nPlease confirm the deletion process.\n\nI understand that this process cannot be undone and all my data will be permanently deleted.",
+    "language": "Language",
     "dark_mode": "Dark mode",
     "delete_active_voucher_desc": "You have {} unused vouchers.",
     "delete_active_voucher_title": "Active Vouchers",
@@ -304,12 +311,19 @@
     "invalid_email": "Invalid email address",
     "btn_register": "Sign me in",
     "terms_prefix": "By signing up, you agree to our ",
-    "terms_link": "Terms & Conditions"
+    "terms_link": "Terms & Conditions",
+    "register_success": "Registration successful! Welcome to MyBoss.",
+    "register_failed": "Registration failed. Please try again.",
+    "register_failed_reason": "Registration failed: {}",
+    "logout_success": "Signed out successfully."
   },
 
   "global": {
     "server_error": "Server Error!",
-    "ignore": "Ignore for now"
+    "ignore": "Ignore for now",
+    "server_error_retry": "Server error: {}. Retrying in 15 seconds.",
+    "version": "Version: {}",
+    "app_appearance": "App appearance"
   },
 
   "verify": {

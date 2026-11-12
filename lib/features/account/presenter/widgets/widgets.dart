@@ -16,6 +16,7 @@ part 'account/account_stats_card.dart';
 part 'account/card_follow_us.dart';
 part 'edit_profile/form_profile.dart';
 part 'account/menu_theme_switch.dart';
+part 'account/account_settings_card.dart';
 part 'points/points_format.dart';
 part 'points/points_badge.dart';
 part 'points/point_detail_sheet.dart';

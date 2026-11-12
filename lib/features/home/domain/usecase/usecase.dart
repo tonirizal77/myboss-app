@@ -21,3 +21,14 @@ class GetPopularProductsUc extends UsecaseParams<List<CatalogPreview>, String> {
   ResultFuture<List<CatalogPreview>> call(String storeDomain) =>
       _repository.getPopular(storeDomain);
 }
+
+/// Product / category totals of a branch (Home copy).
+class GetCatalogStatsUc extends UsecaseParams<CatalogStats, String> {
+  final PopularProductsRepo _repository;
+
+  GetCatalogStatsUc(this._repository);
+
+  @override
+  ResultFuture<CatalogStats> call(String storeDomain) =>
+      _repository.getStats(storeDomain);
+}

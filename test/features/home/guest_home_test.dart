@@ -17,8 +17,6 @@ void main() {
       expect(data.brands, hasLength(6));
       expect(data.catalog, hasLength(5));
       expect(data.rewards, hasLength(4));
-      expect(data.productCount, 100);
-      expect(data.categoryCount, 25);
       expect(data.catalog.map((c) => c.category), contains('Wearable'));
     });
   });
@@ -93,6 +91,7 @@ void main() {
       // Initial page is the third item (index 2).
       expect(find.text('Earbuds'), findsOneWidget);
       expect(find.text('guest_home.catalogs_title'), findsOneWidget);
+      expect(find.text('guest_home.view_all'), findsOneWidget);
     });
 
     testWidgets('GuestRewards renders every reward with its points', (
@@ -143,6 +142,25 @@ void main() {
 
       expect(find.byType(Image), findsNWidgets(2));
       expect(find.text('guest_home.brands_caption'), findsOneWidget);
+    });
+
+    testWidgets('unknown totals (0) hide the count copy', (tester) async {
+      await tester.pumpWidget(
+        _host(
+          Column(
+            children: [
+              const GuestBrands(categories: 0, brands: []),
+              GuestCatalog(items: catalog, total: 0),
+            ],
+          ),
+        ),
+      );
+      await tester.pump();
+
+      expect(find.text('guest_home.brands_caption'), findsNothing);
+      expect(find.text('guest_home.view_all'), findsNothing);
+      // The Explore button stays.
+      expect(find.text('guest_home.explore'), findsOneWidget);
     });
   });
 }

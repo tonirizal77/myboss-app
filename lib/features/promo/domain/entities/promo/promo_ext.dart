@@ -2,8 +2,12 @@ import '../promo_model/promo_model.dart';
 import 'promo.dart';
 
 extension PromoPointX on PromoPoint {
-  RewardPreview toReward() =>
-      RewardPreview(name: name, points: redeemedPoints, image: photo ?? '');
+  RewardPreview toReward() => RewardPreview(
+    name: name,
+    points: redeemedPoints,
+    image: photo ?? '',
+    productId: productId == null ? '' : '$productId',
+  );
 }
 
 extension PromoVoucherX on PromoVoucher {

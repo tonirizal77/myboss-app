@@ -8,18 +8,21 @@
     },
     {
       "id": 39831,
+      "product_id": 106802911,
       "name": "oraimo FreePods 4",
       "photo": "assets/images/products/audio_05.png",
       "redeemed_points": 500
     },
     {
       "id": 39832,
+      "product_id": 106802908,
       "name": "Watch 7",
       "photo": "assets/images/products/watch_05.png",
       "redeemed_points": 400
     },
     {
       "id": 39833,
+      "product_id": 106802912,
       "name": "oraimo SpaceBuds Neo",
       "photo": "assets/images/products/audio_01.png",
       "redeemed_points": 350
@@ -32,6 +35,7 @@
     },
     {
       "id": 39835,
+      "product_id": 106802905,
       "name": "Watch Nova 2",
       "photo": "assets/images/products/watch_02.png",
       "redeemed_points": 450

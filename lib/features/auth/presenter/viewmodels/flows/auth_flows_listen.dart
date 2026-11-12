@@ -79,13 +79,14 @@ class AuthFlowsListen {
           await getIt<FlushbarHelper>()
               .showToastNotif(
                 context: context,
-                message:
-                    "Server Error!, ${state.errorMessage} - retry again every 15s times",
+                message: LocaleKeys.global_server_error_retry.tr(
+                  args: [state.errorMessage],
+                ),
                 bgColor: AppColors.warning,
                 mainButton: Buttons(
                   height: 40,
                   padding: EdgeInsets.symmetric(horizontal: 12),
-                  child: Text("Abaikan"),
+                  child: Text(LocaleKeys.global_ignore.tr()),
                   onTap: () {
                     AppSetting.recheckAuth(false);
                   },

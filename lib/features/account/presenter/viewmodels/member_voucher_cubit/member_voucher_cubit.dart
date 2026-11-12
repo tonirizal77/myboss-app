@@ -29,6 +29,15 @@ class MemberVoucherCubit extends Cubit<MemberVoucherState> {
     emit(MemberVoucherState(tab: state.tab));
   }
 
+  /// Language changed: the server texts (title, discount, `tnc`) come in the
+  /// language of the request, so every tab already loaded is fetched again
+  /// (first page). Tabs never opened stay untouched; the rows shown keep
+  /// showing until the new ones arrive.
+  Future<void> reloadLoaded() => Future.wait([
+    for (final status in VoucherStatus.values)
+      if (state.of(status).status != Status.initial) load(status),
+  ]);
+
   /// First page of [status] (open, pull to refresh, Refresh button).
   /// [storeDomain]: branch to read from; null keeps the current one.
   Future<void> load(VoucherStatus status, {String? storeDomain}) async {

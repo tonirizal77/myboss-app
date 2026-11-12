@@ -143,7 +143,7 @@ class _InAppDeleteAccount extends StatelessWidget {
             Flexible(
               child: MyBossButton(
                 pill: true,
-                label: "Lanjutkan",
+                label: LocaleKeys.button_continue.tr(),
                 role: MyBossButtonRole.danger,
                 size: MyBossButtonSize.large,
                 expand: true,

@@ -91,6 +91,7 @@ void main() {
       () => PopularProductsRepoImpl(remote: getIt()),
     );
     getIt.registerLazySingleton(() => GetPopularProductsUc(getIt()));
+    getIt.registerLazySingleton(() => GetCatalogStatsUc(getIt()));
   });
   tearDown(() => getIt.reset());
 
@@ -183,6 +184,13 @@ void main() {
 
       expect(find.text('1,250 points'), findsWidgets);
       expect(find.text('Our Popular Products'), findsOneWidget);
+      // Totals from the API (mock: 20 products, 6 categories), not the
+      // former static 100+ / 25.
+      expect(find.text('View all 20 products'), findsOneWidget);
+      expect(
+        find.text('Products from trusted brands across 6 categories'),
+        findsOneWidget,
+      );
       // Only `is_popular = 1` products of the mock catalog.
       Finder inCarousel(String name) => find.descendant(
         of: find.byType(GuestCatalog),
@@ -276,6 +284,15 @@ class _MockFileCatalog implements ProductRemote {
     ];
     return Right(CatalogListModel.fromJson({...json, 'data': data}));
   }
+
+  /// Category tabs (mock: 6 categories).
+  @override
+  ResultFuture<CatalogGroupsModel> getGroups(CatalogQuery query) async =>
+      Right(
+        CatalogGroupsModel.fromJson(
+          _MockFilePromo._read(Endpoints.catalogGroupList),
+        ),
+      );
 
   @override
   dynamic noSuchMethod(Invocation invocation) => super.noSuchMethod(invocation);

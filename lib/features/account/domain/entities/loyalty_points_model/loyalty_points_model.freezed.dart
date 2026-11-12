@@ -15,10 +15,11 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$LoyaltyPointsModel {
 
-/// Points balance: `balance_points` (staging, 2026-11-11), older
-/// payloads `total_balance_point`. Null when the server sends neither:
-/// the app then shows `balance_points` of `/profile/info`.
-@JsonKey(readValue: _readBalance) int? get totalBalancePoint; ExpiringPointsModel? get expiringPoints;/// History, earned and redeemed (staging sends `all_point`; the older
+/// Points balance: `total_balance_point` (staging 2026-11-12; between
+/// 2026-11-11 and then `balance_points`). Null when the server sends
+/// neither: the app then shows `balance_points` of `/profile/info`.
+@JsonKey(readValue: _readBalance) int? get totalBalancePoint;/// Points that expire first; null when nothing expires.
+ ExpiringPointsModel? get expiringPoints;/// History, earned and redeemed (staging sends `all_point`; the older
 /// `active_point` is still read as a fallback).
 @JsonKey(readValue: _readHistory) List<ActivePointModel> get allPoint;
 /// Create a copy of LoyaltyPointsModel
@@ -231,10 +232,11 @@ class _LoyaltyPointsModel implements LoyaltyPointsModel {
   const _LoyaltyPointsModel({@JsonKey(readValue: _readBalance) this.totalBalancePoint, this.expiringPoints, @JsonKey(readValue: _readHistory) final  List<ActivePointModel> allPoint = const []}): _allPoint = allPoint;
   factory _LoyaltyPointsModel.fromJson(Map<String, dynamic> json) => _$LoyaltyPointsModelFromJson(json);
 
-/// Points balance: `balance_points` (staging, 2026-11-11), older
-/// payloads `total_balance_point`. Null when the server sends neither:
-/// the app then shows `balance_points` of `/profile/info`.
+/// Points balance: `total_balance_point` (staging 2026-11-12; between
+/// 2026-11-11 and then `balance_points`). Null when the server sends
+/// neither: the app then shows `balance_points` of `/profile/info`.
 @override@JsonKey(readValue: _readBalance) final  int? totalBalancePoint;
+/// Points that expire first; null when nothing expires.
 @override final  ExpiringPointsModel? expiringPoints;
 /// History, earned and redeemed (staging sends `all_point`; the older
 /// `active_point` is still read as a fallback).

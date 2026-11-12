@@ -31,7 +31,7 @@ abstract class PointsRepo {
 
   ResultFuture<PointsSummary> getSummary();
 
-  ResultFuture<List<PointEntry>> getHistory();
+  ResultFuture<PointHistoryPage> getHistory({int page = 1});
 
   ResultFuture<PointDetail> getDetail(int id);
 }

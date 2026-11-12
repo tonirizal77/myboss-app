@@ -20,6 +20,7 @@ Map<String, dynamic> _$PromoPointsModelToJson(_PromoPointsModel instance) =>
 
 _PromoPoint _$PromoPointFromJson(Map<String, dynamic> json) => _PromoPoint(
   id: (json['id'] as num?)?.toInt() ?? 0,
+  productId: (json['product_id'] as num?)?.toInt(),
   name: json['name'] as String? ?? '',
   photo: json['photo'] as String?,
   redeemedPoints: (json['redeemed_points'] as num?)?.toInt() ?? 0,
@@ -28,6 +29,7 @@ _PromoPoint _$PromoPointFromJson(Map<String, dynamic> json) => _PromoPoint(
 Map<String, dynamic> _$PromoPointToJson(_PromoPoint instance) =>
     <String, dynamic>{
       'id': instance.id,
+      'product_id': instance.productId,
       'name': instance.name,
       'photo': instance.photo,
       'redeemed_points': instance.redeemedPoints,

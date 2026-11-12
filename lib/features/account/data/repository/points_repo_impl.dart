@@ -10,7 +10,8 @@ class PointsRepoImpl implements PointsRepo {
   ResultFuture<PointsSummary> getSummary() => _source.getSummary();
 
   @override
-  ResultFuture<List<PointEntry>> getHistory() => _source.getHistory();
+  ResultFuture<PointHistoryPage> getHistory({int page = 1}) =>
+      _source.getHistory(page: page);
 
   @override
   ResultFuture<PointDetail> getDetail(int id) => _source.getDetail(id);

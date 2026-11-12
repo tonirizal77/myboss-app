@@ -98,11 +98,12 @@ class _PromoPageState extends State<PromoPage> {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           isLoggedIn ? const PromoRedeemCard() : const PromoGuestCard(),
-          // Guest: no loyalty points - the Points panel is hidden.
-          if (isLoggedIn) ...[
-            const SizedBox(height: 24),
-            PromoPointsPanel(rewards: content.rewards, failed: pointsFailed),
-          ],
+          const SizedBox(height: 24),
+          PromoPointsPanel(
+            rewards: content.rewards,
+            isLoggedIn: isLoggedIn,
+            failed: pointsFailed,
+          ),
           const SizedBox(height: 24),
           PromoVoucherPanel(
             vouchers: content.vouchers,
@@ -113,29 +114,25 @@ class _PromoPageState extends State<PromoPage> {
       ),
       PromoTab.points => Column(
         children: [
-          if (isLoggedIn) ...[
-            const ProfilePointsText(align: CrossAxisAlignment.center),
-            const SizedBox(height: 24),
-            pointsFailed
-                ? PromoLoadError(
-                    compact: true,
-                    onRetry: context.read<PromoCubit>().retry,
-                  )
-                : content.rewards.isEmpty
-                ? PromoEmptyState.points(
-                    onRefresh: context.read<PromoCubit>().retry,
-                  )
-                : RewardGrid(rewards: content.rewards),
-          ] else ...[
-            // Guest: sign-up pitch + empty card, the reward list is never
-            // loaded for guests.
+          // Member: balance. Guest: sign-up pitch above the same rewards.
+          if (isLoggedIn)
+            const ProfilePointsText(align: CrossAxisAlignment.center)
+          else
             PromoHeading(
               title: LocaleKeys.promo_points_title.tr(),
               subtitle: LocaleKeys.promo_points_guest.tr(),
             ),
-            const SizedBox(height: 24),
-            PromoEmptyState.points(onRefresh: context.read<PromoCubit>().retry),
-          ],
+          const SizedBox(height: 24),
+          pointsFailed
+              ? PromoLoadError(
+                  compact: true,
+                  onRetry: context.read<PromoCubit>().retry,
+                )
+              : content.rewards.isEmpty
+              ? PromoEmptyState.points(
+                  onRefresh: context.read<PromoCubit>().retry,
+                )
+              : RewardGrid(rewards: content.rewards),
         ],
       ),
       PromoTab.voucher => Column(

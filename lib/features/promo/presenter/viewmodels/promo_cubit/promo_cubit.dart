@@ -9,9 +9,8 @@ part 'promo_state.dart';
 /// Promo content of the selected branch and the selected tab
 /// (All / Points / Voucher). Shared by the Promo tab and Home.
 ///
-/// - Guest: vouchers only (`promoVoucherList`).
-/// - Signed in: rewards + vouchers in parallel (`promoPointList` +
-///   `promoVoucherList`).
+/// Guest and signed in: rewards + vouchers in parallel (`promoPointList` +
+/// `promoVoucherList`).
 class PromoCubit extends Cubit<PromoState> {
   PromoCubit() : super(const PromoState());
 
@@ -35,7 +34,7 @@ class PromoCubit extends Cubit<PromoState> {
     if (same && !force && state.status != Status.failed) return;
 
     /// Signed in <-> guest: drop the other session's content right away, so
-    /// a guest never sees the rewards of the previous user while loading.
+    /// nothing of the previous session shows while loading.
     final sessionChanged = params.isLoggedIn != state.params.isLoggedIn;
 
     final request = ++_request;
@@ -70,6 +69,13 @@ class PromoCubit extends Cubit<PromoState> {
 
   /// Reload the current branch and session (error retry, pull to refresh).
   Future<void> retry() => load(force: true);
+
+  /// Language changed: rewards and vouchers (titles, `tnc`) come in the
+  /// language of the request - fetch them again if they were loaded.
+  Future<void> reloadLoaded() async {
+    if (state.status == Status.initial) return;
+    await retry();
+  }
 
   void selectTab(PromoTab tab) => emit(state.copyWith(tab: tab));
 }

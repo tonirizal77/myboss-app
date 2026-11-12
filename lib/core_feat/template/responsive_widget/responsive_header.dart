@@ -71,7 +71,10 @@ class RmdMainHeaderChild extends StatelessWidget {
       onTap: () {
         getIt<DialogHelper>().dialogCustom(
           context,
-          title: Text("Tampilan Aplikasi", style: MyBossTextStyles.title),
+          title: Text(
+            LocaleKeys.global_app_appearance.tr(),
+            style: MyBossTextStyles.title,
+          ),
 
           /// Widget Child
           child: const SettingStyleApps(),

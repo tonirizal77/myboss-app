@@ -5,10 +5,7 @@ part of 'widgets.dart';
 /// again when the branch changes; hidden while empty, loading for the first
 /// time or failed.
 class PopularProductsSection extends StatefulWidget {
-  const PopularProductsSection({super.key, required this.total});
-
-  /// "View all N products".
-  final int total;
+  const PopularProductsSection({super.key});
 
   @override
   State<PopularProductsSection> createState() => _PopularProductsSectionState();
@@ -31,7 +28,7 @@ class _PopularProductsSectionState extends State<PopularProductsSection> {
       listenWhen: (a, b) => a.selected?.urlId != b.selected?.urlId,
       listener: (context, _) => _load(context),
       child: BlocBuilder<PopularProductsCubit, PopularProductsState>(
-        buildWhen: (a, b) => a.items != b.items,
+        buildWhen: (a, b) => a.items != b.items || a.stats != b.stats,
         builder: (context, state) => state.items.isEmpty
             ? const SizedBox.shrink()
             : GuestCatalog(
@@ -39,9 +36,12 @@ class _PopularProductsSectionState extends State<PopularProductsSection> {
                 // number of cards changes.
                 key: ValueKey('home_popular_${state.items.length}'),
                 items: state.items,
-                total: widget.total,
+                // "View all N+ products": catalog total of the branch.
+                total: state.stats.products,
                 // Same title for guests and members ("Our Popular Products").
                 title: LocaleKeys.home_member_popular_title.tr(),
+                // Details are read on the branch the products came from.
+                storeDomain: state.storeDomain,
               ),
       ),
     );

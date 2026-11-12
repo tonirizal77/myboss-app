@@ -7,9 +7,10 @@ import 'package:go_router/go_router.dart';
 import 'package:myboss_app/core_feat/core_feat.dart';
 import 'package:myboss_app/features/account/account_ft.dart';
 import 'package:myboss_app/features/features.dart'
-    show BottomNavCubit, UserFlows;
+    show BottomNavCubit, PromoCubit, UserFlows;
 
 import 'package:myboss_app/features/home/home_ft.dart';
 import 'package:screen_protector/screen_protector.dart';
 
 part 'main_page_flow.dart';
+part 'locale_flow.dart';

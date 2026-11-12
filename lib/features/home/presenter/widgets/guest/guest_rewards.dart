@@ -83,7 +83,25 @@ class GuestRewards extends StatelessWidget {
   }
 }
 
-/// Reward tile: picture, name and the points it costs.
+/// Details of a point reward: the catalog product sheet
+/// (`/catalog/show/{product_id}`) on the branch of the Promo content.
+/// Rewards without a product do nothing.
+void showRewardDetail(BuildContext context, RewardPreview reward) {
+  if (!reward.hasDetail) return;
+
+  ProductDetailSheet.show(
+    context,
+    Product(
+      id: reward.productId,
+      name: reward.name,
+      images: [if (reward.image.isNotEmpty) reward.image],
+    ),
+    storeDomain: context.read<PromoCubit>().state.storeDomain,
+  );
+}
+
+/// Reward tile: picture, name and the points it costs. Tapping it shows the
+/// product details ([showRewardDetail]).
 class RewardCard extends StatelessWidget {
   const RewardCard({super.key, required this.reward, this.outlined = false});
 
@@ -95,6 +113,15 @@ class RewardCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    return GestureDetector(
+      key: ValueKey('reward_${reward.productId}'),
+      behavior: HitTestBehavior.opaque,
+      onTap: reward.hasDetail ? () => showRewardDetail(context, reward) : null,
+      child: _card(),
+    );
+  }
+
+  Widget _card() {
     return Container(
       clipBehavior: Clip.antiAlias,
       decoration: BoxDecoration(

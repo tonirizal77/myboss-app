@@ -1,17 +1,21 @@
 part of 'widgets.dart';
 
-/// "Points" panel of the All tab (signed in only - guests have no loyalty
-/// points): balance, the first four rewards and See more.
+/// "Points" panel of the All tab: balance (guest: sign-up pitch), the first
+/// four rewards and See more.
 class PromoPointsPanel extends StatelessWidget {
   const PromoPointsPanel({
     super.key,
     required this.rewards,
+    this.isLoggedIn = true,
     this.failed = false,
   });
 
   static const int preview = 4;
 
   final List<RewardPreview> rewards;
+
+  /// Guest: no balance - the heading shows the sign-up pitch instead.
+  final bool isLoggedIn;
 
   /// `promoPointList` failed while vouchers loaded: inline retry.
   final bool failed;
@@ -25,16 +29,22 @@ class PromoPointsPanel extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 40),
         child: Column(
           children: [
-            BlocBuilder<ProfileBloc, ProfileState>(
-              buildWhen: (a, b) =>
-                  a.profile.balancePoints != b.profile.balancePoints,
-              builder: (context, state) => PromoHeading(
-                title: LocaleKeys.promo_points_title.tr(),
-                subtitle: LocaleKeys.promo_points_available.tr(
-                  args: [PointsFormat.thousands(state.profile.balancePoints)],
+            if (isLoggedIn)
+              BlocBuilder<ProfileBloc, ProfileState>(
+                buildWhen: (a, b) =>
+                    a.profile.balancePoints != b.profile.balancePoints,
+                builder: (context, state) => PromoHeading(
+                  title: LocaleKeys.promo_points_title.tr(),
+                  subtitle: LocaleKeys.promo_points_available.tr(
+                    args: [PointsFormat.thousands(state.profile.balancePoints)],
+                  ),
                 ),
+              )
+            else
+              PromoHeading(
+                title: LocaleKeys.promo_points_title.tr(),
+                subtitle: LocaleKeys.promo_points_guest.tr(),
               ),
-            ),
             const SizedBox(height: 24),
             if (failed)
               PromoLoadError(

@@ -22,7 +22,7 @@ class DeleteAccountFlowsListener {
       getIt<LoadingHelper>().turnOffLoading();
       await getIt<FlushbarHelper>().showErrorFlushbar(
         context: context,
-        message: state.errorMessage,
+        message: AccountFlows.deleteErrorMessage(state.errorMessage),
       );
       return;
     }

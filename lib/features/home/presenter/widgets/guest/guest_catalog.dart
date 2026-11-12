@@ -8,6 +8,7 @@ class GuestCatalog extends StatefulWidget {
     required this.items,
     required this.total,
     this.title,
+    this.storeDomain = '',
   });
 
   final List<CatalogPreview> items;
@@ -15,6 +16,9 @@ class GuestCatalog extends StatefulWidget {
 
   /// Defaults to the guest title ("Our Product Catalogs").
   final String? title;
+
+  /// Branch (`url_id`) the [items] come from: their details are read there.
+  final String storeDomain;
 
   @override
   State<GuestCatalog> createState() => _GuestCatalogState();
@@ -47,6 +51,18 @@ class _GuestCatalogState extends State<GuestCatalog> {
     super.dispose();
   }
 
+  void _showDetail(BuildContext context, CatalogPreview item) {
+    ProductDetailSheet.show(
+      context,
+      Product(
+        id: item.productId,
+        name: item.name,
+        images: [if (item.image.isNotEmpty) item.image],
+      ),
+      storeDomain: widget.storeDomain,
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -75,11 +91,20 @@ class _GuestCatalogState extends State<GuestCatalog> {
                   onPageChanged: (i) => setState(() => _current = i),
                   itemBuilder: (_, i) => Align(
                     alignment: Alignment.topCenter,
-                    child: GuestProductCard(
-                      name: widget.items[i].name,
-                      image: widget.items[i].image,
-                      chip: widget.items[i].category,
-                      focused: i == _current,
+                    child: GestureDetector(
+                      key: ValueKey('home_product_$i'),
+                      behavior: HitTestBehavior.opaque,
+                      // Product details (`/catalog/show/{id}`), like the
+                      // Product tab; static cards have none.
+                      onTap: widget.items[i].hasDetail
+                          ? () => _showDetail(context, widget.items[i])
+                          : null,
+                      child: GuestProductCard(
+                        name: widget.items[i].name,
+                        image: widget.items[i].image,
+                        chip: widget.items[i].category,
+                        focused: i == _current,
+                      ),
                     ),
                   ),
                 ),
@@ -87,13 +112,16 @@ class _GuestCatalogState extends State<GuestCatalog> {
             },
           ),
           const SizedBox(height: 24),
-          Text(
-            LocaleKeys.guest_home_view_all.tr(args: ['${widget.total}']),
-            style: MyBossTextStyles.bodyBig2.copyWith(
-              color: MyBossColors.onSurfaceVariant,
+          // Total not known yet (loading / failed): no number at all.
+          if (widget.total > 0) ...[
+            Text(
+              LocaleKeys.guest_home_view_all.tr(args: ['${widget.total}']),
+              style: MyBossTextStyles.bodyBig2.copyWith(
+                color: MyBossColors.onSurfaceVariant,
+              ),
             ),
-          ),
-          const SizedBox(height: 16),
+            const SizedBox(height: 16),
+          ],
           MyBossButton(
             label: LocaleKeys.guest_home_explore.tr(),
             trailing: SvgPicture.asset(

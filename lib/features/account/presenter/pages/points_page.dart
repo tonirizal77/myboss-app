@@ -115,17 +115,17 @@ class _PointsPageState extends State<PointsPage> {
       isFailure: state.status == Status.failed && state.history.isEmpty,
       onRetry: _refresh,
       onRefresh: _refresh,
+      // Paged history: the next page loads at the end of the list.
+      meta: Meta(page: state.page, totalPage: state.totalPage),
+      onLoadMore: context.read<PointsCubit>().loadMore,
+      isLoadmore: state.loadingMore,
       listData: state.history,
-      showEmptyData: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 24),
-        child: Text(
-          LocaleKeys.points_empty.tr(),
-          key: const ValueKey('points_empty'),
-          textAlign: TextAlign.center,
-          style: MyBossTextStyles.body.copyWith(
-            color: MyBossColors.onSurfaceVariant,
-          ),
-        ),
+      // Figma "03 — Empty Points History": grey card, message and a black
+      // Refresh pill (same card as the empty voucher lists).
+      showEmptyData: PromoEmptyState(
+        key: const ValueKey('points_empty'),
+        message: LocaleKeys.points_empty.tr(),
+        onRefresh: _refresh,
       ),
       isSeperator: isMobile,
       colorSeperator: MyBossColors.outline,

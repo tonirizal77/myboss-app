@@ -123,3 +123,26 @@ class PointLine extends Equatable {
   @override
   List<Object?> get props => [quantity, name, price];
 }
+
+/// One page of the points history (`/profile/loyalty-points` is paged:
+/// `meta.page` / `meta.total_page`, 15 rows per page).
+class PointHistoryPage extends Equatable {
+  const PointHistoryPage({
+    this.items = const [],
+    this.page = 1,
+    this.totalPage = 1,
+    this.total = 0,
+  });
+
+  final List<PointEntry> items;
+  final int page;
+  final int totalPage;
+
+  /// Rows over every page.
+  final int total;
+
+  bool get hasMore => page < totalPage;
+
+  @override
+  List<Object?> get props => [items, page, totalPage, total];
+}

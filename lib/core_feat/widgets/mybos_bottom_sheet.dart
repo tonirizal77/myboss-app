@@ -15,6 +15,10 @@ class MyBossBottomSheet {
   }) {
     return showModalBottomSheet<T>(
       context: context,
+      // Above the whole app (like the tablet dialog): on the nested shell
+      // navigator, layers of the main page drawn above it took the taps at
+      // the top of the screen - the close button did not react.
+      useRootNavigator: true,
       isScrollControlled: true,
       isDismissible: isDismissible,
       useSafeArea: true,

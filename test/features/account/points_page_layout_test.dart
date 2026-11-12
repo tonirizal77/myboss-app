@@ -97,8 +97,8 @@ class _StagingPoints implements PointsSource {
       Right(PointsRemote.toSummary(_m));
 
   @override
-  ResultFuture<List<PointEntry>> getHistory() async =>
-      Right(PointsRemote.toHistory(_m));
+  ResultFuture<PointHistoryPage> getHistory({int page = 1}) async =>
+      Right(PointHistoryPage(items: PointsRemote.toHistory(_m)));
 
   @override
   ResultFuture<PointDetail> getDetail(int id) async =>
@@ -214,7 +214,7 @@ void main() {
 
       // History from all_point: earned, redeemed and expired rows.
       expect(cubit.state.history, hasLength(4));
-      expect(find.text('No points activity yet'), findsNothing);
+      expect(find.byKey(const ValueKey('points_empty')), findsNothing);
       expect(find.text('Point Earned'), findsNWidgets(2));
       expect(find.text('Points Redeemed'), findsOneWidget);
       expect(find.text('Points Expired'), findsOneWidget);
@@ -264,15 +264,24 @@ void main() {
     });
   }
 
-  testWidgets('Points page: empty history shows only the empty text', (
-    tester,
-  ) async {
-    await _pump(tester, _screens['phone']!, empty: true);
+  for (final entry in _screens.entries) {
+    testWidgets('Points page: empty history card on ${entry.key}', (
+      tester,
+    ) async {
+      final cubit = await _pump(tester, entry.value, empty: true);
 
-    expect(find.text('No points activity yet'), findsOneWidget);
-    expect(find.text('Point Earned'), findsNothing);
-    expect(tester.takeException(), isNull);
-  });
+      // Figma "03 - Empty Points History": card, message, Refresh pill.
+      expect(find.byKey(const ValueKey('points_empty')), findsOneWidget);
+      expect(find.text("You don't have any points yet."), findsOneWidget);
+      expect(find.text('Point Earned'), findsNothing);
+
+      await tester.tap(find.text('Refresh'));
+      await tester.pumpAndSettle();
+      expect(cubit.state.status, Status.success);
+      expect(find.byKey(const ValueKey('points_empty')), findsOneWidget);
+      expect(tester.takeException(), isNull);
+    });
+  }
 
   for (final entry in _screens.entries) {
     testWidgets('Points page: balance from loyalty-points on ${entry.key}', (

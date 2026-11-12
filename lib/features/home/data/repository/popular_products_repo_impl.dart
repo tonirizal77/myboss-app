@@ -25,8 +25,37 @@ class PopularProductsRepoImpl implements PopularProductsRepo {
             name: p.name,
             category: p.productGroupName ?? '',
             image: p.photoMd ?? '',
+            productId: p.id > 0 ? '${p.id}' : '',
           ),
       ]),
+    );
+  }
+
+  /// Both requests run in parallel. One failing keeps the other total (0 =
+  /// unknown, its copy is hidden); both failing is a failure.
+  @override
+  ResultFuture<CatalogStats> getStats(String storeDomain) async {
+    final (products, groups) = await (
+      // Only `meta.total` is needed: one row is enough.
+      _remote.getProducts(CatalogQuery(storeDomain: storeDomain, perPage: 1)),
+      _remote.getGroups(CatalogQuery(storeDomain: storeDomain)),
+    ).wait;
+
+    if (products.isLeft() && groups.isLeft()) {
+      return products.map((_) => const CatalogStats());
+    }
+
+    return Right(
+      CatalogStats(
+        products: products.fold(
+          (_) => 0,
+          (r) => r.meta.total > 0 ? r.meta.total : r.data.length,
+        ),
+        categories: groups.fold(
+          (_) => 0,
+          (r) => r.meta.total > 0 ? r.meta.total : r.data.length,
+        ),
+      ),
     );
   }
 }

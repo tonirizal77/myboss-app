@@ -152,7 +152,7 @@ class MyApp extends StatelessWidget {
             child: MaterialApp.router(
               title: 'MyBoss',
               debugShowCheckedModeBanner: false,
-              showPerformanceOverlay: kProfileMode ? true : false,
+              showPerformanceOverlay: kProfileMode ? false : false,
               theme: MyBossTheme.light,
               darkTheme: MyBossTheme.dark,
               themeMode: state.themeMode,
@@ -163,6 +163,14 @@ class MyApp extends StatelessWidget {
               localizationsDelegates: context.localizationDelegates,
               supportedLocales: context.supportedLocales,
               locale: context.locale,
+              // Below Localizations: rebuilds every page once the new
+              // language is loaded (`.tr()` alone does not subscribe).
+              // Server texts (voucher titles, terms) are fetched again in
+              // the new language too.
+              builder: (context, child) => LocaleRebuilder(
+                onChanged: LocaleFlow.reloadServerTexts,
+                child: child ?? const SizedBox.shrink(),
+              ),
             ),
           );
         },

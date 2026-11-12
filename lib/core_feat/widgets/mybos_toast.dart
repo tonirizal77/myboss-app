@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:mobile_app_core/mobile_app_core.dart' show NavigatorKey;
 
 import '../theme/mybos_colors.dart';
 import '../theme/mybos_text_styles.dart';
@@ -17,8 +18,16 @@ class MyBossToast {
     String message, {
     Duration duration = const Duration(seconds: 3),
   }) {
+    // A page's context finds the app overlay above it. The root
+    // navigator's own context (used by flows that outlive their page, e.g.
+    // delete account) has its overlay below it: use that one. Before, this
+    // threw "No Overlay widget found" and the toast never showed.
+    final overlay =
+        Overlay.maybeOf(context, rootOverlay: true) ??
+        NavigatorKey.rootNavigatorKey.currentState?.overlay;
+    if (overlay == null) return;
+
     _current?.remove();
-    final overlay = Overlay.of(context, rootOverlay: true);
 
     late final OverlayEntry entry;
     entry = OverlayEntry(

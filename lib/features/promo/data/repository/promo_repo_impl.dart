@@ -11,15 +11,9 @@ class PromoRepoImpl implements PromoRepo {
   ResultFuture<PromoContent> getPromo(PromoParams params) async {
     final domain = params.storeDomain;
 
-    /// Guest: no loyalty points - [Endpoints.promoPointList] is never called.
-    if (!params.isLoggedIn) {
-      return (await _remoteData.getVouchers(domain)).map(
-        (v) => PromoContent(vouchers: [for (final p in v.data) p.toVoucher()]),
-      );
-    }
-
-    /// Signed in: both requests start before either is awaited, so they run
-    /// in parallel. The user token is sent by DioHttp3 (`headerToken`).
+    /// Guest and signed in: both requests start before either is awaited, so
+    /// they run in parallel. Rewards are branch content, public like the
+    /// vouchers; a signed-in user's token is sent by DioHttp3 (`headerToken`).
     final (rewards, vouchers) = await (
       _remoteData.getRewards(domain),
       _remoteData.getVouchers(domain),

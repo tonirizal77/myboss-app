@@ -99,13 +99,15 @@ class GetPointsSummaryUc extends Usecase<PointsSummary> {
   ResultFuture<PointsSummary> call() => _repository.getSummary();
 }
 
-class GetPointHistoryUc extends Usecase<List<PointEntry>> {
+/// One page of the points history (params: the page, from 1).
+class GetPointHistoryUc extends UsecaseParams<PointHistoryPage, int> {
   final PointsRepo _repository;
 
   GetPointHistoryUc(this._repository);
 
   @override
-  ResultFuture<List<PointEntry>> call() => _repository.getHistory();
+  ResultFuture<PointHistoryPage> call(int params) =>
+      _repository.getHistory(page: params);
 }
 
 /// The member's vouchers: one page of the given status.

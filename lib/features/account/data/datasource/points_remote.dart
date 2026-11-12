@@ -1,49 +1,74 @@
 part of '../datas.dart';
 
 /// 2.b Points from `GET /profile/loyalty-points` (PRD-011/012): balance
-/// (`balance_points`), the points that expire first (`expiring_points`) and
-/// the history (`all_point`: `Active` earned, `Deducted` redeemed,
-/// `Expired`). Without a balance in the payload the Points page falls back
-/// to `/profile/info`.
+/// (`total_balance_point`, older payloads `balance_points`), the points that
+/// expire first (`expiring_points`, may be null) and the history
+/// (`all_point`: `Active` earned, `Deducted` redeemed, `Expired`), paged by
+/// `meta` (`page` / `total_page`, 15 per page). Without a balance in the
+/// payload the Points page falls back to `/profile/info`.
 ///
-/// [PointsCubit.load] asks for the summary and then the history: both are
-/// answered by one request.
+/// [PointsCubit.load] asks for the summary and then the first history page:
+/// both are answered by one request. Later pages are fetched on their own.
 class PointsRemote implements PointsSource {
   PointsRemote();
 
-  /// Response shared by [getSummary] and the [getHistory] that follows it.
-  ResultFuture<LoyaltyPointsModel>? _pending;
+  /// Rows per history page (the server default).
+  static const perPage = 15;
 
-  /// Last history, for [getDetail].
+  /// First page, shared by [getSummary] and the [getHistory] that follows it.
+  ResultFuture<LoyaltyPointsPage>? _pending;
+
+  /// History loaded so far (every page), for [getDetail].
   List<PointEntry> _history = const [];
 
-  ResultFuture<LoyaltyPointsModel> _fetch() async {
+  ResultFuture<LoyaltyPointsPage> _fetch({int page = 1}) async {
     final result = await DioGet.call(
       url: ConfigServer.branchUrl(Endpoints.profileLoyaltyPoints),
+      queryParameters: {'page': page, 'per_page': perPage},
     );
 
     return result.fold((l) => Left(l), (r) {
       try {
-        return Right(LoyaltyPointsModel.fromJson(r['data'] as DataMap));
+        return Right(parse(r));
       } catch (e) {
         return Left(Failures(error: Error(message: "Parse Error : $e")));
       }
     });
   }
 
+  /// Whole response: `data` + `meta` (missing `meta` = a single page).
+  @visibleForTesting
+  static LoyaltyPointsPage parse(DataMap json) => (
+    data: LoyaltyPointsModel.fromJson(json['data'] as DataMap),
+    meta: json['meta'] is DataMap
+        ? Meta.fromJson(json['meta'] as DataMap)
+        : const Meta(),
+  );
+
   @override
   ResultFuture<PointsSummary> getSummary() async {
     final result = await (_pending = _fetch());
 
-    return result.map(toSummary);
+    return result.map((r) => toSummary(r.data));
   }
 
   @override
-  ResultFuture<List<PointEntry>> getHistory() async {
-    final result = await (_pending ?? _fetch());
-    _pending = null;
+  ResultFuture<PointHistoryPage> getHistory({int page = 1}) async {
+    final ResultFuture<LoyaltyPointsPage> request;
+    if (page == 1 && _pending != null) {
+      request = _pending!;
+    } else {
+      request = _fetch(page: page);
+    }
+    if (page == 1) _pending = null;
 
-    return result.map((m) => _history = toHistory(m));
+    final result = await request;
+
+    return result.map((r) {
+      final history = toPage(r);
+      _history = page == 1 ? history.items : [..._history, ...history.items];
+      return history;
+    });
   }
 
   /// Receipt of the entry's order (`GET /profile/orders/find/{id}`).
@@ -139,4 +164,17 @@ class PointsRemote implements PointsSource {
           isExpired: p.isExpired,
         ),
   ];
+
+  /// One history page with its paging from `meta`. `total_page` 0 (no
+  /// history at all) counts as a single, empty page.
+  @visibleForTesting
+  static PointHistoryPage toPage(LoyaltyPointsPage r) => PointHistoryPage(
+    items: toHistory(r.data),
+    page: r.meta.page < 1 ? 1 : r.meta.page,
+    totalPage: r.meta.totalPage < 1 ? 1 : r.meta.totalPage,
+    total: r.meta.total,
+  );
 }
+
+/// `GET /profile/loyalty-points` response: `data` and its paging `meta`.
+typedef LoyaltyPointsPage = ({LoyaltyPointsModel data, Meta meta});

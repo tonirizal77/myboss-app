@@ -47,8 +47,13 @@ class _SignedInHomeViewState extends State<SignedInHomeView> {
           const HomeSectionDivider(),
 
           if (data.brands.isNotEmpty)
-            GuestBrands(brands: data.brands, categories: data.categoryCount),
-          PopularProductsSection(total: data.productCount),
+            GuestBrands(
+              brands: data.brands,
+              categories: context.select(
+                (PopularProductsCubit c) => c.state.stats.categories,
+              ),
+            ),
+          const PopularProductsSection(),
           if (rewards.isNotEmpty)
             GuestRewards(rewards: rewards, footer: const _RedeemFooter()),
           // Room for the bottom nav, in the section background.

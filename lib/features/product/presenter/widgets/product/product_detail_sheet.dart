@@ -9,16 +9,22 @@ part of '../widgets.dart';
 class ProductDetailSheet {
   ProductDetailSheet._();
 
-  static Future<void> show(BuildContext context, Product product) {
-    final storeDomain = context.read<ProductCubit>().state.storeDomain;
+  /// [storeDomain]: branch (`url_id`) to read the details from; default the
+  /// branch of the Product tab. Point rewards pass the Promo branch.
+  static Future<void> show(
+    BuildContext context,
+    Product product, {
+    String? storeDomain,
+  }) {
+    final domain =
+        storeDomain ?? context.read<ProductCubit>().state.storeDomain;
 
     // Sheet on phones, dialog on tablet / desktop.
     return MyBossBottomSheet.adaptive<void>(
       context,
       builder: (_) => BlocProvider(
         create: (_) =>
-            ProductDetailCubit(product: product, storeDomain: storeDomain)
-              ..open(),
+            ProductDetailCubit(product: product, storeDomain: domain)..open(),
         child: const _ProductDetailBody(),
       ),
     );

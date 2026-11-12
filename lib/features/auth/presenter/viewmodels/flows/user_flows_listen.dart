@@ -47,7 +47,7 @@ class UserFlowsListen {
 
         await getIt<FlushbarHelper>().showToastNotif(
           context: context,
-          message: "Logout success!",
+          message: LocaleKeys.auth_logout_success.tr(),
         );
       } else {
         await getIt<FlushbarHelper>().showErrorFlushbar(

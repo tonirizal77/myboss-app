@@ -13,4 +13,7 @@ abstract class PopularProductsRepo {
 
   /// [storeDomain] = `url_id` of the selected branch.
   ResultFuture<List<CatalogPreview>> getPopular(String storeDomain);
+
+  /// Product and category totals of the branch.
+  ResultFuture<CatalogStats> getStats(String storeDomain);
 }

@@ -47,6 +47,7 @@ class HomeFt {
     ///
     getIt.registerLazySingleton(() => GetGuestHomeUc(getIt()));
     getIt.registerLazySingleton(() => GetPopularProductsUc(getIt()));
+    getIt.registerLazySingleton(() => GetCatalogStatsUc(getIt()));
 
     /// 6. Setup Control / Flow
     ///  - 1. [xxx]Flow (mode static) -> UsecaseFunc

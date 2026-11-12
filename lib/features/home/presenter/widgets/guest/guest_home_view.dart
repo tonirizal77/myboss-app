@@ -32,10 +32,12 @@ class _GuestHomeViewState extends State<GuestHomeView> {
               if (data.brands.isNotEmpty)
                 GuestBrands(
                   brands: data.brands,
-                  categories: data.categoryCount,
+                  categories: context.select(
+                    (PopularProductsCubit c) => c.state.stats.categories,
+                  ),
                 ),
               // Popular products of the selected branch (API).
-              PopularProductsSection(total: data.productCount),
+              const PopularProductsSection(),
               // Point rewards of the selected branch (API, shared with Promo).
               BlocBuilder<PromoCubit, PromoState>(
                 buildWhen: (a, b) => a.content.rewards != b.content.rewards,

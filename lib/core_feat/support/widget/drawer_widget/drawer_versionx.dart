@@ -32,7 +32,9 @@ class DrawerVersionx extends StatelessWidget {
               // final parsed = int.tryParse(splitted![2]) ?? 0;
 
               return Text(
-                "Version : ${snapshot.data?.version}",
+                LocaleKeys.global_version.tr(
+                  args: [snapshot.data?.version ?? '-'],
+                ),
                 // "Version : ${snapshot.data?.version}+${snapshot.data?.buildNumber}",
                 style: MyBossTextStyles.captionSmall,
                 textAlign: TextAlign.center,

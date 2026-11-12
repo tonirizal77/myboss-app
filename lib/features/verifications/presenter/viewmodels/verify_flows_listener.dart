@@ -14,6 +14,36 @@ import 'verify_bloc/verify_bloc.dart';
 class VerifyFlowsListener {
   const VerifyFlowsListener._();
 
+  /// Error text of a failed OTP request. Register says so explicitly
+  /// ("Registration failed: {server reason}", or a generic retry text when
+  /// the server sends none); other flows keep the server message.
+  @visibleForTesting
+  static String errorMessage(VerifyState state) {
+    if (state.verifyData.fromPage != FromPage.register) {
+      return state.errorMessage;
+    }
+
+    return state.errorMessage.trim().isEmpty
+        ? LocaleKeys.auth_register_failed.tr()
+        : LocaleKeys.auth_register_failed_reason.tr(
+            args: [state.errorMessage.trim()],
+          );
+  }
+
+  /// "Registration successful" once the account is created. Shown on the
+  /// root navigator: the OTP page owning the listener is gone after the
+  /// redirect to the Main Page.
+  static Future<void> _showRegisterSuccess(BuildContext context) async {
+    final root = NavigatorKey.rootNavigatorKey.currentContext;
+    final target = root != null && root.mounted ? root : context;
+    if (!target.mounted) return;
+
+    await getIt<FlushbarHelper>().showNormalFlushbar(
+      context: target,
+      message: LocaleKeys.auth_register_success.tr(),
+    );
+  }
+
   /// === Listener ===
   /// 1. Listener get otp (Verifikasi)
   static FutureOr<void> getOtpCodeListen(
@@ -27,7 +57,7 @@ class VerifyFlowsListener {
       if (state.statusGetOtp == Status.failed) {
         getIt<FlushbarHelper>().showErrorFlushbar(
           context: context,
-          message: state.errorMessage,
+          message: errorMessage(state),
         );
       } else {
         /// Goto Confirm Page
@@ -54,7 +84,7 @@ class VerifyFlowsListener {
         getIt<LoadingHelper>().turnOffLoading();
         await getIt<FlushbarHelper>().showErrorFlushbar(
           context: context,
-          message: state.errorMessage,
+          message: errorMessage(state),
         );
       } else {
         final _fromPage = state.verifyData.fromPage;
@@ -84,6 +114,8 @@ class VerifyFlowsListener {
         }
 
         getIt<LoadingHelper>().turnOffLoading();
+
+        if (_fromPage == .register) await _showRegisterSuccess(context);
       }
     }
   }

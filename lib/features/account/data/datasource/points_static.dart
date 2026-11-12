@@ -4,7 +4,8 @@ part of '../datas.dart';
 abstract class PointsSource {
   ResultFuture<PointsSummary> getSummary();
 
-  ResultFuture<List<PointEntry>> getHistory();
+  /// One page of the history; [page] starts at 1.
+  ResultFuture<PointHistoryPage> getHistory({int page = 1});
 
   ResultFuture<PointDetail> getDetail(int id);
 }
@@ -80,7 +81,9 @@ class PointsStatic implements PointsSource {
   );
 
   @override
-  ResultFuture<List<PointEntry>> getHistory() async => Right(_history);
+  ResultFuture<PointHistoryPage> getHistory({int page = 1}) async => Right(
+    PointHistoryPage(items: _history, total: _history.length),
+  );
 
   @override
   ResultFuture<PointDetail> getDetail(int id) async {

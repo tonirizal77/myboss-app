@@ -10,7 +10,7 @@ class ConfirmOtpProfilePage extends StatelessWidget {
       // useScrollView: true,
       appBarCustom: AppBarCustom(
         isBlur: false,
-        title: "Verify WhatsApp",
+        title: LocaleKeys.verify_confirm_title.tr(),
         onClose: () => context.pop(),
       ),
       maxWidth: Responsive.minWidthMobile,

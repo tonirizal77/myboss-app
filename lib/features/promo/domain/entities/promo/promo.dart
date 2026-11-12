@@ -8,7 +8,7 @@ export 'package:myboss_app/features/home/domain/entities/guest_home/guest_home.d
 
 /// One request of the Promo content.
 enum PromoSection {
-  /// `GET /promotion/loyalty-points/list` - signed-in only.
+  /// `GET /promotion/loyalty-points/list` - guest and signed-in.
   points,
 
   /// `GET /promotion/discount-vouchers/list` - guest and signed-in.
@@ -22,12 +22,9 @@ class PromoParams extends Equatable {
   /// `url_id` of the selected branch; empty = default domain.
   final String storeDomain;
 
-  /// Guest: vouchers only (no loyalty points). Signed in: both, in parallel.
+  /// Session the content belongs to: a login / logout reloads it. Rewards
+  /// and vouchers are requested for guests and signed-in users alike.
   final bool isLoggedIn;
-
-  Set<PromoSection> get sections => isLoggedIn
-      ? const {PromoSection.points, PromoSection.vouchers}
-      : const {PromoSection.vouchers};
 
   @override
   List<Object?> get props => [storeDomain, isLoggedIn];

@@ -2,7 +2,7 @@ part of 'widgets.dart';
 
 /// Loads the promo content of the branch selected in the header for the
 /// current session, and reloads it when the branch or the login state
-/// changes (guest: vouchers only; signed in: rewards + vouchers). Wraps every
+/// changes (rewards + vouchers for guests and signed-in users). Wraps every
 /// screen that shows promo content (Promo tab, Home); [PromoCubit] skips
 /// params that are already loaded.
 class PromoBranchSync extends StatefulWidget {

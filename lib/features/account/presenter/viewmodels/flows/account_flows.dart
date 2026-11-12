@@ -76,7 +76,7 @@ class AccountFlows {
     await getIt<FlushbarHelper>()
         .showNormalFlushbar(
           context: context,
-          message: "Profile success updated!",
+          message: LocaleKeys.edit_profile_success.tr(),
         )
         .whenComplete(() {
           GoRouterSingleton.shared.popUntil(
@@ -174,10 +174,13 @@ class AccountFlows {
 
   static Future<void> confirmDeleteAccount(BuildContext context) async {
     /// [AppSetting.needConfirmOTP] `false`: skip reason + OTP - close the
-    /// sheet first, then delete right away.
+    /// sheet first, then delete right away. The sheet's context is gone once
+    /// it closes, so the rest (messages, going to guest mode) runs on the
+    /// app's root context - before, it stopped silently after the request.
     if (!AppSetting.needConfirmOTP) {
+      final appContext = _appContext(context);
       context.pop();
-      await submitDeleteAccountRequest(context);
+      await submitDeleteAccountRequest(appContext);
       return;
     }
 
@@ -230,9 +233,31 @@ class AccountFlows {
 
     getIt<FlushbarHelper>().showErrorFlushbar(
       context: context,
-      message: _state.errorMessage,
+      message: deleteErrorMessage(_state.errorMessage),
     );
   }
+
+  /// Context that outlives sheets and pages: the root navigator's (app
+  /// level providers and go_router are above it).
+  static BuildContext _appContext(BuildContext context) =>
+      NavigatorKey.rootNavigatorKey.currentContext ?? context;
+
+  /// "Failed to delete your account: {server reason}", or a generic retry
+  /// text when the server sends none.
+  static String deleteErrorMessage(String serverMessage) =>
+      serverMessage.trim().isEmpty
+      ? LocaleKeys.akun_delete_account_failed.tr()
+      : LocaleKeys.akun_delete_account_failed_reason.tr(
+          args: [serverMessage.trim()],
+        );
+
+  /// Same for cancelling a pending deletion request.
+  static String cancelDeleteErrorMessage(String serverMessage) =>
+      serverMessage.trim().isEmpty
+      ? LocaleKeys.akun_delete_cancel_failed.tr()
+      : LocaleKeys.akun_delete_cancel_failed_reason.tr(
+          args: [serverMessage.trim()],
+        );
 
   /// Best-effort match for the backend "deletion already pending" rejection
   /// on send-otp - the API has no machine-readable code for it, only a
@@ -274,9 +299,13 @@ class AccountFlows {
 
       MyBossToast.success(context, LocaleKeys.akun_delete_request_success.tr());
 
-      /// Back on the Account tab (close the OTP page, if any), then the
-      /// status sheet (Figma `Deletion Request Status`).
-      if (Navigator.of(context).canPop()) context.pop();
+      /// Back on the Account tab (close the OTP page, if any - never when
+      /// called on the root context), then the status sheet (Figma
+      /// `Deletion Request Status`).
+      if (context != NavigatorKey.rootNavigatorKey.currentContext &&
+          Navigator.of(context).canPop()) {
+        context.pop();
+      }
       showDeleteAccountStatus(context);
       return;
     }
@@ -315,7 +344,10 @@ class AccountFlows {
     if (!context.mounted) return;
 
     await getIt<FlushbarHelper>()
-        .showErrorFlushbar(context: context, message: _state.errorMessage)
+        .showErrorFlushbar(
+          context: context,
+          message: deleteErrorMessage(_state.errorMessage),
+        )
         .whenComplete(() {
           if (context.mounted) MainPageFlow.goToMainPage(context, index: 3);
         });
@@ -362,7 +394,7 @@ class AccountFlows {
     if (_state.statusCancelDeleteAccount == Status.failed) {
       getIt<FlushbarHelper>().showErrorFlushbar(
         context: context,
-        message: _state.errorMessage,
+        message: cancelDeleteErrorMessage(_state.errorMessage),
       );
       return false;
     }
@@ -389,7 +421,10 @@ class AccountFlows {
   static Future<void> showContactUs(BuildContext context) async {
     final _store = context.read<StoreBloc>().state.store;
 
-    final _messageWa = "Halo MyBoss";
+    // Pre-filled WhatsApp text in the app language, URL-encoded (spaces).
+    final _messageWa = Uri.encodeComponent(
+      LocaleKeys.akun_contact_wa_message.tr(),
+    );
 
     final _linkIG = _store.linkInstagram ?? "";
     final _validLinkIG = _linkIG.contains('www.instagram.com') == true
@@ -420,7 +455,10 @@ class AccountFlows {
     ResponsiveDialog.sheetOrDialog(
       context,
       colorFrame: AppTheme.surface(context),
-      title: Text("Contact Us", style: MyBossTextStyles.title),
+      title: Text(
+        LocaleKeys.akun_contact_us.tr(),
+        style: MyBossTextStyles.title,
+      ),
       // styleTitle: MyBossTextStyles.title,
       colorBody: AppTheme.surface(context),
       child: ListView.separated(

@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:io';
 
+import 'package:dartz/dartz.dart' show Left, Right;
 import 'package:flutter_test/flutter_test.dart';
 import 'package:myboss_app/core_feat/core_feat.dart';
 import 'package:myboss_app/features/features.dart';
@@ -39,7 +40,9 @@ void main() {
     const source = PointsStatic();
 
     test('history has the Figma entries, newest first', () async {
-      final history = (await source.getHistory()).getOrElse(() => const []);
+      final history = (await source.getHistory())
+          .getOrElse(() => const PointHistoryPage())
+          .items;
 
       expect(history, hasLength(7));
       expect(history.first.points, 2);
@@ -143,6 +146,62 @@ void main() {
 
       // Mock file follows the same shape.
       expect(PointsRemote.toSummary(mock()).balance, 1250);
+    });
+
+    test('staging 2026-11-12: total_balance_point, null expiring, meta', () {
+      final page = PointsRemote.parse(const {
+        'data': {
+          'total_balance_point': 0,
+          'expiring_points': null,
+          'all_point': [],
+        },
+        'meta': {
+          'total': 0,
+          'page': 1,
+          'offset': 0,
+          'per_page': 15,
+          'total_page': 0,
+        },
+        'status': 200,
+        'error': 0,
+      });
+
+      final summary = PointsRemote.toSummary(page.data);
+      expect(summary.balance, 0);
+      expect(summary.hasBalance, isTrue);
+      expect(summary.expiringPoints, 0);
+      expect(summary.expiresAt, isNull);
+
+      // No history: one empty page, nothing more to load.
+      final history = PointsRemote.toPage(page);
+      expect(history.items, isEmpty);
+      expect(history.totalPage, 1);
+      expect(history.hasMore, isFalse);
+    });
+
+    test('meta pages the history', () {
+      final page = PointsRemote.toPage(
+        PointsRemote.parse({
+          'data': {
+            'total_balance_point': 40,
+            'all_point': [
+              {
+                'id': 7,
+                'status': 'Active',
+                'date': '2026-11-01 10:00:00',
+                'displayed_point': 5,
+              },
+            ],
+          },
+          'meta': {'total': 31, 'page': 2, 'per_page': 15, 'total_page': 3},
+        }),
+      );
+
+      expect(page.items.single.id, 7);
+      expect(page.page, 2);
+      expect(page.totalPage, 3);
+      expect(page.total, 31);
+      expect(page.hasMore, isTrue);
     });
 
     test('no balance in the payload: flagged for the profile fallback', () {
@@ -330,6 +389,99 @@ void main() {
       expect(cubit.state.summary.balance, 6969);
       expect(cubit.state.summary.expiringPoints, 100);
       expect(cubit.state.history, hasLength(7));
+      expect(cubit.state.hasMore, isFalse);
     });
   });
+
+  group('PointsCubit paging', () {
+    late _PagedPoints source;
+
+    setUp(() {
+      source = _PagedPoints();
+      getIt.registerLazySingleton<PointsRepo>(
+        () => PointsRepoImpl(source: source),
+      );
+      getIt.registerLazySingleton(() => GetPointsSummaryUc(getIt()));
+      getIt.registerLazySingleton(() => GetPointHistoryUc(getIt()));
+    });
+    tearDown(() => getIt.reset());
+
+    test('loadMore appends the next pages until the last one', () async {
+      final cubit = PointsCubit();
+      addTearDown(cubit.close);
+
+      await cubit.load();
+      expect(cubit.state.history.map((e) => e.id), [1, 2]);
+      expect(cubit.state.hasMore, isTrue);
+
+      await cubit.loadMore();
+      await cubit.loadMore();
+      expect(cubit.state.history.map((e) => e.id), [1, 2, 3, 4, 5]);
+      expect(cubit.state.page, 3);
+      expect(cubit.state.hasMore, isFalse);
+
+      // Last page reached: no more requests.
+      await cubit.loadMore();
+      expect(source.pages, [1, 2, 3]);
+    });
+
+    test('a failed next page keeps the rows; reload starts over', () async {
+      final cubit = PointsCubit();
+      addTearDown(cubit.close);
+
+      await cubit.load();
+      source.fail = true;
+      await cubit.loadMore();
+      expect(cubit.state.history, hasLength(2));
+      expect(cubit.state.loadingMore, isFalse);
+      expect(cubit.state.page, 1);
+
+      source.fail = false;
+      await cubit.load();
+      expect(cubit.state.history.map((e) => e.id), [1, 2]);
+      expect(source.pages, [1, 2, 1]);
+    });
+  });
+}
+
+/// Three history pages: ids 1-2, 3-4, 5. Records every page asked for.
+class _PagedPoints implements PointsSource {
+  final pages = <int>[];
+  bool fail = false;
+
+  static PointEntry _e(int id) => PointEntry(
+    id: id,
+    title: 'Point Earned',
+    date: DateTime(2026, 11, id),
+    points: id,
+    amount: 0,
+  );
+
+  @override
+  ResultFuture<PointsSummary> getSummary() async =>
+      const Right(PointsSummary(balance: 15));
+
+  @override
+  ResultFuture<PointHistoryPage> getHistory({int page = 1}) async {
+    pages.add(page);
+    if (fail) return Left(Failures(error: Error(message: 'boom')));
+
+    const ids = [
+      [1, 2],
+      [3, 4],
+      [5],
+    ];
+    return Right(
+      PointHistoryPage(
+        items: [for (final id in ids[page - 1]) _e(id)],
+        page: page,
+        totalPage: ids.length,
+        total: 5,
+      ),
+    );
+  }
+
+  @override
+  ResultFuture<PointDetail> getDetail(int id) async =>
+      Left(Failures(error: Error(message: 'unused')));
 }

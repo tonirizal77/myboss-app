@@ -193,6 +193,14 @@ class _RewardMini extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    return GestureDetector(
+      behavior: HitTestBehavior.opaque,
+      onTap: reward.hasDetail ? () => showRewardDetail(context, reward) : null,
+      child: _card(),
+    );
+  }
+
+  Widget _card() {
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 2),
       padding: const EdgeInsets.all(8),
