@@ -1,7 +1,8 @@
 part of 'widgets.dart';
 
-/// Branch card (Figma `branch card`): round avatar overlapping the card top,
-/// "Selected ✓" / "Select" action, name, status + distance and address.
+/// Branch card (Figma `branch card`): large round avatar with a white ring,
+/// mostly above the card and overlapping its top-left corner, "Selected ✓" /
+/// "Select" action on the right, then name, status + distance and address.
 class BranchCard extends StatelessWidget {
   const BranchCard({
     super.key,
@@ -16,6 +17,17 @@ class BranchCard extends StatelessWidget {
   final Position? position;
   final VoidCallback? onSelect;
 
+  static const double _avatarSizeReduced = 10;
+
+  static const double _avatarSize =
+      _BranchAvatar.defaultSize - _avatarSizeReduced;
+
+  /// Part of the avatar that sticks out above the card.
+  static const double _avatarOverhang = 72 - _avatarSizeReduced;
+
+  /// Part of the avatar that lies on the card.
+  static const double _avatarOnCard = _avatarSize - _avatarOverhang;
+
   @override
   Widget build(BuildContext context) {
     final isOpen = data.isOpen;
@@ -28,8 +40,8 @@ class BranchCard extends StatelessWidget {
           /// Card
           Container(
             width: double.infinity,
-            margin: const EdgeInsets.only(top: 16),
-            padding: const EdgeInsets.fromLTRB(16, 64, 16, 16),
+            margin: const EdgeInsets.only(top: _avatarOverhang),
+            padding: const EdgeInsets.fromLTRB(16, _avatarOnCard + 20, 16, 16),
             decoration: BoxDecoration(
               color: MyBossColors.surfaceContainerLow,
               borderRadius: BorderRadius.circular(10),
@@ -97,11 +109,20 @@ class BranchCard extends StatelessWidget {
           Positioned(
             left: 16,
             top: 0,
-            child: _BranchAvatar(image: data.logoUrl, grayscale: !isOpen),
+            child: _BranchAvatar(
+              size: _avatarSize,
+              image: data.logoUrl,
+              grayscale: !isOpen,
+            ),
           ),
 
-          /// Action
-          Positioned(right: 16, top: 38, child: _action()),
+          /// Action - vertically centred on the avatar's part of the card.
+          Positioned(
+            right: 24,
+            top: _avatarOverhang,
+            height: _avatarOnCard + 20,
+            child: Center(child: _action()),
+          ),
         ],
       ),
     );
@@ -139,10 +160,20 @@ class BranchCard extends StatelessWidget {
 }
 
 class _BranchAvatar extends StatelessWidget {
-  const _BranchAvatar({this.image, this.grayscale = false});
+  const _BranchAvatar({
+    this.size = defaultSize,
+    this.image,
+    this.grayscale = false,
+  });
 
   final String? image;
+
+  /// Outer diameter, border included.
+  final double size;
   final bool grayscale;
+
+  static const double defaultSize = 120;
+  static const double _border = 6;
 
   static const _grayMatrix = <double>[
     0.2126, 0.7152, 0.0722, 0, 0, //
@@ -158,8 +189,8 @@ class _BranchAvatar extends StatelessWidget {
 
     Widget avatar = ClipOval(
       child: SizedBox(
-        width: 64,
-        height: 64,
+        width: size - _border * 2,
+        height: size - _border * 2,
         child: hasImage
             ? Image.network(
                 image!,
@@ -180,9 +211,13 @@ class _BranchAvatar extends StatelessWidget {
       );
     }
 
-    return DecoratedBox(
+    // Container insets its child by the border width, so the ring stays
+    // visible around the photo (a DecoratedBox would paint it underneath).
+    return Container(
       decoration: BoxDecoration(
         shape: BoxShape.circle,
+        color: Colors.white,
+        border: Border.all(color: Colors.white, width: _border),
         boxShadow: [
           BoxShadow(
             color: Colors.black.withValues(alpha: 0.12),

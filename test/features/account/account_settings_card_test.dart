@@ -111,11 +111,14 @@ void main() {
 
     expect(find.text('Language'), findsOneWidget);
     expect(find.byType(SwitchLocaleBar), findsOneWidget);
+    expect(find.byKey(const Key('account_tnc')), findsOneWidget);
+    expect(find.text('Terms & Policy'), findsOneWidget);
 
     await tester.tap(find.text('Language'));
     await tester.pumpAndSettle();
     expect(find.text('Bahasa'), findsOneWidget);
     expect(find.text('Mode gelap'), findsOneWidget);
+    expect(find.text('Syarat & Kebijakan'), findsOneWidget);
     expect(getIt<SharedPreferencesHelper>().getLangApp(), 'id');
 
     await tester.tap(find.text('Bahasa'));

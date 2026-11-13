@@ -92,7 +92,6 @@ class ListMenuAkun extends StatelessWidget {
                     color: AppTheme.onSurface(context),
                   ),
                   title: Text(
-                    // "Syarat dan Ketentuan",
                     LocaleKeys.akun_tnc.tr(),
                     style: MyBossTextStyles.subtitle,
                   ),

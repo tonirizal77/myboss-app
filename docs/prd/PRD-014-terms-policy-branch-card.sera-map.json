@@ -1,0 +1,28 @@
+{
+  "prd": "PRD-014-terms-policy-branch-card.md",
+  "project_gid": "65ea6511-c5e4-4397-adf0-64a03c9159c7",
+  "epic": {
+    "id": "732c49ed-57ee-4368-b922-702cf65fd529",
+    "key": "MYB-1"
+  },
+  "stories": [
+    {
+      "id": "f05f795d-271c-46ff-9355-4990b4107d5b",
+      "key": "MYB-633",
+      "name": "Syarat & Kebijakan dari API",
+      "tasks": [
+        {"id": "17a15a62-ab48-4a7d-b3a1-dc8bd46b230d", "key": "MYB-637", "title": "TncModel (daftar dokumen) + AccountRemote /terms-and-policy cabang → pusat + mock + test", "deadline": "2026-11-13"},
+        {"id": "8ac5d877-7235-4e54-98a1-c2edb0e7a899", "key": "MYB-636", "title": "Halaman Syarat & Kebijakan: kartu HTML, loading / gagal / kosong + test", "deadline": "2026-11-13"},
+        {"id": "f58e69e5-7cdf-48fd-bc91-762250d5118f", "key": "MYB-635", "title": "Baris \"Syarat & Kebijakan\" di AccountSettingsCard + terjemahan en/id + test", "deadline": "2026-11-13"}
+      ]
+    },
+    {
+      "id": "34982939-dd73-41b8-8638-d08846017b7d",
+      "key": "MYB-632",
+      "name": "Kartu Cabang sesuai Figma",
+      "tasks": [
+        {"id": "9a6b28e9-2609-4517-ba3e-24741551ed28", "key": "MYB-634", "title": "BranchCard: avatar 120 bercincin putih + layout kartu & padding daftar cabang", "deadline": "2026-11-13"}
+      ]
+    }
+  ]
+}

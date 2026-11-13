@@ -30,6 +30,7 @@ const _requests = [
   ('GET', Endpoints.storeBranches),
   ('GET', Endpoints.aboutUs),
   ('GET', Endpoints.faq),
+  ('GET', Endpoints.termsAndPolicy),
   ('POST', Endpoints.deleteAccountSendOtp),
   ('POST', Endpoints.deleteAccountVerifyOtp),
   ('POST', Endpoints.deleteAccountCancel),
@@ -197,10 +198,13 @@ void main() {
         () => FaqModel.fromJson(_mock('GET', Endpoints.faq)),
         returnsNormally,
       );
-      expect(
-        () => TncModel.fromJson(_mock('GET', Endpoints.faq)),
-        returnsNormally,
-      );
+      final tnc = TncModel.fromJson(_mock('GET', Endpoints.termsAndPolicy));
+      expect(tnc.data, hasLength(4));
+      expect(tnc.visible.map((d) => d.sitenavLinkTypeId), [
+        'TOU',
+        'PPO',
+        'RFP',
+      ]);
       expect(
         ReasonsModel.fromJson(_mock('GET', Endpoints.deleteReason)).data,
         isNotEmpty,

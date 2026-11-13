@@ -99,7 +99,7 @@ class _BranchSelectorBody extends StatelessWidget {
           ),
           child: ListView.separated(
             shrinkWrap: true,
-            padding: const EdgeInsets.fromLTRB(24, 0, 24, 24),
+            padding: const EdgeInsets.fromLTRB(8, 24, 8, 24),
             itemCount: branches.length,
             separatorBuilder: (_, _) => const SizedBox(height: 16),
             itemBuilder: (context, i) {

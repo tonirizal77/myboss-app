@@ -206,5 +206,9 @@ final class Endpoints {
   static const String aboutUs = "/about-us";
   static const String faq = '/faq';
   static const String showSpecificPage = '/page/sad/{pageID}';
+
+  /// GET Terms & policy documents (terms of use, privacy policy, refund
+  /// policy). Selected branch first ([ConfigServer.branchUrl]), then the
+  /// main store domain.
   static const String termsAndPolicy = '/terms-and-policy';
 }

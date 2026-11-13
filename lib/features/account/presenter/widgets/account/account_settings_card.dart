@@ -1,7 +1,8 @@
 part of '../widgets.dart';
 
 /// App settings of the Account page, for guests and members alike:
-/// language (ID / EN) and dark mode. Same card as [AccountStatsCard].
+/// language (ID / EN), dark mode and the terms & policy page. Same card as
+/// [AccountStatsCard].
 class AccountSettingsCard extends StatelessWidget {
   const AccountSettingsCard({super.key});
 
@@ -50,6 +51,23 @@ class AccountSettingsCard extends StatelessWidget {
                 ),
               );
             },
+          ),
+          Divider(height: 1, thickness: 0.5, color: MyBossColors.outline),
+          _AccountRow(
+            key: const Key('account_tnc'),
+            icon: Icon(
+              Icons.description_outlined,
+              size: 28,
+              color: MyBossColors.primary,
+            ),
+            label: LocaleKeys.akun_tnc.tr(),
+            labelStyle: MyBossTextStyles.subtitleBig2,
+            onTap: () => AccountFlows.goToTncPage(context),
+            trailing: Icon(
+              Icons.chevron_right,
+              size: 28,
+              color: MyBossColors.onSurfaceVariant,
+            ),
           ),
         ],
       ),

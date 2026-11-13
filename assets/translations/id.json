@@ -163,7 +163,7 @@
   "akun": {
     "about_us": "Tentang Kami",
     "faq": "FAQ",
-    "tnc": "Syarat & Ketentuan",
+    "tnc": "Syarat & Kebijakan",
     "stamps": "stempel",
     "contact_us": "Hubungi Kami",
     "contact_wa_message": "Halo MyBoss",
@@ -353,112 +353,9 @@
   },
 
   "tnc": {
-    "title": "Syarat & Ketentuan",
-    "desc": "Dengan mengakses website atau aplikasi HaYo dan/atau melakukan pembelian produk HaYo, pelanggan dianggap telah membaca, memahami, dan menyetujui syarat dan ketentuan berikut.",
-    "1": {
-      "title": "1. Ketentuan Umum",
-      "desc": {
-        "1": "HaYo merupakan brand frozen yogurt dengan konsep self-service.",
-        "2": "Seluruh pembelian produk HaYo tunduk pada syarat dan ketentuan yang berlaku di outlet resmi HaYo.",
-        "3": "HaYo dapat memperbarui atau menyesuaikan syarat dan ketentuan ini dari waktu ke waktu sesuai kebutuhan operasional dan kebijakan perusahaan."
-      }
-    },
-    "2": {
-      "title": "2. Produk dan Harga",
-      "desc": {
-        "1": "Produk yang dijual oleh HaYo meliputi frozen yogurt dan/atau produk lain yang tersedia di outlet resmi HaYo.",
-        "2": "Pilihan rasa, topping, ukuran, dan ketersediaan produk dapat berbeda di tiap outlet dan/atau waktu tertentu.",
-        "3": "Foto atau materi promosi produk yang ditampilkan bersifat ilustratif. Tampilan aktual produk dapat berbeda selama tidak mengurangi karakter utama produk yang dijual.",
-        "4": "Harga produk HaYo dibedakan berdasarkan ukuran yang tersedia.",
-        "5": "Harga yang berlaku mengikuti informasi resmi yang tercantum di outlet, kasir, menu board, website, aplikasi, atau media resmi HaYo lainnya",
-        "6": "HaYo berhak mengubah harga sewaktu-waktu sesuai kebijakan yang berlaku."
-      }
-    },
-    "3": {
-      "title": "3. Pembelian dan Pembayaran",
-      "desc": {
-        "1": "Saat ini pembelian produk HaYo hanya dapat dilakukan di outlet resmi HaYo",
-        "2": "HaYo belum melayani pembelian melalui aplikasi maupun melalui platform pihak ketiga seperti GoFood, GrabFood, ShopeeFood, atau platform sejenis, kecuali diinformasikan lain secara resmi oleh HaYo.",
-        "3": "Pelanggan bertanggung jawab untuk memastikan pesanan, ukuran, rasa, topping, dan jumlah produk sudah sesuai sebelum melakukan pembayaran.",
-        "4": "Pesanan yang telah diproses dan/atau dibayarkan tidak dapat dibatalkan atau diubah, kecuali ditentukan lain oleh HaYo.",
-        "5": "Pembayaran dilakukan menggunakan metode pembayaran yang tersedia di outlet.",
-        "6": "Pelanggan wajib melakukan pembayaran penuh atas pesanan yang dibuat serta menyimpan bukti pembayaran sebagai bukti transaksi yang sah."
-      }
-    },
-    "4": {
-      "title": "4. Website dan Aplikasi HaYo",
-      "desc": {
-        "1": "Website dan aplikasi HaYo disediakan sebagai media informasi brand, katalog produk, lokasi outlet, dan akses membership.",
-        "2": "Aplikasi HaYo tidak dapat digunakan untuk melakukan pembelian, pemesanan, maupun pembayaran produk.",
-        "3": "Informasi yang ditampilkan pada website atau aplikasi, termasuk foto produk, bersifat informatif dan dapat berubah sewaktu-waktu sesuai kebutuhan bisnis.",
-        "4": "HaYo berhak memperbarui tampilan, fitur, maupun konten pada website dan aplikasi kapan saja.",
-        "5": "Dengan menggunakan aplikasi dan/atau membership HaYo, pelanggan menyetujui penggunaan dan penyimpanan data pribadi sesuai Kebijakan Privasi HaYo dan ketentuan peraturan perundang-undangan yang berlaku."
-      }
-    },
-    "5": {
-      "title": "5. Membership Program",
-      "desc": {
-        "1": "Program membership HaYo tersedia melalui aplikasi HaYo dan mengikuti ketentuan yang berlaku pada sistem HaYo.",
-        "2": "Setiap pembelian produk ukuran Small dan Medium akan mendapatkan 1 (satu) stamp. Setiap pembelian produk ukuran Large akan mendapatkan 2 (dua) stamp.",
-        "3": "Stamp yang terkumpul dapat ditukarkan dengan produk gratis sesuai syarat, ketentuan, dan mekanisme yang tercantum pada e-card stamp yang berlaku.",
-        "4": "Setiap pengguna yang berhasil mengumpulkan 50 (lima puluh) stamp akan naik ke level berikutnya, dan 2 (dua) stamp akan langsung terbuka sesuai mekanisme yang berlaku pada sistem membership HaYo.",
-        "5": "HaYo berhak mengubah mekanisme membership, jumlah stamp, benefit, hadiah, level, maupun ketentuan penukaran sewaktu-waktu sesuai kebijakan perusahaan."
-      }
-    },
-    "6": {
-      "title": "6. Promo dan Penawaran Khusus",
-      "desc": {
-        "1": "Setiap promo, diskon, bundling, voucher, giveaway, atau penawaran khusus yang diadakan oleh HaYo akan memiliki mekanisme, periode, dan syarat tersendiri.",
-        "2": "Promo tidak dapat digabungkan dengan promo lain, kecuali dinyatakan secara khusus oleh HaYo.",
-        "3": "Promo berlaku selama periode yang ditentukan dan/atau selama persediaan masih ada."
-      }
-    },
-    "7": {
-      "title": "7. Ketersediaan Produk",
-      "desc": {
-        "1": "Seluruh produk ditawarkan selama persediaan masih tersedia.",
-        "2": "Dalam kondisi tertentu, beberapa rasa, topping, atau ukuran dapat habis atau tidak tersedia sementara.",
-        "3": "Apabila produk yang dipilih pelanggan tidak tersedia, HaYo berhak menawarkan alternatif produk lain yang tersedia."
-      }
-    },
-    "8": {
-      "title": "8. Pengembalian, Penukaran, dan Komplain",
-      "desc": {
-        "1": "Produk yang telah dibeli tidak dapat dikembalikan atau ditukar, kecuali terdapat kesalahan pesanan dari pihak HaYo atau produk diterima dalam kondisi tidak layak konsumsi.",
-        "2": "Keluhan wajib disampaikan pada hari yang sama dengan menunjukkan bukti pembelian yang sah.",
-        "3": "HaYo berhak melakukan verifikasi atas setiap keluhan sebelum menentukan bentuk penyelesaian yang sesuai."
-      }
-    },
-    "9": {
-      "title": "9. Alergi dan Konsumsi Produk",
-      "desc": {
-        "1": "Produk HaYo dapat mengandung atau bersinggungan dengan bahan tertentu seperti susu, kacang, gluten, atau bahan alergen lainnya.",
-        "2": "Pelanggan yang memiliki riwayat alergi atau pantangan tertentu disarankan untuk menanyakan informasi produk kepada staf sebelum melakukan pembelian.",
-        "3": "Produk HaYo disarankan untuk segera dikonsumsi setelah pembelian agar kualitas tetap terjaga.",
-        "4": "HaYo tidak bertanggung jawab atas perubahan kualitas produk setelah produk diterima pelanggan akibat penyimpanan atau penanganan yang tidak sesuai."
-      }
-    },
-    "10": {
-      "title": "10. Hak Kekayaan Intelektual",
-      "desc": {
-        "1": "Seluruh nama, logo, desain, materi promosi, konten visual, dan elemen branding HaYo merupakan milik HaYo atau pihak yang bekerja sama secara sah dengan HaYo.",
-        "2": "Dilarang menggunakan atau memperbanyak elemen-elemen tersebut tanpa persetujuan tertulis dari pihak yang berwenang."
-      }
-    },
-    "11": {
-      "title": "11. Penghapusan Akun",
-      "desc": {
-        "1": "Pengajuan Penghapusan Akun. \nPengguna dapat mengajukan permintaan penghapusan akun HaYo setiap saat setelah melakukan registrasi pada aplikasi HaYo. Permintaan penghapusan akun hanya dapat dilakukan oleh pemilik akun yang terdaftar dan diajukan melalui email resmi HaYo di  [weare@hayo.co.id]",
-        "2": "Pemilik Akun. \nPermintaan penghapusan akun hanya dapat diajukan oleh pemilik akun yang terdaftar. HaYo berhak melakukan verifikasi atas identitas, akses akun, dan/atau data lain yang diperlukan sebelum memproses permintaan penghapusan akun.",
-        "3": "Dampak Penghapusan Akun. \nPenghapusan akun akan mengakhiri akses pengguna ke akun HaYo beserta fitur dan manfaat yang terhubung dengan akun tersebut, termasuk namun tidak terbatas pada membership, e-stamp, reward, benefit, riwayat akun, dan/atau manfaat lain yang melekat pada akun, sepanjang berlaku.",
-        "4": "Sifat Penghapusan. \nSetelah proses penghapusan akun selesai dilakukan, akun tidak dapat dipulihkan kembali dan data yang telah dihapus tidak dapat dikembalikan, kecuali untuk data tertentu yang wajib disimpan oleh HaYo berdasarkan ketentuan hukum yang berlaku, kebutuhan audit, pencegahan penyalahgunaan, penanganan sengketa, atau kepatuhan internal perusahaan.",
-        "5": "Benefit dan Program yang Masih Aktif. \nDalam hal pada saat pengajuan penghapusan akun masih terdapat e-stamp, reward, voucher, gift card, benefit membership, atau program promosi lain yang terhubung pada akun, maka penggunaan, pengakhiran, atau penghapusan manfaat tersebut akan mengikuti syarat dan ketentuan masing-masing program yang berlaku.",
-        "6": "Pembatasan atau Penundaan. \nHaYo berhak menunda atau menolak permintaan penghapusan akun apabila terdapat indikasi penyalahgunaan, pelanggaran syarat dan ketentuan, kewajiban yang belum diselesaikan, atau alasan lain yang diperbolehkan berdasarkan ketentuan peraturan perundang-undangan yang berlaku."
-      }
-    },
-    "12": {
-      "title": "12. Kontak Resmi",
-      "desc": "Untuk pertanyaan, masukan, atau keluhan, pelanggan dapat menghubungi HaYo melalui kontak resmi yang tercantum pada kanal resmi HaYo. Berdasarkan situs publiknya, HaYo mencantumkan email weare@hayo.co.id."
-    }
+    "title": "Syarat & Kebijakan",
+    "load_failed": "Gagal memuat syarat dan kebijakan.",
+    "empty": "Syarat dan kebijakan belum tersedia.",
+    "retry": "Coba lagi"
   }
 }

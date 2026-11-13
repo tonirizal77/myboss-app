@@ -1,0 +1,42 @@
+{
+  "data": [
+    {
+      "id": 1,
+      "store_id": 303475,
+      "sitenav_link_type_id": "TOU",
+      "title": "Terms of use",
+      "description": "<ul><li>Mock: users must create an account with valid information.</li><li>Mock: using the application for illegal activities is prohibited.</li></ul>",
+      "published": true,
+      "status": "A"
+    },
+    {
+      "id": 2,
+      "store_id": 303475,
+      "sitenav_link_type_id": "PPO",
+      "title": "Privacy Policy",
+      "description": "<ul><li>Mock: personal data is collected for transaction purposes.</li><li>Mock: users can delete their accounts at any time.</li></ul>",
+      "published": true,
+      "status": "A"
+    },
+    {
+      "id": 3,
+      "store_id": 303475,
+      "sitenav_link_type_id": "RFP",
+      "title": "Refund Policy",
+      "description": "<ul><li>Mock: refund policy point 1.</li></ul>",
+      "published": true,
+      "status": "A"
+    },
+    {
+      "id": 4,
+      "store_id": 303475,
+      "sitenav_link_type_id": "DRAFT",
+      "title": "Unpublished draft",
+      "description": "<p>Mock: must not be shown.</p>",
+      "published": false,
+      "status": "A"
+    }
+  ],
+  "status": 200,
+  "error": 0
+}

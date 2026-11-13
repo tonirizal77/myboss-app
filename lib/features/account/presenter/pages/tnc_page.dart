@@ -1,209 +1,173 @@
 part of 'pages.dart';
 
-class TncPage extends StatelessWidget {
+/// Terms & policy: the documents of `GET /terms-and-policy` (terms of use,
+/// privacy policy, refund policy), one card each. The last answer is kept by
+/// [AccountBloc] (hydrated), so it shows at once while a fresh copy loads.
+class TncPage extends StatefulWidget {
   const TncPage({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    final List<DataMap> _dataTnc = [
-      {
-        'title': LocaleKeys.tnc_1_title.tr(),
-        'body': [
-          {'no': 1, 'ket': LocaleKeys.tnc_1_desc_1.tr()},
-          {'no': 2, 'ket': LocaleKeys.tnc_1_desc_2.tr()},
-          {'no': 3, 'ket': LocaleKeys.tnc_1_desc_3.tr()},
-        ],
-      },
-      {
-        'title': LocaleKeys.tnc_2_title.tr(),
-        'body': [
-          {'no': 1, 'ket': LocaleKeys.tnc_2_desc_1.tr()},
-          {'no': 2, 'ket': LocaleKeys.tnc_2_desc_2.tr()},
-          {'no': 3, 'ket': LocaleKeys.tnc_2_desc_3.tr()},
-          {'no': 4, 'ket': LocaleKeys.tnc_2_desc_4.tr()},
-          {'no': 5, 'ket': LocaleKeys.tnc_2_desc_5.tr()},
-          {'no': 6, 'ket': LocaleKeys.tnc_2_desc_6.tr()},
-        ],
-      },
-      {
-        'title': LocaleKeys.tnc_3_title.tr(),
-        'body': [
-          {'no': 1, 'ket': LocaleKeys.tnc_3_desc_1.tr()},
-          {'no': 2, 'ket': LocaleKeys.tnc_3_desc_2.tr()},
-          {'no': 3, 'ket': LocaleKeys.tnc_3_desc_3.tr()},
-          {'no': 4, 'ket': LocaleKeys.tnc_3_desc_4.tr()},
-          {'no': 5, 'ket': LocaleKeys.tnc_3_desc_5.tr()},
-          {'no': 6, 'ket': LocaleKeys.tnc_3_desc_6.tr()},
-        ],
-      },
-      {
-        'title': LocaleKeys.tnc_4_title.tr(),
-        'body': [
-          {'no': 1, 'ket': LocaleKeys.tnc_4_desc_1.tr()},
-          {'no': 2, 'ket': LocaleKeys.tnc_4_desc_2.tr()},
-          {'no': 3, 'ket': LocaleKeys.tnc_4_desc_3.tr()},
-          {'no': 4, 'ket': LocaleKeys.tnc_4_desc_4.tr()},
-          {'no': 5, 'ket': LocaleKeys.tnc_4_desc_5.tr()},
-        ],
-      },
-      {
-        'title': LocaleKeys.tnc_5_title.tr(),
-        'body': [
-          {'no': 1, 'ket': LocaleKeys.tnc_5_desc_1.tr()},
-          {'no': 2, 'ket': LocaleKeys.tnc_5_desc_2.tr()},
-          {'no': 3, 'ket': LocaleKeys.tnc_5_desc_3.tr()},
-          {'no': 4, 'ket': LocaleKeys.tnc_5_desc_4.tr()},
-        ],
-      },
-      {
-        'title': LocaleKeys.tnc_6_title.tr(),
-        'body': [
-          {'no': 1, 'ket': LocaleKeys.tnc_6_desc_1.tr()},
-          {'no': 2, 'ket': LocaleKeys.tnc_6_desc_2.tr()},
-          {'no': 3, 'ket': LocaleKeys.tnc_6_desc_3.tr()},
-        ],
-      },
-      {
-        'title': LocaleKeys.tnc_7_title.tr(),
-        'body': [
-          {'no': 1, 'ket': LocaleKeys.tnc_7_desc_1.tr()},
-          {'no': 2, 'ket': LocaleKeys.tnc_7_desc_2.tr()},
-          {'no': 3, 'ket': LocaleKeys.tnc_7_desc_3.tr()},
-        ],
-      },
-      {
-        'title': LocaleKeys.tnc_8_title.tr(),
-        'body': [
-          {'no': 1, 'ket': LocaleKeys.tnc_8_desc_1.tr()},
-          {'no': 2, 'ket': LocaleKeys.tnc_8_desc_2.tr()},
-          {'no': 3, 'ket': LocaleKeys.tnc_8_desc_3.tr()},
-        ],
-      },
-      {
-        'title': LocaleKeys.tnc_9_title.tr(),
-        'body': [
-          {'no': 1, 'ket': LocaleKeys.tnc_9_desc_1.tr()},
-          {'no': 2, 'ket': LocaleKeys.tnc_9_desc_2.tr()},
-          {'no': 3, 'ket': LocaleKeys.tnc_9_desc_3.tr()},
-          {'no': 4, 'ket': LocaleKeys.tnc_9_desc_4.tr()},
-        ],
-      },
-      {
-        'title': LocaleKeys.tnc_10_title.tr(),
-        'body': [
-          {'no': 1, 'ket': LocaleKeys.tnc_10_desc_1.tr()},
-          {'no': 2, 'ket': LocaleKeys.tnc_10_desc_2.tr()},
-        ],
-      },
-      {
-        'title': LocaleKeys.tnc_11_title.tr(),
-        'body': [
-          {'no': 1, 'ket': LocaleKeys.tnc_11_desc_1.tr()},
-          {'no': 2, 'ket': LocaleKeys.tnc_11_desc_2.tr()},
-          {'no': 3, 'ket': LocaleKeys.tnc_11_desc_3.tr()},
-          {'no': 4, 'ket': LocaleKeys.tnc_11_desc_4.tr()},
-          {'no': 5, 'ket': LocaleKeys.tnc_11_desc_5.tr()},
-          {'no': 6, 'ket': LocaleKeys.tnc_11_desc_6.tr()},
-        ],
-      },
-      {
-        'title': LocaleKeys.tnc_12_title.tr(),
-        'body': LocaleKeys.tnc_12_desc.tr(),
-      },
-    ];
+  State<TncPage> createState() => _TncPageState();
+}
 
+class _TncPageState extends State<TncPage> {
+  @override
+  void initState() {
+    super.initState();
+
+    AccountFlows.getTnc(context);
+  }
+
+  @override
+  Widget build(BuildContext context) {
     return ResponsivePage(
       useSafeArea: true,
       appBar: AppBarCustom(
         isBlur: false,
-        // title: "Syarat & Ketentuan",
         title: LocaleKeys.tnc_title.tr(),
         onClose: () => context.pop(),
       ),
       useScrollView: true,
-      padding: EdgeInsets.all(16),
-      body: Container(
-        alignment: Alignment.topLeft,
-        // color: Colors.amber,
-        margin: EdgeInsets.only(bottom: 50),
-        child: Column(
-          crossAxisAlignment: .start,
-          children: [
-            Text(LocaleKeys.tnc_desc.tr()),
+      alignment: Alignment.topLeft,
+      padding: EdgeInsets.fromLTRB(16, 16, 16, 56),
+      body: BlocBuilder<AccountBloc, AccountState>(
+        builder: (context, state) {
+          final _docs = state.tnc.visible;
 
-            const SizedBox(height: 16),
-
-            Column(
+          if (_docs.isNotEmpty) {
+            return Column(
+              key: const ValueKey('tnc_list'),
               crossAxisAlignment: .start,
-              spacing: 24,
-              children: List.generate(_dataTnc.length, (i) {
-                final _data = _dataTnc[i];
+              mainAxisSize: .min,
+              spacing: 16,
+              children: [for (final _doc in _docs) _TncCard(doc: _doc)],
+            );
+          }
 
-                final _title = _data['title'] as String;
-                final _body = (_data['body'] is List)
-                    ? _data['body'] as List
-                    : _data['body'];
+          if (state.respon == Respons.loading ||
+              state.respon == Respons.initial) {
+            return Padding(
+              padding: const EdgeInsets.symmetric(vertical: 64),
+              child: Center(
+                child: CircularProgressIndicator(
+                  key: const ValueKey('tnc_loading'),
+                  color: MyBossColors.primary,
+                ),
+              ),
+            );
+          }
 
-                return Column(
-                  crossAxisAlignment: .start,
-                  mainAxisSize: .min,
-                  spacing: 8,
-                  children: [
-                    ///
-                    Text(
-                      "$_title",
-                      style: MyBossTextStyles.subtitleBig2.copyWith(
-                        fontWeight: FontWeight.w500,
-                      ),
-                    ),
+          final _failed = state.respon == Respons.failure;
 
-                    /// Rincian
-                    /// -
-                    _body is List
-                        ? _detailTnc(_body)
-                        : Text(
-                            "${_body}",
-                            style: MyBossTextStyles.body,
-                            textAlign: TextAlign.start,
-                          ),
-                  ],
-                );
-              }),
-            ),
-          ],
-        ),
+          return _TncMessage(
+            icon: _failed
+                ? Icons.cloud_off_outlined
+                : Icons.description_outlined,
+            message: _failed
+                ? LocaleKeys.tnc_load_failed.tr()
+                : LocaleKeys.tnc_empty.tr(),
+            onRetry: () => AccountFlows.getTnc(context),
+          );
+        },
       ),
     );
   }
+}
 
-  Column _detailTnc(List<dynamic> _body) {
-    return Column(
-      crossAxisAlignment: .start,
-      children: List.generate(_body.length, (i) {
-        return Row(
-          crossAxisAlignment: .start,
-          mainAxisAlignment: .start,
-          spacing: 8,
-          children: [
-            Container(
-              width: 30,
-              alignment: Alignment.topRight,
-              child: Text(
-                "${_body[i]['no'].toString()}.",
-                style: MyBossTextStyles.body,
-                textAlign: TextAlign.end,
+/// One document: title + HTML body.
+class _TncCard extends StatelessWidget {
+  final TncItemModel doc;
+
+  const _TncCard({required this.doc});
+
+  @override
+  Widget build(BuildContext context) {
+    return CardCustom(
+      key: ValueKey('tnc_${doc.sitenavLinkTypeId}_${doc.id}'),
+      color: AppTheme.surface(context),
+      isBorder: true,
+      borderColor: AppTheme.outline(context),
+      padding: EdgeInsets.all(16),
+      alignment: Alignment.topLeft,
+      child: Column(
+        crossAxisAlignment: .start,
+        mainAxisSize: .min,
+        spacing: 8,
+        children: [
+          if (doc.title.trim().isNotEmpty)
+            Text(
+              doc.title.trim(),
+              style: MyBossTextStyles.subtitleBig2.copyWith(
+                fontWeight: FontWeight.w500,
               ),
             ),
-            Flexible(
-              child: Text(
-                _body[i]['ket'].trim(),
-                style: MyBossTextStyles.body,
-                textAlign: TextAlign.start,
+
+          Html(
+            data: doc.description,
+            style: {
+              ...MyBossTextStyles.htmlBodyNoPadding,
+              ...MyBossTextStyles.htmlParagraphNoPadding,
+              'ul': Style(
+                margin: Margins.zero,
+                padding: HtmlPaddings.only(left: 20),
               ),
+              'ol': Style(
+                margin: Margins.zero,
+                padding: HtmlPaddings.only(left: 20),
+              ),
+              'li': Style(padding: HtmlPaddings.only(bottom: 6)),
+
+              /// Follow the app's dark/light theme, overriding any inline
+              /// color coming from the CMS.
+              "*": Style(
+                color: AppTheme.onSurface(context),
+                backgroundColor: Colors.transparent,
+              ),
+            },
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+/// Load failed / nothing published, with a retry.
+class _TncMessage extends StatelessWidget {
+  final IconData icon;
+  final String message;
+  final VoidCallback onRetry;
+
+  const _TncMessage({
+    required this.icon,
+    required this.message,
+    required this.onRetry,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: double.infinity,
+      padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 48),
+      child: Column(
+        mainAxisSize: .min,
+        spacing: 16,
+        children: [
+          Icon(icon, size: 64, color: MyBossColors.onSurfaceVariant),
+          Text(
+            message,
+            textAlign: TextAlign.center,
+            style: MyBossTextStyles.body.copyWith(
+              color: MyBossColors.onSurfaceVariant,
             ),
-          ],
-        );
-      }),
+          ),
+          MyBossButton(
+            key: const ValueKey('tnc_retry'),
+            label: LocaleKeys.tnc_retry.tr(),
+            role: MyBossButtonRole.secondary,
+            onPressed: onRetry,
+          ),
+        ],
+      ),
     );
   }
 }

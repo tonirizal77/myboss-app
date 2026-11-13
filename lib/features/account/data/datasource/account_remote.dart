@@ -42,9 +42,34 @@ class AccountRemoteImpl implements AccountRemote {
     });
   }
 
+  /// URLs to ask for the terms & policy documents, in order: the selected
+  /// branch first ([branchUrl], from [ConfigServer.branchUrl]), then the
+  /// main store. No branch selected -> both are the same, asked once.
+  @visibleForTesting
+  static List<String> tncUrls(String branchUrl) => {
+    branchUrl,
+    Endpoints.termsAndPolicy,
+  }.toList();
+
+  /// The first of [tncUrls] that answers with documents to show; a branch
+  /// without any (or that fails) falls back to the main store.
   @override
   ResultFuture<TncModel> getTnc() async {
-    final resp = await DioGet.call(url: Endpoints.faq);
+    final urls = tncUrls(ConfigServer.branchUrl(Endpoints.termsAndPolicy));
+    late Either<Failures, TncModel> result;
+
+    for (final url in urls) {
+      result = await _fetchTnc(url);
+
+      final hasDocs = result.fold((_) => false, (r) => r.visible.isNotEmpty);
+      if (hasDocs) break;
+    }
+
+    return result;
+  }
+
+  ResultFuture<TncModel> _fetchTnc(String url) async {
+    final resp = await DioGet.call(url: url);
 
     return resp.fold((_l) => Left(_l), (_r) {
       try {
