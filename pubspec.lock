@@ -968,9 +968,11 @@ packages:
   mobile_app_core:
     dependency: "direct main"
     description:
-      path: "../mobile_app_core"
-      relative: true
-    source: path
+      path: "."
+      ref: myboss-core
+      resolved-ref: "279bf68e22f8d31051e802382306270f644d8ce9"
+      url: "https://github.com/Olsera/mobile_app_core.git"
+    source: git
     version: "0.0.1"
   native_device_orientation:
     dependency: "direct main"

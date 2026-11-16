@@ -62,7 +62,7 @@
       "deviceId": "40cb62ff", // usb
       // "deviceId": "192.168.100.191:5556", // wifi
       // "deviceId": "10.0.0.65:5556", // office
-      "flutterMode": "debug",
+      "flutterMode": "profile",
       "runTestsOnDevice": true,
       "args": [
         "--flavor",
