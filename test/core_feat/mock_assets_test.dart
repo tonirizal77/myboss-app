@@ -21,11 +21,10 @@ const _requests = [
   ('GET', Endpoints.profileLoyaltyPoints),
   ('GET', Endpoints.profileOrdersPoints),
   ('GET', Endpoints.profileDiscountVouchers),
-  ('POST', Endpoints.verifyOldGetOtp),
-  ('POST', Endpoints.verifyOldSendOtp),
-  ('POST', Endpoints.verifyNewGetOtpPhone),
-  ('POST', Endpoints.verifyNewGetOtpEmail),
-  ('POST', Endpoints.verifyNewSendOtp),
+  ('POST', Endpoints.changePhoneSendOtp),
+  ('POST', Endpoints.changePhoneVerifyOtp),
+  ('POST', Endpoints.changeEmailSendOtp),
+  ('POST', Endpoints.changeEmailVerifyOtp),
   ('GET', Endpoints.storeData),
   ('GET', Endpoints.storeBranches),
   ('GET', Endpoints.aboutUs),
@@ -172,8 +171,13 @@ void main() {
       );
     });
 
-    test('update phone/email returns the verify key', () {
-      expect(_data('POST', Endpoints.verifyOldSendOtp)['key'], isNotEmpty);
+    test('update phone/email verify returns the reset_token', () {
+      for (final endpoint in [
+        Endpoints.changePhoneVerifyOtp,
+        Endpoints.changeEmailVerifyOtp,
+      ]) {
+        expect(_data('POST', endpoint)['reset_token'], isNotEmpty);
+      }
     });
 
     test('store and branches', () {
@@ -256,8 +260,8 @@ void main() {
         ('POST', Endpoints.signInSendCode),
         ('POST', Endpoints.signUpSendCode),
         ('POST', Endpoints.signOut),
-        ('POST', Endpoints.verifyOldGetOtp),
-        ('POST', Endpoints.verifyNewGetOtpPhone),
+        ('POST', Endpoints.changePhoneSendOtp),
+        ('POST', Endpoints.changeEmailSendOtp),
         ('POST', Endpoints.deleteAccountSendOtp),
         ('POST', Endpoints.deleteAccountVerifyOtp),
         ('POST', Endpoints.deleteAccountCancel),

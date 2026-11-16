@@ -1,6 +1,6 @@
 {
   "data": {
-    "message": "OTP sent (mock)."
+    "message": "Verification code sent (mock)."
   },
   "status": 200,
   "error": 0

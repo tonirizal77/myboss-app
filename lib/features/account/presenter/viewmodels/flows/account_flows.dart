@@ -69,9 +69,9 @@ class AccountFlows {
     /// 3. Back to Edit Profile Page
     ///
 
-    context.read<ProfileBloc>().add(
-      ProfileEvent.updateProfilePhoneOrEmail(data),
-    );
+    context.read<ProfileBloc>()
+      ..add(ProfileEvent.updateProfilePhoneOrEmail(data))
+      ..add(ProfileEvent.getProfile());
 
     await getIt<FlushbarHelper>()
         .showNormalFlushbar(

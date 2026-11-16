@@ -29,11 +29,22 @@ extension _EventUpdateProfiledHandler on ProfileBloc {
         );
       },
       (_r) {
+        // `PUT /profile/update` answers with a partial profile (no phone,
+        // email, points, vouchers...). Only take the edited fields so the
+        // Account page keeps the rest of the profile from `/profile/info`.
+        final _current = state.profile;
+        final _merged = _current.copyWith(
+          name: _r.name.isNotEmpty ? _r.name : _current.name,
+          avatarId: _r.avatarId != 0 ? _r.avatarId : _current.avatarId,
+          avatar: _r.avatar.isNotEmpty ? _r.avatar : _current.avatar,
+          favatar: _r.favatar.isNotEmpty ? _r.favatar : _current.favatar,
+        );
+
         emit(
           state.copyWith(
             errorMessage: "",
             respon: Respons.success,
-            profile: _r,
+            profile: _merged,
             statusUpdateProfile: Status.success,
           ),
         );

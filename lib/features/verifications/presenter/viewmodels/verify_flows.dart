@@ -147,6 +147,23 @@ class VerifyFlows {
 
   /// === OTP ===
   ///
+  /// Change phone/email OTPs are always sent over WhatsApp.
+  static const String _otpChannel = 'whatsapp';
+
+  /// `data.reset_token` returned by verifying the old phone/email; required
+  /// to request the OTP for the new one.
+  static String get _resetToken =>
+      getIt<VerifyBloc>().state.result['data']?['reset_token']?.toString() ??
+      "";
+
+  /// Backend expects phones as `+62…`: strip spaces/dashes, add `+`.
+  static String _e164(String phone) {
+    final _digits = phone.replaceAll(RegExp(r'[\s-]'), '');
+    if (_digits.isEmpty || _digits.startsWith('+')) return _digits;
+    return '+$_digits';
+  }
+
+  ///
   /// 1. Get Otp
   static Future<void> getOtpCode(BuildContext context) async {
     // - Switch Body
@@ -170,27 +187,27 @@ class VerifyFlows {
       );
     } else if (_fromPage == FromPage.changeNumber) {
       _param = ParamOtp(
-        body: {'phone': verifyData.phone},
-        url: Endpoints.verifyOldGetOtp,
+        body: {'old_phone': _e164(verifyData.phone), 'type': _otpChannel},
+        url: Endpoints.changePhoneSendOtp,
       );
     } else if (_fromPage == FromPage.changeEmail) {
       _param = ParamOtp(
-        body: {'email': verifyData.email},
-        url: Endpoints.verifyOldGetOtp,
+        body: {'old_email': verifyData.email},
+        url: Endpoints.changeEmailSendOtp,
       );
     } else if (_fromPage == FromPage.changeNewNumber) {
-      final String _key =
-          getIt<VerifyBloc>().state.result['data']?['key'] ?? "";
       _param = ParamOtp(
-        body: {'phone': verifyData.newPhone, 'key': _key},
-        url: Endpoints.verifyNewGetOtpPhone,
+        body: {
+          'reset_token': _resetToken,
+          'new_phone': _e164(verifyData.newPhone),
+          'type': _otpChannel,
+        },
+        url: Endpoints.changePhoneSendOtp,
       );
     } else if (_fromPage == FromPage.changeNewEmail) {
-      final String _key =
-          getIt<VerifyBloc>().state.result['data']?['key'] ?? "";
       _param = ParamOtp(
-        body: {'email': verifyData.newEmail, 'key': _key},
-        url: Endpoints.verifyNewGetOtpEmail,
+        body: {'reset_token': _resetToken, 'new_email': verifyData.newEmail},
+        url: Endpoints.changeEmailSendOtp,
       );
     } else if (_fromPage == FromPage.deleteAccount) {
       _param = ParamOtp(
@@ -233,23 +250,31 @@ class VerifyFlows {
       );
     } else if (_fromPage == FromPage.changeNumber) {
       _param = ParamOtp(
-        url: Endpoints.verifyOldSendOtp,
-        body: {'phone': verifyData.phone, "otp_code": otpCode},
+        url: Endpoints.changePhoneVerifyOtp,
+        body: {
+          'old_phone': _e164(verifyData.phone),
+          'type': _otpChannel,
+          'token': otpCode,
+        },
       );
     } else if (_fromPage == FromPage.changeEmail) {
       _param = ParamOtp(
-        url: Endpoints.verifyOldSendOtp,
-        body: {'email': verifyData.email, "otp_code": otpCode},
+        url: Endpoints.changeEmailVerifyOtp,
+        body: {'old_email': verifyData.email, 'token': otpCode},
       );
     } else if (_fromPage == FromPage.changeNewNumber) {
       _param = ParamOtp(
-        url: Endpoints.verifyNewSendOtp,
-        body: {'phone': verifyData.newPhone, "otp_code": otpCode},
+        url: Endpoints.changePhoneVerifyOtp,
+        body: {
+          'new_phone': _e164(verifyData.newPhone),
+          'type': _otpChannel,
+          'token': otpCode,
+        },
       );
     } else if (_fromPage == FromPage.changeNewEmail) {
       _param = ParamOtp(
-        url: Endpoints.verifyNewSendOtp,
-        body: {'email': verifyData.newEmail, "otp_code": otpCode},
+        url: Endpoints.changeEmailVerifyOtp,
+        body: {'new_email': verifyData.newEmail, 'token': otpCode},
       );
     } else if (_fromPage == FromPage.deleteAccount) {
       _param = ParamOtp(

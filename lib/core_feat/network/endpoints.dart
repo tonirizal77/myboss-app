@@ -97,36 +97,35 @@ final class Endpoints {
   /// Authorization : {{user_bearer}}
   /// ============================================================ ///
 
-  /// === Profile › UpdatePhone === ///
+  /// === Profile › Update Phone === ///
+  /// Two steps on the same paths: verify the old phone (answers with
+  /// `data.reset_token`), then verify the new phone with that token.
+  /// `type` is always `whatsapp`; phones are sent as `+62…`.
   ///
-  /// POST Send Verification ( Old Phone )
-  /// Params: { "phone": "+628xxxxxxxxxx" }
-  static const String verifyOldGetOtp = "/customer/update/otp/send-old";
+  /// POST Send Verification
+  /// Old phone : { "old_phone": "+628xxxxxxxxxx", "type": "whatsapp" }
+  /// New phone : { "reset_token": "368ZY3DN6P", "new_phone": "+628xxxxxxxxxx", "type": "whatsapp" }
+  static const String changePhoneSendOtp = "/profile/phone/send-verification";
 
-  /// POST Verify Token ( Old Phone )
-  /// Params: { "phone": "+628xxxxxxxxxx", "otp_code": "9999" }
-  static const String verifyOldSendOtp = "/customer/update/otp/verify-old";
-
-  /// POST Send Verification ( New Phone )
-  /// Params: { "phone": "+628xxxxxxxxxx", "key": "LHQNSXBOKW" }
-  static const String verifyNewGetOtpPhone = "/customer/update/otp/send-new";
-
-  /// POST Verify Token ( New Phone ) - also used for New Email
-  /// Params: { "phone": "+628xxxxxxxxxx", "otp_code": "9999" }
-  static const String verifyNewSendOtp = "/customer/update/otp";
+  /// POST Verify Token
+  /// Old phone : { "old_phone": "+628xxxxxxxxxx", "type": "whatsapp", "token": "9999" }
+  /// New phone : { "new_phone": "+628xxxxxxxxxx", "type": "whatsapp", "token": "9999" }
+  static const String changePhoneVerifyOtp =
+      "/profile/phone/verify-verification";
 
   /// === Profile › Update Email === ///
+  /// Same two-step flow as [changePhoneSendOtp] / [changePhoneVerifyOtp].
   ///
-  /// POST Send Verification ( Old Email )
-  /// POST Verify Token ( Old Email )
-  // TODO(api): add paths from Postman; the app currently reuses the phone
-  // endpoints above for the old email step.
+  /// POST Send Verification
+  /// Old email : { "old_email": "oldEmail@example.com" }
+  /// New email : { "reset_token": "368ZY3DN6P", "new_email": "newEmail@example.com" }
+  static const String changeEmailSendOtp = "/profile/email/send-verification";
 
-  /// POST Send Verification ( New Email )
-  /// Params: { "email": "user@example.com", "key": "LHQNSXBOKW" }
-  static const String verifyNewGetOtpEmail = "/customer/update/otp/send-new";
-
-  /// POST Verify Token ( New Email ) -> [verifyNewSendOtp]
+  /// POST Verify Token
+  /// Old email : { "old_email": "oldEmail@example.com", "token": "9999" }
+  /// New email : { "new_email": "newEmail@example.com", "token": "9999" }
+  static const String changeEmailVerifyOtp =
+      "/profile/email/verify-verification";
 
   /// === Profile === ///
   ///
@@ -138,7 +137,7 @@ final class Endpoints {
 
   /// PUT Update Profile
   /// Params: { "avatar_id": 1, "name": "Olsera Indonesia" }
-  static const String updateProfile = "/customer/update";
+  static const String updateProfile = "/profile/update";
 
   /// GET Get Data Profile
   /// Params: ?cart_v2=1
