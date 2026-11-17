@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
@@ -9,6 +10,7 @@ import 'package:myboss_app/features/features.dart';
 
 void main() {
   late ThemeBloc bloc;
+  late StreamSubscription<ThemeState> themeSub;
 
   setUpAll(() async {
     TestWidgetsFlutterBinding.ensureInitialized();
@@ -21,12 +23,14 @@ void main() {
 
   setUp(() async {
     await HydratedBloc.storage.clear();
-    await MyBossTheme.ensureDefaultDark();
-    bloc = ThemeBloc();
-    getIt.registerSingleton<ThemeBloc>(bloc);
+    getIt.registerLazySingleton<ThemeBloc>(ThemeBloc.new);
+    themeSub = MyBossTheme.setupDefaultDark();
+    bloc = getIt<ThemeBloc>();
+    await Future<void>.delayed(Duration.zero);
   });
 
   tearDown(() async {
+    await themeSub.cancel();
     await bloc.close();
     await getIt.reset();
   });

@@ -11,10 +11,49 @@
       "key": "MYB-645",
       "name": "Build APK Staging untuk Testing",
       "tasks": [
-        {"id": "b3ce949f-93b0-4deb-b168-ea6bb96305d6", "key": "MYB-649", "title": "Konfigurasi build APK staging (release & debug) di .vscode/launch.json", "deadline": "2026-11-17"},
-        {"id": "4809bcc5-ab89-426c-8d1a-057dcd6627e2", "key": "MYB-648", "title": "Cek compileSdk/targetSdk Android 16 (API 36) + analisis dampak API 37", "deadline": "2026-11-17"},
-        {"id": "e37e8fef-3fba-4866-800f-7decfc63f05f", "key": "MYB-647", "title": "Signing release dari key.properties + bump versi staging 1.0.1+2", "deadline": "2026-11-17"},
-        {"id": "c81537fd-174a-4c2c-a36f-ecb54355be30", "key": "MYB-646", "title": "Build APK staging release untuk testing", "deadline": "2026-11-17"}
+        {
+          "id": "b3ce949f-93b0-4deb-b168-ea6bb96305d6",
+          "key": "MYB-649",
+          "title": "Konfigurasi build APK staging (release & debug) di .vscode/launch.json",
+          "deadline": "2026-11-17"
+        },
+        {
+          "id": "4809bcc5-ab89-426c-8d1a-057dcd6627e2",
+          "key": "MYB-648",
+          "title": "Cek compileSdk/targetSdk Android 16 (API 36) + analisis dampak API 37",
+          "deadline": "2026-11-17"
+        },
+        {
+          "id": "e37e8fef-3fba-4866-800f-7decfc63f05f",
+          "key": "MYB-647",
+          "title": "Signing release dari key.properties + bump versi staging 1.0.1+2",
+          "deadline": "2026-11-17"
+        },
+        {
+          "id": "c81537fd-174a-4c2c-a36f-ecb54355be30",
+          "key": "MYB-646",
+          "title": "Build APK staging release untuk testing",
+          "deadline": "2026-11-17"
+        }
+      ]
+    },
+    {
+      "id": "70790e10-6d81-44f5-96a0-1e9825245b76",
+      "key": "MYB-650",
+      "name": "Default Bahasa ID dan Mode Dark di Build Staging",
+      "tasks": [
+        {
+          "id": "71ee6818-4437-4e76-82d3-9487c73d6cb4",
+          "key": "MYB-652",
+          "title": "Default bahasa ID: startLocale id di EasyLocalization",
+          "deadline": "2026-11-17"
+        },
+        {
+          "id": "4a302e1e-d345-4208-b8c3-5e183cf5646e",
+          "key": "MYB-651",
+          "title": "Default Dark tahan obfuscate: key tema MyBossTheme + migrasi key lama + test + versi 1.0.1+3",
+          "deadline": "2026-11-17"
+        }
       ]
     }
   ]

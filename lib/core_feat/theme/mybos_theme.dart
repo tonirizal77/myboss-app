@@ -16,38 +16,47 @@ import 'mybos_text_styles.dart';
 class MyBossTheme {
   MyBossTheme._();
 
-  // HydratedBloc keys its state by the bloc's runtime type.
-  static const _storageKey = 'ThemeBloc';
-
   /// `ThemeState.toJson()` of `mobile_app_core` leaves the nested
   /// `AppModeTime` as an object, which Hive cannot store - round-trip through
   /// JSON to get plain maps.
   static Map<String, dynamic> _plainJson(ThemeState state) =>
       jsonDecode(jsonEncode(state)) as Map<String, dynamic>;
 
-  /// Makes Dark the default mode on a fresh install.
-  ///
-  /// The generated `ThemeState` of `mobile_app_core` defaults to Light, so seed
-  /// the persisted state when the user has not chosen a mode yet (an existing
-  /// choice is kept). Call after `HydratedBloc.storage` is ready and before
-  /// `ThemeBloc` is created.
-  static Future<void> ensureDefaultDark() async {
-    if (HydratedBloc.storage.read(_storageKey) != null) return;
+  /// The app's own key for the Light/Dark choice - independent of class names.
+  static const _storageKey = 'MyBossTheme';
 
-    await HydratedBloc.storage.write(
-      _storageKey,
-      _plainJson(const ThemeState(themeMode: ThemeMode.dark)),
-    );
-  }
+  /// Where older builds stored the choice (HydratedBloc key of a
+  /// non-obfuscated `ThemeBloc`); still read so that choice is kept.
+  static const _legacyKey = 'ThemeBloc';
 
-  /// Persists every Light/Dark change.
+  /// Dark by default on a fresh install, and every Light/Dark change kept
+  /// across restarts. Call once `ThemeBloc` is registered (lazily) and before
+  /// anything creates it or `runApp` runs: a new `ThemeBloc` writes its
+  /// Light default under the legacy key, so storage is read first.
   ///
-  /// The core's own HydratedBloc write fails (see [_plainJson]), so the choice
-  /// was lost on every restart. Call once `ThemeBloc` is registered.
-  static StreamSubscription<ThemeState> persistChanges() {
-    return getIt<ThemeBloc>().stream.listen(
-      (state) => HydratedBloc.storage.write(_storageKey, _plainJson(state)),
+  /// The choice is not left to `ThemeBloc`'s own HydratedBloc storage:
+  /// - its key is the runtime type name, which `--obfuscate` builds minify,
+  ///   so a key seeded under `'ThemeBloc'` was never read back (app started
+  ///   in Light);
+  /// - it writes the default Light state as soon as the bloc is created, so a
+  ///   fresh install cannot be told apart from a saved choice;
+  /// - its write fails anyway (see [_plainJson]).
+  static StreamSubscription<ThemeState> setupDefaultDark() {
+    final storage = HydratedBloc.storage;
+    final stored = storage.read(_storageKey) ?? storage.read(_legacyKey);
+    final mode = stored is Map
+        ? ThemeMode.values.asNameMap()[stored['themeMode']] ?? ThemeMode.dark
+        : ThemeMode.dark;
+
+    final bloc = getIt<ThemeBloc>();
+    final subscription = bloc.stream.listen(
+      (state) => storage.write(_storageKey, _plainJson(state)),
     );
+
+    if (bloc.state.themeMode != mode) {
+      bloc.add(ThemeEvent.changeTheme(mode));
+    }
+    return subscription;
   }
 
   /// Marks every element dirty so widgets that read [MyBossColors] (including

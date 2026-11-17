@@ -47,3 +47,20 @@ Sebagai developer, saya ingin membuat APK staging yang sudah ditandatangani deng
 2. Cek compileSdk/targetSdk Android 16 (API 36) + analisis dampak API 37
 3. Signing release dari key.properties + bump versi staging 1.0.1+2
 4. Build APK staging release untuk testing
+
+### Story: Default Bahasa ID dan Mode Dark di Build Staging
+
+Sebagai pengguna yang baru menginstal APK staging, saya ingin app langsung tampil dalam bahasa Indonesia dan mode gelap, dan pilihan Light/Dark saya tetap tersimpan setelah app dibuka ulang.
+
+Temuan: APK release dibuild dengan `--obfuscate`, yang mengacak nama class. Tema disimpan di key `'ThemeBloc'`, padahal HydratedBloc membaca key dari nama class, sehingga app selalu mulai dalam mode Light dan pilihan tema hilang setelah restart. Bahasa mengikuti bahasa HP karena `startLocale` tidak di-set.
+
+**Acceptance Criteria:**
+- Install baru: app terbuka dalam bahasa Indonesia (`startLocale: id`), apa pun bahasa HP; pilihan bahasa user tetap tersimpan.
+- Install baru: app terbuka dalam mode Dark, juga di build `--obfuscate`.
+- Pilihan Light/Dark tersimpan di key milik app (`MyBossTheme`) yang tidak bergantung pada nama class; pilihan di key lama `ThemeBloc` tetap dibaca.
+- Ada unit test yang mensimulasikan nama class teracak (obfuscate); `flutter analyze` bersih.
+- Versi staging 1.0.1+3.
+
+**Task breakdown (2):**
+1. Default bahasa ID: startLocale id di EasyLocalization
+2. Default Dark tahan obfuscate: key tema MyBossTheme + migrasi key lama + test + versi 1.0.1+3

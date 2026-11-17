@@ -72,14 +72,14 @@ Future<void> main() async {
           ),
   );
 
-  /// Dark is the default mode on a fresh install
-  await MyBossTheme.ensureDefaultDark();
-
   /// Register Font
   FontHelper.registerLicense();
 
   /// Setup Injections Core-1
   await InjectionsCore.setupAll();
+
+  /// Dark on a fresh install + keep the Light/Dark choice across restarts
+  MyBossTheme.setupDefaultDark();
 
   /// Mock data source - added after the core logger/retry interceptors so
   /// requests and mock responses are still logged. Never on live/release.
@@ -97,9 +97,6 @@ Future<void> main() async {
     getIt<AccountBloc>().add(const AccountEvent.reset());
   }
 
-  /// Keep the Light/Dark choice across restarts
-  MyBossTheme.persistChanges();
-
   // Set the global observer before running the app
   // if (AppSetting.isWatchBloc) Bloc.observer = SimpleBlocObserver();
 
@@ -108,6 +105,9 @@ Future<void> main() async {
     EasyLocalization(
       supportedLocales: const [Locale('en'), Locale('id')],
       path: 'assets/translations',
+      // Indonesian until the user picks a language (saved by EasyLocalization);
+      // without it a fresh install follows the device language.
+      startLocale: const Locale('id'),
       fallbackLocale: const Locale('id'),
       useOnlyLangCode: true,
       child: const MyApp(),

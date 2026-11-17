@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
 
@@ -24,6 +25,7 @@ class _FileAssets extends AssetLoader {
 
 void main() {
   late ThemeBloc bloc;
+  late StreamSubscription<ThemeState> themeSub;
 
   setUpAll(() async {
     TestWidgetsFlutterBinding.ensureInitialized();
@@ -38,15 +40,17 @@ void main() {
 
   setUp(() async {
     await HydratedBloc.storage.clear();
-    await MyBossTheme.ensureDefaultDark();
-    bloc = ThemeBloc();
-    getIt.registerSingleton<ThemeBloc>(bloc);
+    getIt.registerLazySingleton<ThemeBloc>(ThemeBloc.new);
+    themeSub = MyBossTheme.setupDefaultDark();
+    bloc = getIt<ThemeBloc>();
+    await Future<void>.delayed(Duration.zero);
     final prefs = SharedPreferencesHelper();
     await prefs.init();
     getIt.registerSingleton<SharedPreferencesHelper>(prefs);
   });
 
   tearDown(() async {
+    await themeSub.cancel();
     await bloc.close();
     await getIt.reset();
   });

@@ -66,7 +66,7 @@ void main() {
     });
   });
 
-  group('ensureDefaultDark', () {
+  group('setupDefaultDark', () {
     setUpAll(() async {
       HydratedBloc.storage = await HydratedStorage.build(
         storageDirectory: HydratedStorageDirectory(
@@ -75,44 +75,60 @@ void main() {
       );
     });
     setUp(() async => HydratedBloc.storage.clear());
+    tearDown(() async => getIt.reset());
 
-    test('fresh install starts in Dark', () async {
-      await MyBossTheme.ensureDefaultDark();
+    Future<void> settle() =>
+        Future<void>.delayed(const Duration(milliseconds: 50));
 
-      final bloc = ThemeBloc();
+    /// One app start: the bloc registered lazily like `mobile_app_core`
+    /// does, then the setup; the previous start (if any) is shut down first.
+    Future<ThemeBloc> start(ThemeBloc Function() create) async {
+      await getIt.reset();
+      getIt.registerLazySingleton<ThemeBloc>(create);
+      final sub = MyBossTheme.setupDefaultDark();
+      addTearDown(sub.cancel);
+      final bloc = getIt<ThemeBloc>();
       addTearDown(bloc.close);
-      expect(bloc.state.themeMode, ThemeMode.dark);
+      await settle();
+      return bloc;
+    }
+
+    test('fresh install starts in Dark and stays Dark on restart', () async {
+      expect((await start(ThemeBloc.new)).state.themeMode, ThemeMode.dark);
+      expect((await start(ThemeBloc.new)).state.themeMode, ThemeMode.dark);
     });
 
-    test('keeps a mode the user already chose', () async {
+    test('keeps a mode stored by an older build', () async {
       await HydratedBloc.storage.write('ThemeBloc', {'themeMode': 'light'});
 
-      await MyBossTheme.ensureDefaultDark();
-
-      final bloc = ThemeBloc();
-      addTearDown(bloc.close);
-      expect(bloc.state.themeMode, ThemeMode.light);
+      expect((await start(ThemeBloc.new)).state.themeMode, ThemeMode.light);
     });
 
-    test('persistChanges stores the choice so it survives a restart', () async {
-      await MyBossTheme.ensureDefaultDark();
-      final bloc = ThemeBloc();
-      getIt.registerSingleton<ThemeBloc>(bloc);
-      addTearDown(() async {
-        await bloc.close();
-        await getIt.reset();
-      });
-      final sub = MyBossTheme.persistChanges();
-      addTearDown(sub.cancel);
+    test('stores the choice so it survives a restart', () async {
+      final bloc = await start(ThemeBloc.new);
+      bloc.add(const ThemeEvent.changeTheme(ThemeMode.light));
+      await settle();
+
+      expect((await start(ThemeBloc.new)).state.themeMode, ThemeMode.light);
+    });
+
+    test('obfuscated build (minified type name): Dark + choice kept', () async {
+      final bloc = await start(_MinifiedThemeBloc.new);
+      expect(bloc.state.themeMode, ThemeMode.dark);
 
       bloc.add(const ThemeEvent.changeTheme(ThemeMode.light));
-      await Future<void>.delayed(const Duration(milliseconds: 50));
+      await settle();
 
-      final restarted = ThemeBloc();
-      addTearDown(restarted.close);
+      final restarted = await start(_MinifiedThemeBloc.new);
       expect(restarted.state.themeMode, ThemeMode.light);
     });
   });
+}
+
+/// `--obfuscate` renames `ThemeBloc`, so HydratedBloc keys it by another name.
+class _MinifiedThemeBloc extends ThemeBloc {
+  @override
+  String get storagePrefix => 'xQ';
 }
 
 /// `const` widget reading the static palette + a stateful counter.
