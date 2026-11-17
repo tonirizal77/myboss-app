@@ -103,6 +103,27 @@
       // "args": ["--flavor", "production"]
     },
 
+    /// Build APK (staging)
+    /// -------------------
+    /// Runs `flutter build apk` in the integrated terminal (no device needed).
+    /// Output: build/app/outputs/flutter-apk/app-staging-<mode>.apk
+    {
+      // Release build is signed with debug keys (see android/app/build.gradle.kts)
+      // and is locked to DATA_SOURCE=api by ServerAccess.
+      "name": "Build APK staging (release)",
+      "request": "launch",
+      "type": "node-terminal",
+      "cwd": "${workspaceFolder}",
+      "command": "flutter build apk --release --split-per-abi  --obfuscate --split-debug-info=build/app/outputs/symbols --flavor staging --no-tree-shake-icons --dart-define=DATA_SOURCE=api --android-skip-build-dependency-validation && open build/app/outputs/flutter-apk"
+    },
+    {
+      "name": "Build APK staging (debug)",
+      "request": "launch",
+      "type": "node-terminal",
+      "cwd": "${workspaceFolder}",
+      "command": "flutter build apk --debug --split-per-abi  --obfuscate --split-debug-info=build/app/outputs/symbols --flavor staging --no-tree-shake-icons --dart-define=DATA_SOURCE=api --android-skip-build-dependency-validation && open build/app/outputs/flutter-apk"
+    },
+
     /// 2. For iOS
     {
       "name": "MyIphone",

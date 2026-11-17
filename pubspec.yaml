@@ -3,7 +3,11 @@ description: "Starter template - full clean-architecture copy of hayo_app's core
 
 publish_to: "none" # Remove this line if you wish to publish to pub.dev
 
-version: 1.0.1+1
+# Staging
+version: 1.0.1+2
+
+# Production
+# version: 1.0.1+1
 
 environment:
   sdk: ^3.12.2 #">=3.10.0 <4.0.0"

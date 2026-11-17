@@ -1,0 +1,21 @@
+{
+  "prd": "PRD-015-staging-apk-build.md",
+  "project_gid": "65ea6511-c5e4-4397-adf0-64a03c9159c7",
+  "epic": {
+    "id": "732c49ed-57ee-4368-b922-702cf65fd529",
+    "key": "MYB-1"
+  },
+  "stories": [
+    {
+      "id": "2a3f5c01-2613-4503-84ce-3fee24e54071",
+      "key": "MYB-645",
+      "name": "Build APK Staging untuk Testing",
+      "tasks": [
+        {"id": "b3ce949f-93b0-4deb-b168-ea6bb96305d6", "key": "MYB-649", "title": "Konfigurasi build APK staging (release & debug) di .vscode/launch.json", "deadline": "2026-11-17"},
+        {"id": "4809bcc5-ab89-426c-8d1a-057dcd6627e2", "key": "MYB-648", "title": "Cek compileSdk/targetSdk Android 16 (API 36) + analisis dampak API 37", "deadline": "2026-11-17"},
+        {"id": "e37e8fef-3fba-4866-800f-7decfc63f05f", "key": "MYB-647", "title": "Signing release dari key.properties + bump versi staging 1.0.1+2", "deadline": "2026-11-17"},
+        {"id": "c81537fd-174a-4c2c-a36f-ecb54355be30", "key": "MYB-646", "title": "Build APK staging release untuk testing", "deadline": "2026-11-17"}
+      ]
+    }
+  ]
+}
