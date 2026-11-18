@@ -1,6 +1,7 @@
 import 'package:equatable/equatable.dart';
 
 export 'verify_model/verify_model.dart';
+export 'verify_model/verify_channel.dart';
 
 enum ActionOtp { registerOtp, loginOtp, resendOtp, changeOtp }
 

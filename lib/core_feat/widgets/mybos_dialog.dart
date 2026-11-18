@@ -7,6 +7,7 @@ import 'mybos_button.dart';
 /// MyBoss confirmation dialog (Figma `dialog`): centered title with two pill
 /// buttons. Resolves to `true` when confirmed, `false`/`null` otherwise.
 ///
+/// [message]: optional body text under the title.
 /// [icon]: shown in a circle above the title (danger color when
 /// [destructive]). [stacked]: full-width buttons, cancel above confirm
 /// (Figma delete-account warning) instead of side by side.
@@ -16,6 +17,7 @@ class MyBossDialog {
   static Future<bool?> confirm(
     BuildContext context, {
     required String title,
+    String? message,
     required String cancelLabel,
     required String confirmLabel,
     bool destructive = false,
@@ -66,7 +68,12 @@ class MyBossDialog {
                   ),
                 ),
               Padding(
-                padding: const EdgeInsets.all(16),
+                padding: EdgeInsets.fromLTRB(
+                  16,
+                  16,
+                  16,
+                  message == null ? 16 : 0,
+                ),
                 child: Text(
                   title,
                   textAlign: TextAlign.center,
@@ -75,6 +82,17 @@ class MyBossDialog {
                   ),
                 ),
               ),
+              if (message != null)
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(16, 8, 16, 16),
+                  child: Text(
+                    message,
+                    textAlign: TextAlign.center,
+                    style: MyBossTextStyles.bodyBig2.copyWith(
+                      color: MyBossColors.onSurface,
+                    ),
+                  ),
+                ),
               Padding(
                 padding: const EdgeInsets.all(16),
                 child: stacked

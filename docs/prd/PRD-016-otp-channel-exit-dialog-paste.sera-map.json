@@ -1,0 +1,49 @@
+{
+  "prd": "PRD-016-otp-channel-exit-dialog-paste.md",
+  "project_gid": "65ea6511-c5e4-4397-adf0-64a03c9159c7",
+  "epic": {
+    "id": "732c49ed-57ee-4368-b922-702cf65fd529",
+    "key": "MYB-1"
+  },
+  "stories": [
+    {
+      "id": "2984d69a-7472-4f28-84c7-ea70ffedbfba",
+      "key": "MYB-669",
+      "name": "Verifikasi OTP sesuai channel WhatsApp/Email",
+      "tasks": [
+        {"id": "c15b2d97-b38b-4587-adf5-835f9e4a7b1f", "key": "MYB-680", "title": "Penentu channel dan kontak tujuan per alur OTP (verify_channel.dart)", "deadline": "2026-11-18"},
+        {"id": "e2c646b7-7c13-4d78-8ff8-082c57b6d0a1", "key": "MYB-679", "title": "Terjemahan varian email (en/id) + regenerate locale_keys", "deadline": "2026-11-18"},
+        {"id": "83bf389c-59c9-4482-baa8-6370f0b99cf2", "key": "MYB-678", "title": "Halaman konfirmasi dan kirim OTP ubah profil mengikuti channel", "deadline": "2026-11-18"},
+        {"id": "1baa5b45-d2b0-4d75-8116-1b6d9eff5aca", "key": "MYB-677", "title": "Unit test pemetaan channel OTP", "deadline": "2026-11-18"}
+      ]
+    },
+    {
+      "id": "3065c711-0616-438c-88d9-34e147b8b622",
+      "key": "MYB-668",
+      "name": "Dialog konfirmasi keluar aplikasi",
+      "tasks": [
+        {"id": "81ebb36e-c79c-4899-8f99-61b47f34d342", "key": "MYB-676", "title": "Parameter message pada MyBossDialog.confirm", "deadline": "2026-11-18"},
+        {"id": "9c20536a-9c40-49c5-aea7-5dd3f98db02c", "key": "MYB-675", "title": "Dialog keluar di Main Page + terjemahan en/id", "deadline": "2026-11-18"},
+        {"id": "f1fdd537-d317-45f0-840c-480c7bdf0fd1", "key": "MYB-674", "title": "Widget test dialog dengan message", "deadline": "2026-11-18"}
+      ]
+    },
+    {
+      "id": "80baef2c-f90f-4baa-af3a-a79c3fdcf684",
+      "key": "MYB-667",
+      "name": "Fix kode OTP tersisa setelah dihapus",
+      "tasks": [
+        {"id": "e427b39d-658e-499e-8188-87fa4c8ace15", "key": "MYB-673", "title": "Laporkan perubahan kode dari listener controller + guard tombol Verifikasi + test", "deadline": "2026-11-18"}
+      ]
+    },
+    {
+      "id": "afaf2e56-3fcd-4fe5-bd2a-c6567fb63a8c",
+      "key": "MYB-666",
+      "name": "Paste kode OTP",
+      "tasks": [
+        {"id": "e11cfe18-95d1-4dd3-98e2-71f3f2f676bc", "key": "MYB-672", "title": "Deteksi paste, distribusi digit ke kolom, auto-verify bila lengkap", "deadline": "2026-11-18"},
+        {"id": "f34570b6-0dcc-4011-b74a-80824c86b8d7", "key": "MYB-671", "title": "Widget test paste (penuh, kolom lain, spasi/kelebihan, pendek)", "deadline": "2026-11-18"},
+        {"id": "799c33ae-77ef-4dcf-9ae8-9c8f48c7518d", "key": "MYB-670", "title": "Verifikasi manual paste OTP di Android", "deadline": "2026-11-18"}
+      ]
+    }
+  ]
+}

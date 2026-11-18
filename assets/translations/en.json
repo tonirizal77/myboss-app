@@ -28,6 +28,8 @@
 
   "dialog": {
     "title_logout": "Logout?",
+    "title_exit_app": "Exit the app?",
+    "desc_exit_app": "You will need to open MyBoss again to continue.",
     "desc_logout": "Are you sure you want to sign out from MyBoss account?",
     "title_delete_account": "Delete Account?",
     "desc_delete_account": "Are you sure you want to delete your MyBoss account? This action cannot be undone and all your data will be permanently deleted."
@@ -41,6 +43,7 @@
     "terapkan": "Apply",
     "back": "Back",
     "logout": "Yes, sign out",
+    "exit_app": "Yes, exit",
     "delete_account": "Yes, Delete Account",
     "continue": "Continue"
   },
@@ -333,6 +336,9 @@
     "otp_instruction": "Click to send the OTP code to your WhatsApp number. Enter the 4-digit code in the next step.",
     "otp_instruction_with_phone": "Click to send the OTP code to your WhatsApp number: {}. Enter the 4-digit code in the next step.",
     "confirm_title": "Verify WhatsApp",
+    "confirm_title_email": "Verify Email",
+    "otp_instruction_email": "Click to send the OTP code to your email: {}. Enter the 4-digit code in the next step.",
+    "otp_sent_email": "Please enter the OTP code we sent to your email address: ",
     "confirm_btn": "Verify",
     "otp_sent": "Please enter the OTP code we sent to your WhatsApp number: ",
     "resend_otp": "Resend the OTP code",

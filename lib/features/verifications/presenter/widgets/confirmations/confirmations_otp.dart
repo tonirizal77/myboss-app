@@ -38,12 +38,8 @@ class _ConfirmationsOtpState extends State<ConfirmationsOtp> {
   Widget _contentConfirm() {
     return BlocBuilder<VerifyBloc, VerifyState>(
       builder: (context, state) {
-        final _labelPhone = getIt<GeneralHelper>().maskPhone(
-          state.action == ActionVerify.getOtp
-              ? state.verifyData.phone
-              : state.verifyData.newPhone,
-          isMaskContact: AppSetting.isMaskContact.value,
-        );
+        final _data = state.verifyData;
+        final _label = _data.maskedOtpTarget;
 
         return RichText(
           textAlign: TextAlign.center,
@@ -52,9 +48,13 @@ class _ConfirmationsOtpState extends State<ConfirmationsOtp> {
               color: AppTheme.onSurface(context),
             ),
             children: [
-              TextSpan(text: LocaleKeys.verify_otp_sent.tr()),
               TextSpan(
-                text: _labelPhone,
+                text: _data.isEmailChannel
+                    ? LocaleKeys.verify_otp_sent_email.tr()
+                    : LocaleKeys.verify_otp_sent.tr(),
+              ),
+              TextSpan(
+                text: _label,
                 style: MyBossTextStyles.bodyBig1.copyWith(
                   fontWeight: FontWeight.bold,
                   color: AppTheme.onSurface(context),
@@ -69,6 +69,9 @@ class _ConfirmationsOtpState extends State<ConfirmationsOtp> {
 
   Future<void> _onConfirmOtp() async {
     FocusManager.instance.primaryFocus?.unfocus();
+
+    /// Incomplete code (e.g. digits deleted after typing it all): do not send.
+    if (_tokenOtp.length != 4) return;
 
     // await UserFlows.confirmOtp(context, phone: _phone, otp: _tokenOtp);
 

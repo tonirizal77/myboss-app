@@ -28,10 +28,8 @@ class BodyFormToken extends StatelessWidget {
                   FormInputOtp(
                     length: 4,
                     isError: state.statusSendOtp == Status.failed,
-                    onVerify: (otp) {
-                      FocusScope.of(context).unfocus();
-                      callback(otp);
-                    },
+                    onChanged: callback,
+                    onVerify: (_) => FocusScope.of(context).unfocus(),
                   ),
 
                   /// Error Info Token

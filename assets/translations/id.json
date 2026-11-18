@@ -29,6 +29,8 @@
   "dialog": {
     "title_logout": "Keluar?",
     "desc_logout": "Yakin ingin keluar dari akun MyBoss?",
+    "title_exit_app": "Keluar dari aplikasi?",
+    "desc_exit_app": "Anda harus membuka MyBoss lagi untuk melanjutkan.",
     "title_delete_account": "Hapus Akun?",
     "desc_delete_account": "Apakah Anda yakin ingin menghapus akun MyBoss? Tindakan ini tidak dapat dibatalkan dan semua data Anda akan dihapus secara permanen."
   },
@@ -41,6 +43,7 @@
     "terapkan": "Terapkan",
     "back": "Kembali",
     "logout": "Ya, keluar",
+    "exit_app": "Ya, keluar",
     "delete_account": "Ya, Hapus Akun",
     "continue": "Lanjutkan"
   },
@@ -333,6 +336,9 @@
     "otp_instruction": "Klik untuk mengirim kode OTP ke nomor WhatsApp Anda. Masukkan kode 4 digit pada langkah berikutnya.",
     "otp_instruction_with_phone": "Klik untuk mengirim kode OTP ke nomor WhatsApp Anda: {}. Masukkan kode 4 digit pada langkah berikutnya.",
     "confirm_title": "Verifikasi WhatsApp",
+    "confirm_title_email": "Verifikasi Email",
+    "otp_instruction_email": "Klik untuk mengirim kode OTP ke email Anda: {}. Masukkan kode 4 digit pada langkah berikutnya.",
+    "otp_sent_email": "Silakan masukkan kode OTP yang kami kirim ke alamat email Anda: ",
     "confirm_btn": "Verifikasi",
     "otp_sent": "Silakan masukkan kode OTP yang kami kirim ke nomor WhatsApp Anda: ",
     "resend_otp": "Kirim ulang kode OTP",

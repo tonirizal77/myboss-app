@@ -26,6 +26,8 @@ abstract class  LocaleKeys {
   static const label_closed_in = 'label.closed_in';
   static const label = 'label';
   static const dialog_title_logout = 'dialog.title_logout';
+  static const dialog_title_exit_app = 'dialog.title_exit_app';
+  static const dialog_desc_exit_app = 'dialog.desc_exit_app';
   static const dialog_desc_logout = 'dialog.desc_logout';
   static const dialog_title_delete_account = 'dialog.title_delete_account';
   static const dialog_desc_delete_account = 'dialog.desc_delete_account';
@@ -37,6 +39,7 @@ abstract class  LocaleKeys {
   static const button_terapkan = 'button.terapkan';
   static const button_back = 'button.back';
   static const button_logout = 'button.logout';
+  static const button_exit_app = 'button.exit_app';
   static const button_delete_account = 'button.delete_account';
   static const button_continue = 'button.continue';
   static const button = 'button';
@@ -285,6 +288,9 @@ abstract class  LocaleKeys {
   static const verify_otp_instruction = 'verify.otp_instruction';
   static const verify_otp_instruction_with_phone = 'verify.otp_instruction_with_phone';
   static const verify_confirm_title = 'verify.confirm_title';
+  static const verify_confirm_title_email = 'verify.confirm_title_email';
+  static const verify_otp_instruction_email = 'verify.otp_instruction_email';
+  static const verify_otp_sent_email = 'verify.otp_sent_email';
   static const verify_confirm_btn = 'verify.confirm_btn';
   static const verify_otp_sent = 'verify.otp_sent';
   static const verify_resend_otp = 'verify.resend_otp';

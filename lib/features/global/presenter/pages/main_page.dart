@@ -147,11 +147,14 @@ class _MainPageState extends State<MainPage> with WidgetsBindingObserver {
 
   /// Handle on will pop for Close App
   Future<bool> _onPopInvokedDefault(BuildContext context) async {
-    bool? exitResult = await showDialog(
-      context: context,
-      builder: (context) {
-        return getIt<DialogHelper>().buildExitDialog(context);
-      },
+    final exitResult = await MyBossDialog.confirm(
+      context,
+      title: LocaleKeys.dialog_title_exit_app.tr(),
+      message: LocaleKeys.dialog_desc_exit_app.tr(),
+      cancelLabel: LocaleKeys.button_batal.tr(),
+      confirmLabel: LocaleKeys.button_exit_app.tr(),
+      icon: Icons.warning_amber_rounded,
+      barrierDismissible: false,
     );
 
     PrintHelper.printError("__ MainPage onWillpop: $exitResult");

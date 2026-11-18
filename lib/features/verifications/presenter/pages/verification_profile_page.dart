@@ -57,19 +57,11 @@ class _VerificationProfilePageState extends State<VerificationProfilePage> {
           _changeLabelFor = ['', ''];
         }
 
-        String _info = LocaleKeys.verify_otp_instruction.tr();
-
-        if (_data.fromPage == FromPage.changeEmail ||
-            _data.fromPage == FromPage.changeNewEmail) {
-          _info = LocaleKeys.verify_otp_instruction_with_phone.tr(
-            args: [
-              getIt<GeneralHelper>().maskPhone(
-                _data.phone,
-                isMaskContact: AppSetting.isMaskContact.value,
-              ),
-            ],
-          );
-        }
+        final String _info = _data.isEmailChannel
+            ? LocaleKeys.verify_otp_instruction_email.tr(
+                args: [_data.maskedOtpTarget],
+              )
+            : LocaleKeys.verify_otp_instruction.tr();
 
         return ResponsivePage(
           useSafeArea: true,
@@ -201,7 +193,10 @@ class _VerificationProfilePageState extends State<VerificationProfilePage> {
         mainAxisAlignment: .center,
         spacing: 8,
         children: [
-          Image.asset(Assets.icWaBlack, color: AppTheme.surface(context)),
+          if (state.verifyData.isEmailChannel)
+            Icon(Icons.email_outlined, color: AppTheme.surface(context))
+          else
+            Image.asset(Assets.icWaBlack, color: AppTheme.surface(context)),
 
           Text(
             LocaleKeys.verify_send_otp.tr(),

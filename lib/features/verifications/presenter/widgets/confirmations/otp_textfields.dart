@@ -7,6 +7,10 @@ class OtpTextFields extends StatelessWidget {
   final Color? fillColor;
   final bool? filled, showCursor;
   final void Function(String, int)? onChanged;
+
+  /// Called with the digits when several characters are inserted into one
+  /// field at once (paste / clipboard suggestion), with the field's index.
+  final void Function(int index, String digits)? onPaste;
   final InputDecoration? decoration;
   final double height, width;
   final bool isError;
@@ -18,6 +22,7 @@ class OtpTextFields extends StatelessWidget {
     this.length = 5,
     this.fillColor,
     this.onChanged,
+    this.onPaste,
     this.decoration,
     this.height = 40,
     this.width = 68,
@@ -42,7 +47,11 @@ class OtpTextFields extends StatelessWidget {
             keyboardType: TextInputType.number,
             textAlign: TextAlign.center,
             autofocus: false,
-            inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+            inputFormatters: [
+              FilteringTextInputFormatter.digitsOnly,
+              if (onPaste != null)
+                _PasteFormatter((digits) => onPaste!(index, digits)),
+            ],
             showCursor: showCursor,
             autocorrect: false,
             enableSuggestions: false,
@@ -116,5 +125,36 @@ class OtpTextFields extends StatelessWidget {
         borderSide: BorderSide(color: AppTheme.outline(context)),
       ),
     );
+  }
+}
+
+/// Detects a paste: more than one character inserted in a single edit.
+/// (Typing over a filled field only grows the text by one, so that keeps
+/// the "replace with the latest character" behavior.) The field is left as
+/// it was and [onPaste] distributes the digits across the fields.
+class _PasteFormatter extends TextInputFormatter {
+  final void Function(String digits) onPaste;
+
+  const _PasteFormatter(this.onPaste);
+
+  @override
+  TextEditingValue formatEditUpdate(
+    TextEditingValue oldValue,
+    TextEditingValue newValue,
+  ) {
+    final inserted = newValue.text.length - oldValue.text.length;
+
+    if (inserted > 1) {
+      // Only the inserted part: the field may already hold a digit, and the
+      // cursor ends right after the pasted text.
+      final end = newValue.selection.end;
+      final digits = end >= inserted && end <= newValue.text.length
+          ? newValue.text.substring(end - inserted, end)
+          : newValue.text;
+      WidgetsBinding.instance.addPostFrameCallback((_) => onPaste(digits));
+      return oldValue;
+    }
+
+    return newValue;
   }
 }
